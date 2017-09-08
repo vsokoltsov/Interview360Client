@@ -1,12 +1,14 @@
+@import '~variables.scss';
+
 .base-container {
 
   .side-navigation {
     height: 100%;
     width: 15em;
-    background-color: #5C6BC0;
+    background-color: $side_navigation;
 
     .user_panel.side-nav-header {
-      background-color: #303F9F;
+      background-color: $primary_nav_header;
 
       .image {
         padding: 10px;
@@ -36,11 +38,11 @@
   }
 
   md-toolbar.main-header {
-    background-color: #3F51B5;
+    background-color: $primary;
   }
 
   md-icon.header-icon {
-    color: #E8EAF6;
+    color: $theme_white;
     cursor: pointer;
   }
 

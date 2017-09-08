@@ -23,18 +23,18 @@ export class AppComponent {
       name: 'Work',
       updated: new Date('1/28/16'),
     },
-    {
-      name: 'Work 1',
-      updated: new Date('1/28/16'),
-    },
-    {
-      name: 'Work 2',
-      updated: new Date('1/28/16'),
-    },
-    {
-      name: 'Work 3',
-      updated: new Date('1/28/16'),
-    }
+    // {
+    //   name: 'Work 1',
+    //   updated: new Date('1/28/16'),
+    // },
+    // {
+    //   name: 'Work 2',
+    //   updated: new Date('1/28/16'),
+    // },
+    // {
+    //   name: 'Work 3',
+    //   updated: new Date('1/28/16'),
+    // }
   ];
   notes = [
     {
