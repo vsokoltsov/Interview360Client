@@ -16,6 +16,9 @@ import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { VacanciesComponent } from './vacancies/vacancies.component';
+import { AuthComponent } from './auth/auth.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { VacanciesComponent } from './vacancies/vacancies.component';
     HeaderComponent,
     SideNavComponent,
     CompaniesComponent,
-    VacanciesComponent
+    VacanciesComponent,
+    AuthComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
