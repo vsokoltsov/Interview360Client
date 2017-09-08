@@ -1,6 +1,16 @@
 <md-sidenav-container class="base-container">
   <md-sidenav #sidenav mode="side" opened="true" class="side-navigation">
-    Jolly good!
+    <div class="user_panel side-nav-header">
+      <div class="image">
+        <img class="logo" src="https://gitlab.com/uploads/-/system/user/avatar/56386/tt_avatar_small.jpg" />
+      </div>
+      <div class="base-info info-block">
+        First name Last name
+      </div>
+      <div class="additional-info info-block">
+        example@mail.com
+      </div>
+    </div>
   </md-sidenav>
 
   <div class="content">
@@ -8,6 +18,23 @@
       <md-icon class="header-icon" (click)="toggleNavigation()">menu</md-icon>
 
     </md-toolbar>
+    <div class="container">
+      <md-list>
+        <h3 md-subheader>Folders</h3>
+        <md-list-item *ngFor="let folder of folders">
+          <md-icon md-list-icon>folder</md-icon>
+          <h4 md-line>{{folder.name}}</h4>
+          <p md-line> {{folder.updated | date}} </p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <h3 md-subheader>Notes</h3>
+        <md-list-item *ngFor="let note of notes">
+          <md-icon md-list-icon>note</md-icon>
+          <h4 md-line>{{note.name}}</h4>
+          <p md-line> {{note.updated | date}} </p>
+        </md-list-item>
+      </md-list>
+    </div>
   </div>
 
 </md-sidenav-container>

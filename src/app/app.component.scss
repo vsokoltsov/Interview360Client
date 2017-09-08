@@ -1,9 +1,36 @@
 .base-container {
+
   .side-navigation {
     height: 100%;
-    width: 10em;
+    width: 15em;
     background-color: #9FA8DA;
+
+    .user_panel.side-nav-header {
+      background-color: #5C6BC0;
+
+      .image {
+        padding: 10px;
+        .logo {
+          height: 5em;
+          width: 5em;
+          border-radius: 50px;
+        }
+      }
+
+      .info-block {
+        color: white;
+        padding: 5px 10px;
+
+        &.base-info {
+          font-size: 20px;
+        }
+        &.additional-info {
+          font-size: 14px;
+        }
+      }
+    }
   }
+
   md-toolbar.main-header {
     background-color: #3F51B5;
   }

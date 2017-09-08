@@ -5,7 +5,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MdSidenavModule,
   MdToolbarModule,
-  MdIconModule
+  MdIconModule,
+  MdListModule,
+  MdCardModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -19,7 +21,9 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     MdSidenavModule,
     MdToolbarModule,
-    MdIconModule
+    MdIconModule,
+    MdListModule,
+    MdCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
