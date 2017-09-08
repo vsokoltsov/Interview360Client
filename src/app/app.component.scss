@@ -3,10 +3,10 @@
   .side-navigation {
     height: 100%;
     width: 15em;
-    background-color: #9FA8DA;
+    background-color: #5C6BC0;
 
     .user_panel.side-nav-header {
-      background-color: #5C6BC0;
+      background-color: #303F9F;
 
       .image {
         padding: 10px;
@@ -28,6 +28,10 @@
           font-size: 14px;
         }
       }
+    }
+
+    .menu-items {
+      color: white;
     }
   }
 
