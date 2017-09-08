@@ -1,0 +1,12 @@
+.base-container {
+  .side-navigation {
+    height: 100%;
+    width: 10em;
+    background-color: white;
+  }
+  .content {
+    display: flex;
+    height: 100%;
+    background-color: red;
+  }
+}

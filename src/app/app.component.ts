@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MdDrawer } from '@angular/material';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  @ViewChild('sidenav') sidenav: MdDrawer;
+
+  toggleNavigation() {
+    this.sidenav.toggle();
+  }
 }
