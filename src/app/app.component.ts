@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MdDrawer } from '@angular/material';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

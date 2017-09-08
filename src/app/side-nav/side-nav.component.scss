@@ -1,0 +1,36 @@
+@import '~variables.scss';
+
+.side-navigation {
+  height: 100%;
+  width: 15em;
+  background-color: $side_navigation;
+
+  .user_panel.side-nav-header {
+    background-color: $primary_nav_header;
+
+    .image {
+      padding: 10px;
+      .logo {
+        height: 5em;
+        width: 5em;
+        border-radius: 50px;
+      }
+    }
+
+    .info-block {
+      color: white;
+      padding: 5px 10px;
+
+      &.base-info {
+        font-size: 20px;
+      }
+      &.additional-info {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .menu-items {
+    color: white;
+  }
+}
