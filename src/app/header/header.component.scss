@@ -1,5 +1,11 @@
 @import '~variables.scss';
 
+.header-content {
+  display: flex;
+  flex-direction: row;
+  color: $theme_white;
+}
+
 md-icon.header-icon {
   color: $theme_white;
   cursor: pointer;
