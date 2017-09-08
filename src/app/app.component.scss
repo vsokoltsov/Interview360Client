@@ -2,11 +2,20 @@
   .side-navigation {
     height: 100%;
     width: 10em;
-    background-color: white;
+    background-color: #9FA8DA;
   }
+  md-toolbar.main-header {
+    background-color: #3F51B5;
+  }
+
+  md-icon.header-icon {
+    color: #E8EAF6;
+    cursor: pointer;
+  }
+
   .content {
     display: flex;
+    flex-direction: column;
     height: 100%;
-    background-color: red;
   }
 }
