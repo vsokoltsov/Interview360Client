@@ -1,3 +1,14 @@
-<p>
-  sign-up works!
-</p>
+<form class="form" [formGroup]="signUpForm" ngSubmit="signIn()">
+  <md-form-field class="field email">
+    <input mdInput placeholder="Email" formControlName="email" type="email" value="aaa">
+  </md-form-field>
+
+  <md-form-field class="field password">
+    <input mdInput placeholder="Password" formControlName="password" type="password">
+  </md-form-field>
+
+  <md-form-field class="field password-confirmation">
+    <input mdInput placeholder="Password confirmation" formControlName="passwordConfirmation" type="password">
+  </md-form-field>
+  <button md-raised-button color="primary" type="submit">Sign up</button>
+</form>
