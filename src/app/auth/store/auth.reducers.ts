@@ -1,14 +1,15 @@
+import { User } from '../user.model';
 import * as AuthActions from './auth.actions';
 
 export interface State {
   token: string;
-  currentUser: {};
+  currentUser: User;
   signInErrors: {};
 }
 
 const initialState: State = {
   token: null,
-  currentUser: {},
+  currentUser: null,
   signInErrors: {}
 };
 
@@ -18,7 +19,7 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
       console.log(action.payload);
       return {
         ...state,
-        token: action.payload
+        currentUser: action.payload
       };
     case AuthActions.FAILED_SIGN_IN:
       return {
