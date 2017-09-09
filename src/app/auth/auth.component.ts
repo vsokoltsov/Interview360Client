@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-
+  routerLinks = [
+    { label: 'Sign in', link: 'sign-in' },
+    { label: 'Sign up', link: 'sign-up' }
+  ];
   constructor() { }
 
   ngOnInit() {

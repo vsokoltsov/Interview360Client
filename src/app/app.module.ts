@@ -8,7 +8,8 @@ import {
   MdToolbarModule,
   MdIconModule,
   MdListModule,
-  MdCardModule
+  MdCardModule,
+  MdTabsModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -41,7 +42,8 @@ import { RootComponent } from './root/root.component';
     MdToolbarModule,
     MdIconModule,
     MdListModule,
-    MdCardModule
+    MdCardModule,
+    MdTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
