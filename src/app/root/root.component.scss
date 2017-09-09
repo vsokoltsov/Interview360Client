@@ -1,0 +1,14 @@
+@import '~variables.scss';
+
+.base-container {
+
+  md-toolbar.main-header {
+    background-color: $primary;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}

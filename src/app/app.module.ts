@@ -19,6 +19,7 @@ import { VacanciesComponent } from './vacancies/vacancies.component';
 import { AuthComponent } from './auth/auth.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { RootComponent } from './root/root.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     VacanciesComponent,
     AuthComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    RootComponent
   ],
   imports: [
     BrowserModule,
