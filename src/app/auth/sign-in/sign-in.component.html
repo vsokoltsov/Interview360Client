@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="signInForm" ngSubmit="signIn()">
+<form class="form" [formGroup]="signInForm" (ngSubmit)="signIn()">
   <md-form-field class="field email">
     <input mdInput placeholder="Email" formControlName="email" type="email" value="aaa">
   </md-form-field>

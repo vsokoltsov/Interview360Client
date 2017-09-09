@@ -15,6 +15,7 @@ const initialState: State = {
 export function authReducer(state = initialState, action: AuthActions.AuthActions) {
   switch(action.type) {
     case AuthActions.SUCCESS_SIGN_IN:
+      console.log(action.payload);
       return {
         ...state,
         token: action.payload

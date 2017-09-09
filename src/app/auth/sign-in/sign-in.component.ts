@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducers';
+import * as AuthActions from '../store/auth.actions';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,7 +11,8 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
   signInForm: FormGroup;
-  constructor() { }
+
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.signInForm = new FormGroup({
@@ -18,7 +22,7 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
-
+    this.store.dispatch(new AuthActions.SuccessSignIn('It should be a token'));
   }
 
 }

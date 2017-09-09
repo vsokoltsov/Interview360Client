@@ -26,6 +26,7 @@ import { AuthComponent } from './auth/auth.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { RootComponent } from './root/root.component';
+import { reducers } from './store/app.reducers';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { RootComponent } from './root/root.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(reducers),
     MdSidenavModule,
     MdToolbarModule,
     MdIconModule,
