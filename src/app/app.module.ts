@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import {
   MdSidenavModule,
@@ -58,7 +59,8 @@ import { AuthService } from './auth/auth.service';
     MdButtonModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    CookieService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
