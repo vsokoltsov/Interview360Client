@@ -6,6 +6,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import {
   MdSidenavModule,
@@ -27,6 +28,7 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { RootComponent } from './root/root.component';
 import { reducers } from './store/app.reducers';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { reducers } from './store/app.reducers';
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
+    HttpClientModule,
     MdSidenavModule,
     MdToolbarModule,
     MdIconModule,
@@ -54,7 +57,9 @@ import { reducers } from './store/app.reducers';
     MdInputModule,
     MdButtonModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

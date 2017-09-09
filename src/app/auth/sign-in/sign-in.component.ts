@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 import * as AuthActions from '../store/auth.actions';
@@ -12,7 +13,8 @@ import * as AuthActions from '../store/auth.actions';
 export class SignInComponent implements OnInit {
   signInForm: FormGroup;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.signInForm = new FormGroup({
@@ -22,7 +24,7 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
-    this.store.dispatch(new AuthActions.SuccessSignIn('It should be a token'));
+    this.authService.signIn(this.signInForm.value);
   }
 
 }
