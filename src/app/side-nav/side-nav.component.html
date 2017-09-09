@@ -7,7 +7,7 @@
       First name Last name
     </div>
     <div class="additional-info info-block">
-      example@mail.com
+      {{ user ? user.email : 'example@mail.com' }}
     </div>
   </div>
   <div class="menu-items">

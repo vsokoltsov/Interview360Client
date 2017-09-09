@@ -1,4 +1,10 @@
-import { Component, OnInit, EventEmitter, Output, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  Output,
+  CUSTOM_ELEMENTS_SCHEMA
+} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +14,8 @@ import { Component, OnInit, EventEmitter, Output, CUSTOM_ELEMENTS_SCHEMA } from 
 export class HeaderComponent implements OnInit {
   @Output() onMenuClicked: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
-
   ngOnInit() {
+
   }
 
   toggleMenu() {
