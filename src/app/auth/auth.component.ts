@@ -10,6 +10,7 @@ export class AuthComponent implements OnInit {
     { label: 'Sign in', link: 'sign-in' },
     { label: 'Sign up', link: 'sign-up' }
   ];
+
   constructor() { }
 
   ngOnInit() {
