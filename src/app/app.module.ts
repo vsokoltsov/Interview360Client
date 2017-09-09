@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {
   MdSidenavModule,
@@ -9,7 +10,8 @@ import {
   MdIconModule,
   MdListModule,
   MdCardModule,
-  MdTabsModule
+  MdInputModule,
+  MdButtonModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -38,12 +40,14 @@ import { RootComponent } from './root/root.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     MdSidenavModule,
     MdToolbarModule,
     MdIconModule,
     MdListModule,
     MdCardModule,
-    MdTabsModule
+    MdInputModule,
+    MdButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],
