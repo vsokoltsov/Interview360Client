@@ -1,6 +1,7 @@
 @import '~variables.scss';
 
 .base-container {
+  min-height: 50em;
 
   md-toolbar.main-header {
     background-color: $primary;
