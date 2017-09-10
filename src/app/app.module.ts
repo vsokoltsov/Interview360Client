@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
+
 import {
   MdSidenavModule,
   MdToolbarModule,
@@ -30,6 +31,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { RootComponent } from './root/root.component';
 import { reducers } from './store/app.reducers';
 import { AuthService } from './auth/auth.service';
+import { ApiService } from './shared/api.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { AuthService } from './auth/auth.service';
   ],
   providers: [
     AuthService,
-    CookieService
+    CookieService,
+    ApiService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

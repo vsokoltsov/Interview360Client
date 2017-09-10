@@ -6,38 +6,38 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'angular2-cookie/core';
 import { User } from './user.model';
+import { ApiService } from '../shared/api.service';
 
 import * as fromApp from '../store/app.reducers';
 import * as AuthActions from './store/auth.actions';
 
 @Injectable()
 export class AuthService {
+  tokenName = 'imauthtoken';
 
-  constructor(private httpClient: HttpClient,
+  constructor(private apiService: ApiService,
               private store: Store<fromApp.AppState>,
               private cookieService: CookieService) {}
 
 
   signIn(params: { email: string, password: string }) {
-    this.httpClient.post<{token: string}>('http://0.0.0.0:8080/api/v1/sign_in/', params)
+    this.apiService.post('/sign_in/', params)
       .subscribe(
-        response => {
-          this.cookieService.put('imauthtoken', response.token);
+        (response: { token: string }) => {
+          this.cookieService.put(this.tokenName, response.token);
           this.currentUser();
         },
         (failure: HttpErrorResponse) => {
-          console.log(failure);
+          this.store.dispatch(new AuthActions.FailedSignIn(failure.error));
         }
       )
   }
 
   currentUser() {
-    const token = this.cookieService.get('imauthtoken');
+    const token = this.cookieService.get(this.tokenName);
     const authHeaders = new HttpHeaders().set('Authorization', `Token ${token}`);
-    this.httpClient.get<{current_user: User}>(
-      'http://0.0.0.0:8080/api/v1/current_user/', { headers: authHeaders}
-    ).subscribe(
-      response => {
+    this.apiService.get('/current_user/').subscribe(
+      (response: {current_user: User}) => {
         this.store.dispatch(new AuthActions.SuccessSignIn(response.current_user));
       },
       (failure: HttpErrorResponse) => {
