@@ -25,7 +25,6 @@ export class SignInComponent implements OnInit {
 
   signIn() {
     this.authService.signIn(this.signInForm.value);
-    // this.store.dispatch(new AuthActions.SuccessSignIn('It should be a token'));/
   }
 
 }

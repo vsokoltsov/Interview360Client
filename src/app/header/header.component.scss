@@ -1,24 +1,27 @@
 @import '~variables.scss';
-
-.header-content {
+:host {
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  color: $theme_white;
 
-  .settings-block {
-    flex: 1 1 auto;
+  .header-content {
+    display: flex;
+    flex-direction: row;
+    color: $theme_white;
+    width: 100%;
+    justify-content: space-between;
 
-    .sign-out {
-      color: $pure_white;
-      background-color: $red;
+    .settings-block {
+
+      .sign-out {
+        color: $pure_white;
+        background-color: $red;
+      }
     }
   }
 
+  md-icon.header-icon {
+    color: $theme_white;
+    cursor: pointer;
+  }
 
-
-}
-
-md-icon.header-icon {
-  color: $theme_white;
-  cursor: pointer;
 }
