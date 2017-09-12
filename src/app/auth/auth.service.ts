@@ -35,6 +35,8 @@ export class AuthService {
 
   currentUser() {
     const token = this.cookieService.get(this.tokenName);
+    if (!token) return false;
+
     const authHeaders = new HttpHeaders().set('Authorization', `Token ${token}`);
     this.apiService.get('/current_user/').subscribe(
       (response: {current_user: User}) => {

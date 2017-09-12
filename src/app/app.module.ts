@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {
   MdSidenavModule,

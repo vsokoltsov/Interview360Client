@@ -4,6 +4,18 @@
   display: flex;
   flex-direction: row;
   color: $theme_white;
+
+  .settings-block {
+    flex: 1 1 auto;
+
+    .sign-out {
+      color: $pure_white;
+      background-color: $red;
+    }
+  }
+
+
+
 }
 
 md-icon.header-icon {
