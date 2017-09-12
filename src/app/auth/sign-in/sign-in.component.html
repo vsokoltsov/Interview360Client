@@ -7,5 +7,9 @@
     <input mdInput placeholder="Password" formControlName="password" type="password">
   </md-form-field>
 
-  <button md-raised-button color="primary" type="submit">Sign in</button>
+  <button
+    md-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!signInForm.valid">Sign in</button>
 </form>

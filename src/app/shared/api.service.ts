@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpRequest, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpRequest,
+  HttpHeaders,
+  HttpParams,
+  HttpResponse
+} from '@angular/common/http';
+
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs';
@@ -33,19 +41,19 @@ export class ApiService {
   }
 
   request(method: string, url: string, params = null) {
-    const request = new HttpRequest(method, `${environment.baseUrl}${url}`, {
-      headers: this.getHeaders(),
-      params: params
-    });
-    return this.httpClient.request(request).catch(
-      error => {
-        if (error.status === 401) {
-          console.log(error.status);
-          this.cookieService.remove(TOKEN_NAME);
-        }
-        return Observable.throw(error);
-      }
+    const request = new HttpRequest(
+      method, `${environment.baseUrl}${url}`,
+      params, { headers: this.getHeaders(), responseType: 'json' }
     );
+    return this.httpClient.request(request)
+      .catch(
+        error => {
+          if (error.status === 401) {
+            this.cookieService.remove(TOKEN_NAME);
+          }
+          return Observable.throw(error);
+        }
+      );
   }
 
   getToken() {

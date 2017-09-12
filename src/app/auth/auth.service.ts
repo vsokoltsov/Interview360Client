@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse, HttpHeaders, HttpEventType } from '@angular/common/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'angular2-cookie/core';
 import { User } from './user.model';
-import { ApiService } from '../shared/api.service';
+import { ApiService, TOKEN_NAME } from '../shared/api.service';
 
 import * as fromApp from '../store/app.reducers';
 import * as AuthActions from './store/auth.actions';
 
 @Injectable()
 export class AuthService {
-  tokenName = 'imauthtoken';
 
   constructor(private apiService: ApiService,
               private store: Store<fromApp.AppState>,
@@ -23,18 +22,18 @@ export class AuthService {
   signIn(params: { email: string, password: string }) {
     this.apiService.post('/sign_in/', params)
       .subscribe(
-        (response: { token: string }) => {
-          this.cookieService.put(this.tokenName, response.token);
+        response => {
+          this.cookieService.put(TOKEN_NAME, response.token);
           this.currentUser();
         },
         (failure: HttpErrorResponse) => {
-          this.store.dispatch(new AuthActions.FailedSignIn(failure.error));
+          this.store.dispatch(new AuthActions.FailedSignIn(failure.error.errors));
         }
       )
   }
 
   currentUser() {
-    const token = this.cookieService.get(this.tokenName);
+    const token = this.cookieService.get(TOKEN_NAME);
     if (!token) return false;
 
     const authHeaders = new HttpHeaders().set('Authorization', `Token ${token}`);

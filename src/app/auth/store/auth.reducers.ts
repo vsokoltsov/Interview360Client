@@ -10,7 +10,7 @@ export interface State {
 const initialState: State = {
   token: null,
   currentUser: null,
-  signInErrors: {}
+  signInErrors: null
 };
 
 export function authReducer(state = initialState, action: AuthActions.AuthActions) {
