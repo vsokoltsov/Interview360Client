@@ -45,7 +45,11 @@ export class ApiService {
       method, `${environment.baseUrl}${url}`,
       params, { headers: this.getHeaders(), responseType: 'json' }
     );
-    return this.httpClient.request(request)
+    return this.httpClient.request(method, `${environment.baseUrl}${url}`, {
+      body: params,
+      headers: this.getHeaders(),
+      observe: 'response'
+    })
       .catch(
         error => {
           if (error.status === 401) {

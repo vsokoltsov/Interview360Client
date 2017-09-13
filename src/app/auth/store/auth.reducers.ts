@@ -25,6 +25,11 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
         ...state,
         signInErrors: action.payload
       };
+    case AuthActions.SIGN_OUT:
+      return {
+        ...state,
+        currentUser: null
+      };
     default: return state;
   }
 }

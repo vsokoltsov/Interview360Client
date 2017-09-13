@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 
 import * as fromApp from '../store/app.reducers';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: User;
   subscription: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.subscription = this.store.select('auth').subscribe(
@@ -29,8 +31,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (data.currentUser) {
           this.user = data.currentUser;
         }
+        else {
+          this.user = null;
+        }
       }
     );
+  }
+
+  signOut() {
+    this.authService.signOut();
   }
 
   ngOnDestroy() {

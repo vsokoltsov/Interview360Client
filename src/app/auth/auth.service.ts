@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
-import { HttpClient, HttpErrorResponse, HttpResponse, HttpHeaders, HttpEventType } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpResponse,
+  HttpHeaders,
+  HttpEventType
+} from '@angular/common/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -23,7 +29,7 @@ export class AuthService {
     this.apiService.post('/sign_in/', params)
       .subscribe(
         response => {
-          this.cookieService.put(TOKEN_NAME, response.token);
+          this.cookieService.put(TOKEN_NAME, response.body.token);
           this.currentUser();
         },
         (failure: HttpErrorResponse) => {
@@ -38,12 +44,17 @@ export class AuthService {
 
     const authHeaders = new HttpHeaders().set('Authorization', `Token ${token}`);
     this.apiService.get('/current_user/').subscribe(
-      (response: {current_user: User}) => {
-        this.store.dispatch(new AuthActions.SuccessSignIn(response.current_user));
+      response => {
+        this.store.dispatch(new AuthActions.SuccessSignIn(response.body.current_user));
       },
       (failure: HttpErrorResponse) => {
         console.log(failure);
       }
     )
+  }
+
+  signOut() {
+    this.cookieService.remove(TOKEN_NAME);
+    this.store.dispatch(new AuthActions.SignOut());
   }
 }
