@@ -1,10 +1,20 @@
 <form class="form" [formGroup]="signInForm" (ngSubmit)="signIn()">
   <md-form-field class="field email">
-    <input mdInput placeholder="Email" formControlName="email" type="email" value="aaa">
+    <input mdInput placeholder="Email" formControlName="email" type="email">
+
+    <md-error *ngIf="signInForm.get('email').hasError('email')">
+      Please enter a valid email address
+    </md-error>
+    <md-error *ngIf="signInForm.get('email').hasError('required')">
+      Email is <strong>required</strong>
+    </md-error>
   </md-form-field>
 
   <md-form-field class="field password">
     <input mdInput placeholder="Password" formControlName="password" type="password">
+    <md-error *ngIf="signInForm.get('email').hasError('required')">
+      Password is <strong>required</strong>
+    </md-error>
   </md-form-field>
 
   <button
