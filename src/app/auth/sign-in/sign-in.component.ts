@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit, OnDestroy {
         if (data.signInErrors) {
           this.failed = true;
           this.signInErrors = data.signInErrors;
-          console.log(this.signInErrors !== null);
+          this.signInForm.setErrors({ 'email': true});
         }
       }
     );

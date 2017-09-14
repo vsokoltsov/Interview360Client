@@ -2,9 +2,6 @@
   <md-form-field class="field email">
     <input mdInput placeholder="Email" formControlName="email" type="email">
 
-    <p *ngFor="let error of signInErrors.email">
-      {{ error }}
-    </p>
     <md-error *ngIf="signInForm.get('email').hasError('email')">
       Please enter a valid email address
     </md-error>
