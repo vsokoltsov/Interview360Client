@@ -16,7 +16,8 @@ import * as AuthActions from '../store/auth.actions';
 export class SignInComponent implements OnInit, OnDestroy {
   signInForm: FormGroup;
   subscription: Subscription;
-  signInErrors: {};
+  signInErrors: Object = {};
+  failed: boolean;
 
   constructor(private store: Store<fromApp.AppState>,
               private authService: AuthService) { }
@@ -29,7 +30,9 @@ export class SignInComponent implements OnInit, OnDestroy {
     this.subscription = this.store.select('auth').subscribe(
       data => {
         if (data.signInErrors) {
+          this.failed = true;
           this.signInErrors = data.signInErrors;
+          console.log(this.signInErrors !== null);
         }
       }
     );
