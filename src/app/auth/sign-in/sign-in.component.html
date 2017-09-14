@@ -1,6 +1,7 @@
 <form class="form" [formGroup]="signInForm" (ngSubmit)="signIn()">
   <div class="form-field">
     <input placeholder="Email" class="field" formControlName="email" type="email">
+
     <div class="error" *ngIf="signInForm.get('email').touched &&
       signInForm.get('email').hasError('email')">
       Please enter a valid email address
@@ -20,7 +21,7 @@
       Password is <strong>required</strong>
     </div>
   </div>
-  <div class="form-submit">
+  <div class="form-actions">
     <button
       type="submit"
       class="button primary"
