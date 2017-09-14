@@ -1,0 +1,63 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  .form-submit {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .error {
+    text-align: left;
+    color: $red;
+  }
+
+  .field {
+    width: 100%;
+    font-size: 17px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid $base_form;
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      font-size: 20px;
+    }
+  }
+
+  .button {
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    width: 5em;
+    border-radius: 2px;
+    border: none;
+    padding: 5px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),
+                box-shadow 280ms cubic-bezier(.4,0,.2,1);
+
+
+    &[disabled] {
+      background-color: $disabled_button !important;
+    }
+
+    &.primary {
+      color: $theme_white;
+      background-color: $primary_button;
+    }
+  }
+
+
+}

@@ -27,6 +27,7 @@ export class SignInComponent implements OnInit, OnDestroy {
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required])
     });
+    console.log(this.signInForm);
     this.subscription = this.store.select('auth').subscribe(
       data => {
         if (data.signInErrors) {
