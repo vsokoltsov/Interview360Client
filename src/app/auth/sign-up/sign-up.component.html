@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="signUpForm" ngSubmit="signIn()">
+<form class="form" [formGroup]="signUpForm" (ngSubmit)="signUp()">
   <div class="form-field">
     <input placeholder="Email" class="field" formControlName="email" type="email">
 
@@ -10,7 +10,7 @@
         signUpForm.get('email').hasError('required')">
       Email is <strong>required</strong>
     </div>
-    <div *ngFor="let error of signUpForm.email" class="error">
+    <div *ngFor="let error of signUpErrors.email" class="error">
       {{error}}
     </div>
   </div>
@@ -21,22 +21,22 @@
         signUpForm.get('password').hasError('required')">
       Password is <strong>required</strong>
     </div>
-    <div *ngFor="let error of signUpForm.password" class="error">
+    <div *ngFor="let error of signUpErrors.password" class="error">
       {{error}}
     </div>
   </div>
   <div class="form-field">
-    <input placeholder="Password confirmation" class="field" formControlName="passwordConfirmation" type="password">
+    <input placeholder="Password confirmation" class="field" formControlName="password_confirmation" type="password">
 
-    <div class="error" *ngIf="signUpForm.get('passwordConfirmation').touched &&
-        signUpForm.get('passwordConfirmation').hasError('required')">
+    <div class="error" *ngIf="signUpForm.get('password_confirmation').touched &&
+        signUpForm.get('password_confirmation').hasError('required')">
       Password confirmation is <strong>required</strong>
     </div>
-    <div class="error" *ngIf="signUpForm.get('passwordConfirmation').touched &&
-        signUpForm.get('passwordConfirmation').hasError('notMatching')">
+    <div class="error" *ngIf="signUpForm.get('password_confirmation').touched &&
+        signUpForm.get('password_confirmation').hasError('notMatching')">
       Password confirmation is not matching the password
     </div>
-    <div *ngFor="let error of signUpForm.password_confirmation" class="error">
+    <div *ngFor="let error of signUpErrors.password_confirmation" class="error">
       {{error}}
     </div>
   </div>

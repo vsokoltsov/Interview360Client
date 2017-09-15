@@ -38,6 +38,19 @@ export class AuthService {
       )
   }
 
+  signUp(params: {}) {
+    this.apiService.post('/sign_up/', params)
+      .subscribe(
+        response => {
+          this.cookieService.put(TOKEN_NAME, response.body.token);
+          this.currentUser();
+        },
+        (failure: HttpErrorResponse) => {
+          this.store.dispatch(new AuthActions.FailedSignUp(failure.error.errors));
+        }
+      )
+  }
+
   currentUser() {
     const token = this.cookieService.get(TOKEN_NAME);
     if (!token) return false;
@@ -45,7 +58,8 @@ export class AuthService {
     const authHeaders = new HttpHeaders().set('Authorization', `Token ${token}`);
     this.apiService.get('/current_user/').subscribe(
       response => {
-        this.store.dispatch(new AuthActions.SuccessSignIn(response.body.current_user));
+        console.log(response);
+        this.store.dispatch(new AuthActions.CurrentUserReceived(response.body.current_user));
       },
       (failure: HttpErrorResponse) => {
         console.log(failure);

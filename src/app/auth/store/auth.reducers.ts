@@ -5,17 +5,19 @@ export interface State {
   token: string;
   currentUser: User;
   signInErrors: {};
+  signUpErrors: {};
 }
 
 const initialState: State = {
   token: null,
   currentUser: null,
-  signInErrors: null
+  signInErrors: null,
+  signUpErrors: null
 };
 
 export function authReducer(state = initialState, action: AuthActions.AuthActions) {
   switch(action.type) {
-    case AuthActions.SUCCESS_SIGN_IN:
+    case AuthActions.CURRENT_USER_RECEIVED:
       return {
         ...state,
         currentUser: action.payload
@@ -24,6 +26,11 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
       return {
         ...state,
         signInErrors: action.payload
+      };
+    case AuthActions.FAILED_SIGN_UP:
+      return {
+        ...state,
+        signUpErrors: action.payload
       };
     case AuthActions.SIGN_OUT:
       return {
