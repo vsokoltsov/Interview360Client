@@ -7,6 +7,8 @@ export const SUCCESS_RESTORE_PASSWORD = 'SUCCESS_RESTORE_PASSWORD';
 export const FAILED_RESTORE_PASSWORD = 'FAILED_RESTORE_PASSWORD';
 export const FAILED_SIGN_IN = 'FAILED_SIGN_IN';
 export const FAILED_SIGN_UP = 'FAILED_SIGN_UP';
+export const SUCCESS_RESET_PASSWORD = 'SUCCESS_RESET_PASSWORD';
+export const FAILED_RESET_PASSWORD = 'FAILED_RESET_PASSWORD';
 export const SIGN_OUT = 'SIGN_OUT';
 
 export class CurrentUserReceived implements Action {
@@ -37,6 +39,16 @@ export class FailedRestorePassword implements Action {
   constructor(public payload: { errors: {} }) {}
 }
 
+export class SuccessResetPassword implements Action {
+  readonly type = SUCCESS_RESET_PASSWORD;
+}
+
+export class FailedResetPassword implements Action {
+  readonly type = FAILED_RESET_PASSWORD;
+
+  constructor(public payload: { errors: {} }) {}
+}
+
 export class SignOut implements Action {
   readonly type = SIGN_OUT;
 }
@@ -46,4 +58,6 @@ CurrentUserReceived |
 FailedSignIn |
 FailedSignUp |
 FailedRestorePassword |
+SuccessResetPassword |
+FailedResetPassword |
 SignOut;

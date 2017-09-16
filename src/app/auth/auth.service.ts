@@ -61,6 +61,16 @@ export class AuthService {
       )
   }
 
+  resetPassword(params: {}) {
+    this.apiService.post('/reset_password/', params)
+      .subscribe(
+        response => { },
+        (failure: HttpErrorResponse) => {
+          this.store.dispatch(new AuthActions.FailedResetPassword(failure.error.errors));
+        }
+      )
+  }
+
   currentUser() {
     const token = this.cookieService.get(TOKEN_NAME);
     if (!token) return false;

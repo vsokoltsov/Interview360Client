@@ -33,6 +33,7 @@ import { reducers } from './store/app.reducers';
 import { AuthService } from './auth/auth.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RestorePasswordComponent } from './auth/restore-password/restore-passwo
     SignInComponent,
     SignUpComponent,
     RootComponent,
-    RestorePasswordComponent
+    RestorePasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
