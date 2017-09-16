@@ -5,7 +5,7 @@ export class InterviewManagerPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getNavigationItems() {
+    return element.all(by.tagName('app-side-nav md-list-item h4'));
   }
 }
