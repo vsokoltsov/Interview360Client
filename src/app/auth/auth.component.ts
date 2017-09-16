@@ -14,7 +14,8 @@ export class AuthComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   routerLinks = [
     { label: 'Sign in', link: 'sign-in' },
-    { label: 'Sign up', link: 'sign-up' }
+    { label: 'Sign up', link: 'sign-up' },
+    { label: 'Reset password', link: 'restore-password' }
   ];
 
   constructor(private store: Store<fromApp.AppState>, private router: Router) { }

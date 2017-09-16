@@ -32,6 +32,7 @@ import { RootComponent } from './root/root.component';
 import { reducers } from './store/app.reducers';
 import { AuthService } from './auth/auth.service';
 import { ApiService } from './shared/api.service';
+import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ApiService } from './shared/api.service';
     AuthComponent,
     SignInComponent,
     SignUpComponent,
-    RootComponent
+    RootComponent,
+    RestorePasswordComponent
   ],
   imports: [
     BrowserModule,

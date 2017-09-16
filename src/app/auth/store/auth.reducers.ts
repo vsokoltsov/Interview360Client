@@ -6,13 +6,15 @@ export interface State {
   currentUser: User;
   signInErrors: {};
   signUpErrors: {};
+  restorePasswordErrors: {};
 }
 
 const initialState: State = {
   token: null,
   currentUser: null,
   signInErrors: null,
-  signUpErrors: null
+  signUpErrors: null,
+  restorePasswordErrors: null
 };
 
 export function authReducer(state = initialState, action: AuthActions.AuthActions) {
@@ -36,6 +38,11 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
       return {
         ...state,
         currentUser: null
+      };
+    case AuthActions.FAILED_RESTORE_PASSWORD:
+      return {
+        ...state,
+        restorePasswordErrors: action.payload
       };
     default: return state;
   }
