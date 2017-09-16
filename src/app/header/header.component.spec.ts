@@ -84,4 +84,9 @@ describe('HeaderComponent', () => {
       expect(userEmail.textContent).toContain('Sign out');
     });
   });
+
+  it('does not contain user email if user is abscent', () => {
+    const userEmail = de.query(By.css('.settings-block'));
+    expect(userEmail).toBeNull();
+  });
 });
