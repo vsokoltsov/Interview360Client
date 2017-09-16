@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {APP_BASE_HREF} from '@angular/common';
 
 import {
   MdSidenavModule,
@@ -35,7 +36,7 @@ import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
-@NgModule({
+export const MODULES = {
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -67,9 +68,12 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
   providers: [
     AuthService,
     CookieService,
-    ApiService
+    ApiService,
+    {provide: APP_BASE_HREF, useValue : '/' }
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
-})
+};
+
+@NgModule(MODULES)
 export class AppModule { }

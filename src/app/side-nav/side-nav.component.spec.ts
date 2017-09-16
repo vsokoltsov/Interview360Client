@@ -8,23 +8,14 @@ import {
   MdListModule,
   MdCardModule
 } from '@angular/material';
+import { MODULES } from '../app.module';
 
 describe('SideNavComponent', () => {
   let component: SideNavComponent;
   let fixture: ComponentFixture<SideNavComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SideNavComponent ],
-      imports: [
-        MdSidenavModule,
-        MdToolbarModule,
-        MdIconModule,
-        MdListModule,
-        MdCardModule
-      ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule(MODULES).compileComponents();
   }));
 
   beforeEach(() => {

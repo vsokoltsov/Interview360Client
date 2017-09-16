@@ -8,23 +8,14 @@ import {
   MdListModule,
   MdCardModule
 } from '@angular/material';
+import { MODULES } from '../app.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
-      imports: [
-        MdSidenavModule,
-        MdToolbarModule,
-        MdIconModule,
-        MdListModule,
-        MdCardModule
-      ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule(MODULES).compileComponents();
   }));
 
   beforeEach(() => {
