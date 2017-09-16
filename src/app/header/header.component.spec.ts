@@ -30,6 +30,7 @@ describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
   let de: DebugElement;
   let store: Store<fromApp.AppState>;
+  let authService: AuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -54,7 +55,9 @@ describe('HeaderComponent', () => {
 
     fixture = TestBed.createComponent(HeaderComponent);
     store = TestBed.get(Store)
+    authService = TestBed.get(AuthService);
     spyOn(store, 'dispatch').and.callThrough();
+    spyOn(authService, 'signOut').and.callThrough();
     component = fixture.componentInstance;
     fixture.detectChanges();
     de = fixture.debugElement;
@@ -88,5 +91,19 @@ describe('HeaderComponent', () => {
   it('does not contain user email if user is abscent', () => {
     const userEmail = de.query(By.css('.settings-block'));
     expect(userEmail).toBeNull();
+  });
+
+  it('sign out when signOut method is called', () => {
+    component.user = user;
+    component.signOut();
+    expect(authService.signOut).toHaveBeenCalled();
+  });
+
+  it('sign out when user clicks on button', () => {
+    component.user = user;
+    fixture.detectChanges();
+    const signOutButton = de.query(By.css('.sign-out')).nativeElement;
+    signOutButton.click();
+    expect(authService.signOut).toHaveBeenCalled();
   });
 });
