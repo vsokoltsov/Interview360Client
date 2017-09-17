@@ -8,7 +8,6 @@ import {
   MdListModule,
   MdCardModule
 } from '@angular/material';
-import { MODULES } from '../app.module';
 import { By } from '@angular/platform-browser';
 import { StoreModule, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
