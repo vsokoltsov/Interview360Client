@@ -106,4 +106,13 @@ describe('HeaderComponent', () => {
     signOutButton.click();
     expect(authService.signOut).toHaveBeenCalled();
   });
+
+  it('onMenuClicked event emitter was clicked', () => {
+    spyOn(component.onMenuClicked, 'emit').and.callThrough();
+
+    component.onMenuClicked.subscribe(data => {
+        expect(component.onMenuClicked.emit).toHaveBeenCalled();
+    });
+    component.toggleMenu();
+  });
 });
