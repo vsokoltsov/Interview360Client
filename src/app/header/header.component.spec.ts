@@ -21,7 +21,6 @@ import * as fromApp from '../store/app.reducers';
 import * as AuthActions from '../auth/store/auth.actions';
 import { ApiService } from '../shared/api.service';
 import {HttpClientModule} from '@angular/common/http';
-import { MockStore } from '../shared/mock.store';
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
 
