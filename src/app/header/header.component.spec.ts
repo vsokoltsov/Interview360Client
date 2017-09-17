@@ -42,7 +42,7 @@ describe('HeaderComponent', () => {
         MdIconModule,
         MdListModule,
         MdCardModule,
-        StoreModule.forRoot(reducers),
+        StoreModule.forRoot(fromApp.reducers),
         HttpClientModule
       ],
       providers: [
