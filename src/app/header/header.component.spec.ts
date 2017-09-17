@@ -76,7 +76,7 @@ describe('HeaderComponent', () => {
     });
   });
 
-  it('element contains user email if user is present', () => {
+  it('element contains sign out button if user is present', () => {
     const action = new AuthActions.CurrentUserReceived(user);
     store.dispatch(action);
 
@@ -87,7 +87,7 @@ describe('HeaderComponent', () => {
     });
   });
 
-  it('does not contain user email if user is abscent', () => {
+  it('does not contain sign out button if user is abscent', () => {
     const userEmail = de.query(By.css('.settings-block'));
     expect(userEmail).toBeNull();
   });
