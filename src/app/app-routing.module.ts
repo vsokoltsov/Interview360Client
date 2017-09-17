@@ -9,7 +9,8 @@ import { RestorePasswordComponent } from './auth/restore-password/restore-passwo
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { RootComponent } from './root/root.component';
 
-const authRoutes = [
+export const authRoutes = [
+  { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'restore-password', component: RestorePasswordComponent },

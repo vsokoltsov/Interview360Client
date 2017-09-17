@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RouterTestingModule } from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RootComponent } from './root.component';
 import { StoreModule, Store } from '@ngrx/store';
@@ -8,6 +7,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { DebugElement }    from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+
 import {
   MdSidenavModule,
   MdToolbarModule,
