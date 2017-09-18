@@ -20,7 +20,7 @@ export class CurrentUserReceived implements Action {
 export class FailedSignIn implements Action {
   readonly type = FAILED_SIGN_IN;
 
-  constructor(public payload: { errors: {} }) {}
+  constructor(public payload: { }) {}
 }
 
 export class FailedSignUp implements Action {

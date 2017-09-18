@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { Router } from '@angular/router';
 
-import { MODULES } from '../app.module';
 import {
   MdSidenavModule,
   MdToolbarModule,
