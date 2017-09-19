@@ -30,7 +30,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { RestorePasswordComponent } from './restore-password/restore-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { RootComponent } from '../root/root.component';
-import { AppRoutingModule, authRoutes } from '../app-routing.module';
+import { AppRoutingModule, authRoutes, appRoutes } from '../app-routing.module';
+import { CompaniesComponent } from '../companies/companies.component';
+import { VacanciesComponent } from '../vacancies/vacancies.component';
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
 
@@ -49,13 +51,15 @@ describe('AuthComponent', () => {
         SignInComponent,
         SignUpComponent,
         RestorePasswordComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        CompaniesComponent,
+        VacanciesComponent
       ],
       imports: [
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         RouterModule,
-        RouterTestingModule.withRoutes(authRoutes)
+        RouterTestingModule.withRoutes(appRoutes)
       ],
       providers: [
         AuthService,
@@ -89,9 +93,6 @@ describe('AuthComponent', () => {
     store.dispatch(action);
 
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      const userEmail = de.query(By.css('.settings-block')).nativeElement;
-      expect(router).not.toHaveBeenCalled();
-    });
+    expect(router.navigate).toHaveBeenCalled();
   });
 });

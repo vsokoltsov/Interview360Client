@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-
 import { By } from '@angular/platform-browser';
 import { StoreModule, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
@@ -20,7 +19,7 @@ import { SignInComponent } from './sign-in.component';
 // import { AppRoutingModule, authRoutes } from '../app-routing.module';
 
 
-fdescribe('SignInComponent', () => {
+describe('SignInComponent', () => {
   let component: SignInComponent;
   let fixture: ComponentFixture<SignInComponent>;
   let store: Store<fromApp.AppState>;

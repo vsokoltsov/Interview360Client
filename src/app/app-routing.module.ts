@@ -17,7 +17,7 @@ export const authRoutes = [
   { path: 'reset-password', component: ResetPasswordComponent }
 ];
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent, children: authRoutes },
   { path: '', component: RootComponent, children: [
     { path: '', redirectTo: 'companies', pathMatch: 'full' },

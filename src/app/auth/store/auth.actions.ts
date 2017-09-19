@@ -26,7 +26,7 @@ export class FailedSignIn implements Action {
 export class FailedSignUp implements Action {
   readonly type = FAILED_SIGN_UP;
 
-  constructor(public payload: { errors: {} }) {}
+  constructor(public payload: {  }) {}
 }
 
 export class SuccessRestorePassword implements Action {
