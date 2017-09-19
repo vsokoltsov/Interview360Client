@@ -78,7 +78,6 @@ export class AuthService {
     const authHeaders = new HttpHeaders().set('Authorization', `Token ${token}`);
     this.apiService.get('/current_user/').subscribe(
       response => {
-        console.log(response);
         this.store.dispatch(new AuthActions.CurrentUserReceived(response.body.current_user));
       },
       (failure: HttpErrorResponse) => {
