@@ -1,33 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import {
-  MdSidenavModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdListModule,
-  MdCardModule
-} from '@angular/material';
-import { HeaderComponent } from './header/header.component';
-import { SideNavComponent } from './side-nav/side-nav.component';
+import { MODULES } from './app.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        HeaderComponent,
-        SideNavComponent
-      ],
-      imports: [
-        BrowserAnimationsModule,
-        MdSidenavModule,
-        MdToolbarModule,
-        MdIconModule,
-        MdListModule,
-        MdCardModule
-      ]
-    }).compileComponents();
+    TestBed.configureTestingModule(MODULES).compileComponents();
   }));
 
   it('should create the app', async(() => {

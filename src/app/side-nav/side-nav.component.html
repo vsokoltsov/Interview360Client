@@ -7,7 +7,7 @@
       First name Last name
     </div>
     <div class="additional-info info-block">
-      example@mail.com
+      {{ user ? user.email : 'example@mail.com' }}
     </div>
   </div>
   <div class="menu-items">
@@ -22,7 +22,7 @@
       </md-list-item>
       <md-list-item>
         <md-icon md-list-icon>local_phone</md-icon>
-        <h4 md-line> Interview </h4>
+        <h4 md-line> Interviews </h4>
       </md-list-item>
     </md-list>
   </div>

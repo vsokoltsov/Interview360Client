@@ -9,6 +9,8 @@ describe('interview-manager App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!!');
+    expect(page.getNavigationItems().get(0).getText()).toEqual('Companies');
+    expect(page.getNavigationItems().get(1).getText()).toEqual('Vacancies');
+    expect(page.getNavigationItems().get(2).getText()).toEqual('Interviews');
   });
 });

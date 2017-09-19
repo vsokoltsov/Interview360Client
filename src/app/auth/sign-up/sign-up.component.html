@@ -1,14 +1,49 @@
-<form class="form" [formGroup]="signUpForm" ngSubmit="signIn()">
-  <md-form-field class="field email">
-    <input mdInput placeholder="Email" formControlName="email" type="email" value="aaa">
-  </md-form-field>
+<form class="form" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+  <div class="form-field">
+    <input placeholder="Email" class="field" formControlName="email" type="email">
 
-  <md-form-field class="field password">
-    <input mdInput placeholder="Password" formControlName="password" type="password">
-  </md-form-field>
+    <div class="error" *ngIf="signUpForm.get('email').touched &&
+      signUpForm.get('email').hasError('email')">
+      Please enter a valid email address
+    </div>
+    <div class="error" *ngIf="signUpForm.get('email').touched &&
+        signUpForm.get('email').hasError('required')">
+      Email is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of signUpErrors.email" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class="form-field">
+    <input placeholder="Password" class="field" formControlName="password" type="password">
 
-  <md-form-field class="field password-confirmation">
-    <input mdInput placeholder="Password confirmation" formControlName="passwordConfirmation" type="password">
-  </md-form-field>
-  <button md-raised-button color="primary" type="submit">Sign up</button>
+    <div class="error" *ngIf="signUpForm.get('password').touched &&
+        signUpForm.get('password').hasError('required')">
+      Password is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of signUpErrors.password" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class="form-field">
+    <input placeholder="Password confirmation" class="field" formControlName="password_confirmation" type="password">
+
+    <div class="error" *ngIf="signUpForm.get('password_confirmation').touched &&
+        signUpForm.get('password_confirmation').hasError('required')">
+      Password confirmation is <strong>required</strong>
+    </div>
+    <div class="error" *ngIf="signUpForm.get('password_confirmation').touched &&
+        signUpForm.get('password_confirmation').hasError('notMatching')">
+      Password confirmation is not matching the password
+    </div>
+    <div *ngFor="let error of signUpErrors.password_confirmation" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button primary"
+      [disabled]="signUpForm.invalid">Sign up</button>
+  </div>
 </form>

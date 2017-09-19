@@ -6,6 +6,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {APP_BASE_HREF} from '@angular/common';
 
 import {
   MdSidenavModule,
@@ -27,8 +31,12 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { RootComponent } from './root/root.component';
 import { reducers } from './store/app.reducers';
+import { AuthService } from './auth/auth.service';
+import { ApiService } from './shared/api.service';
+import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
-@NgModule({
+export const MODULES = {
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -38,7 +46,9 @@ import { reducers } from './store/app.reducers';
     AuthComponent,
     SignInComponent,
     SignUpComponent,
-    RootComponent
+    RootComponent,
+    RestorePasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +56,7 @@ import { reducers } from './store/app.reducers';
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
+    HttpClientModule,
     MdSidenavModule,
     MdToolbarModule,
     MdIconModule,
@@ -54,8 +65,15 @@ import { reducers } from './store/app.reducers';
     MdInputModule,
     MdButtonModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    CookieService,
+    ApiService,
+    {provide: APP_BASE_HREF, useValue : '/' }
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
-})
+};
+
+@NgModule(MODULES)
 export class AppModule { }

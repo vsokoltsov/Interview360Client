@@ -9,37 +9,37 @@ import * as fromApp from '../../store/app.reducers';
 import * as AuthActions from '../store/auth.actions';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  selector: 'app-restore-password',
+  templateUrl: './restore-password.component.html',
+  styleUrls: ['./restore-password.component.scss']
 })
-export class SignInComponent implements OnInit, OnDestroy {
-  signInForm: FormGroup;
+export class RestorePasswordComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  signInErrors: Object = {};
+  restorePasswordForm: FormGroup;
+  restorePasswordErrors: Object = {};
 
-  constructor(private store: Store<fromApp.AppState>,
-              private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    this.signInForm = new FormGroup({
+    this.restorePasswordForm = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, [Validators.required])
     });
     this.subscription = this.store.select('auth').subscribe(
       data => {
-        if (data.signInErrors) {
-          this.signInErrors = data.signInErrors;
+        if (data.restorePasswordErrors) {
+          this.restorePasswordErrors = data.restorePasswordErrors;
         }
       }
     );
   }
 
-  signIn() {
-    this.authService.signIn(this.signInForm.value);
+  restorePassword() {
+      this.authService.restorePassword(this.restorePasswordForm.value);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
 }

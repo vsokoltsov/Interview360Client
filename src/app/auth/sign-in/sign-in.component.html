@@ -1,11 +1,30 @@
 <form class="form" [formGroup]="signInForm" (ngSubmit)="signIn()">
-  <md-form-field class="field email">
-    <input mdInput placeholder="Email" formControlName="email" type="email" value="aaa">
-  </md-form-field>
+  <div class="form-field">
+    <input placeholder="Email" class="field" formControlName="email" type="email">
 
-  <md-form-field class="field password">
-    <input mdInput placeholder="Password" formControlName="password" type="password">
-  </md-form-field>
-
-  <button md-raised-button color="primary" type="submit">Sign in</button>
+    <div class="error" *ngIf="signInForm.get('email').touched &&
+      signInForm.get('email').hasError('email')">
+      Please enter a valid email address
+    </div>
+    <div class="error" *ngIf="signInForm.get('email').touched &&
+        signInForm.get('email').hasError('required')">
+      Email is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of signInErrors.email" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class=form-field>
+    <input placeholder="Password" class="field" formControlName="password" type="password">
+    <div class="error" *ngIf="signInForm.get('password').touched &&
+      signInForm.get('password').hasError('required')">
+      Password is <strong>required</strong>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button primary"
+      [disabled]="!signInForm.valid">Sign in</button>
+  </div>
 </form>
