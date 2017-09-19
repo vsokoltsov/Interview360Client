@@ -36,7 +36,7 @@ export class SuccessRestorePassword implements Action {
 export class FailedRestorePassword implements Action {
   readonly type = FAILED_RESTORE_PASSWORD;
 
-  constructor(public payload: { errors: {} }) {}
+  constructor(public payload: { }) {}
 }
 
 export class SuccessResetPassword implements Action {
@@ -46,7 +46,7 @@ export class SuccessResetPassword implements Action {
 export class FailedResetPassword implements Action {
   readonly type = FAILED_RESET_PASSWORD;
 
-  constructor(public payload: { errors: {} }) {}
+  constructor(public payload: { }) {}
 }
 
 export class SignOut implements Action {
