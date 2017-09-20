@@ -30,7 +30,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { RestorePasswordComponent } from './restore-password/restore-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { RootComponent } from '../root/root.component';
-import { AppRoutingModule, authRoutes, appRoutes } from '../app-routing.module';
+import { AppRoutingModule, appRoutes } from '../app-routing.module';
 import { CompaniesComponent } from '../companies/companies.component';
 import { VacanciesComponent } from '../vacancies/vacancies.component';
 
