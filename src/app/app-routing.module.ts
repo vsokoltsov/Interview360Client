@@ -8,6 +8,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { RootComponent } from './root/root.component';
+import { AuthGuard } from './auth/auth-guard.service';
 
 export const authRoutes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -19,7 +20,7 @@ export const authRoutes = [
 
 export const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent, children: authRoutes },
-  { path: '', component: RootComponent, children: [
+  { path: '', component: RootComponent, canActivate: [AuthGuard], children: [
     { path: '', redirectTo: 'companies', pathMatch: 'full' },
     { path: 'companies', component: CompaniesComponent },
     { path: 'vacancies', component: VacanciesComponent }

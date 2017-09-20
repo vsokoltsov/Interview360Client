@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {APP_BASE_HREF} from '@angular/common';
+import { AuthGuard } from './auth/auth-guard.service';
 
 import {
   MdSidenavModule,
@@ -69,7 +70,8 @@ export const MODULES = {
     AuthService,
     CookieService,
     ApiService,
-    {provide: APP_BASE_HREF, useValue : '/' }
+    {provide: APP_BASE_HREF, useValue : '/' },
+    AuthGuard
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
