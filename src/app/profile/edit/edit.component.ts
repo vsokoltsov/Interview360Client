@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-
+  routerLinks = [
+    { label: 'Info', link: '' }
+  ];
   constructor() { }
 
   ngOnInit() {
