@@ -34,6 +34,7 @@ import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { AuthModule } from './auth/auth.module';
+import { ProfileModule } from './profile/profile.module';
 
 export const MODULES = {
   declarations: [
@@ -58,7 +59,8 @@ export const MODULES = {
     MdCardModule,
     MdInputModule,
     MdButtonModule,
-    AuthModule
+    AuthModule,
+    ProfileModule
   ],
   providers: [
     AuthService,
