@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileRoutingModule } from './profile-routing.module';
@@ -11,9 +12,9 @@ import { EditComponent } from './edit/edit.component';
     EditComponent
   ],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
-    ProfileRoutingModule,
-    BrowserModule
+    ProfileRoutingModule
   ]
 })
 export class ProfileModule {}

@@ -1,5 +1,5 @@
 <div class="side-navigation">
-  <div class="user_panel side-nav-header">
+  <div class="user_panel side-nav-header" *ngIf="user">
     <div class="image">
       <img class="logo" src="https://gitlab.com/uploads/-/system/user/avatar/56386/tt_avatar_small.jpg" />
     </div>
@@ -7,7 +7,9 @@
       First name Last name
     </div>
     <div class="additional-info info-block">
+      <a [routerLink]="['/users', user.id, 'edit']">
       {{ user ? user.email : 'example@mail.com' }}
+      </a>
     </div>
   </div>
   <div class="menu-items">
