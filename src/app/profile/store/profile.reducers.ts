@@ -11,8 +11,7 @@ const initialState: State = {
   profileErrors: null
 };
 
-export function authReducer(
-  state = initialState, action: ProfileActions.ProfileActions) {
+export function profileReducer(state = initialState, action: ProfileActions.ProfileActions) {
     switch(action.type) {
       case ProfileActions.RECEIVE_PROFILE:
         return {
