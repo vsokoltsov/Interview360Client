@@ -4,11 +4,13 @@ import * as ProfileActions from './profile.actions';
 export interface State {
   profile: User;
   profileErrors: {};
+  passwordChangeErrors: {};
 }
 
 const initialState: State = {
   profile: null,
-  profileErrors: null
+  profileErrors: null,
+  passwordChangeErrors: null
 };
 
 export function profileReducer(state = initialState, action: ProfileActions.ProfileActions) {
@@ -27,6 +29,11 @@ export function profileReducer(state = initialState, action: ProfileActions.Prof
         return {
           ...state,
           profileErrors: action.payload
+        };
+      case ProfileActions.FAILED_PASSWORD_CHANGE:
+        return {
+          ...state,
+          passwordChangeErrors: action.payload
         };
       default:
         return state;

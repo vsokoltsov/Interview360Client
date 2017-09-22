@@ -33,4 +33,15 @@ export class ProfileService {
       }
     );
   }
+
+  changePassword(id: number, params: {}) {
+    this.apiService.put(`/users/${id}/change_password/`, params).subscribe(
+      response => {
+        this.store.dispatch(new ProfileActions.SuccessPasswordChange(response.body));
+      },
+      (failure: HttpErrorResponse) => {
+        this.store.dispatch(new ProfileActions.FailedPasswordChange(failure.error.errors));
+      }
+    );
+  }
 }
