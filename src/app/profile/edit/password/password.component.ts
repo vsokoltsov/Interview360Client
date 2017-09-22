@@ -30,10 +30,18 @@ export class PasswordComponent implements OnInit {
         Validators.required, this.matchingPassword.bind(this)
       ])
     });
+
+    this.subscription = this.store.select('profile').subscribe(
+      data => {
+        if(data.profile) {
+          this.user = data.profile;
+        }
+      }
+    );
   }
 
   changePassword() {
-
+    this.profileService.changePassword(this.user.id, this.passwordForm.value);
   }
 
   matchingPassword(control: FormControl): {[s: string]: boolean } {
