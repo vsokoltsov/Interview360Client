@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .tabs {
+    width: 20em;
+    margin: 0 auto;
+  }
+}
