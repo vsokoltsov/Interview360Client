@@ -6,12 +6,14 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { EditComponent } from './edit/edit.component';
 import { InfoComponent } from './edit/info/info.component';
+import { PasswordComponent } from './edit/password/password.component';
 
 @NgModule({
   declarations: [
     ProfileComponent,
     EditComponent,
-    InfoComponent
+    InfoComponent,
+    PasswordComponent
   ],
   imports: [
     CommonModule,
