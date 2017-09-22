@@ -12,10 +12,11 @@ import * as fromApp from '../../store/app.reducers';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-
   routerLinks = [
-    { label: 'Info', link: '' }
+    { label: 'Info', link: 'info' },
+    { label: 'Password', link: 'change-password' }
   ];
+
   constructor(private profileService: ProfileService,
               private activatedRoute: ActivatedRoute,
               private store: Store<fromApp.AppState>) { }
@@ -23,6 +24,7 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
         const profileId = params['id'];
+        // this.routerLinks[0].link = `${profileId}/edit`;
         this.profileService.receiveProfile(profileId);
     });
   }
