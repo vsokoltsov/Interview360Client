@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+
 import * as fromApp from '../../../store/app.reducers';
 import { Subscription } from 'rxjs/Subscription';
+import { ProfileService } from '../../profile.service';
+import { User } from '../../../auth/user.model';
 
 @Component({
   selector: 'app-info',
@@ -10,11 +13,14 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit, OnDestroy {
+  user: User;
   infoForm: FormGroup;
   subscription: Subscription;
   infoFormErrors = {};
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(
+    private profileService: ProfileService,
+    private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.infoForm = new FormGroup({
@@ -26,10 +32,11 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.subscription = this.store.select('profile').subscribe(
       data => {
         if(data.profile) {
+          this.user = data.profile;
             this.infoForm.patchValue({
               email: data.profile.email,
-              first_name: data.profile.firstName,
-              last_name: data.profile.lastName
+              first_name: data.profile.first_name,
+              last_name: data.profile.last_name
             });
         }
       }
@@ -41,6 +48,6 @@ export class InfoComponent implements OnInit, OnDestroy {
   }
 
   updateProfile() {
-
+    this.profileService.updateProfile(this.user.id, this.infoForm.value);
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'angular2-cookie/core';
@@ -18,6 +19,17 @@ export class ProfileService {
     this.apiService.get(`/users/${id}/`).subscribe(
       response => {
         this.store.dispatch(new ProfileActions.ReceiveProfile(response.body));
+      }
+    );
+  }
+
+  updateProfile(id:  number, params: {}) {
+    this.apiService.put(`/users/${id}/`, params).subscribe(
+      response => {
+        this.store.dispatch(new ProfileActions.SuccessProfileUpdate(response.body.current_user));
+      },
+      (failure: HttpErrorResponse) => {
+        this.store.dispatch(new ProfileActions.FailedProfileUpdate(failure.error.errors));
       }
     );
   }

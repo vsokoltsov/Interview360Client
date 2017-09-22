@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { User } from '../user.model';
+import * as ProfileActions from '../../profile/store/profile.actions';
 
 export const CURRENT_USER_RECEIVED = 'CURRENT_USER_RECEIVED';
 export const SUCCESS_RESTORE_PASSWORD = 'SUCCESS_RESTORE_PASSWORD';
@@ -60,4 +61,5 @@ FailedSignUp |
 FailedRestorePassword |
 SuccessResetPassword |
 FailedResetPassword |
+ProfileActions.SuccessProfileUpdate |
 SignOut;

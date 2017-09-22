@@ -4,7 +4,7 @@
       <img class="logo" src="https://gitlab.com/uploads/-/system/user/avatar/56386/tt_avatar_small.jpg" />
     </div>
     <div class="base-info info-block">
-      First name Last name
+      {{ user.first_name }} {{user.last_name}}
     </div>
     <div class="additional-info info-block">
       <a [routerLink]="['/users', user.id, 'edit']">
