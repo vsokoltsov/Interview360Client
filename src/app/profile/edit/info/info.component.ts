@@ -23,13 +23,13 @@ export class InfoComponent implements OnInit, OnDestroy {
       'last_name': new FormControl(null, [Validators.required])
     });
 
-    this.subscription = this.store.select('auth').subscribe(
+    this.subscription = this.store.select('profile').subscribe(
       data => {
-        if(data.currentUser) {
+        if(data.profile) {
             this.infoForm.patchValue({
-              email: data.currentUser.email,
-              first_name: data.currentUser.firstName,
-              last_name: data.currentUser.lastName
+              email: data.profile.email,
+              first_name: data.profile.firstName,
+              last_name: data.profile.lastName
             });
         }
       }
