@@ -4,13 +4,14 @@ import { CompaniesComponent } from './companies/companies.component';
 import { VacanciesComponent } from './vacancies/vacancies.component';
 import { RootComponent } from './root/root.component';
 import { AuthGuard } from './auth/auth-guard.service';
+import { profileRoutes } from './profile/profile-routing.module';
 
 export const appRoutes: Routes = [
   { path: '', component: RootComponent, canActivate: [AuthGuard], children: [
     { path: '', redirectTo: 'companies', pathMatch: 'full' },
     { path: 'companies', component: CompaniesComponent },
     { path: 'vacancies', component: VacanciesComponent },
-    { path: 'users', loadChildren: './profile/profile.module#ProfileModule' }
+    { path: 'users', children: [...profileRoutes] }
   ]}
 ];
 

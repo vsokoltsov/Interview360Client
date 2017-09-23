@@ -16,9 +16,9 @@ import { AuthService } from '../auth/auth.service';
 import * as fromApp from '../store/app.reducers';
 import * as AuthActions from '../auth/store/auth.actions';
 import { ApiService } from '../shared/api.service';
+import { ProfileService } from './profile.service'
 
-
-describe('ProfileComponent', () => {
+fdescribe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
 
@@ -28,14 +28,15 @@ describe('ProfileComponent', () => {
         ProfileComponent,
       ],
       imports: [
+        RouterTestingModule,
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         ReactiveFormsModule
       ],
       providers: [
-        AuthService,
+        CookieService,
         ApiService,
-        CookieService
+        ProfileService
       ]
     })
     .compileComponents();
