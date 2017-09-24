@@ -22,10 +22,18 @@ import { ProfileService } from './profile.service'
 import { environment } from '../../environments/environment';
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
+const responseData = {current_user: {
+  id: 1,
+  email: 'example@mail.com',
+  first_name: 'a',
+  last_name: 'b'
+}};
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
+  let httpMock: HttpTestingController;
+  let store: Store<fromApp.AppState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -41,7 +49,8 @@ describe('ProfileComponent', () => {
       providers: [
         CookieService,
         ApiService,
-        ProfileService
+        ProfileService,
+        AuthService
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
@@ -49,7 +58,8 @@ describe('ProfileComponent', () => {
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    let store = TestBed.get(Store);
+
+    store = TestBed.get(Store);
     const action = new AuthActions.CurrentUserReceived(user);
     store.dispatch(action);
   }));

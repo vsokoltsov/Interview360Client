@@ -9,6 +9,7 @@ import { DebugElement }    from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { User } from '../../auth/user.model';
 import { reducers } from '../../store/app.reducers';
@@ -18,11 +19,14 @@ import * as AuthActions from '../../auth/store/auth.actions';
 import { ApiService } from '../../shared/api.service';
 import { ProfileService } from '../profile.service';
 
+const user = new User(1, 'example@mail.com', 'a', 'b');
+
 describe('EditComponent', () => {
   let component: EditComponent;
   let fixture: ComponentFixture<EditComponent>;
+  let store: Store<fromApp.AppState>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         EditComponent,
@@ -31,7 +35,8 @@ describe('EditComponent', () => {
         RouterTestingModule,
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientTestingModule
       ],
       providers: [
         AuthService,
@@ -39,14 +44,15 @@ describe('EditComponent', () => {
         ApiService,
         CookieService
       ]
-    })
-    .compileComponents();
-  }));
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(EditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    store = TestBed.get(Store);
+    const action = new AuthActions.CurrentUserReceived(user);
+    store.dispatch(action);
   });
 
   it('should be created', () => {
