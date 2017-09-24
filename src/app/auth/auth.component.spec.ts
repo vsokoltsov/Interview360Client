@@ -60,10 +60,7 @@ describe('AuthComponent', () => {
         HttpClientModule,
         RouterModule,
         RouterTestingModule.withRoutes([
-          { path: 'sign-in', component: SignInComponent },
-          { path: 'sign-up', component: SignUpComponent },
-          { path: 'restore-password', component: RestorePasswordComponent },
-          { path: 'reset-password', component: ResetPasswordComponent }
+          { path: 'companies', component: CompaniesComponent }
         ])
       ],
       providers: [
