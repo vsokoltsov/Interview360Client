@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SideNavComponent } from './side-nav.component';
+
 import {
   MdSidenavModule,
   MdToolbarModule,
@@ -13,14 +13,17 @@ import { StoreModule, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { DebugElement }    from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import {HttpClientModule} from '@angular/common/http';
 
+import { SideNavComponent } from './side-nav.component';
 import { User } from '../auth/user.model';
 import { reducers } from '../store/app.reducers';
 import { AuthService } from '../auth/auth.service';
 import * as fromApp from '../store/app.reducers';
 import * as AuthActions from '../auth/store/auth.actions';
 import { ApiService } from '../shared/api.service';
-import {HttpClientModule} from '@angular/common/http';
+
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
 
@@ -42,7 +45,8 @@ describe('SideNavComponent', () => {
         MdListModule,
         MdCardModule,
         StoreModule.forRoot(fromApp.reducers),
-        HttpClientModule
+        HttpClientModule,
+        RouterTestingModule
       ],
       providers: [
         AuthService,

@@ -19,15 +19,11 @@ import * as fromApp from '../store/app.reducers';
 import * as AuthActions from '../auth/store/auth.actions';
 import { ApiService } from '../shared/api.service';
 import { ProfileService } from './profile.service'
-import { EditComponent } from './edit/edit.component';
-import { InfoComponent } from './edit/info/info.component';
-import { PasswordComponent } from './edit/password/password.component';
-import { profileRoutes } from './profile-routing.module';
 import { environment } from '../../environments/environment';
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
 
-fdescribe('ProfileComponent', () => {
+describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
 

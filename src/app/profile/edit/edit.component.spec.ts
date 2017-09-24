@@ -16,6 +16,7 @@ import { AuthService } from '../../auth/auth.service';
 import * as fromApp from '../../store/app.reducers';
 import * as AuthActions from '../../auth/store/auth.actions';
 import { ApiService } from '../../shared/api.service';
+import { ProfileService } from '../profile.service';
 
 describe('EditComponent', () => {
   let component: EditComponent;
@@ -27,12 +28,14 @@ describe('EditComponent', () => {
         EditComponent,
       ],
       imports: [
+        RouterTestingModule,
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         ReactiveFormsModule
       ],
       providers: [
         AuthService,
+        ProfileService,
         ApiService,
         CookieService
       ]
