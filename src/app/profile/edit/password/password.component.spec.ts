@@ -16,12 +16,17 @@ import { reducers } from '../../../store/app.reducers';
 import { AuthService } from '../../../auth/auth.service';
 import * as fromApp from '../../../store/app.reducers';
 import * as AuthActions from '../../../auth/store/auth.actions';
+import * as ProfileActions from '../../store/profile.actions';
 import { ApiService } from '../../../shared/api.service';
-import { ProfileService } from './../../profile.service'
+import { ProfileService } from './../../profile.service';
 
-describe('PasswordComponent', () => {
+const user = new User(1, 'example@mail.com', 'a', 'b');
+
+fdescribe('PasswordComponent', () => {
   let component: PasswordComponent;
   let fixture: ComponentFixture<PasswordComponent>;
+  let profileService: ProfileService;
+  let store: Store<fromApp.AppState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,15 +47,28 @@ describe('PasswordComponent', () => {
       ]
     })
     .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(PasswordComponent);
+    store = TestBed.get(Store);
+    profileService = TestBed.get(ProfileService);
+    store.dispatch(new ProfileActions.ReceiveProfile(user));
+    fixture.detectChanges();
+
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('get user from the store.profile slot', () => {
+    expect(component.user).toEqual(user);
+  });
+
+  it('calls changePassword() method', () => {
+    spyOn(profileService, 'changePassword').and.callThrough();
+
+    component.changePassword();
+    expect(profileService.changePassword).toHaveBeenCalled();
   });
 });
