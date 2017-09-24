@@ -1,0 +1,15 @@
+<p>
+  edit works!
+</p>
+<div class="tabs">
+  <a
+    [routerLink]="router.link"
+    *ngFor="let router of routerLinks"
+    routerLinkActive="active"
+    class="tab-panel">
+    {{router.label}}
+  </a>
+</div>
+<div class="form-parts">
+  <router-outlet></router-outlet>
+</div>

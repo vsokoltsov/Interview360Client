@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {APP_BASE_HREF} from '@angular/common';
+import { AuthGuard } from './auth/auth-guard.service';
 
 import {
   MdSidenavModule,
@@ -26,15 +27,15 @@ import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { VacanciesComponent } from './vacancies/vacancies.component';
-import { AuthComponent } from './auth/auth.component';
-import { SignInComponent } from './auth/sign-in/sign-in.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { RootComponent } from './root/root.component';
 import { reducers } from './store/app.reducers';
 import { AuthService } from './auth/auth.service';
+import { ProfileService } from './profile/profile.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { AuthModule } from './auth/auth.module';
+import { ProfileModule } from './profile/profile.module';
 
 export const MODULES = {
   declarations: [
@@ -43,12 +44,7 @@ export const MODULES = {
     SideNavComponent,
     CompaniesComponent,
     VacanciesComponent,
-    AuthComponent,
-    SignInComponent,
-    SignUpComponent,
-    RootComponent,
-    RestorePasswordComponent,
-    ResetPasswordComponent
+    RootComponent
   ],
   imports: [
     BrowserModule,
@@ -63,13 +59,17 @@ export const MODULES = {
     MdListModule,
     MdCardModule,
     MdInputModule,
-    MdButtonModule
+    MdButtonModule,
+    AuthModule,
+    ProfileModule
   ],
   providers: [
     AuthService,
+    ProfileService,
     CookieService,
     ApiService,
-    {provide: APP_BASE_HREF, useValue : '/' }
+    {provide: APP_BASE_HREF, useValue : '/' },
+    AuthGuard
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

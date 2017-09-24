@@ -18,7 +18,7 @@ import { AuthService } from '../auth.service';
 import * as fromApp from '../../store/app.reducers';
 import * as AuthActions from '../store/auth.actions';
 import { ApiService } from '../../shared/api.service';
-import { AppRoutingModule, authRoutes, appRoutes } from '../../app-routing.module';
+import { AppRoutingModule, appRoutes } from '../../app-routing.module';
 
 describe('ResetPasswordComponent', () => {
   let component: ResetPasswordComponent;

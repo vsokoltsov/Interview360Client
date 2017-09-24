@@ -1,0 +1,37 @@
+<form class="form" [formGroup]="infoForm" (ngSubmit)="updateProfile()">
+  <div class="form-field">
+    <input placeholder="Email" class="field" formControlName="email" type="email">
+
+    <div class="error" *ngIf="infoForm.get('email').touched &&
+      infoForm.get('email').hasError('email')">
+      Please enter a valid email address
+    </div>
+    <div class="error" *ngIf="infoForm.get('email').touched &&
+        infoForm.get('email').hasError('required')">
+      Email is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of infoFormErrors.email" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class=form-field>
+    <input placeholder="First name" class="field" formControlName="first_name" type="text">
+    <div class="error" *ngIf="infoForm.get('first_name').touched &&
+      infoForm.get('first_name').hasError('required')">
+      First name is <strong>required</strong>
+    </div>
+  </div>
+  <div class=form-field>
+    <input placeholder="Last name" class="field" formControlName="last_name" type="text">
+    <div class="error" *ngIf="infoForm.get('last_name').touched &&
+      infoForm.get('last_name').hasError('required')">
+      Last name is <strong>required</strong>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button primary"
+      [disabled]="!infoForm.valid">Update</button>
+  </div>
+</form>

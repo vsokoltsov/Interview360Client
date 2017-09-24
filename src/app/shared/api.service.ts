@@ -30,6 +30,10 @@ export class ApiService {
     return this.request('POST', url, params);
   }
 
+  put(url: string, params: {}) {
+    return this.request('PUT', url, params);
+  }
+
   getHeaders(): HttpHeaders {
     const token = this.getToken();
     let headers = null;

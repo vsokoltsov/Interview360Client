@@ -1,0 +1,20 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 10px;
+
+  .tab-panel {
+    font-size: 22px;
+    padding: 4px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+
+    &.active {
+      color: $primary;
+      border-bottom: 2px solid $primary;
+    }
+  }
+}

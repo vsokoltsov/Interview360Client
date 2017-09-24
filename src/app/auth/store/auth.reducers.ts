@@ -1,5 +1,6 @@
 import { User } from '../user.model';
 import * as AuthActions from './auth.actions';
+import * as ProfileActions from '../../profile/store/profile.actions';
 
 export interface State {
   token: string;
@@ -19,7 +20,7 @@ const initialState: State = {
   resetPasswordErrors: null
 };
 
-export function authReducer(state = initialState, action: AuthActions.AuthActions) {
+export function authReducer(state = initialState, action: AuthActions.AuthActions)  {
   switch(action.type) {
     case AuthActions.CURRENT_USER_RECEIVED:
       return {
@@ -50,6 +51,11 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
       return {
         ...state,
         resetPasswordErrors: action.payload
+      };
+    case ProfileActions.SUCCESS_PROFILE_UPDATE:
+      return {
+        ...state,
+        currentUser: action.payload
       };
     default: return state;
   }
