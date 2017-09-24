@@ -22,7 +22,7 @@ import { ProfileService } from './../../profile.service';
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
 
-fdescribe('PasswordComponent', () => {
+describe('PasswordComponent', () => {
   let component: PasswordComponent;
   let fixture: ComponentFixture<PasswordComponent>;
   let profileService: ProfileService;

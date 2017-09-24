@@ -16,6 +16,7 @@ import { reducers } from '../../store/app.reducers';
 import { AuthService } from '../../auth/auth.service';
 import * as fromApp from '../../store/app.reducers';
 import * as AuthActions from '../../auth/store/auth.actions';
+import * as ProfileActions from '../store/profile.actions';
 import { ApiService } from '../../shared/api.service';
 import { ProfileService } from '../profile.service';
 
@@ -25,6 +26,7 @@ describe('EditComponent', () => {
   let component: EditComponent;
   let fixture: ComponentFixture<EditComponent>;
   let store: Store<fromApp.AppState>;
+  let profileService: ProfileService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -48,14 +50,21 @@ describe('EditComponent', () => {
 
     fixture = TestBed.createComponent(EditComponent);
     component = fixture.componentInstance;
+    store = TestBed.get(Store);
+    profileService = TestBed.get(ProfileService);
+    spyOn(profileService, 'receiveProfile').and.callThrough();
+    // store.dispatch(new ProfileActions.ReceiveProfile(user));
     fixture.detectChanges();
 
-    store = TestBed.get(Store);
     const action = new AuthActions.CurrentUserReceived(user);
     store.dispatch(action);
   });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call profileService.receiveProfile', () => {
+    expect(profileService.receiveProfile).toHaveBeenCalled();
   });
 });
