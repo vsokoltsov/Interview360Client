@@ -16,12 +16,17 @@ import { reducers } from '../../../store/app.reducers';
 import { AuthService } from '../../../auth/auth.service';
 import * as fromApp from '../../../store/app.reducers';
 import * as AuthActions from '../../../auth/store/auth.actions';
+import * as ProfileActions from '../../store/profile.actions';
 import { ApiService } from '../../../shared/api.service';
 import { ProfileService } from './../../profile.service'
+
+const user = new User(1, 'example@mail.com', 'a', 'b');
 
 describe('InfoComponent', () => {
   let component: InfoComponent;
   let fixture: ComponentFixture<InfoComponent>;
+  let profileService: ProfileService;
+  let store: Store<fromApp.AppState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -47,10 +52,24 @@ describe('InfoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InfoComponent);
     component = fixture.componentInstance;
+    profileService = TestBed.get(ProfileService);
+    store = TestBed.get(Store);
+    store.dispatch(new ProfileActions.ReceiveProfile(user));
     fixture.detectChanges();
   });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('get user from the store.profile slot', () => {
+    expect(component.user).toEqual(user);
+  });
+
+  it('calls updateProfile() method', () => {
+    spyOn(profileService, 'updateProfile').and.callThrough();
+
+    component.updateProfile();
+    expect(profileService.updateProfile).toHaveBeenCalled();
   });
 });

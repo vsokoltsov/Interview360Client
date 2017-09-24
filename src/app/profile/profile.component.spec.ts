@@ -34,6 +34,7 @@ describe('ProfileComponent', () => {
   let fixture: ComponentFixture<ProfileComponent>;
   let httpMock: HttpTestingController;
   let store: Store<fromApp.AppState>;
+  let profileService: ProfileService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,10 +57,12 @@ describe('ProfileComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProfileComponent);
+    store = TestBed.get(Store);
+    profileService = TestBed.get(ProfileService);
+    spyOn(profileService, 'receiveProfile').and.callThrough();
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    store = TestBed.get(Store);
     const action = new AuthActions.CurrentUserReceived(user);
     store.dispatch(action);
   }));
@@ -67,4 +70,8 @@ describe('ProfileComponent', () => {
   it('should be created', async(() => {
     expect(component).toBeTruthy();
   }));
+
+  it('should call profileService.receiveProfile() method', () => {
+    expect(profileService.receiveProfile).toHaveBeenCalled();
+  });
 });
