@@ -1,4 +1,6 @@
 <form class="form" [formGroup]="infoForm" (ngSubmit)="updateProfile()">
+  <app-uploader-component [contentType]="'authorization.user'"></app-uploader-component>
+
   <div class="form-field">
     <input placeholder="Email" class="field" formControlName="email" type="email">
 

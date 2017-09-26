@@ -30,6 +30,18 @@ export class ApiService {
     return this.request('POST', url, params);
   }
 
+  postUpload(url: string, params: {}) {
+    let headers = this.getHeaders();
+    headers = headers.set('Content-Type', 'multipart/form-data');
+    console.log(headers);
+    return this.httpClient.request('POST', `${environment.baseUrl}${url}`, {
+      body: params,
+      headers: headers,
+      observe: 'response',
+      responseType: 'text'
+    })
+  }
+
   put(url: string, params: {}) {
     return this.request('PUT', url, params);
   }
@@ -45,10 +57,6 @@ export class ApiService {
   }
 
   request(method: string, url: string, params = null) {
-    const request = new HttpRequest(
-      method, `${environment.baseUrl}${url}`,
-      params, { headers: this.getHeaders(), responseType: 'json' }
-    );
     return this.httpClient.request(method, `${environment.baseUrl}${url}`, {
       body: params,
       headers: this.getHeaders(),
