@@ -12,6 +12,8 @@ const URL = `${environment.baseUrl}/attachments/`;
 })
 export class UploaderComponent implements OnInit, OnDestroy {
   @Input() contentType: string;
+  @Input() attachmentUrl: string;
+  @Input() imageSize: number;
   @Output() onSuccessUpload: EventEmitter<any> = new EventEmitter();
   uploader:FileUploader = new FileUploader({
     url: URL,

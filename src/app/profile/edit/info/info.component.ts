@@ -15,6 +15,7 @@ import { UploaderComponent } from '../../../shared/uploader/uploader.component';
 })
 export class InfoComponent implements OnInit, OnDestroy {
   user: User;
+  userImageUrl: string;
   infoForm: FormGroup;
   subscription: Subscription;
   infoFormErrors = {};
@@ -35,12 +36,13 @@ export class InfoComponent implements OnInit, OnDestroy {
       data => {
         if(data.profile) {
           this.user = data.profile;
-            this.infoForm.patchValue({
-              email: data.profile.email,
-              first_name: data.profile.first_name,
-              last_name: data.profile.last_name,
-              attachment: data.profile.attachment
-            });
+          this.userImageUrl = data.profile.attachment.url;
+          this.infoForm.patchValue({
+            email: data.profile.email,
+            first_name: data.profile.first_name,
+            last_name: data.profile.last_name,
+            attachment: data.profile.attachment
+          });
         }
       }
     );
@@ -55,7 +57,7 @@ export class InfoComponent implements OnInit, OnDestroy {
   }
 
   avatarUploaded($event) {
-    console.log($event);
+    this.userImageUrl = $event.attachment.url;
     this.infoForm.patchValue({
       attachment: $event.attachment
     });
