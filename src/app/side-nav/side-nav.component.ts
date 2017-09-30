@@ -12,6 +12,7 @@ import * as fromApp from '../store/app.reducers';
 })
 export class SideNavComponent implements OnInit, OnDestroy {
   user: User;
+  avatarUrl: string;
   subscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) { }
@@ -21,6 +22,9 @@ export class SideNavComponent implements OnInit, OnDestroy {
       data => {
         if (data.currentUser) {
           this.user = data.currentUser;
+          if (this.user.attachment) {
+            this.avatarUrl = this.user.attachment.url;
+          }
         }
       }
     );
