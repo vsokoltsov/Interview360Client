@@ -3,6 +3,7 @@ export class User {
   public email: string;
   public first_name: string;
   public last_name: string;
+  public attachment: { url: string};
 
   constructor(id: number, email: string,
               first_name: string, last_name: string) {

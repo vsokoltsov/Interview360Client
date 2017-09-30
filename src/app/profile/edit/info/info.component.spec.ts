@@ -19,6 +19,8 @@ import * as AuthActions from '../../../auth/store/auth.actions';
 import * as ProfileActions from '../../store/profile.actions';
 import { ApiService } from '../../../shared/api.service';
 import { ProfileService } from './../../profile.service'
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { UploaderComponent } from '../../../shared/uploader/uploader.component';
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
 
@@ -31,14 +33,16 @@ describe('InfoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        InfoComponent
+        InfoComponent,
+        UploaderComponent
       ],
       imports: [
         RouterTestingModule,
         ReactiveFormsModule,
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        FileUploadModule
       ],
       providers: [
         CookieService,
