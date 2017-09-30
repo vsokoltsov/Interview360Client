@@ -6,7 +6,7 @@ deployment:
     branch: master
     commands:
       - ng build --prod --aot
-      - aws s3 sync dist s3://interview360prod/ --delete
+      - aws s3 sync dist s3://interview360client/ --delete
 test:
   override:
     - ng test --watch=false
