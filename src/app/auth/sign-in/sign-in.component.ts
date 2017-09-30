@@ -16,7 +16,7 @@ import * as AuthActions from '../store/auth.actions';
 export class SignInComponent implements OnInit, OnDestroy {
   signInForm: FormGroup;
   subscription: Subscription;
-  signInErrors: Object = {};
+  public signInErrors: Object = { email: null };
 
   constructor(private store: Store<fromApp.AppState>,
               private authService: AuthService) { }

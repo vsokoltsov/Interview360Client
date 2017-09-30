@@ -16,7 +16,7 @@
         infoForm.get('email').hasError('required')">
       Email is <strong>required</strong>
     </div>
-    <div *ngFor="let error of infoFormErrors.email" class="error">
+    <div *ngFor="let error of infoFormErrors['email']" class="error">
       {{error}}
     </div>
   </div>

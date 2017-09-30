@@ -18,7 +18,7 @@ export class InfoComponent implements OnInit, OnDestroy {
   userImageUrl: string;
   infoForm: FormGroup;
   subscription: Subscription;
-  infoFormErrors = {};
+  infoFormErrors = { email: null };
 
   constructor(
     private profileService: ProfileService,
