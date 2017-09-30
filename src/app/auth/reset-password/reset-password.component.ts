@@ -17,7 +17,10 @@ import * as AuthActions from '../store/auth.actions';
 export class ResetPasswordComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   resetPasswordForm: FormGroup;
-  resetPasswordErrors: Object = {};
+  resetPasswordErrors: Object = {
+    password: null,
+    password_confirmation: null
+  };
   token: string;
 
   constructor(private authService: AuthService,

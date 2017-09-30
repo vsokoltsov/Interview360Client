@@ -4,7 +4,7 @@ import { EditComponent } from './edit.component';
 import { By } from '@angular/platform-browser';
 import { StoreModule, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'angular2-cookie/core';
 import { DebugElement }    from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';

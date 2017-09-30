@@ -16,7 +16,9 @@ import * as AuthActions from '../store/auth.actions';
 export class RestorePasswordComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   restorePasswordForm: FormGroup;
-  restorePasswordErrors: Object = {};
+  restorePasswordErrors: Object = {
+    email: null
+  };
 
   constructor(private authService: AuthService,
               private store: Store<fromApp.AppState>) { }

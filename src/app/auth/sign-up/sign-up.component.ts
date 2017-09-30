@@ -18,7 +18,11 @@ import * as AuthActions from '../store/auth.actions';
 export class SignUpComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   signUpForm: FormGroup;
-  signUpErrors: Object = {};
+  signUpErrors: Object = {
+    email: null,
+    password: null,
+    password_confirmation: null
+  };
   constructor(private authService: AuthService,
               private store: Store<fromApp.AppState>) { }
 

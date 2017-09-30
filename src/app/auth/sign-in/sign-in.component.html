@@ -10,7 +10,7 @@
         signInForm.get('email').hasError('required')">
       Email is <strong>required</strong>
     </div>
-    <div *ngFor="let error of signInErrors.email" class="error">
+    <div *ngFor="let error of signInErrors['email']" class="error">
       {{error}}
     </div>
   </div>

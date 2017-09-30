@@ -1,6 +1,11 @@
 machine:
     node:
         version: 6.9
+deployment:
+  prod:
+    branch: master
+    commands:
+      - aws s3 sync dist s3://interview360prod/ --delete
 test:
   override:
     - ng test --watch=false

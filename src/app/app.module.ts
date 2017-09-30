@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService, CookieOptions } from 'angular2-cookie/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {APP_BASE_HREF} from '@angular/common';
 import { AuthGuard } from './auth/auth-guard.service';
@@ -69,7 +69,8 @@ export const MODULES = {
     CookieService,
     ApiService,
     {provide: APP_BASE_HREF, useValue : '/' },
-    AuthGuard
+    AuthGuard,
+    { provide: CookieOptions, useValue: {} }
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

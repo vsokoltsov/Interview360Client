@@ -17,7 +17,11 @@ export class PasswordComponent implements OnInit {
   user: User;
   passwordForm: FormGroup;
   subscription: Subscription;
-  passwordFormErrors = {};
+  passwordFormErrors = {
+    current_password: null,
+    password: null,
+    password_confirmation: null
+  };
 
   constructor(private profileService: ProfileService,
               private store: Store<fromApp.AppState>) { }
