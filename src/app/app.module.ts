@@ -25,7 +25,6 @@ import {
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { CompaniesComponent } from './companies/companies.component';
 import { VacanciesComponent } from './vacancies/vacancies.component';
 import { RootComponent } from './root/root.component';
 import { reducers } from './store/app.reducers';
@@ -34,15 +33,16 @@ import { ProfileService } from './profile/profile.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
+import { CompaniesModule } from './companies/companies.module';
 
 export const MODULES = {
   declarations: [
     AppComponent,
     HeaderComponent,
     SideNavComponent,
-    CompaniesComponent,
     VacanciesComponent,
     RootComponent
   ],
@@ -61,7 +61,8 @@ export const MODULES = {
     MdInputModule,
     MdButtonModule,
     AuthModule,
-    ProfileModule
+    ProfileModule,
+    CompaniesModule
   ],
   providers: [
     AuthService,
