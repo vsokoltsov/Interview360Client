@@ -16,7 +16,7 @@ export class CompaniesService {
   loadList() {
     this.apiService.get('/companies/').subscribe(
       response => {
-        this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.data));
+        this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.body));
       }
     )
   }
