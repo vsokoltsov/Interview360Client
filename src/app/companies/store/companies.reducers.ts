@@ -2,7 +2,7 @@ import { Company } from '../company.model';
 import * as CompaniesActions from './companies.actions';
 
 export interface State {
-  list: {}[]
+  list: Company[]
 };
 
 const initialState: State = {
