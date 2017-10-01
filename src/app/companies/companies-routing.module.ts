@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CompaniesComponent } from './companies.component';
 import { FormComponent } from './form/form.component';
-import { ItemComponent } from './item/item.component';
 import { DetailComponent } from './detail/detail.component';
 import { BaseComponent } from './base/base.component';
 
