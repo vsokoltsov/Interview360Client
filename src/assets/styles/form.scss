@@ -79,6 +79,11 @@
       background-color: $button_success;
     }
 
+    &.danger {
+      color: $theme_white;
+      background-color: $red;
+    }
+
     &.success[disabled] {
       background-color: $button_success_disabled !important;
     }

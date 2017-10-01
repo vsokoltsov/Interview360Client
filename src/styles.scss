@@ -5,6 +5,10 @@
 @import '~assets/styles/tabs.scss';
 @import '~assets/styles/list.scss';
 
+html, body {
+  height: 100%;
+}
+
 body {
   padding: 0px;
   margin: 0px;

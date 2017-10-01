@@ -11,17 +11,16 @@
     justify-content: space-between;
 
     .settings-block {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      width: 100%;
 
       .sign-out {
         color: $pure_white;
         background-color: $red;
       }
     }
-  }
-
-  md-icon.header-icon {
-    color: $theme_white;
-    cursor: pointer;
   }
 
 }

@@ -1,16 +1,16 @@
-<md-sidenav-container class="base-container">
-  <md-sidenav #sidenav mode="side" opened="true">
+<div class="base-container">
+  <div class="side-nav">
     <app-side-nav ></app-side-nav>
-  </md-sidenav>
+  </div>
 
   <div class="content">
-    <md-toolbar class="main-header">
+    <div class="toolbar main-header">
       <app-header (onMenuClicked)="toggleNavigation()"></app-header>
-    </md-toolbar>
+    </div>
 
     <div class="container">
       <router-outlet></router-outlet>
     </div>
   </div>
 
-</md-sidenav-container>
+</div>
