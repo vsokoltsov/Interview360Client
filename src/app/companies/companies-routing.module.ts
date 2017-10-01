@@ -9,9 +9,9 @@ import { BaseComponent } from './base/base.component';
 export const companiesRoutes: Routes = [
   { path: '', component: CompaniesComponent, children: [
     { path: '', component: BaseComponent },
+    { path: 'new', component: FormComponent, pathMatch: 'full' },
     { path: ':id', component: DetailComponent },
-    { path: ':id/edit', component: FormComponent },
-    { path: 'new', component: FormComponent }
+    { path: ':id/edit', component: FormComponent }
   ] },
 ];
 

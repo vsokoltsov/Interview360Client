@@ -1,4 +1,8 @@
-<p>Companies</p>
+<div class="base-actions">
+  <a [routerLink]="['new']">
+    <svg-icon name="plus-icon" size="35"></svg-icon>
+  </a>
+</div>
 <div class="page">
   <div class="content-panel">
     <div class="form horizontal search card">
@@ -18,5 +22,4 @@
   <div class="inner-elements card">
     <router-outlet></router-outlet>
   </div>
-
 </div>
