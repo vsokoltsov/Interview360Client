@@ -11,6 +11,7 @@ import { CookieService, CookieOptions } from 'angular2-cookie/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {APP_BASE_HREF} from '@angular/common';
 import { AuthGuard } from './auth/auth-guard.service';
+import { NgxSvgIconModule } from 'ngx-svg-icon';
 
 import {
   MdSidenavModule,

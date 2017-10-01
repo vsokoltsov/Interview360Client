@@ -1,19 +1,31 @@
 <p>Companies</p>
 <div class="page">
-  <div class="companies list">
-    <div *ngFor="let company of companies" class="item card">
-      <div class="title">
-        <h4>
-          <a [routerLink]="[company.id]">
-            {{ company.name }}
-          </a>
-        </h4>
+  <div class="content-panel">
+    <div class="form horizontal search card">
+      <div class="form-field">
+        <input placeholder="Search" class="field" type="text">
       </div>
-      <div class="description">
-        {{ company.description }}
+      <div class="form-actions">
+        <button class="button clear icon">
+          <svg-icon name="search-magnifier"></svg-icon>
+        </button>
       </div>
-      <div class="date">
-        {{ company.start_date | date: 'dd.MM.yyyy' }}
+    </div>
+    <div class="companies list">
+      <div *ngFor="let company of companies" class="item card">
+        <div class="title">
+          <h4>
+            <a [routerLink]="[company.id]">
+              {{ company.name }}
+            </a>
+          </h4>
+        </div>
+        <div class="description">
+          {{ company.description }}
+        </div>
+        <div class="date">
+          {{ company.start_date | date: 'dd.MM.yyyy' }}
+        </div>
       </div>
     </div>
   </div>

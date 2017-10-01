@@ -15,4 +15,16 @@
       width: 100%;
     }
   }
+  .form {
+    &.search {
+      .form-field {
+        width: 100%;
+      }
+
+      .form-actions {
+        width: auto;
+        margin: 0px;
+      }
+    }
+  }
 }

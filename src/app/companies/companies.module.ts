@@ -8,6 +8,7 @@ import { FormComponent } from './form/form.component';
 import { ItemComponent } from './item/item.component';
 import { DetailComponent } from './detail/detail.component';
 import { BaseComponent } from './base/base.component';
+import { NgxSvgIconModule } from 'ngx-svg-icon';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BaseComponent } from './base/base.component';
     CompaniesRoutingModule,
     CommonModule,
     ReactiveFormsModule,
+    NgxSvgIconModule
   ]
 })
 export class CompaniesModule {}
