@@ -1,4 +1,24 @@
 <p>Companies</p>
-<div *ngFor="let company of companies">
-  <h4>{{ company.name }}</h4>
+<div class="page">
+  <div class="companies list">
+    <div *ngFor="let company of companies" class="item card">
+      <div class="title">
+        <h4>
+          <a [routerLink]="[company.id]">
+            {{ company.name }}
+          </a>
+        </h4>
+      </div>
+      <div class="description">
+        {{ company.description }}
+      </div>
+      <div class="date">
+        {{ company.start_date | date: 'dd.MM.yyyy' }}
+      </div>
+    </div>
+  </div>
+  <div class="inner-elements card">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>

@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .page {
+    display: flex;
+    flex-direction: row;
+
+    .list {
+      text-align: left;
+      min-width: 20em;
+    }
+
+    .inner-elements {
+      width: 100%;
+    }
+  }
+}
