@@ -73,6 +73,15 @@
       color: $theme_white;
       background-color: $primary_button;
     }
+
+    &.success {
+      color: $theme_white;
+      background-color: $button_success;
+    }
+
+    &.success[disabled] {
+      background-color: $button_success_disabled !important;
+    }
   }
 
 
