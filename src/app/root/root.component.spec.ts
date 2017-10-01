@@ -9,16 +9,6 @@ import { DebugElement }    from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import {
-  MdSidenavModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdListModule,
-  MdCardModule,
-  MdInputModule,
-  MdButtonModule
-} from '@angular/material';
-
 import { User } from '../auth/user.model';
 import { reducers } from '../store/app.reducers';
 import { AuthService } from '../auth/auth.service';
@@ -44,13 +34,6 @@ describe('RootComponent', () => {
       ],
       imports: [
         BrowserAnimationsModule,
-        MdSidenavModule,
-        MdToolbarModule,
-        MdIconModule,
-        MdListModule,
-        MdCardModule,
-        MdInputModule,
-        MdButtonModule,
         RouterModule,
         RouterTestingModule,
         StoreModule.forRoot(fromApp.reducers),

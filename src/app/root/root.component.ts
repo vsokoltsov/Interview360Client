@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +6,9 @@ import { MdDrawer } from '@angular/material';
   styleUrls: ['./root.component.scss']
 })
 export class RootComponent implements OnInit {
-  @ViewChild('sidenav') sidenav: MdDrawer;
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  toggleNavigation() {
-    this.sidenav.toggle();
   }
 }

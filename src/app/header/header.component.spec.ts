@@ -1,13 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import {
-  MdSidenavModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdListModule,
-  MdCardModule
-} from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { StoreModule, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
@@ -37,11 +30,6 @@ describe('HeaderComponent', () => {
         HeaderComponent
       ],
       imports: [
-        MdSidenavModule,
-        MdToolbarModule,
-        MdIconModule,
-        MdListModule,
-        MdCardModule,
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule
       ],

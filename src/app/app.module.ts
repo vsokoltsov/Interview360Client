@@ -13,16 +13,6 @@ import {APP_BASE_HREF} from '@angular/common';
 import { AuthGuard } from './auth/auth-guard.service';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
 
-import {
-  MdSidenavModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdListModule,
-  MdCardModule,
-  MdInputModule,
-  MdButtonModule
-} from '@angular/material';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -55,13 +45,6 @@ export const MODULES = {
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
     HttpClientModule,
-    MdSidenavModule,
-    MdToolbarModule,
-    MdIconModule,
-    MdListModule,
-    MdCardModule,
-    MdInputModule,
-    MdButtonModule,
     AuthModule,
     ProfileModule,
     CompaniesModule

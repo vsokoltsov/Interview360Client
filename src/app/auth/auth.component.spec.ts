@@ -4,13 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { Router } from '@angular/router';
 
-import {
-  MdSidenavModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdListModule,
-  MdCardModule
-} from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { StoreModule, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
