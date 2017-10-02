@@ -4,6 +4,19 @@
   height: 100%;
   width: 15em;
   background-color: $side_navigation;
+  color: $pure_white;
+
+  a {
+    text-decoration: none;
+
+    &:active {
+      color: $pure_white;
+    }
+
+    &:visited {
+      color: $pure_white;
+    }
+  }
 
   .user_panel.side-nav-header {
     background-color: $primary_nav_header;
@@ -31,6 +44,13 @@
   }
 
   .menu-items {
-    color: white;
+    color: $pure_white;
+    display: flex;
+    padding-left: 15px;
+    padding-top: 15px;
+
+    ul {
+      list-style: none;
+    }
   }
 }

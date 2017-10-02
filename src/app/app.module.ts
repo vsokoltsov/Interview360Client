@@ -45,6 +45,7 @@ export const MODULES = {
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
     HttpClientModule,
+    NgxSvgIconModule,
     AuthModule,
     ProfileModule,
     CompaniesModule
