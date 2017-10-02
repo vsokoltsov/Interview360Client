@@ -23,7 +23,7 @@
   </div>
 
   <div class="form-field">
-    <input placeholder="Start date" class="field" formControlName="start_date" type="text">
+    <input placeholder="Start date" class="field" formControlName="start_date" [dpDayPicker]="config" type="text">
 
     <div class="error" *ngIf="companyForm.get('start_date').touched &&
       companyForm.get('start_date').hasError('required')">
@@ -32,6 +32,12 @@
     <div *ngFor="let error of companyFormErrors['start_date']" class="error">
       {{error}}
     </div>
+  </div>
+
+  <div class="form-field">
+    <textarea placeholder="Description" class="field" formControlName="description"
+    rows="3">
+    </textarea>
   </div>
 
   <div class="form-actions">

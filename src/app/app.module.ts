@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {APP_BASE_HREF} from '@angular/common';
 import { AuthGuard } from './auth/auth-guard.service';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -46,6 +47,7 @@ export const MODULES = {
     StoreModule.forRoot(reducers),
     HttpClientModule,
     NgxSvgIconModule,
+    NgDatepickerModule,
     AuthModule,
     ProfileModule,
     CompaniesModule
