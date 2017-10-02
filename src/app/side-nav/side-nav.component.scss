@@ -7,14 +7,14 @@
   color: $pure_white;
 
   a {
-    text-decoration: none;
+    // text-decoration: none;
 
     &:active {
       color: $pure_white;
     }
 
     &:visited {
-      color: $pure_white;
+      color: $theme_white;
     }
   }
 
