@@ -20,4 +20,15 @@ export class CompaniesService {
       }
     )
   }
+
+  createCompany(params: {}) {
+    this.apiService.post('/companies/', params).subscribe(
+      response => {
+        this.store.dispatch(new CompaniesActions.SuccessCompanyCreated(response.body));
+      },
+      failed => {
+        this.store.dispatch(new CompaniesActions.FailedCompanyCreated(failed.error.errors));
+      }
+    )
+  }
 }

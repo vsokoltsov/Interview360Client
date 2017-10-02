@@ -19,18 +19,29 @@
     }
   }
 
+
   .page {
     display: flex;
     flex-direction: row;
     height: 100%;
 
+    .content-panel {
+      overflow: hidden;
+      height: 100%;
+    }
+
     .list {
       text-align: left;
-      min-width: 20em;
+      min-width: 19em;
+
+      &.companies {
+        height: 83%;
+        overflow: scroll;
+      }
     }
 
     .inner-elements {
-      width: 100%;
+      width: 80%;
     }
   }
   .form {
