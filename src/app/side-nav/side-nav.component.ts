@@ -23,7 +23,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
         if (data.currentUser) {
           this.user = data.currentUser;
           if (this.user.attachment) {
-            this.avatarUrl = this.user.attachment.url;
+            this.avatarUrl = this.user.attachment.thumb_url;
           }
         }
       }
