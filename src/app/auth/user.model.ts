@@ -3,7 +3,14 @@ export class User {
   public email: string;
   public first_name: string;
   public last_name: string;
-  public attachment: { url: string, thumb_url: string, small_thumb_url: string };
+  public attachment: {
+    url: string,
+    thumb_url: string,
+    small_thumb_url: string,
+    medium_url: string,
+    medium_large_url: string,
+    large_url: string
+  };
   public roles: {}
 
   constructor(id: number, email: string,

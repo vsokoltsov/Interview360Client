@@ -37,7 +37,7 @@ export class InfoComponent implements OnInit, OnDestroy {
         if(data.profile) {
           this.user = data.profile;
           if (this.user.attachment) {
-              this.userImageUrl = this.user.attachment.url;
+              this.userImageUrl = this.user.attachment.medium_url;
           }
           this.infoForm.patchValue({
             email: data.profile.email,
