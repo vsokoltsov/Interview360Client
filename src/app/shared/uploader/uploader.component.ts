@@ -22,6 +22,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
   });
   hasBaseDropZoneOver:boolean = false;
   hasAnotherDropZoneOver:boolean = false;
+  errorText: string;
 
 
   constructor(private apiService: ApiService) {}
@@ -35,8 +36,13 @@ export class UploaderComponent implements OnInit, OnDestroy {
       this.uploader.uploadAll();
     };
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-      const attachment = JSON.parse(response).attachment;
-      this.onSuccessUpload.emit({ attachment })
+      if (status !== 400) {
+        const attachment = JSON.parse(response).attachment;
+        this.onSuccessUpload.emit({ attachment })
+      }
+      else {
+        this.errorText = JSON.parse(response).errors.data;
+      }
     };
   }
 
