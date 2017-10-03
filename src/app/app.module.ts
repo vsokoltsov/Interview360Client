@@ -13,6 +13,7 @@ import {APP_BASE_HREF} from '@angular/common';
 import { AuthGuard } from './auth/auth-guard.service';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -26,6 +27,7 @@ import { CompaniesService } from './companies/companies.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { UploaderModule } from './shared/uploader/uploader.module';
 
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
@@ -41,6 +43,7 @@ export const MODULES = {
   ],
   imports: [
     BrowserModule,
+    FileUploadModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -62,8 +65,7 @@ export const MODULES = {
     AuthGuard,
     { provide: CookieOptions, useValue: {} }
   ],
-  bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  bootstrap: [AppComponent]
 };
 
 @NgModule(MODULES)

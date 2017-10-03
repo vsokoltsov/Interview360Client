@@ -11,22 +11,24 @@ import { BaseComponent } from './base/base.component';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import {DpDatePickerModule} from 'ng2-date-picker';
+import { UploaderModule } from '../shared/uploader/uploader.module';
 
 @NgModule({
+  imports: [
+    CompaniesRoutingModule,
+    CommonModule,
+    UploaderModule,
+    NgDatepickerModule,
+    DpDatePickerModule,
+    ReactiveFormsModule,
+    NgxSvgIconModule
+  ],
   declarations: [
     CompaniesComponent,
     FormComponent,
     CompanyListItemComponent,
     DetailComponent,
     BaseComponent
-  ],
-  imports: [
-    CompaniesRoutingModule,
-    CommonModule,
-    NgDatepickerModule,
-    DpDatePickerModule,
-    ReactiveFormsModule,
-    NgxSvgIconModule
   ]
 })
 export class CompaniesModule {}

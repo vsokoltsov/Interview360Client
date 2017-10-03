@@ -23,6 +23,8 @@ export class FormComponent implements OnInit, OnDestroy {
     format: 'YYYY-MM-DD',
     required: true
   };
+  imageUrl: string;
+
 
   constructor(private store: Store<fromApp.AppState>,
               private companiesService: CompaniesService) { }
@@ -32,7 +34,8 @@ export class FormComponent implements OnInit, OnDestroy {
       'name': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required]),
       'start_date': new FormControl(null, [Validators.required]),
-      'city': new FormControl(null, [Validators.required])
+      'city': new FormControl(null, [Validators.required]),
+      'attachment': new FormControl(null, [])
     });
     this.subscription = this.store.select('auth').subscribe(
       (data) => {
@@ -51,6 +54,13 @@ export class FormComponent implements OnInit, OnDestroy {
     const params = this.companyForm.value;
     params.owner_id = this.owner.id;
     this.companiesService.createCompany(params);
+  }
+
+  imageUploaded($event) {
+    this.imageUrl = $event.attachment.medium_url;
+    this.companyForm.patchValue({
+      attachment: $event.attachment
+    });
   }
 
 }

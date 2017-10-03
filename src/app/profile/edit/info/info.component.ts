@@ -6,7 +6,6 @@ import * as fromApp from '../../../store/app.reducers';
 import { Subscription } from 'rxjs/Subscription';
 import { ProfileService } from '../../profile.service';
 import { User } from '../../../auth/user.model';
-import { UploaderComponent } from '../../../shared/uploader/uploader.component';
 
 @Component({
   selector: 'app-info',

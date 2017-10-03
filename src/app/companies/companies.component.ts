@@ -24,6 +24,7 @@ export class CompaniesComponent implements OnInit {
     this.subscription = this.store.select('companies').subscribe(
       data => {
         if(data.list) {
+          console.log(data.list);
           this.companies = data.list;
         }
       }
