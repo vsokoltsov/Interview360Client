@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+
+  .detail-page {
+    .base-info-block {
+      display: flex;
+      flex-direction: row;
+
+      .company-image {
+        padding: 2em;
+      }
+
+      .company-information {
+        padding-top: 2em;
+
+        .info {
+          text-align: left;
+          margin-top: 1em;
+        }
+      }
+    }
+  }
+}

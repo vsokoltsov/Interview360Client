@@ -3,11 +3,13 @@ import * as CompaniesActions from './companies.actions';
 
 export interface State {
   list: Company[],
+  detail: Company,
   companyFormErrors: {}
 };
 
 const initialState: State = {
   list: [],
+  detail: null,
   companyFormErrors: null
 };
 
@@ -18,6 +20,11 @@ export function companiesReducer(state = initialState, action: CompaniesActions.
       return {
         ...state,
         list: action.payload
+      };
+    case CompaniesActions.COMPANY_LOADED:
+      return {
+        ...state,
+        detail: action.payload
       };
     case CompaniesActions.SUCCESS_COMPANY_CREATED:
       return {

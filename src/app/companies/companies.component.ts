@@ -19,12 +19,10 @@ export class CompaniesComponent implements OnInit {
               private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    console.log("init");
     this.companiesService.loadList();
     this.subscription = this.store.select('companies').subscribe(
       data => {
         if(data.list) {
-          console.log(data.list);
           this.companies = data.list;
         }
       }

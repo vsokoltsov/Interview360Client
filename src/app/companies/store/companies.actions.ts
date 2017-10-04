@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 import { Company } from '../company.model';
 
 export const COMPANIES_LOADED = 'COMPANIES_LOADED';
+export const COMPANY_LOADED = 'COMPANY_LOADED';
 export const SUCCESS_COMPANY_CREATED = 'SUCCESS_COMPANY_CREATED';
 export const FAILED_COMPANY_CREATED = 'FAILED_COMPANY_CREATED';
 
@@ -24,6 +25,13 @@ export class FailedCompanyCreated implements Action {
   constructor(public payload: {}) {}
 }
 
+export class CompanyLoaded implements Action {
+  readonly type = COMPANY_LOADED;
+
+  constructor(public payload: Company) {}
+}
+
 export type CompaniesActions = CompaniesLoaded |
+CompanyLoaded |
 SuccessCompanyCreated |
 FailedCompanyCreated;

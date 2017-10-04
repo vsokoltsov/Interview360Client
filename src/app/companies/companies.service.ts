@@ -21,6 +21,14 @@ export class CompaniesService {
     )
   }
 
+  receiveCompany(id: number) {
+    this.apiService.get(`/companies/${id}/`).subscribe(
+      response => {
+        this.store.dispatch(new CompaniesActions.CompanyLoaded(response.body));
+      }
+    )
+  }
+
   createCompany(params: {}) {
     this.apiService.post('/companies/', params).subscribe(
       response => {
