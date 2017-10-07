@@ -32,6 +32,7 @@ import { UploaderModule } from './shared/uploader/uploader.module';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 import { CompaniesModule } from './companies/companies.module';
+import { PipeModule } from './shared/pipe.module';
 
 export const MODULES = {
   declarations: [
@@ -53,7 +54,8 @@ export const MODULES = {
     NgDatepickerModule,
     AuthModule,
     ProfileModule,
-    CompaniesModule
+    CompaniesModule,
+    PipeModule
   ],
   providers: [
     AuthService,

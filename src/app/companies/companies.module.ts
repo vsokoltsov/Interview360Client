@@ -13,6 +13,8 @@ import { NgDatepickerModule } from 'ng2-datepicker';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { UploaderModule } from '../shared/uploader/uploader.module';
 
+import { PipeModule } from '../shared/pipe.module';
+
 @NgModule({
   imports: [
     CompaniesRoutingModule,
@@ -21,7 +23,8 @@ import { UploaderModule } from '../shared/uploader/uploader.module';
     NgDatepickerModule,
     DpDatePickerModule,
     ReactiveFormsModule,
-    NgxSvgIconModule
+    NgxSvgIconModule,
+    PipeModule
   ],
   declarations: [
     CompaniesComponent,

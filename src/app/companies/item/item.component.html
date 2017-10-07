@@ -16,6 +16,12 @@
     </a>
   </div>
   <div class="description">
-    {{ company.description }}
+    {{ company.description | truncate:20 }}
+  </div>
+  <div class="related-info">
+    <span class="employees-number">
+      <svg-icon size="25" name="employees-number-icon"></svg-icon>
+      {{ company.employees_count }}
+    </span>
   </div>
 </div>
