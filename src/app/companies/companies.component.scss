@@ -26,7 +26,8 @@
     height: 100%;
 
     .content-panel {
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       height: 100%;
     }
 
@@ -35,8 +36,9 @@
       min-width: 19em;
 
       &.companies {
-        height: 83%;
-        overflow: scroll;
+        min-height: 1px;
+        overflow-y: auto;
+        flex: 1 1 auto;
       }
     }
 
@@ -46,6 +48,8 @@
   }
   .form {
     &.search {
+      min-height: 3.5em;
+
       .form-field {
         width: 100%;
       }
