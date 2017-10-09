@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
 import { Company } from '../company.model';
+import { User } from '../../auth/user.model';
 import { CompaniesService } from '../companies.service';
 import * as fromApp from '../../store/app.reducers';
 import * as CompanyActions from '../store/companies.actions';
@@ -33,6 +34,9 @@ export class DetailComponent implements OnInit, OnDestroy {
       data => {
         if (data.detail) {
           this.company = data.detail;
+          //
+          const user = <User> this.company.employees[0];
+          console.log(user instanceof User);
         }
 
         if (data.companyDeleted) {

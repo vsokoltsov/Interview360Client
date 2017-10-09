@@ -12,14 +12,24 @@ export class User {
     large_url: string
   };
   public roles: {};
-  public member_role: {};
+  public member_role: {
+    id: number,
+    role: number
+  };
 
   constructor(id: number, email: string,
-              first_name: string, last_name: string, roles: {} = null) {
+              first_name: string, last_name: string, roles: {} = null, member_role = null) {
     this.id = id;
     this.email = email;
     this.first_name = first_name;
     this.last_name = last_name;
     this.roles = roles;
+    this.member_role = member_role;
+  }
+
+  getRoleName() {
+    if (this.member_role && this.member_role.role == 1) {
+      return 'CEO';
+    }
   }
 }

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { Company } from './company.model';
+import { User } from '../auth/user.model';
 import { ApiService } from '../shared/api.service';
 import * as fromApp from '../store/app.reducers';
 import * as CompaniesActions from './store/companies.actions';
@@ -23,7 +24,8 @@ export class CompaniesService {
   }
 
   receiveCompany(id: number) {
-    this.apiService.get(`/companies/${id}/`).subscribe(
+    this.apiService.get(`/companies/${id}/`)
+    .subscribe(
       response => {
         this.store.dispatch(new CompaniesActions.CompanyLoaded(response.body));
       }

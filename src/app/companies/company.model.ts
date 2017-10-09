@@ -17,12 +17,14 @@ export class Company {
   public employees: User[];
 
   constructor(id: number, name: string,
-              description: string, start_date: any, city: string, attachment = null) {
+              description: string, start_date: any, city: string,
+              attachment = null, employees: User[] = null) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.start_date = start_date;
     this.city = city;
     this.attachment = attachment;
+    this.employees = employees;
   }
 }
