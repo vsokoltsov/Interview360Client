@@ -2,6 +2,21 @@
   display: flex;
 
   .detail-page {
+
+    .company-actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      padding-right: 1em;
+      padding-top: 1em;
+
+      a {
+        margin: 0px 5px;
+        cursor: pointer;
+      }
+    }
+
     .base-info-block {
       display: flex;
       flex-direction: row;
@@ -11,7 +26,6 @@
       }
 
       .company-information {
-        padding-top: 2em;
         padding-right: 2em;
 
         .info {

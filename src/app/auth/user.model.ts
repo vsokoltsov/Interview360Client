@@ -11,7 +11,8 @@ export class User {
     medium_large_url: string,
     large_url: string
   };
-  public roles: {}
+  public roles: {};
+  public member_role: {};
 
   constructor(id: number, email: string,
               first_name: string, last_name: string, roles: {} = null) {

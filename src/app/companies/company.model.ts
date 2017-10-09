@@ -1,3 +1,5 @@
+import { User } from '../auth/user.model';
+
 export class Company {
   public id: number;
   public name: string;
@@ -11,6 +13,7 @@ export class Company {
     medium_large_url: string,
     large_url: string
   };
+  public employees: User[];
 
   constructor(id: number, name: string,
               description: string, start_date: any, attachment = null) {
