@@ -54,7 +54,10 @@ export class FormComponent implements OnInit, OnDestroy {
       (data) => {
         if (data.detail) {
           this.currentCompany = data.detail;
-          this.imageUrl = this.currentCompany.attachment.medium_url;
+          if (this.currentCompany.attachment) {
+              this.imageUrl = this.currentCompany.attachment.medium_url;
+          }
+
           this.companyForm.patchValue({
             name: this.currentCompany.name,
             description: this.currentCompany.description,
@@ -63,8 +66,13 @@ export class FormComponent implements OnInit, OnDestroy {
             attachment: this.currentCompany.attachment
           });
         }
+
+        if (data.updateErrors) {
+          this.companyFormErrors = data.updateErrors;
+        }
       }
     );
+
     this.activatedRoute.params.subscribe((params: Params) => {
         const companyId = params['id'];
 
@@ -93,7 +101,13 @@ export class FormComponent implements OnInit, OnDestroy {
   submit() {
     const params = this.companyForm.value;
     params.owner_id = this.owner.id;
-    this.companiesService.createCompany(params);
+
+    if (this.currentCompany) {
+      this.companiesService.updateCompany(this.currentCompany.id, params);
+    }
+    else {
+      this.companiesService.createCompany(params);
+    }
   }
 
   imageUploaded($event) {

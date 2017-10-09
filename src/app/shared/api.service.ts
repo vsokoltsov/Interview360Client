@@ -46,6 +46,10 @@ export class ApiService {
     return this.request('PUT', url, params);
   }
 
+  destroy(url: string) {
+    return this.request('DELETE', url);
+  }
+
   getHeaders(): HttpHeaders {
     const token = this.getToken();
     let headers = null;

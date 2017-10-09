@@ -20,6 +20,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   constructor(
     private companyService: CompaniesService,
     private store: Store<fromApp.AppState>,
+    private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,6 +34,11 @@ export class DetailComponent implements OnInit, OnDestroy {
         if (data.detail) {
           this.company = data.detail;
         }
+
+        if (data.companyDeleted) {
+          this.store.dispatch(new CompanyActions.DisableCompanyDeleted());
+          this.router.navigate(['/companies']);
+        }
       }
     );
   }
@@ -42,4 +48,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.store.dispatch(new CompanyActions.LeaveDetailPage());
   }
 
+  deleteCompany() {
+    this.companyService.deleteCompany(this.company.id, this.company);
+  }
 }

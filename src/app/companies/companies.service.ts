@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
+import { Company } from './company.model';
 import { ApiService } from '../shared/api.service';
 import * as fromApp from '../store/app.reducers';
 import * as CompaniesActions from './store/companies.actions';
@@ -37,6 +38,25 @@ export class CompaniesService {
       failed => {
         this.store.dispatch(new CompaniesActions.FailedCompanyCreated(failed.error.errors));
       }
-    )
+    );
+  }
+
+  updateCompany(id:number, params: {}) {
+    this.apiService.put(`/companies/${id}/`, params).subscribe(
+      response => {
+        this.store.dispatch(new CompaniesActions.SuccessUpdate(response.body.company));
+      },
+      failed => {
+        this.store.dispatch(new CompaniesActions.FailedUpdate(failed.error.errors));
+      }
+    );
+  }
+
+  deleteCompany(id: number, company: Company) {
+    this.apiService.destroy(`/companies/${id}/`).subscribe(
+      response => {
+        this.store.dispatch(new CompaniesActions.DeleteCompany(company));
+      }
+    );
   }
 }
