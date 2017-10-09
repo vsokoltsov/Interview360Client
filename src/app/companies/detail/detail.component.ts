@@ -6,6 +6,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Company } from '../company.model';
 import { CompaniesService } from '../companies.service';
 import * as fromApp from '../../store/app.reducers';
+import * as CompanyActions from '../store/companies.actions';
 
 @Component({
   selector: 'app-detail',
@@ -38,6 +39,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.store.dispatch(new CompanyActions.LeaveDetailPage());
   }
 
 }

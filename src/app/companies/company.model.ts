@@ -5,6 +5,7 @@ export class Company {
   public name: string;
   public description: string;
   public start_date: any;
+  public city: string;
   public attachment: {
     url: string,
     thumb_url: string,
@@ -16,11 +17,12 @@ export class Company {
   public employees: User[];
 
   constructor(id: number, name: string,
-              description: string, start_date: any, attachment = null) {
+              description: string, start_date: any, city: string, attachment = null) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.start_date = start_date;
+    this.city = city;
     this.attachment = attachment;
   }
 }

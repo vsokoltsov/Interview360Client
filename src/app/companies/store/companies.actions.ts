@@ -6,6 +6,7 @@ export const COMPANIES_LOADED = 'COMPANIES_LOADED';
 export const COMPANY_LOADED = 'COMPANY_LOADED';
 export const SUCCESS_COMPANY_CREATED = 'SUCCESS_COMPANY_CREATED';
 export const FAILED_COMPANY_CREATED = 'FAILED_COMPANY_CREATED';
+export const LEAVE_DETAIL_PAGE = 'LEAVE_DETAIL_PAGE';
 
 export class CompaniesLoaded implements Action {
   readonly type = COMPANIES_LOADED;
@@ -31,7 +32,12 @@ export class CompanyLoaded implements Action {
   constructor(public payload: Company) {}
 }
 
+export class LeaveDetailPage implements Action {
+  readonly type = LEAVE_DETAIL_PAGE;
+}
+
 export type CompaniesActions = CompaniesLoaded |
 CompanyLoaded |
 SuccessCompanyCreated |
-FailedCompanyCreated;
+FailedCompanyCreated |
+LeaveDetailPage;

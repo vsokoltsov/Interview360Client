@@ -36,6 +36,11 @@ export function companiesReducer(state = initialState, action: CompaniesActions.
         ...state,
         companyFormErrors: action.payload
       };
+    case CompaniesActions.LEAVE_DETAIL_PAGE:
+      return {
+        ...state,
+        detail: null
+      };
     default:
       return state;
   }
