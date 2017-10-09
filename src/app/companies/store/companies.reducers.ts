@@ -69,7 +69,6 @@ export function companiesReducer(state = initialState, action: CompaniesActions.
       const oldCompanies = [...state.list];
 
       oldCompanies.splice(deleteIndex, 1);
-      console.log(oldCompanies, deleteIndex);
       return {
         ...state,
         list: oldCompanies,
