@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { StoreModule, Store } from '@ngrx/store';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
@@ -57,11 +58,7 @@ describe('FormComponent', () => {
         AuthService,
         CompaniesService,
         CookieService,
-        {
-          provide: MockActivatedRoute, useValue: {
-            params: Observable.of({ id: company.id })
-          }
-        }
+        { provide: ActivatedRoute, useValue: { params:Observable.of({id: 1}) } }
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
