@@ -69,17 +69,15 @@ describe('CompaniesComponent', () => {
 
 
     fixture = TestBed.createComponent(CompaniesComponent);
+    component = fixture.componentInstance;
     companiesService = TestBed.get(CompaniesService);
     spyOn(companiesService, 'loadList').and.callThrough();
     store = TestBed.get(Store);
     httpMock = TestBed.get(HttpTestingController);
-    // let result = httpMock.expectOne(`${environment.baseUrl}/companies/`);
-    // result.flush(response);
-    // httpMock.verify();
     fixture.detectChanges();
-    store.dispatch(new CompanyActions.CompaniesLoaded([company]));
-    component = fixture.componentInstance;
-
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/`);
+    result.flush(response);
+    httpMock.verify();
   }));
 
   it('should be created', () => {
