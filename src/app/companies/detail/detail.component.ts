@@ -34,9 +34,6 @@ export class DetailComponent implements OnInit, OnDestroy {
       data => {
         if (data.detail) {
           this.company = data.detail;
-          //
-          const user = <User> this.company.employees[0];
-          console.log(user instanceof User);
         }
 
         if (data.companyDeleted) {
