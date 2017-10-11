@@ -8,11 +8,11 @@ import { CookieService } from 'angular2-cookie/core';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
+import { MockActivatedRoute } from '../shared/mock-activated-route';
 import { environment } from '../../environments/environment';
 import { Company } from './company.model';
 import { UploaderModule } from '../shared/uploader/uploader.module';
 import { CompaniesComponent } from './companies.component';
-import { CompaniesRoutingModule } from './companies-routing.module';
 import { FormComponent } from './form/form.component';
 import { CompanyListItemComponent } from './item/item.component';
 import { DetailComponent } from './detail/detail.component';
