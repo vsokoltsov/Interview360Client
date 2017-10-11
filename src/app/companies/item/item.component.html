@@ -1,0 +1,32 @@
+<div class="image">
+  <svg-icon
+    name="company-image-placeholder"
+    size="75"
+    *ngIf="company.attachment == null">
+  </svg-icon>
+  <img [src]="company.attachment.small_thumb_url" width="75" height="75" *ngIf="company.attachment !== null" />
+</div>
+<div class="base-info">
+  <div class="date">
+    Founded: {{ company.start_date | date: 'dd.MM.yyyy' }}
+  </div>
+  <div class="title">
+    <a [routerLink]="[company.id]">
+      {{ company.name }}
+    </a>
+  </div>
+  <div class="description">
+    {{ company.description | truncate:20 }}
+  </div>
+  <div class="related-info">
+    <span class="employees-number">
+      <svg-icon size="25" name="employees-number-icon"></svg-icon>
+      {{ company.employees_count }}
+    </span>
+
+    <span class="vacancies-number">
+      <svg-icon size="25" name="vacancies-number-icon"></svg-icon>
+      {{ company.vacancy_count }}
+    </span>
+  </div>
+</div>

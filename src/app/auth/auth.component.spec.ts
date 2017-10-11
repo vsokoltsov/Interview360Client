@@ -4,13 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { Router } from '@angular/router';
 
-import {
-  MdSidenavModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdListModule,
-  MdCardModule
-} from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { StoreModule, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
@@ -33,6 +26,7 @@ import { RootComponent } from '../root/root.component';
 import { AppRoutingModule, appRoutes } from '../app-routing.module';
 import { CompaniesComponent } from '../companies/companies.component';
 import { VacanciesComponent } from '../vacancies/vacancies.component';
+import { CompaniesService } from '../companies/companies.service';
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
 
@@ -66,7 +60,8 @@ describe('AuthComponent', () => {
       providers: [
         AuthService,
         ApiService,
-        CookieService
+        CookieService,
+        CompaniesService
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();

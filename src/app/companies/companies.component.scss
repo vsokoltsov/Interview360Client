@@ -1,0 +1,63 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+
+  .base-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0px 20px;
+    margin-top: 10px;
+
+    a {
+      color: black;
+
+      &:visited {
+        color: black;
+      }
+    }
+  }
+
+
+  .page {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    .content-panel {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .list {
+      text-align: left;
+      min-width: 19em;
+
+      &.companies {
+        min-height: 1px;
+        overflow-y: auto;
+        flex: 1 1 auto;
+      }
+    }
+
+    .inner-elements {
+      width: 80%;
+    }
+  }
+  .form {
+    &.search {
+      min-height: 3.5em;
+
+      .form-field {
+        width: 100%;
+      }
+
+      .form-actions {
+        width: auto;
+        margin: 0px;
+      }
+    }
+  }
+}

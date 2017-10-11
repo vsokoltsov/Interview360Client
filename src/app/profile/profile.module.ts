@@ -7,22 +7,22 @@ import { ProfileComponent } from './profile.component';
 import { EditComponent } from './edit/edit.component';
 import { InfoComponent } from './edit/info/info.component';
 import { PasswordComponent } from './edit/password/password.component';
-import { UploaderComponent } from '../shared/uploader/uploader.component';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { UploaderModule } from '../shared/uploader/uploader.module';
 
 @NgModule({
+  imports: [
+    CommonModule,
+    UploaderModule,
+    ReactiveFormsModule,
+    ProfileRoutingModule,
+    FileUploadModule
+  ],
   declarations: [
     ProfileComponent,
     EditComponent,
     InfoComponent,
-    PasswordComponent,
-    UploaderComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ProfileRoutingModule,
-    FileUploadModule
+    PasswordComponent
   ]
 })
 export class ProfileModule {}

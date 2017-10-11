@@ -1,13 +1,31 @@
 @import '~variables.scss';
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~assets/styles/card.scss';
 @import '~assets/styles/form.scss';
 @import '~assets/styles/tabs.scss';
+@import '~assets/styles/list.scss';
+
+html, body {
+  height: 100%;
+}
+
+h2 {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
 
 body {
   padding: 0px;
   margin: 0px;
   background-color: $theme_white;
+}
+
+textarea {
+  resize: none;
 }
 
 .card {

@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+
+  .detail-page {
+    width: 100%;
+
+    .company-actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      padding-right: 1em;
+      padding-top: 1em;
+
+      a {
+        margin: 0px 5px;
+        cursor: pointer;
+      }
+    }
+
+    .base-info-block {
+      display: flex;
+      flex-direction: row;
+
+      .company-image {
+        padding: 2em;
+      }
+
+      .company-information {
+        padding-right: 2em;
+
+        .info {
+          text-align: left;
+          margin-top: 1em;
+        }
+      }
+    }
+  }
+}

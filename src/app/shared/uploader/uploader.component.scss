@@ -2,6 +2,15 @@
   display: flex;
   justify-content: center;
 
+  .upload-component {
+    display: flex;
+    flex-direction: column;
+
+    .error {
+      text-align: center;
+    }
+  }
+
   .drop-zone {
     border: dotted 3px lightgray;
   }

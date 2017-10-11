@@ -1,9 +1,7 @@
 <div class="header-content">
-  <md-icon class="header-icon" (click)="toggleMenu()">menu</md-icon>
-  <div class="settings-block" *ngIf="user">
+  <div class="form settings-block" *ngIf="user">
     <button
-      md-raised-button
-      class="sign-out"
+      class="sign-out button danger"
       type="submit"
       (click)="signOut()">
       Sign out

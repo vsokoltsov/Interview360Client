@@ -6,7 +6,6 @@ import * as fromApp from '../../../store/app.reducers';
 import { Subscription } from 'rxjs/Subscription';
 import { ProfileService } from '../../profile.service';
 import { User } from '../../../auth/user.model';
-import { UploaderComponent } from '../../../shared/uploader/uploader.component';
 
 @Component({
   selector: 'app-info',
@@ -37,7 +36,7 @@ export class InfoComponent implements OnInit, OnDestroy {
         if(data.profile) {
           this.user = data.profile;
           if (this.user.attachment) {
-              this.userImageUrl = this.user.attachment.url;
+              this.userImageUrl = this.user.attachment.medium_url;
           }
           this.infoForm.patchValue({
             email: data.profile.email,

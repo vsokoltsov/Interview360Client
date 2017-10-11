@@ -1,0 +1,63 @@
+<form class="form" [formGroup]="companyForm" (ngSubmit)="submit()">
+  <app-uploader-component
+    [contentType]="'companies.company'"
+    (onSuccessUpload)="imageUploaded($event)"
+    [attachmentUrl]="imageUrl"
+    [imageSize]="200"></app-uploader-component>
+
+  <div class="form-field">
+    <input placeholder="Name" class="field" formControlName="name" type="text">
+
+    <div class="error" *ngIf="companyForm.get('name').touched &&
+      companyForm.get('name').hasError('required')">
+      Company name is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of companyFormErrors['name']" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class="form-field">
+    <input placeholder="City" class="field" formControlName="city" type="text">
+
+    <div class="error" *ngIf="companyForm.get('city').touched &&
+      companyForm.get('city').hasError('required')">
+      City is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of companyFormErrors['name']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <input placeholder="Start date" class="field" formControlName="start_date" [dpDayPicker]="config" type="text">
+
+    <div class="error" *ngIf="companyForm.get('start_date').touched &&
+      companyForm.get('start_date').hasError('required')">
+      Start date is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of companyFormErrors['start_date']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <textarea placeholder="Description" class="field" formControlName="description"
+    rows="3">
+    </textarea>
+
+    <div class="error" *ngIf="companyForm.get('description').touched &&
+      companyForm.get('description').hasError('required')">
+      Description is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of companyFormErrors['description']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button success"
+      [disabled]="!companyForm.valid">Save</button>
+  </div>
+</form>

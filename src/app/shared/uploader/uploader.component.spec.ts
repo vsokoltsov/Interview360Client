@@ -1,13 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-
-import {
-  MdSidenavModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdListModule,
-  MdCardModule
-} from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { StoreModule, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
@@ -46,11 +38,6 @@ describe('UploaderComponent', () => {
         UploaderComponent
       ],
       imports: [
-        MdSidenavModule,
-        MdToolbarModule,
-        MdIconModule,
-        MdListModule,
-        MdCardModule,
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         RouterTestingModule,

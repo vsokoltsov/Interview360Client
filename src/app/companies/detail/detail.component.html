@@ -1,0 +1,31 @@
+<div class="detail-page">
+  <div class="company-actions">
+    <a [routerLink]="['edit']">
+      <svg-icon
+        name="edit-icon"
+        size="25"></svg-icon>
+    </a>
+    <a (click)="deleteCompany()">
+      <svg-icon
+        name="delete-icon"
+        size="25"></svg-icon>
+    </a>
+  </div>
+  <div class="base-info-block">
+    <div class="company-image">
+      <svg-icon
+        name="company-image-placeholder"
+        size="200"
+        *ngIf="company && company.attachment == null">
+      </svg-icon>
+      <img [src]="company.attachment.medium_large_url" *ngIf="company && company.attachment !== null" />
+    </div>
+    <div class="company-information">
+      <h2 *ngIf="company">{{ company.name }}</h2>
+      <div class="info city" *ngIf="company"> {{company.city}} </div>
+      <div class="info start_date" *ngIf="company">{{company.start_date | date}}</div>
+      <div class="info description" *ngIf="company">{{ company.description }}</div>
+    </div>
+  </div>
+
+</div>

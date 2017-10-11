@@ -1,15 +1,29 @@
 @import '~variables.scss';
+:host {
+  display: flex;
+  height: 100%;
 
-.base-container {
-  min-height: 50em;
-
-  md-toolbar.main-header {
-    background-color: $primary;
-  }
-
-  .content {
-    display: flex;
-    flex-direction: column;
+  .base-container {
+    min-height: 50em;
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .toolbar.main-header {
+      height: 3em;
+      background-color: $primary;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+
+      .container {
+        height: 100%;
+      }
+    }
   }
 }
