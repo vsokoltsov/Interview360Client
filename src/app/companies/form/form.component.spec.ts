@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs';
 import 'rxjs/add/observable/of';
 
+import { environment } from '../../../environments/environment';
 import { MockActivatedRoute } from '../../shared/mock-activated-route';
 import { Company } from '../company.model';
 import { FormComponent } from './form.component';
@@ -33,7 +34,7 @@ describe('FormComponent', () => {
   let component: FormComponent;
   let fixture: ComponentFixture<FormComponent>;
   let store: Store<fromApp.AppState>;
-  let httpMock: HttpClientTestingModule;
+  let httpMock: HttpTestingController;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -67,9 +68,13 @@ describe('FormComponent', () => {
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
-
-    httpMock = TestBed.get(HttpClientTestingModule);
     fixture.detectChanges();
+    //
+    // httpMock = TestBed.get(HttpTestingController);
+    // let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/`);
+    // result.flush(response);
+    // httpMock.verify();
+
     store.dispatch(new CompanyActions.CompanyLoaded(company));
   }));
 

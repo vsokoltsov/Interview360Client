@@ -73,6 +73,9 @@ describe('DetailComponent', () => {
     httpMock = TestBed.get(HttpClientTestingModule);
     fixture.detectChanges();
     store.dispatch(new CompanyActions.CompanyLoaded(company));
+    // let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/`);
+    // result.flush(response);
+    // httpMock.verify();
   }));
 
   it('should create', () => {
