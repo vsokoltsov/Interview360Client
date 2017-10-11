@@ -15,6 +15,8 @@ export class Company {
     large_url: string
   };
   public employees: User[];
+  public vacancy_count: number;
+  public employees_count: number;
 
   constructor(id: number, name: string,
               description: string, start_date: any, city: string,
