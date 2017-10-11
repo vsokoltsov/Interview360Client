@@ -7,6 +7,7 @@ import { CookieService } from 'angular2-cookie/core';
 import { DebugElement }    from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import {HttpClientModule} from '@angular/common/http';
+import { NgxSvgIconModule } from 'ngx-svg-icon';
 
 import { SideNavComponent } from './side-nav.component';
 import { User } from '../auth/user.model';
@@ -33,7 +34,8 @@ describe('SideNavComponent', () => {
       imports: [
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule,
+        NgxSvgIconModule
       ],
       providers: [
         AuthService,

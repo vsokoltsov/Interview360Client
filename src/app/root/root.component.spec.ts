@@ -18,6 +18,8 @@ import { ApiService } from '../shared/api.service';
 import {HttpClientModule} from '@angular/common/http';
 import { HeaderComponent } from '../header/header.component';
 import { SideNavComponent } from '../side-nav/side-nav.component';
+import { CompaniesModule } from '../companies/companies.module';
+import { NgxSvgIconModule } from 'ngx-svg-icon';
 
 describe('RootComponent', () => {
   let component: RootComponent;
@@ -37,7 +39,9 @@ describe('RootComponent', () => {
         RouterModule,
         RouterTestingModule,
         StoreModule.forRoot(fromApp.reducers),
-        HttpClientModule
+        HttpClientModule,
+        CompaniesModule,
+        NgxSvgIconModule
       ],
       providers: [
         AuthService,
@@ -55,12 +59,5 @@ describe('RootComponent', () => {
 
   it('should be created', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('toggle sidenav in toggleNavigation() method', () => {
-    spyOn(component.sidenav, 'toggle').and.callThrough();
-
-    component.toggleNavigation();
-    expect(component.sidenav.toggle).toHaveBeenCalled();
   });
 });
