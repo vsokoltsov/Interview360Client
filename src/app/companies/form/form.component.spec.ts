@@ -45,10 +45,9 @@ describe('FormComponent', () => {
       ],
       imports: [
         ReactiveFormsModule,
-        DpDatePickerModule,
         FileUploadModule,
-        StoreModule.forRoot(fromApp.reducers),
         RouterTestingModule,
+        StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         HttpClientTestingModule,
         UploaderModule
@@ -57,19 +56,15 @@ describe('FormComponent', () => {
         ApiService,
         AuthService,
         CompaniesService,
-        CookieService,
-        { provide: ActivatedRoute, useValue: { params:Observable.of({id: 1}) } }
+        CookieService
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     fixture.detectChanges();
-
-    store.dispatch(new CompanyActions.CompanyLoaded(company));
   }));
 
   it('should create', () => {
