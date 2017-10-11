@@ -20,9 +20,12 @@ import { CookieService } from 'angular2-cookie/core';
 //
 // import { PipeModule } from '../shared/pipe.module';
 
+const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
+
 describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
+  let store: Store<fromApp.AppState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,13 +45,14 @@ describe('DetailComponent', () => {
       ]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(DetailComponent);
+    store = TestBed.get(Store);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+
+    store.dispatch(new CompanyActions.CompanyLoaded(company));
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
