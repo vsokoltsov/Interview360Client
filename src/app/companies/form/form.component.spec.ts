@@ -69,11 +69,6 @@ describe('FormComponent', () => {
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     fixture.detectChanges();
-    //
-    // httpMock = TestBed.get(HttpTestingController);
-    // let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/`);
-    // result.flush(response);
-    // httpMock.verify();
 
     store.dispatch(new CompanyActions.CompanyLoaded(company));
   }));
