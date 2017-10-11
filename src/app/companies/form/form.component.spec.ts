@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { DpDatePickerModule } from 'ng2-date-picker';
@@ -61,7 +62,8 @@ describe('FormComponent', () => {
             params: Observable.of({ id: company.id })
           }
         }
-      ]
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
 
