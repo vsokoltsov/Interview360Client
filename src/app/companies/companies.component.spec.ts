@@ -5,7 +5,9 @@ import { StoreModule, Store } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/core';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
+import { environment } from '../../environments/environment';
 import { Company } from './company.model';
 import { UploaderModule } from '../shared/uploader/uploader.module';
 import { CompaniesComponent } from './companies.component';
@@ -23,21 +25,28 @@ import { CompaniesService } from './companies.service';
 import { ApiService } from '../shared/api.service';
 
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
+const response = { companies: [
+  {
+    id: 1,
+    name: 'aaa',
+    description: 'awdawd',
+    start_date: '2017-08-19',
+    city: '1'
+  }
+]};
 
 describe('CompaniesComponent', () => {
   let component: CompaniesComponent;
   let fixture: ComponentFixture<CompaniesComponent>;
   let companiesService: CompaniesService;
   let store: Store<fromApp.AppState>;
+  let httpMock: HttpTestingController;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         CompaniesComponent,
-        FormComponent,
-        CompanyListItemComponent,
-        DetailComponent,
-        BaseComponent
+        CompanyListItemComponent
       ],
       imports: [
         NgxSvgIconModule,
@@ -45,6 +54,7 @@ describe('CompaniesComponent', () => {
         PipeModule,
         RouterTestingModule,
         HttpClientModule,
+        HttpClientTestingModule,
         StoreModule.forRoot(fromApp.reducers),
         FileUploadModule,
         ReactiveFormsModule,
@@ -56,16 +66,21 @@ describe('CompaniesComponent', () => {
         CookieService
       ]
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
+
     fixture = TestBed.createComponent(CompaniesComponent);
     companiesService = TestBed.get(CompaniesService);
     spyOn(companiesService, 'loadList').and.callThrough();
     store = TestBed.get(Store);
-    component = fixture.componentInstance;
+    httpMock = TestBed.get(HttpTestingController);
+    // let result = httpMock.expectOne(`${environment.baseUrl}/companies/`);
+    // result.flush(response);
+    // httpMock.verify();
     fixture.detectChanges();
-  });
+    store.dispatch(new CompanyActions.CompaniesLoaded([company]));
+    component = fixture.componentInstance;
+
+  }));
 
   it('should be created', () => {
     expect(component).toBeTruthy();
