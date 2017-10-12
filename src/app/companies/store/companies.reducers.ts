@@ -9,7 +9,7 @@ export interface State {
   companyDeleted: boolean
 };
 
-const initialState: State = {
+export const initialState: State = {
   list: [],
   detail: null,
   companyFormErrors: null,
