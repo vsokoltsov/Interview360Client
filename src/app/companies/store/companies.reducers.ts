@@ -47,17 +47,19 @@ export function companiesReducer(state = initialState, action: CompaniesActions.
     case CompaniesActions.SUCCESS_UPDATE:
       const company = state.list.find(item => item.id == action.payload.id);
       const index = state.list.findIndex(item => item.id == action.payload.id);
-      const updatedCompany = {
+      const updatedCompanyParams = {
         ...company,
         ...action.payload
       };
+      const updatedCompany = Object.assign(new Company(), updatedCompanyParams);
       const companies = [...state.list];
-      companies[index] = updatedCompany;
+      companies[index] = <Company>updatedCompany;
+      console.log(updatedCompany as Company);
       return {
         ...state,
         list: companies,
         detail: action.payload,
-        updateErrors: action.payload
+        updateErrors: null
       };
     case CompaniesActions.FAILED_UPDATE:
       return {
@@ -74,6 +76,7 @@ export function companiesReducer(state = initialState, action: CompaniesActions.
         list: oldCompanies,
         companyDeleted: true
       };
+
     case CompaniesActions.DISABLE_COMPANY_DELETED:
       return {
         ...state,
