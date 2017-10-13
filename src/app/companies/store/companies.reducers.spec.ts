@@ -20,11 +20,19 @@ describe('CompaniesReducers', () => {
     });
   });
 
-  it('runs COMPANIES_LOADED callback', () => {
+  it('runs COMPANIES_LOADED state', () => {
     expect(
       companiesReducer(initialState, {
         type: CompaniesActions.COMPANIES_LOADED, payload: [company]
       })
     ).toEqual({ ...initialState, list: [company] });
+  });
+
+  it('runs COMPANY_LOADED state', () => {
+    expect(
+      companiesReducer(initialState, {
+        type: CompaniesActions.COMPANY_LOADED, payload: company
+      })
+    ).toEqual({ ...initialState, detail: company });
   });
 });
