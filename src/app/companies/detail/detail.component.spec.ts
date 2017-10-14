@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CompaniesComponent } from '../companies.component';
 import { DetailComponent } from './detail.component';
 import { StoreModule, Store } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -39,15 +40,25 @@ describe('DetailComponent', () => {
   let fixture: ComponentFixture<DetailComponent>;
   let store: Store<fromApp.AppState>;
   let httpMock: HttpTestingController;
+  let companyService: CompaniesService;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DetailComponent
+        DetailComponent,
+        CompaniesComponent
       ],
       imports: [
         NgxSvgIconModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([{
+          path: 'companies/:id',
+          component: DetailComponent
+        },
+        {
+          path: 'companies',
+          component: CompaniesComponent
+        }]),
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         HttpClientTestingModule,
@@ -69,6 +80,11 @@ describe('DetailComponent', () => {
     fixture = TestBed.createComponent(DetailComponent);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
+    router = TestBed.get(Router);
+    companyService = TestBed.get(CompaniesService);
+    spyOn(companyService, 'receiveCompany').and.callThrough();
+    spyOn(companyService, 'deleteCompany').and.callThrough();
+    spyOn(router, 'navigate').and.callThrough();
 
     fixture.detectChanges();
     store.dispatch(new CompanyActions.CompanyLoaded(company));
@@ -76,5 +92,29 @@ describe('DetailComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call receiveUsers on companyService', () => {
+    expect(companyService.receiveCompany).toHaveBeenCalled();
+  });
+
+  it('sets company object when it sets into the store', () => {
+    expect(component.company).toEqual(company);
+  });
+
+  it('calls deleteCompany on companyService', () => {
+    component.deleteCompany();
+    fixture.whenStable().then(() => {
+      expect(companyService.deleteCompany).toHaveBeenCalled();
+    });
+  });
+
+  it('call router.navigate after receiving information about company deletion', () => {
+    store.dispatch(new CompanyActions.DeleteCompany(company));
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(router.navigate).toHaveBeenCalled();
+    });
   });
 });
