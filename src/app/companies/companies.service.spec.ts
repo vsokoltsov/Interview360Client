@@ -58,4 +58,92 @@ describe('CompaniesService', () => {
     result.flush([response]);
     httpMock.verify();
   });
+
+  it('receiveCompany(): success response', () => {
+    store.select('companies').subscribe(
+      data => {
+        if (data.detail) {
+          expect(data.detail.id).toEqual(response.id);
+        }
+    });
+
+    companiesService.receiveCompany(company.id);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/`);
+    result.flush(response);
+    httpMock.verify();
+  });
+
+  it('createCompany(): success response', () => {
+    store.select('companies').subscribe(
+      data => {
+        if (data.list.length > 0) {
+          expect(data.list[0].id).toEqual(response.id);
+        }
+    });
+
+    companiesService.createCompany(response);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/`);
+    result.flush({ company: response });
+    httpMock.verify();
+  });
+
+  it('createCompany(): failed response', () => {
+    const errors = { errors: { name: ['Can\'t be blank'] } };
+
+    store.select('companies').subscribe(
+      data => {
+        if (data.companyFormErrors) {
+          expect(data.companyFormErrors).toEqual(errors.errors);
+        }
+    });
+
+    companiesService.createCompany(response);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/`);
+    result.flush(errors, { status: 400, statusText: 'BAD_REQUEST' });
+    httpMock.verify();
+  });
+
+  it('updateCompany(): success response', () => {
+    store.select('companies').subscribe(
+      data => {
+        if (data.detail) {
+          expect(data.detail.name).toEqual(response.name);
+        }
+    });
+
+    companiesService.updateCompany(company.id, response);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/`);
+    result.flush({ company: response });
+    httpMock.verify();
+  });
+
+  it('updateCompany(): failed response', () => {
+    const errors = { errors: { name: ['Can\'t be blank'] } };
+
+    store.select('companies').subscribe(
+      data => {
+        if (data.updateErrors) {
+          expect(data.updateErrors).toEqual(errors.errors);
+        }
+    });
+
+    companiesService.updateCompany(company.id, response);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/`);
+    result.flush(errors, { status: 400, statusText: 'BAD_REQUEST' });
+    httpMock.verify();
+  });
+
+  it('deleteCompany(): success response', () => {
+    store.select('companies').subscribe(
+      data => {
+        if (data.companyDeleted) {
+          expect(data.companyDeleted).toEqual(true);
+        }
+    });
+
+    companiesService.deleteCompany(company.id, company);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/`);
+    result.flush(response);
+    httpMock.verify();
+  });
 });
