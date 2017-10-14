@@ -22,7 +22,7 @@ export class CompaniesComponent implements OnInit {
     this.companiesService.loadList();
     this.subscription = this.store.select('companies').subscribe(
       data => {
-        if(data.list) {
+        if(data.list.length > 0) {
           this.companies = data.list;
         }
       }

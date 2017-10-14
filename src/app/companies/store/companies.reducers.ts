@@ -54,7 +54,6 @@ export function companiesReducer(state = initialState, action: CompaniesActions.
       const updatedCompany = Object.assign(new Company(), updatedCompanyParams);
       const companies = [...state.list];
       companies[index] = <Company>updatedCompany;
-      console.log(updatedCompany as Company);
       return {
         ...state,
         list: companies,
