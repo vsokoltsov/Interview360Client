@@ -17,8 +17,8 @@ export class User {
     role: number
   };
 
-  constructor(id: number, email: string,
-              first_name: string, last_name: string, roles: {} = null, member_role = null) {
+  constructor(id?: number, email?: string,
+              first_name?: string, last_name?: string, roles: {} = null, member_role = null) {
     this.id = id;
     this.email = email;
     this.first_name = first_name;

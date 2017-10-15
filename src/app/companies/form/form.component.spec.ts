@@ -15,6 +15,7 @@ import 'rxjs/add/observable/of';
 import { environment } from '../../../environments/environment';
 import { MockActivatedRoute } from '../../shared/mock-activated-route';
 import { Company } from '../company.model';
+import { User } from '../../auth/user.model';
 import { FormComponent } from './form.component';
 import * as fromApp from '../../store/app.reducers';
 import * as CompanyActions from '../store/companies.actions';
@@ -25,6 +26,7 @@ import { AuthService } from '../../auth/auth.service';
 import { UploaderModule } from '../../shared/uploader/uploader.module';
 
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
+const user = new User(1);
 const response = {
   id: 1,
   name: 'aaa',
@@ -77,6 +79,10 @@ describe('FormComponent', () => {
     fixture.detectChanges();
   }));
 
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -87,5 +93,55 @@ describe('FormComponent', () => {
 
     store.dispatch(new CompanyActions.CompanyLoaded(company));
     expect(companiesService.receiveCompany).toHaveBeenCalled();
+  });
+
+  it('called formGroup.patchValue if detail is present', () => {
+    spyOn(component.companyForm, 'patchValue').and.callThrough();
+    store.dispatch(new CompanyActions.CompanyLoaded(company));
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(component.companyForm.patchValue).toHaveBeenCalled();
+    });
+  });
+
+  it('set component.updateFormErrors if errors are present', () => {
+    const errors = { name: ['Can\'t be blank'] };
+    store.dispatch(new CompanyActions.FailedUpdate(errors));
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(component.companyFormErrors).toEqual(errors);
+    });
+  });
+
+  it('called component.companyForm.patchValue if id is abscent in params', () => {
+    activatedRouter.params = Observable.of({ id: null });
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(component.companyForm.value.name).toBeNull();
+    });
+  });
+
+  it('called companiesService.updateCompany if company present', () => {
+    activatedRouter.params = Observable.of({ id: company.id });
+    spyOn(companiesService, 'updateCompany').and.callThrough();
+    component.currentCompany = company;
+    component.owner = user;
+    fixture.detectChanges();
+
+    component.submit();
+    expect(companiesService.updateCompany).toHaveBeenCalled();
+  });
+
+  it('called companiesServuce.createCompany if company is abscent', () => {
+    activatedRouter.params = Observable.of({ id: null });
+    spyOn(companiesService, 'createCompany').and.callThrough();
+    component.owner = user;
+    fixture.detectChanges();
+
+    component.submit();
+    expect(companiesService.createCompany).toHaveBeenCalled();
   });
 });
