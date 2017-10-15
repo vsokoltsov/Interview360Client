@@ -9,7 +9,6 @@ import { environment } from '../../environments/environment';
 import { CompaniesService } from './companies.service';
 import { ApiService } from '../shared/api.service';
 import * as fromApp from '../store/app.reducers';
-import * as ProfileActions from './store/companies.actions';
 
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
 const response = {
