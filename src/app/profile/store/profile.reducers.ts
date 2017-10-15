@@ -7,7 +7,7 @@ export interface State {
   passwordChangeErrors: {};
 }
 
-const initialState: State = {
+export const initialState: State = {
   profile: null,
   profileErrors: null,
   passwordChangeErrors: null

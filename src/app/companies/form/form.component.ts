@@ -75,7 +75,6 @@ export class FormComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.params.subscribe((params: Params) => {
         const companyId = params['id'];
-
         if (companyId) {
           this.companiesService.receiveCompany(companyId);
         }

@@ -11,7 +11,7 @@ export interface State {
   resetPasswordErrors: {};
 }
 
-const initialState: State = {
+export const initialState: State = {
   token: null,
   currentUser: null,
   signInErrors: null,

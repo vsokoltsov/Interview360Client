@@ -13,13 +13,13 @@ export class Company {
     medium_url: string,
     medium_large_url: string,
     large_url: string
-  };
-  public employees: User[];
+  } = null;
+  public employees: User[] = null;
   public vacancy_count: number;
   public employees_count: number;
 
-  constructor(id: number, name: string,
-              description: string, start_date: any, city: string,
+  constructor(id?: number, name?: string,
+              description?: string, start_date?: any, city?: string,
               attachment = null, employees: User[] = null) {
     this.id = id;
     this.name = name;

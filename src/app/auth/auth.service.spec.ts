@@ -24,7 +24,7 @@ describe('Service: AuthService', () => {
   let store: Store<fromApp.AppState>;
   let authService: AuthService;
   let apiService: ApiService;
-   let httpMock: HttpTestingController;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
