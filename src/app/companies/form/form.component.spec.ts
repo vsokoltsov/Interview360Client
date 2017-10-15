@@ -37,6 +37,8 @@ describe('FormComponent', () => {
   let fixture: ComponentFixture<FormComponent>;
   let store: Store<fromApp.AppState>;
   let httpMock: HttpTestingController;
+  let activatedRouter: ActivatedRoute;
+  let companiesService: CompaniesService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,7 +58,12 @@ describe('FormComponent', () => {
         ApiService,
         AuthService,
         CompaniesService,
-        CookieService
+        CookieService,
+        {
+          provide: ActivatedRoute, useValue: {
+            params: Observable.of({ id: company.id })
+          }
+        }
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
@@ -64,10 +71,21 @@ describe('FormComponent', () => {
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
     store = TestBed.get(Store);
+    activatedRouter = TestBed.get(ActivatedRoute);
+    companiesService = TestBed.get(CompaniesService);
+    spyOn(companiesService, 'receiveCompany').and.callThrough();
     fixture.detectChanges();
   }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call companiesService.receiveCompany', () => {
+    activatedRouter.params = Observable.of({ id: company.id });
+    fixture.detectChanges();
+
+    store.dispatch(new CompanyActions.CompanyLoaded(company));
+    expect(companiesService.receiveCompany).toHaveBeenCalled();
   });
 });
