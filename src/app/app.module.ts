@@ -18,7 +18,6 @@ import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { VacanciesComponent } from './vacancies/vacancies.component';
 import { RootComponent } from './root/root.component';
 import { reducers } from './store/app.reducers';
 import { AuthService } from './auth/auth.service';
@@ -32,6 +31,7 @@ import { UploaderModule } from './shared/uploader/uploader.module';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 import { CompaniesModule } from './companies/companies.module';
+import { VacanciesModule } from './vacancies/vacancies.module';
 import { PipeModule } from './shared/pipe.module';
 
 export const MODULES = {
@@ -39,7 +39,6 @@ export const MODULES = {
     AppComponent,
     HeaderComponent,
     SideNavComponent,
-    VacanciesComponent,
     RootComponent
   ],
   imports: [
@@ -55,6 +54,7 @@ export const MODULES = {
     AuthModule,
     ProfileModule,
     CompaniesModule,
+    VacanciesModule,
     PipeModule
   ],
   providers: [
