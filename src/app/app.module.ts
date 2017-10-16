@@ -23,6 +23,7 @@ import { reducers } from './store/app.reducers';
 import { AuthService } from './auth/auth.service';
 import { ProfileService } from './profile/profile.service';
 import { CompaniesService } from './companies/companies.service';
+import { VacanciesService } from './vacancies/vacancies.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
@@ -62,6 +63,7 @@ export const MODULES = {
     ProfileService,
     CookieService,
     CompaniesService,
+    VacanciesService,
     ApiService,
     {provide: APP_BASE_HREF, useValue : '/' },
     AuthGuard,

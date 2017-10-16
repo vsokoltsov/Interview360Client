@@ -61,6 +61,7 @@ export class ApiService {
   }
 
   request(method: string, url: string, params = null) {
+    console.log(`${environment.baseUrl}${url}`);
     return this.httpClient.request(method, `${environment.baseUrl}${url}`, {
       body: params,
       headers: this.getHeaders(),
