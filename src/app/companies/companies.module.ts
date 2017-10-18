@@ -14,6 +14,8 @@ import { UploaderModule } from '../shared/uploader/uploader.module';
 
 import { PipeModule } from '../shared/pipe.module';
 import { VacanciesTabComponent } from './tabs/vacancies-tab/vacancies-tab.component';
+import { EmployeesTabComponent } from './tabs/employees-tab/employees-tab.component';
+import { InterviewsTabComponent } from './tabs/interviews-tab/interviews-tab.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { VacanciesTabComponent } from './tabs/vacancies-tab/vacancies-tab.compon
     CompanyListItemComponent,
     DetailComponent,
     BaseComponent,
-    VacanciesTabComponent
+    VacanciesTabComponent,
+    EmployeesTabComponent,
+    InterviewsTabComponent
   ]
 })
 export class CompaniesModule {}

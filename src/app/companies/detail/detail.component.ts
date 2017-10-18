@@ -18,7 +18,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   company: Company;
   subscription: Subscription;
   routerLinks = [
-    { label: 'Vacancies', link: 'tabs/vacancies' }
+    { label: 'Vacancies', link: 'tabs/vacancies' },
+    { label: 'Interviews', link: 'tabs/interviews' },
+    { label: 'Employees', link: 'tabs/employees' }
   ];
 
   constructor(
