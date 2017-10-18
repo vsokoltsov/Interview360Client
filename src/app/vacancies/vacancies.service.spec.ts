@@ -9,6 +9,7 @@ import { VacanciesService } from './vacancies.service';
 import { Vacancy } from './vacancy.model';
 import { Company } from '../companies/company.model';
 import { environment } from '../../environments/environment';
+import * as fromApp from '../store/app.reducers';
 
 const response = {
   id: 1,
@@ -23,10 +24,12 @@ describe('VacanciesService', () => {
   let apiService: ApiService;
   let httpMock: HttpTestingController;
   let vacanciesService: VacanciesService;
+  let store: Store<fromApp.AppState>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         HttpClientTestingModule
       ],

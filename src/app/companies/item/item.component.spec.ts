@@ -40,7 +40,6 @@ describe('CompanyListItemComponent', () => {
   }));
 
   it('should create', () => {
-    console.log(company);
     expect(component).toBeTruthy();
   });
 });

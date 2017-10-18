@@ -13,6 +13,7 @@ import {DpDatePickerModule} from 'ng2-date-picker';
 import { UploaderModule } from '../shared/uploader/uploader.module';
 
 import { PipeModule } from '../shared/pipe.module';
+import { VacanciesTabComponent } from './tabs/vacancies-tab/vacancies-tab.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { PipeModule } from '../shared/pipe.module';
     FormComponent,
     CompanyListItemComponent,
     DetailComponent,
-    BaseComponent
+    BaseComponent,
+    VacanciesTabComponent
   ]
 })
 export class CompaniesModule {}
