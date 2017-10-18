@@ -1,3 +1,27 @@
-<p>
-  Vacancies component
-</p>
+<div class="list-block">
+  <div class="base-actions">
+    <a [routerLink]="['new']">
+      <svg-icon name="plus-icon" size="35"></svg-icon>
+    </a>
+  </div>
+  <div class="page">
+    <div class="content-panel">
+      <div class="form horizontal search card">
+        <div class="form-field">
+          <input placeholder="Search" class="field" type="text">
+        </div>
+        <div class="form-actions">
+          <button class="button clear icon">
+            <svg-icon name="search-magnifier" size="25"></svg-icon>
+          </button>
+        </div>
+      </div>
+      <div class="base list">
+        <div app-vacancies-list-item *ngFor="let vacancy of vacancies" [vacancy]="vacancy" class="item card"></div>
+      </div>
+    </div>
+    <div class="inner-elements card">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
