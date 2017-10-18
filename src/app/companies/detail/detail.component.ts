@@ -17,6 +17,9 @@ import * as CompanyActions from '../store/companies.actions';
 export class DetailComponent implements OnInit, OnDestroy {
   company: Company;
   subscription: Subscription;
+  routerLinks = [
+    { label: 'Vacancies', link: 'tabs/vacancies' }
+  ];
 
   constructor(
     private companyService: CompaniesService,
