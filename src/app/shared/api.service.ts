@@ -33,7 +33,6 @@ export class ApiService {
   postUpload(url: string, params: {}) {
     let headers = this.getHeaders();
     headers = headers.set('Content-Type', 'multipart/form-data');
-    console.log(headers);
     return this.httpClient.request('POST', `${environment.baseUrl}${url}`, {
       body: params,
       headers: headers,
@@ -61,7 +60,6 @@ export class ApiService {
   }
 
   request(method: string, url: string, params = null) {
-    console.log(`${environment.baseUrl}${url}`);
     return this.httpClient.request(method, `${environment.baseUrl}${url}`, {
       body: params,
       headers: this.getHeaders(),
