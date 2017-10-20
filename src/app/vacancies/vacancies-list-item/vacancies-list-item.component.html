@@ -1,5 +1,13 @@
-<div class="vacancy-title">
-  <a [routerLink]="['/companies', companyId, 'vacancies', vacancy.id]">
-    {{ vacancy.title }}
-  </a>
+<div class="vacancy-update-date">
+  {{ vacancy.updated_at | date }}
+</div>
+<div class='base-info'>
+  <div class="vacancy-title">
+    <a [routerLink]="['/companies', companyId, 'vacancies', vacancy.id]">
+      {{ vacancy.title }}
+    </a>
+  </div>
+  <div class="vacancy-salary">
+    {{ vacancy.salary | currency }}k
+  </div>
 </div>

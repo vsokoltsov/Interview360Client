@@ -1,10 +1,41 @@
 :host {
+  &.list-item {
+    .vacancy-update-date {
+      padding-left: 10px;
+    }
+    .base-info {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .vacancy-salary {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-right: 10px;
+      }
+    }
+  }
+  &.company-tab {
+    .base-info {
+      flex-direction: column;
+    }
+  }
+
   .vacancy-title {
     text-align: center;
+    padding: 10px;
 
     a {
       color: black;
       text-decoration: none;
     }
+  }
+
+  .vacancy-update-date {
+    font-size: 13px;
+  }
+
+  .base-info {
+    display: flex;
   }
 }
