@@ -17,6 +17,9 @@ import { VacanciesListItemComponent } from './vacancies-list-item/vacancies-list
   declarations: [
     VacanciesComponent,
     VacanciesListItemComponent
+  ],
+  exports: [
+    VacanciesListItemComponent
   ]
 })
 export class VacanciesModule {}

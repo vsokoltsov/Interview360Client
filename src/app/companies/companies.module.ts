@@ -11,7 +11,7 @@ import { BaseComponent } from './base/base.component';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { UploaderModule } from '../shared/uploader/uploader.module';
-
+import { VacanciesModule } from '../vacancies/vacancies.module';
 import { PipeModule } from '../shared/pipe.module';
 import { VacanciesTabComponent } from './tabs/vacancies-tab/vacancies-tab.component';
 import { EmployeesTabComponent } from './tabs/employees-tab/employees-tab.component';
@@ -25,7 +25,8 @@ import { InterviewsTabComponent } from './tabs/interviews-tab/interviews-tab.com
     DpDatePickerModule,
     ReactiveFormsModule,
     NgxSvgIconModule,
-    PipeModule
+    PipeModule,
+    VacanciesModule
   ],
   declarations: [
     CompaniesComponent,

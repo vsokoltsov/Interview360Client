@@ -1,3 +1,8 @@
-<p>
-  vacancies-tab works!
-</p>
+<div class="vacancies-tabs">
+  <div class="vacancies tab-list">
+    <div app-vacancies-list-item *ngFor="let vacancy of vacancies" [vacancy]="vacancy" class="item card"></div>
+  </div>
+  <div class="tab-action">
+    <a *ngIf="companyId" class="button info" [routerLink]="['/companies', companyId, 'vacancies']">See more</a>
+  </div>
+</div>
