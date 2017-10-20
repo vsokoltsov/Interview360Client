@@ -25,6 +25,7 @@ export class VacanciesTabComponent implements OnInit, OnDestroy {
     this.subscription = this.store.select('companies').subscribe(
       data => {
         if (data.detail) {
+          // console.log(data.detail);
           this.company = data.detail;
           this.companyId = this.company.id;
           this.vacancies = data.detail.vacancies;
