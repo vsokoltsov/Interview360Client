@@ -67,7 +67,17 @@ describe('VacancyDetailComponent', () => {
         VacanciesService,
         {
           provide: ActivatedRoute, useValue: {
-            params: Observable.of({ companyId: company.id, id: vacancy.id })
+            params: Observable.of({ companyId: company.id, id: vacancy.id }),
+            snapshot: {
+              params: {
+                id: vacancy.id
+              },
+              parent: {
+                params: {
+                  companyId: company.id
+                }
+              }
+            }
           }
         }
       ]
@@ -81,13 +91,25 @@ describe('VacancyDetailComponent', () => {
     store = TestBed.get(Store);
     vacanciesService = TestBed.get(VacanciesService);
     httpMock = TestBed.get(HttpTestingController);
+    spyOn(vacanciesService, 'receiveVacancy').and.callThrough();
     fixture.detectChanges();
-    // let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/vacancies/${vacancy.id}/`);
-    // result.flush(listResponse);
-    // httpMock.verify();
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/vacancies/${vacancy.id}/`);
+    result.flush(detailResponse);
+    httpMock.verify();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('called receiveVacancy on vacanciesService', () => {
+    expect(vacanciesService.receiveVacancy).toHaveBeenCalled();
+  });
+
+  it('set vacancy to component\'s variable', () => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.vacancy.id).toEqual(detailResponse.id);
+    });
   });
 });
