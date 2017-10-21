@@ -22,6 +22,14 @@ export class VacanciesService {
     );
   }
 
+  loadSkills() {
+    this.apiService.get(`/skills/`).subscribe(
+      response => {
+        this.store.dispatch(new VacanciesActions.SkillsLoaded(response.body));
+      }
+    );
+  }
+
   receiveVacancy(companyId: number, vacancyId: number) {
     this.apiService.get(`/companies/${companyId}/vacancies/${vacancyId}/`).subscribe(
       response => {

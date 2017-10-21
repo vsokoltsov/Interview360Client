@@ -18,7 +18,6 @@ export function vacanciesReducer(state=initialState,
         action: VacanciesActions.VacanciesActions) {
     switch(action.type) {
       case VacanciesActions.VACANCIES_LOADED:
-        console.log(action.payload);
         return {
           ...state,
           list: action.payload
