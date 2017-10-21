@@ -116,4 +116,46 @@ describe('VacanciesService', () => {
     result.flush(errors, { status: 400, statusText: 'BAD_REQUEST' });
     httpMock.verify();
   });
+
+  it('updateVacancy(): success response', () => {
+    store.select('vacancies').subscribe(
+      data => {
+        if (data.list.length > 0) {
+          expect(data.list[0].id).toEqual(response.id);
+        }
+    });
+
+    vacanciesService.updateVacancy(company.id, vacancy.id, response);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/vacancies/${vacancy.id}/`);
+    result.flush({ vacancy: response });
+    httpMock.verify();
+  });
+
+  it('updateVacancy(): failed response', () => {
+    store.select('vacancies').subscribe(
+      data => {
+        if (data.formErrors) {
+          expect(data.formErrors).toEqual(errors.errors);
+        }
+    });
+
+    vacanciesService.updateVacancy(company.id, vacancy.id, response);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/vacancies/${vacancy.id}/`);
+    result.flush(errors, { status: 400, statusText: 'BAD_REQUEST' });
+    httpMock.verify();
+  });
+
+  it('deleteVacancy(): success response', () => {
+    store.select('vacancies').subscribe(
+      data => {
+        if (data.vacancyDeleted) {
+          expect(data.vacancyDeleted).toEqual(true);
+        }
+    });
+
+    vacanciesService.deleteVacancy(company.id, vacancy.id, vacancy);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/vacancies/${vacancy.id}/`);
+    result.flush(response);
+    httpMock.verify();
+  });
 });

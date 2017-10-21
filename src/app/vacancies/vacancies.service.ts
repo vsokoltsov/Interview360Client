@@ -48,4 +48,23 @@ export class VacanciesService {
       }
     );
   }
+
+  updateVacancy(companyId: number, vacancyId: number, params: {}) {
+    this.apiService.put(`/companies/${companyId}/vacancies/${vacancyId}/`, params).subscribe(
+      response => {
+        this.store.dispatch(new VacanciesActions.SuccessVacancyUpdate(response.body.vacancy));
+      },
+      failed => {
+        this.store.dispatch(new VacanciesActions.FailedVacancyUpdate(failed.error.errors));
+      }
+    );
+  }
+
+  deleteVacancy(companyId: number, vacancyId: number, vacancy: Vacancy) {
+    this.apiService.destroy(`/companies/${companyId}/vacancies/${vacancyId}/`).subscribe(
+      response => {
+        this.store.dispatch(new VacanciesActions.DeleteVacancy(vacancy));
+      }
+    );
+  }
 }
