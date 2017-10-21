@@ -1,3 +1,18 @@
-<p>
-  vacancy-detail works!
-</p>
+<div class="detail-page">
+  <div class="title" *ngIf="vacancy">
+    {{ vacancy.title }}
+  </div>
+  <div class="salary" *ngIf="vacancy">
+    {{ vacancy.salary }}
+  </div>
+  <div class="description" *ngIf="vacancy">
+    {{ vacancy.description }}
+  </div>
+  <div class="skills" *ngIf="vacancy">
+    <a
+      *ngFor="let skill of vacancy.skills"
+      class="skill-item">
+      {{ skill.name }}
+    </a>
+  </div>
+</div>

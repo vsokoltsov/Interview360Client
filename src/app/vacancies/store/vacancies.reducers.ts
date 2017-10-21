@@ -24,6 +24,12 @@ export function vacanciesReducer(state=initialState,
           ...state,
           detail: action.payload
         };
+      case VacanciesActions.LEAVE_VACANCY_PAGE:
+        console.log(state);
+        return {
+          ...state,
+          detail: null
+        };
       default:
         return state;
     }

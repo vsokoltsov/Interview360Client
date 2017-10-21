@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
-import {Router, ActivatedRoute, Params, Data} from '@angular/router';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 
 import { Company } from '../../companies/company.model';
 import { Vacancy } from '../vacancy.model';
@@ -29,7 +29,9 @@ export class VacancyDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.loadVacancy();
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.loadVacancy();
+    });
     this.subscription = this.store.select('vacancies').subscribe(
       data => {
         if (data.detail) {
@@ -40,7 +42,9 @@ export class VacancyDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log('destroy');
     this.subscription.unsubscribe();
+    this.store.dispatch(new VacanciesActions.LeaveVacancyPage());
   }
 
   private loadVacancy() {

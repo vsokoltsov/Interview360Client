@@ -1,4 +1,5 @@
 import { Company } from '../companies/company.model';
+import { Skill } from './skill.model';
 
 export class Vacancy {
   public id: number;
@@ -6,7 +7,7 @@ export class Vacancy {
   public description: string;
   public salary: number;
   public active: boolean;
-  public skills: {}[];
+  public skills: Skill[];
   public company: Company;
 
   constructor(id?: number, title?: string, description?: string, salary?: number,
