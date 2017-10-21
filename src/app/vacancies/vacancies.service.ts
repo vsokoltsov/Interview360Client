@@ -23,6 +23,10 @@ export class VacanciesService {
   }
 
   receiveVacancy(companyId: number, vacancyId: number) {
-
+    this.apiService.get(`/companies/${companyId}/vacancies/${vacancyId}/`).subscribe(
+      response => {
+        this.store.dispatch(new VacanciesActions.VacancyLoaded(response.body));
+      }
+    );
   }
 }

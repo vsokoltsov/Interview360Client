@@ -41,6 +41,7 @@ describe('VacanciesService', () => {
     });
 
     vacanciesService = TestBed.get(VacanciesService);
+    store = TestBed.get(Store);
     apiService = TestBed.get(ApiService);
     httpMock = TestBed.get(HttpTestingController);
   });
@@ -51,5 +52,35 @@ describe('VacanciesService', () => {
     vacanciesService.loadList(company.id);
 
     expect(apiService.get).toHaveBeenCalled();
+  });
+
+  it('loadList(): success response', () => {
+    store.select('vacancies').subscribe(
+      data => {
+        if (data.list.length > 0) {
+          expect(data.list[0].id).toEqual(response.id);
+        }
+    });
+
+    vacanciesService.loadList(company.id);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/vacancies/`);
+    result.flush([response]);
+    httpMock.verify();
+  });
+
+  it('receiveVacancy(): success response', () => {
+    store.select('vacancies').subscribe(
+      data => {
+        if (data.detail) {
+          expect(data.detail.id).toEqual(response.id);
+        }
+    });
+
+    vacanciesService.receiveVacancy(company.id, vacancy.id);
+    let result = httpMock.expectOne(
+      `${environment.baseUrl}/companies/${company.id}/vacancies/${vacancy.id}/`
+    );
+    result.flush(response);
+    httpMock.verify();
   });
 });
