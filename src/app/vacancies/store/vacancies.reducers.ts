@@ -5,13 +5,15 @@ import * as VacanciesActions from './vacancies.actions';
 export interface State {
   list: Vacancy[],
   skills: Skill[],
-  detail: Vacancy
+  detail: Vacancy,
+  formErrors: {}
 };
 
 export const initialState: State = {
   list: [],
   skills: [],
-  detail: null
+  detail: null,
+  formErrors: null
 };
 
 export function vacanciesReducer(state=initialState,
@@ -36,6 +38,16 @@ export function vacanciesReducer(state=initialState,
         return {
           ...state,
           skills: action.payload
+        };
+      case VacanciesActions.SUCCESS_CREATE_VACANCY:
+        return {
+          ...state,
+          list: [...state.list, action.payload]
+        };
+      case VacanciesActions.FAILED_CREATE_VACANCY:
+        return {
+          ...state,
+          formErrors: action.payload
         };
       default:
         return state;

@@ -18,6 +18,7 @@ import { Company } from '../../companies/company.model';
 import { VacanciesListItemComponent } from '../vacancies-list-item/vacancies-list-item.component';
 import { environment } from '../../../environments/environment';
 import { Vacancy } from '../vacancy.model';
+import { Skill } from '../skill.model';
 import { VacanciesService } from '../vacancies.service';
 import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../auth/auth.service';
@@ -25,6 +26,7 @@ import * as fromApp from '../../store/app.reducers';
 
 const vacancy = new Vacancy(1, 'b', 'c');
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
+const skill = new Skill(1);
 const detailResponse = {
   id: 1,
   name: 'aaa',
@@ -67,7 +69,22 @@ describe('VacancyFormComponent', () => {
         ApiService,
         AuthService,
         CookieService,
-        VacanciesService
+        VacanciesService,
+        {
+          provide: ActivatedRoute, useValue: {
+            params: Observable.of({ companyId: company.id, id: vacancy.id }),
+            snapshot: {
+              params: {
+                id: vacancy.id
+              },
+              parent: {
+                params: {
+                  companyId: company.id
+                }
+              }
+            }
+          }
+        }
       ]
     })
     .compileComponents();

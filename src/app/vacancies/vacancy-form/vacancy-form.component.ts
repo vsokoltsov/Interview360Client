@@ -21,12 +21,19 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
   vacancyForm: FormGroup;
   subscription: Subscription;
   skills: Skill[];
+  companyId: number;
   public vacancyFormErrors: Object = { };
 
   constructor(private store: Store<fromApp.AppState>,
-              private vacanciesService: VacanciesService) { }
+              private vacanciesService: VacanciesService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      const parameters = this.activatedRoute.snapshot;
+      const parentParans = parameters.parent.params;
+      this.companyId = parentParans['companyId'];
+    });
     this.vacanciesService.loadSkills();
     this.vacancyForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
@@ -59,6 +66,13 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
     if (idx !== -1) {
       (<FormArray>this.vacancyForm.get('skills')).removeAt(idx);
     }
+  }
+
+  submit() {
+    const params = this.vacancyForm.value;
+    params.company_id = this.companyId;
+    params.skills = params.skills.map(item => item.id);
+    this.vacanciesService.createVacancy(this.companyId, params);
   }
 
   ngOnDestroy() {

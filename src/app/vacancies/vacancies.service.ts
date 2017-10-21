@@ -37,4 +37,15 @@ export class VacanciesService {
       }
     );
   }
+
+  createVacancy(companyId: number, params: {}) {
+    this.apiService.post(`/companies/${companyId}/vacancies/`, params).subscribe(
+      response => {
+        this.store.dispatch(new VacanciesActions.SuccessCreateVacancy(response.body.vacancy));
+      },
+      failed => {
+        this.store.dispatch(new VacanciesActions.FailedCreateVacancy(failed.error.errors));
+      }
+    );
+  }
 }
