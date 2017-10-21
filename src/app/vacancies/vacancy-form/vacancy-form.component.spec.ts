@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs';
 import 'rxjs/add/observable/of';
 
-import { VacancyDetailComponent } from './vacancy-detail.component';
+import { VacancyFormComponent } from './vacancy-form.component';
 import { VacanciesComponent } from '../vacancies.component';
 import { Company } from '../../companies/company.model';
 import { VacanciesListItemComponent } from '../vacancies-list-item/vacancies-list-item.component';
@@ -39,9 +39,10 @@ const listResponse = [{
   city: '1'
 }];
 
-describe('VacancyDetailComponent', () => {
-  let component: VacancyDetailComponent;
-  let fixture: ComponentFixture<VacancyDetailComponent>;
+
+describe('VacancyFormComponent', () => {
+  let component: VacancyFormComponent;
+  let fixture: ComponentFixture<VacancyFormComponent>;
   let httpMock: HttpTestingController;
   let store: Store<fromApp.AppState>;
   let vacanciesService: VacanciesService;
@@ -49,9 +50,9 @@ describe('VacancyDetailComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        VacancyFormComponent,
         VacanciesComponent,
-        VacanciesListItemComponent,
-        VacancyDetailComponent
+        VacanciesListItemComponent
       ],
       imports: [
         StoreModule.forRoot(fromApp.reducers),
@@ -64,52 +65,19 @@ describe('VacancyDetailComponent', () => {
         ApiService,
         AuthService,
         CookieService,
-        VacanciesService,
-        {
-          provide: ActivatedRoute, useValue: {
-            params: Observable.of({ companyId: company.id, id: vacancy.id }),
-            snapshot: {
-              params: {
-                id: vacancy.id
-              },
-              parent: {
-                params: {
-                  companyId: company.id
-                }
-              }
-            }
-          }
-        }
+        VacanciesService
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VacancyDetailComponent);
+    fixture = TestBed.createComponent(VacancyFormComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
-    vacanciesService = TestBed.get(VacanciesService);
-    httpMock = TestBed.get(HttpTestingController);
-    spyOn(vacanciesService, 'receiveVacancy').and.callThrough();
     fixture.detectChanges();
-    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/vacancies/${vacancy.id}/`);
-    result.flush(detailResponse);
-    httpMock.verify();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('called receiveVacancy on vacanciesService', () => {
-    expect(vacanciesService.receiveVacancy).toHaveBeenCalled();
-  });
-
-  it('set vacancy to component\'s variable', () => {
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(component.vacancy.id).toEqual(detailResponse.id);
-    });
   });
 });

@@ -42,7 +42,6 @@ export class VacancyDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('destroy');
     this.subscription.unsubscribe();
     this.store.dispatch(new VacanciesActions.LeaveVacancyPage());
   }

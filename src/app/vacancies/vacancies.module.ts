@@ -8,6 +8,7 @@ import { VacanciesRoutingModule } from './vacancies-routing.module';
 import { VacanciesListItemComponent } from './vacancies-list-item/vacancies-list-item.component';
 import { VacancyEmpty } from './vacancy-empty/vacancy-empty.component';
 import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
+import { VacancyFormComponent } from './vacancy-form/vacancy-form.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.componen
     VacanciesComponent,
     VacanciesListItemComponent,
     VacancyEmpty,
-    VacancyDetailComponent
+    VacancyDetailComponent,
+    VacancyFormComponent
   ],
   exports: [
     VacanciesListItemComponent
