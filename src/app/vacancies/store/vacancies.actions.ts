@@ -9,6 +9,10 @@ export const LEAVE_VACANCY_PAGE = 'LEAVE_VACANCY_PAGE';
 export const SKILLS_LOADED = 'SKILLS_LOADED';
 export const SUCCESS_CREATE_VACANCY = 'SUCCESS_CREATE_VACANCY';
 export const FAILED_CREATE_VACANCY = 'FAILED_CREATE_VACANCY';
+export const SUCCESS_VACANCY_UPDATE = 'SUCCESS_VACANCY_UPDATE';
+export const FAILED_VACANCY_UPDATE = 'FAILED_VACANCY_UPDATE';
+export const DELETE_VACANCY = 'DELETE_VACANCY';
+export const DISABLE_VACANCY_DELETE = 'DISABLE_VACANCY_DELETE';
 
 export class VacanciesLoaded implements Action {
   readonly type = VACANCIES_LOADED;
@@ -44,10 +48,36 @@ export class FailedCreateVacancy implements Action {
   constructor(public payload: {}) {}
 }
 
+export class SuccessVacancyUpdate implements Action {
+  readonly type = SUCCESS_VACANCY_UPDATE;
+
+  constructor(public payload: Vacancy) {}
+}
+
+export class FailedVacancyUpdate implements Action {
+  readonly type = FAILED_VACANCY_UPDATE;
+
+  constructor(public payload: {}) {}
+}
+
+export class DeleteVacancy implements Action {
+  readonly type = DELETE_VACANCY;
+
+  constructor(public payload: Vacancy) {}
+}
+
+export class DisableVacancyDelete implements Action {
+  readonly type = DISABLE_VACANCY_DELETE;
+}
+
 export type VacanciesActions =
 VacanciesLoaded |
 VacancyLoaded |
 SkillsLoaded |
 LeaveVacancyPage |
 SuccessCreateVacancy |
-FailedCreateVacancy;
+FailedCreateVacancy |
+SuccessVacancyUpdate |
+FailedVacancyUpdate |
+DeleteVacancy |
+DisableVacancyDelete;

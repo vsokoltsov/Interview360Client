@@ -6,14 +6,16 @@ export interface State {
   list: Vacancy[],
   skills: Skill[],
   detail: Vacancy,
-  formErrors: {}
+  formErrors: {},
+  vacancyDeleted: boolean
 };
 
 export const initialState: State = {
   list: [],
   skills: [],
   detail: null,
-  formErrors: null
+  formErrors: null,
+  vacancyDeleted: false
 };
 
 export function vacanciesReducer(state=initialState,
@@ -48,6 +50,42 @@ export function vacanciesReducer(state=initialState,
         return {
           ...state,
           formErrors: action.payload
+        };
+      case VacanciesActions.SUCCESS_VACANCY_UPDATE:
+        const vacancy = state.list.find(item => item.id == action.payload.id);
+        const index = state.list.findIndex(item => item.id == action.payload.id);
+        const updatedVacancyParams = {
+          ...vacancy,
+          ...action.payload
+        };
+        const updatedVacancy = Object.assign(new Vacancy(), updatedVacancyParams);
+        const vacancies = [...state.list];
+        vacancies[index] = <Vacancy>updatedVacancy;
+        return {
+          ...state,
+          list: vacancies,
+          detail: action.payload,
+          formErrors: null
+        };
+      case VacanciesActions.FAILED_VACANCY_UPDATE:
+        return {
+          ...state,
+          formErrors: action.payload
+        };
+      case VacanciesActions.DELETE_VACANCY:
+        const deleteIndex = state.list.findIndex(item => item.id == action.payload.id);
+        const oldVacancies = [...state.list];
+
+        oldVacancies.splice(deleteIndex, 1);
+        return {
+          ...state,
+          list: oldVacancies,
+          vacancyDeleted: true
+        };
+      case VacanciesActions.DISABLE_VACANCY_DELETE:
+        return {
+          ...state,
+          vacancyDeleted: false
         };
       default:
         return state;

@@ -46,7 +46,6 @@ const listResponse = [{
   city: '1'
 }];
 
-
 describe('VacancyFormComponent', () => {
   let component: VacancyFormComponent;
   let fixture: ComponentFixture<VacancyFormComponent>;
