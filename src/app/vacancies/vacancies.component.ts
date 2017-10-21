@@ -30,7 +30,6 @@ export class VacanciesComponent implements OnInit {
     this.subscription = this.store.select('vacancies').subscribe(
       data => {
         if (data.list.length > 0) {
-          console.log(data.list);
           this.vacancies = data.list;
         }
       }
