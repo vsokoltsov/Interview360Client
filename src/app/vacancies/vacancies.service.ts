@@ -21,4 +21,8 @@ export class VacanciesService {
       }
     );
   }
+
+  receiveVacancy(companyId: number, vacancyId: number) {
+
+  }
 }

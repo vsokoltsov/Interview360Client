@@ -2,11 +2,13 @@ import { Vacancy } from '../vacancy.model';
 import * as VacanciesActions from './vacancies.actions';
 
 export interface State {
-  list: Vacancy[]
+  list: Vacancy[],
+  detail: Vacancy
 };
 
 export const initialState: State = {
-  list: []
+  list: [],
+  detail: null
 };
 
 export function vacanciesReducer(state=initialState,
@@ -16,6 +18,11 @@ export function vacanciesReducer(state=initialState,
         return {
           ...state,
           list: action.payload
+        };
+      case VacanciesActions.VACANCY_LOADED:
+        return {
+          ...state,
+          detail: action.payload
         };
       default:
         return state;

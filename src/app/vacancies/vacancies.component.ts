@@ -15,6 +15,7 @@ import * as fromApp from '../store/app.reducers';
 export class VacanciesComponent implements OnInit {
   vacancies: Vacancy[];
   subscription: Subscription;
+  companyId: number;
 
   constructor(private activatedRoute: ActivatedRoute,
               private store: Store<fromApp.AppState>,
@@ -22,8 +23,8 @@ export class VacanciesComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
-        const companyId = params['companyId'];
-        this.vacanciesService.loadList(companyId);
+        this.companyId = params['companyId'];
+        this.vacanciesService.loadList(this.companyId);
     });
 
     this.subscription = this.store.select('vacancies').subscribe(
