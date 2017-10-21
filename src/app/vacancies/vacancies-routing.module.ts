@@ -11,6 +11,7 @@ export const vacanciesRoutes: Routes = [
     { path: '', component: VacancyEmpty },
     { path: 'new', component: VacancyFormComponent, pathMatch: 'full' },
     { path: ':id', component: VacancyDetailComponent },
+    { path: ':id/edit', component: VacancyFormComponent }
   ] },
 ];
 

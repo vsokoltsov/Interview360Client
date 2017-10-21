@@ -20,8 +20,9 @@ import * as VacanyActions from '../store/vacancies.actions';
 export class VacancyFormComponent implements OnInit, OnDestroy {
   vacancyForm: FormGroup;
   subscription: Subscription;
-  skills: Skill[];
+  skills: Skill[] = [];
   companyId: number;
+  vacancyId: number;
   public vacancyFormErrors: Object = { };
 
   constructor(private store: Store<fromApp.AppState>,
@@ -29,11 +30,6 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      const parameters = this.activatedRoute.snapshot;
-      const parentParans = parameters.parent.params;
-      this.companyId = parentParans['companyId'];
-    });
     this.vacanciesService.loadSkills();
     this.vacancyForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
@@ -47,8 +43,35 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
         if (data.skills.length > 0) {
           this.skills = data.skills;
         }
+        if (data.detail) {
+          this.vacancyForm.patchValue({
+            title: data.detail.title,
+            description: data.detail.description,
+            salary: data.detail.salary,
+            skills: data.detail.skills
+          });
+        }
       }
     );
+    this.activatedRoute.params.subscribe((params: Params) => {
+      const parameters = this.activatedRoute.snapshot;
+      const parentParans = parameters.parent.params;
+      this.companyId = parentParans['companyId'];
+      this.vacancyId = params.params ? params.params.id : null;
+      if (this.vacancyId) {
+          this.vacanciesService.receiveVacancy(this.companyId, this.vacancyId);
+      }
+      else {
+        if (this.vacancyForm) {
+          this.vacancyForm.patchValue({
+            title: null,
+            description: null,
+            salary: null,
+            skills: []
+          });
+        }
+      }
+    });
   }
 
   addSkill(skill: Skill) {
@@ -72,7 +95,12 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
     const params = this.vacancyForm.value;
     params.company_id = this.companyId;
     params.skills = params.skills.map(item => item.id);
-    this.vacanciesService.createVacancy(this.companyId, params);
+    if (this.vacancyId) {
+      this.vacanciesService.updateVacancy(this.companyId, this.vacancyId, params);
+    }
+    else {
+        this.vacanciesService.createVacancy(this.companyId, params);
+    }
   }
 
   ngOnDestroy() {

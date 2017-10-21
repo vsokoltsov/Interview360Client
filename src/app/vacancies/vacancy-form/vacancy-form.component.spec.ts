@@ -139,4 +139,12 @@ describe('VacancyFormComponent', () => {
     component.submit();
     expect(vacanciesService.createVacancy).toHaveBeenCalled();
   });
+
+  it('call updateVacancy', () => {
+    component.vacancyId = vacancy.id;
+    spyOn(vacanciesService, 'updateVacancy').and.callThrough();
+    fixture.detectChanges();
+    component.submit();
+    expect(vacanciesService.updateVacancy).toHaveBeenCalled();
+  });
 });
