@@ -6,17 +6,19 @@ import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { VacanciesComponent } from './vacancies.component';
 import { VacanciesRoutingModule } from './vacancies-routing.module';
 import { VacanciesListItemComponent } from './vacancies-list-item/vacancies-list-item.component';
+import { VacancyEmpty } from './vacancy-empty/vacancy-empty.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     VacanciesRoutingModule,
-    NgxSvgIconModule,
+    NgxSvgIconModule
   ],
   declarations: [
     VacanciesComponent,
-    VacanciesListItemComponent
+    VacanciesListItemComponent,
+    VacancyEmpty
   ],
   exports: [
     VacanciesListItemComponent
