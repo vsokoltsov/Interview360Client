@@ -8,6 +8,7 @@ import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs';
 import 'rxjs/add/observable/of';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { environment } from '../../environments/environment';
 import { Vacancy } from './vacancy.model';
@@ -59,10 +60,21 @@ describe('VacanciesComponent', () => {
         VacanciesService,
         {
           provide: ActivatedRoute, useValue: {
-            params: Observable.of({ companyId: company.id })
+            params: Observable.of({ companyId: company.id }),
+            snapshot: {
+              params: {
+                id: vacancy.id
+              },
+              parent: {
+                params: {
+                  companyId: company.id
+                }
+              }
+            }
           }
         }
-      ]
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(VacanciesComponent);
