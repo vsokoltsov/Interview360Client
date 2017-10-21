@@ -26,7 +26,7 @@ import * as fromApp from '../../store/app.reducers';
 
 const vacancy = new Vacancy(1, 'b', 'c');
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
-const skill = new Skill(1);
+const skill = new Skill(1, 'AA');
 const detailResponse = {
   id: 1,
   name: 'aaa',
@@ -34,6 +34,10 @@ const detailResponse = {
   start_date: '2017-08-19',
   city: '1'
 };
+const skillsResponse = [{
+  id: 1,
+  name: 'AA'
+}];
 const listResponse = [{
   id: 1,
   name: 'aaa',
@@ -93,10 +97,47 @@ describe('VacancyFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VacancyFormComponent);
     component = fixture.componentInstance;
+    store = TestBed.get(Store);
+    vacanciesService = TestBed.get(VacanciesService);
+    spyOn(vacanciesService, 'loadSkills').and.callThrough();
+    httpMock = TestBed.get(HttpTestingController);
     fixture.detectChanges();
+
+    let result = httpMock.expectOne(`${environment.baseUrl}/skills/`);
+    result.flush(skillsResponse);
+    httpMock.verify();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('call loadSkills method', () => {
+    expect(vacanciesService.loadSkills).toHaveBeenCalled();
+  });
+
+  it('load skills information', () => {
+    fixture.whenStable().then(() => {
+      expect(component.skills[0].id).toEqual(skill.id);
+    });
+  });
+
+  it('add new item to vacancyForm', () => {
+    component.addSkill(skill);
+    expect(component.vacancyForm.value.skills).toEqual([skill]);
+  });
+
+  it('delete item from vacancyForm', () => {
+    component.vacancyForm.patchValue({
+      skills: [skill]
+    });
+    component.deleteSkill(skill);
+    expect(component.vacancyForm.value.skills).toEqual([]);
+  });
+
+  it('call createVacancy', () => {
+    spyOn(vacanciesService, 'createVacancy').and.callThrough();
+    component.submit();
+    expect(vacanciesService.createVacancy).toHaveBeenCalled();
   });
 });
