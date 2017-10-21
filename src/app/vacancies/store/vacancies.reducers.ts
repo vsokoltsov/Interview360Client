@@ -25,7 +25,6 @@ export function vacanciesReducer(state=initialState,
           detail: action.payload
         };
       case VacanciesActions.LEAVE_VACANCY_PAGE:
-        console.log(state);
         return {
           ...state,
           detail: null

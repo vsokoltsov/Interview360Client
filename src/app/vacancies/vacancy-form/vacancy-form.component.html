@@ -1,3 +1,50 @@
-<p>
-  vacancy-form works!
-</p>
+<form class="form" [formGroup]="vacancyForm" (ngSubmit)="submit()">
+
+  <div class="form-field">
+    <input placeholder="Title" class="field" formControlName="title" type="text">
+
+    <div class="error" *ngIf="vacancyForm.get('title').touched &&
+      vacancyForm.get('title').hasError('required')">
+      Vacancy title is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of vacancyFormErrors['title']" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class="form-field">
+    <textarea placeholder="Description" class="field" formControlName="description"
+    rows="3">
+    </textarea>
+
+    <div class="error" *ngIf="vacancyForm.get('description').touched &&
+      vacancyForm.get('description').hasError('required')">
+      Description is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of vacancyFormErrors['description']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <input placeholder="Salary" class="field" formControlName="salary" type="number">
+
+    <div class="error" *ngIf="vacancyForm.get('salary').touched &&
+      vacancyForm.get('salary').hasError('required')">
+      Salary is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of vacancyFormErrors['salary']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+
+  </div>
+
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button success"
+      [disabled]="!vacancyForm.valid">Save</button>
+  </div>
+</form>
