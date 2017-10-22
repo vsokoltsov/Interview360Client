@@ -1,0 +1,22 @@
+@import '~variables.scss';
+
+:host {
+  .skills-list,
+  .available-skills {
+    display: flex;
+    flex-direction: row;
+
+    .skill-item {
+      padding: 5px;
+      background-color: $skill_tag;
+      margin: 5px;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+
+      &.unselected {
+        background-color: $unselected_skill_tag;
+      }
+    }
+  }
+}

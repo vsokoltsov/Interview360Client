@@ -14,6 +14,8 @@ import { environment } from '../../environments/environment';
 import { Vacancy } from './vacancy.model';
 import { Company } from '../companies/company.model';
 import { VacanciesComponent } from './vacancies.component';
+import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
+import { VacancyFormComponent } from './vacancy-form/vacancy-form.component';
 import { VacanciesListItemComponent } from './vacancies-list-item/vacancies-list-item.component';
 import { VacanciesService } from './vacancies.service';
 import { ApiService } from '../shared/api.service';
@@ -23,15 +25,19 @@ import * as fromApp from '../store/app.reducers';
 
 const vacancy = new Vacancy(1, 'b', 'c');
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
-const response = { companies: [
+vacancy.company_id = company.id;
+vacancy.company = company;
+const response = [
   {
     id: 1,
-    name: 'aaa',
+    title: 'aaa',
+    company_id: company.id,
+    company: company,
     description: 'awdawd',
     start_date: '2017-08-19',
-    city: '1'
+    salary: 120.00
   }
-]};
+];
 
 describe('VacanciesComponent', () => {
   let component: VacanciesComponent;
@@ -44,11 +50,22 @@ describe('VacanciesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         VacanciesComponent,
-        VacanciesListItemComponent
+        VacanciesListItemComponent,
+        VacancyDetailComponent,
+        VacancyFormComponent
       ],
       imports: [
         StoreModule.forRoot(fromApp.reducers),
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          {
+            path: `companies/${company.id}/vacancies/${vacancy.id}`,
+            component: VacancyDetailComponent
+          },
+          {
+            component: VacancyFormComponent,
+            path: `companies/${company.id}/vacancies/new`,
+          }
+        ]),
         NgxSvgIconModule,
         HttpClientModule,
         HttpClientTestingModule

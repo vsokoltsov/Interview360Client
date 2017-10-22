@@ -8,10 +8,12 @@ export class Vacancy {
   public salary: number;
   public active: boolean;
   public skills: Skill[];
+  public company_id: number;
   public company: Company;
+  public updated_at: any;
 
   constructor(id?: number, title?: string, description?: string, salary?: number,
-              active?: boolean, skills = null, company: Company = null) {
+              active?: boolean, company_id?: number, updated_at?: any, skills = null, company: Company = null) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -19,5 +21,6 @@ export class Vacancy {
     this.active = active;
     this.skills = skills;
     this.company = company;
+    this.updated_at = updated_at;
   }
 }

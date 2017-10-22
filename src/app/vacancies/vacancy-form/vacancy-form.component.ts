@@ -47,9 +47,9 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
           this.vacancyForm.patchValue({
             title: data.detail.title,
             description: data.detail.description,
-            salary: data.detail.salary,
-            skills: data.detail.skills || []
+            salary: data.detail.salary
           });
+          this.setSkills(data.detail);
         }
       }
     );
@@ -77,8 +77,7 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
   addSkill(skill: Skill) {
     let skills = this.vacancyForm.value.skills.map(item => item.id);
     if (!skills.includes(skill.id)) {
-        const control = new FormControl(skill, Validators.required);
-        (<FormArray>this.vacancyForm.get('skills')).push(control);
+        this.setSkillToForm(skill);
     }
   }
 
@@ -105,6 +104,20 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  private setSkillToForm(skill: Skill) {
+    const control = new FormControl(skill, Validators.required);
+    (<FormArray>this.vacancyForm.get('skills')).push(control);
+  }
+
+  private setSkills(detail: Vacancy) {
+    if (detail.skills) {
+      const skillsArr = detail.skills.map(item => {
+        return new FormControl(item, Validators.required);
+      });
+      this.vacancyForm.setControl('skills', new FormArray(skillsArr));
+    }
   }
 
 }

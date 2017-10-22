@@ -10,7 +10,10 @@ import { PipeModule } from '../../shared/pipe.module';
 import { VacanciesService } from '../vacancies.service';
 import { ApiService } from '../../shared/api.service';
 
-const vacancy = new Vacancy(1);
+const vacancy = new Vacancy(1, 'aa');
+vacancy.company_id = 1;
+vacancy.salary = 120.0
+vacancy.updated_at = '2017-08-19';
 
 describe('VacanciesListItemComponent', () => {
   let component: VacanciesListItemComponent;

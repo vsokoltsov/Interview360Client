@@ -38,16 +38,18 @@
   </div>
 
   <div class="form-field">
-    <div *ngFor="let vacancySkill of vacancyForm.get('skills').value">
-      {{ vacancySkill.name }}
-      <a (click)="deleteSkill(vacancySkill)">
-        x
-      </a>
+    <div class="skills-list">
+      <div *ngFor="let vacancySkill of vacancyForm.get('skills').value" class="skill-item">
+        {{ vacancySkill.name }}
+        <a (click)="deleteSkill(vacancySkill)">
+          x
+        </a>
+      </div>
     </div>
   </div>
 
   <div class="available-skills">
-    <a *ngFor="let skill of skills" (click)="addSkill(skill)">
+    <a *ngFor="let skill of skills" (click)="addSkill(skill)" class="skill-item unselected">
       {{skill.name}}
     </a>
   </div>

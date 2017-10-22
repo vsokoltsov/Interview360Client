@@ -2,8 +2,8 @@
   {{ vacancy.updated_at | date }}
 </div>
 <div class='base-info'>
-  <div class="vacancy-title">
-    <a [routerLink]="['/companies', vacancy.company_id || vacancy.company.id, 'vacancies', vacancy.id]">
+  <div class="vacancy-title" >
+    <a *ngIf="vacancy" [routerLink]="[vacancy?.id]">
       {{ vacancy.title }}
     </a>
   </div>
