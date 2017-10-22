@@ -38,6 +38,7 @@ export class VacancyDetailComponent implements OnInit, OnDestroy {
           this.vacancy = data.detail;
         }
         if (data.vacancyDeleted) {
+          this.store.dispatch(new VacanciesActions.DisableVacancyDelete());
           this.router.navigate(['/companies', this.companyId, 'vacancies']);
         }
       }

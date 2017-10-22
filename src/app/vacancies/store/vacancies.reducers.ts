@@ -77,7 +77,6 @@ export function vacanciesReducer(state=initialState,
         const oldVacancies = [...state.list];
 
         oldVacancies.splice(deleteIndex, 1);
-        console.log(oldVacancies);
         return {
           ...state,
           list: oldVacancies,
