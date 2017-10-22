@@ -1,0 +1,63 @@
+<form class="form" [formGroup]="vacancyForm" (ngSubmit)="submit()">
+
+  <div class="form-field">
+    <input placeholder="Title" class="field" formControlName="title" type="text">
+
+    <div class="error" *ngIf="vacancyForm.get('title').touched &&
+      vacancyForm.get('title').hasError('required')">
+      Vacancy title is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of vacancyFormErrors['title']" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class="form-field">
+    <textarea placeholder="Description" class="field" formControlName="description"
+    rows="3">
+    </textarea>
+
+    <div class="error" *ngIf="vacancyForm.get('description').touched &&
+      vacancyForm.get('description').hasError('required')">
+      Description is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of vacancyFormErrors['description']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <input placeholder="Salary" class="field" formControlName="salary" type="number">
+
+    <div class="error" *ngIf="vacancyForm.get('salary').touched &&
+      vacancyForm.get('salary').hasError('required')">
+      Salary is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of vacancyFormErrors['salary']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="skills-list">
+      <div *ngFor="let vacancySkill of vacancyForm.get('skills').value" class="skill-item">
+        {{ vacancySkill.name }}
+        <a (click)="deleteSkill(vacancySkill)">
+          x
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="available-skills">
+    <a *ngFor="let skill of skills" (click)="addSkill(skill)" class="skill-item unselected">
+      {{skill.name}}
+    </a>
+  </div>
+
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button success"
+      [disabled]="!vacancyForm.valid">Save</button>
+  </div>
+</form>

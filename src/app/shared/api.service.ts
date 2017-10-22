@@ -33,7 +33,6 @@ export class ApiService {
   postUpload(url: string, params: {}) {
     let headers = this.getHeaders();
     headers = headers.set('Content-Type', 'multipart/form-data');
-    console.log(headers);
     return this.httpClient.request('POST', `${environment.baseUrl}${url}`, {
       body: params,
       headers: headers,

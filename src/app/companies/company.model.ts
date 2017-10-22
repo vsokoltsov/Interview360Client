@@ -1,4 +1,5 @@
 import { User } from '../auth/user.model';
+import { Vacancy } from '../vacancies/vacancy.model';
 
 export class Company {
   public id: number;
@@ -17,6 +18,7 @@ export class Company {
   public employees: User[] = null;
   public vacancy_count: number;
   public employees_count: number;
+  public vacancies: Vacancy[];
 
   constructor(id?: number, name?: string,
               description?: string, start_date?: any, city?: string,

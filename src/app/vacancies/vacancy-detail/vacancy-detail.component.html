@@ -1,0 +1,32 @@
+<div class="detail-page">
+  <div class="vacancy-actions">
+    <a [routerLink]="['edit']">
+      <svg-icon
+        name="edit-icon"
+        size="25"></svg-icon>
+    </a>
+    <a (click)="deleteVacancy()">
+      <svg-icon
+        name="delete-icon"
+        size="25"></svg-icon>
+    </a>
+  </div>
+  <div class="base-infor-block">
+    <div class="title" *ngIf="vacancy">
+      {{ vacancy.title }}
+    </div>
+    <div class="salary" *ngIf="vacancy">
+      {{ vacancy.salary }}
+    </div>
+    <div class="description" *ngIf="vacancy">
+      {{ vacancy.description }}
+    </div>
+    <div class="skills" *ngIf="vacancy">
+      <a
+        *ngFor="let skill of vacancy.skills"
+        class="skill-item">
+        {{ skill.name }}
+      </a>
+    </div>
+  </div>
+</div>

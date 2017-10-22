@@ -1,0 +1,28 @@
+:host {
+  .vacancies-tabs{
+    display: flex;
+    flex-direction: column;
+
+    .vacancies.tab-list {
+      display: flex;
+      flex-direction: row;
+
+      .item.card {
+        display: flex;
+        flex-direction: column;
+        min-width: 6em;
+        min-height: 6em;
+      }
+    }
+
+    .tab-action {
+      display: flex;
+      flex-direction: row;
+      margin: 1em;
+
+      a.button {
+        text-decoration: none;
+      }
+    }
+  }
+}
