@@ -104,7 +104,13 @@ describe('VacancyFormComponent', () => {
 
     let result = httpMock.expectOne(`${environment.baseUrl}/skills/`);
     result.flush(skillsResponse);
+    let vacancyResult = httpMock.expectOne(
+      `${environment.baseUrl}/companies/${company.id}/vacancies/${vacancy.id}/`
+    );
+    vacancyResult.flush(detailResponse);
     httpMock.verify();
+    component.vacancyId = null;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

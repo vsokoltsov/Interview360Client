@@ -37,6 +37,9 @@ export class VacancyDetailComponent implements OnInit, OnDestroy {
         if (data.detail) {
           this.vacancy = data.detail;
         }
+        if (data.vacancyDeleted) {
+          this.router.navigate(['/companies', this.companyId, 'vacancies']);
+        }
       }
     );
   }
@@ -44,6 +47,10 @@ export class VacancyDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.store.dispatch(new VacanciesActions.LeaveVacancyPage());
+  }
+
+  deleteVacancy() {
+    this.vacanciesService.deleteVacancy(this.companyId, this.vacancyId, this.vacancy);
   }
 
   private loadVacancy() {

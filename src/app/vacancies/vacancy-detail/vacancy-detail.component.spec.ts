@@ -112,4 +112,10 @@ describe('VacancyDetailComponent', () => {
       expect(component.vacancy.id).toEqual(detailResponse.id);
     });
   });
+
+  it('call vacanciesService.deleteVacancy after deleteVacancy() call', () => {
+    spyOn(vacanciesService, 'deleteVacancy').and.callThrough();
+    component.deleteVacancy();
+    expect(vacanciesService.deleteVacancy).toHaveBeenCalled();
+  });
 });
