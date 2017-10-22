@@ -48,7 +48,7 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
             title: data.detail.title,
             description: data.detail.description,
             salary: data.detail.salary,
-            skills: data.detail.skills
+            skills: data.detail.skills || []
           });
         }
       }
@@ -57,7 +57,7 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
       const parameters = this.activatedRoute.snapshot;
       const parentParans = parameters.parent.params;
       this.companyId = parentParans['companyId'];
-      this.vacancyId = params.params ? params.params.id : null;
+      this.vacancyId = parameters.params ? parameters.params.id : null;
       if (this.vacancyId) {
           this.vacanciesService.receiveVacancy(this.companyId, this.vacancyId);
       }
