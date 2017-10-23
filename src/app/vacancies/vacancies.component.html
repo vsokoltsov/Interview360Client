@@ -20,6 +20,7 @@
         <div app-vacancies-list-item
           *ngFor="let vacancy of vacancies"
           [vacancy]="vacancy"
+          [route]="[vacancy?.id]"
           class="item card list-item"></div>
       </div>
     </div>
