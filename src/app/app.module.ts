@@ -33,6 +33,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 import { CompaniesModule } from './companies/companies.module';
 import { VacanciesModule } from './vacancies/vacancies.module';
+import { InterviewsModule } from './interviews/interviews.module';
 import { PipeModule } from './shared/pipe.module';
 
 export const MODULES = {
@@ -56,6 +57,7 @@ export const MODULES = {
     ProfileModule,
     CompaniesModule,
     VacanciesModule,
+    InterviewsModule,
     PipeModule
   ],
   providers: [
