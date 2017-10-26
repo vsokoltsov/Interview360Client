@@ -19,8 +19,9 @@ import { ApiService } from '../shared/api.service';
 import { CookieService } from 'angular2-cookie/core';
 
 import { InterviewsComponent } from './interviews.component';
+import { InterviewListItemComponent } from './interview-list-item/interview-list-item.component';
 
-fdescribe('InterviewsComponent', () => {
+describe('InterviewsComponent', () => {
   let component: InterviewsComponent;
   let fixture: ComponentFixture<InterviewsComponent>;
   let httpMock: HttpTestingController;
@@ -30,7 +31,8 @@ fdescribe('InterviewsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        InterviewsComponent
+        InterviewsComponent,
+        InterviewListItemComponent
       ],
       imports: [
         StoreModule.forRoot(fromApp.reducers),

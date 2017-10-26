@@ -17,12 +17,12 @@
         </div>
       </div>
       <div class="base list">
-        <!-- <div app-vacancies-list-item
-          *ngFor="let vacancy of vacancies"
-          [vacancy]="vacancy"
-          [route]="[vacancy?.id]"
+        <div app-interview-list-item
+          *ngFor="let interview of interviews"
+          [interview]="interview"
+          [route]="[interview?.id]"
           class="item card list-item"></div>
-      </div> -->
+      </div>
     </div>
     <div class="inner-elements card">
       <!-- <router-outlet></router-outlet> -->

@@ -5,6 +5,7 @@ import { NgxSvgIconModule } from 'ngx-svg-icon';
 
 import { InterviewsRoutingModule } from './interviews-routing.module';
 import { InterviewsComponent } from './interviews.component';
+import { InterviewListItemComponent } from './interview-list-item/interview-list-item.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { InterviewsComponent } from './interviews.component';
     InterviewsRoutingModule
   ],
   declarations: [
-    InterviewsComponent
+    InterviewsComponent,
+    InterviewListItemComponent
   ]
 })
 export class InterviewsModule {}
