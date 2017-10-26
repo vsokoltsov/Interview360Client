@@ -1,15 +1,24 @@
 import { Company } from '../companies/company.model';
 import { Vacancy } from '../vacancies/vacancy.model';
+import { User } from '../auth/user.model';
 
 export class Interview {
   public id: number;
   public vacancy_id: number;
-  public company_id: number;
-  public company: Company;
+  public candidate_id: number;
+  public candidate: User;
   public vacancy: Vacancy;
   public assigned_at: any;
 
-  constructor(id?: number, vacancy_id?: number, company_id?: number,
-              assigned_at?: any, company: Company = null,
-              vacancy: Vacancy = null) {}
+
+  constructor(id?: number, vacancy_id?: number, candidate_id?: number,
+              assigned_at?: any, candidate: User = null,
+              vacancy: Vacancy = null) {
+                this.id = id;
+                this.vacancy_id = vacancy_id;
+                this.candidate_id = candidate_id;
+                this.assigned_at = assigned_at;
+                this.candidate = candidate;
+                this.vacancy = vacancy;
+              }
 }

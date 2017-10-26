@@ -1,3 +1,19 @@
-<p>
-  interview-list-item works!
-</p>
+<div class="image">
+  <svg-icon
+    name="user-placeholder"
+    size="75"
+    *ngIf="interview?.candidate?.attachment == null">
+  </svg-icon>
+  <img [src]="interview?.candidate?.attachment.small_thumb_url" width="75" height="75" *ngIf="interview?.candidate?.attachment !== null" />
+</div>
+<div class="base-info">
+
+  <div class="candidate-name">
+    <a [routerLink]="router">
+      {{ interview.candidate.email }}
+    </a>
+  </div>
+  <div class="date">
+    Assigned: {{ interview.assigned_at | date: 'dd.MM.yyyy H:M' }}
+  </div>
+</div>
