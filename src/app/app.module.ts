@@ -22,6 +22,7 @@ import { RootComponent } from './root/root.component';
 import { reducers } from './store/app.reducers';
 import { AuthService } from './auth/auth.service';
 import { ProfileService } from './profile/profile.service';
+import { InterviewsService } from './interviews/interviews.service';
 import { CompaniesService } from './companies/companies.service';
 import { VacanciesService } from './vacancies/vacancies.service';
 import { ApiService } from './shared/api.service';
@@ -66,6 +67,7 @@ export const MODULES = {
     CookieService,
     CompaniesService,
     VacanciesService,
+    InterviewsService,
     ApiService,
     {provide: APP_BASE_HREF, useValue : '/' },
     AuthGuard,

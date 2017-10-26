@@ -7,9 +7,9 @@ export class Interview {
   public company_id: number;
   public company: Company;
   public vacancy: Vacancy;
-  public assigned_at: Date;
+  public assigned_at: any;
 
   constructor(id?: number, vacancy_id?: number, company_id?: number,
-              assigned_at?: Date, company: Company = null,
+              assigned_at?: any, company: Company = null,
               vacancy: Vacancy = null) {}
 }
