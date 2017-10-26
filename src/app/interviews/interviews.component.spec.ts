@@ -14,17 +14,18 @@ import * as fromApp from '../store/app.reducers';
 import { environment } from '../../environments/environment';
 import { Vacancy } from '../vacancies/vacancy.model';
 import { Company } from '../companies/company.model';
+import { InterviewsService } from './interviews.service';
 import { ApiService } from '../shared/api.service';
 import { CookieService } from 'angular2-cookie/core';
 
 import { InterviewsComponent } from './interviews.component';
 
-describe('InterviewsComponent', () => {
+fdescribe('InterviewsComponent', () => {
   let component: InterviewsComponent;
   let fixture: ComponentFixture<InterviewsComponent>;
   let httpMock: HttpTestingController;
   let store: Store<fromApp.AppState>;
-  // let vacanciesService: VacanciesService;
+  let interviewsService: InterviewsService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -41,6 +42,7 @@ describe('InterviewsComponent', () => {
       providers: [
         ApiService,
         CookieService,
+        InterviewsService
         // VacanciesService
       ],
     })
