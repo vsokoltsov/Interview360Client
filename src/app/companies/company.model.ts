@@ -1,5 +1,6 @@
 import { User } from '../auth/user.model';
 import { Vacancy } from '../vacancies/vacancy.model';
+import { Interview } from '../interviews/interview.model';
 
 export class Company {
   public id: number;
@@ -19,10 +20,12 @@ export class Company {
   public vacancy_count: number;
   public employees_count: number;
   public vacancies: Vacancy[];
+  public interviews: Interview[];
 
   constructor(id?: number, name?: string,
               description?: string, start_date?: any, city?: string,
-              attachment = null, employees: User[] = null) {
+              attachment = null, employees: User[] = null,
+              interviews: Interview[] = null) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -30,5 +33,6 @@ export class Company {
     this.city = city;
     this.attachment = attachment;
     this.employees = employees;
+    this.interviews = interviews;
   }
 }

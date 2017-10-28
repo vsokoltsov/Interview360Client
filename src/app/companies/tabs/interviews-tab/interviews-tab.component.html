@@ -1,3 +1,13 @@
-<p>
-  interviews-tab works!
-</p>
+<div class="interviews-tabs">
+  <div class="interviews tab-list">
+    <div
+      app-interview-list-item
+      *ngFor="let interview of interviews"
+      [interview]="interview"
+      [route]="['/companies', companyId, 'interviews', interview.id]"
+      class="item card tab-item"></div>
+  </div>
+  <div class="tab-action">
+    <a *ngIf="companyId" class="button info" [routerLink]="['/companies', companyId, 'interviews']">See more</a>
+  </div>
+</div>
