@@ -6,6 +6,7 @@ import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { InterviewsRoutingModule } from './interviews-routing.module';
 import { InterviewsComponent } from './interviews.component';
 import { InterviewListItemComponent } from './interview-list-item/interview-list-item.component';
+import { InterviewDetailComponent } from './interview-detail/interview-detail.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { InterviewListItemComponent } from './interview-list-item/interview-list
   ],
   declarations: [
     InterviewsComponent,
-    InterviewListItemComponent
+    InterviewListItemComponent,
+    InterviewDetailComponent
   ],
   exports: [
     InterviewListItemComponent
