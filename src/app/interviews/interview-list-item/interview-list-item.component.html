@@ -7,7 +7,6 @@
   <img [src]="interview?.candidate?.attachment.small_thumb_url" width="75" height="75" *ngIf="interview?.candidate?.attachment !== null" />
 </div>
 <div class="base-info">
-
   <div class="candidate-name" *ngIf="interview?.candidate">
     <a [routerLink]="router">
       {{ interview.candidate.email }}

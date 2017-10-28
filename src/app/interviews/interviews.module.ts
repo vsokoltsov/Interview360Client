@@ -17,6 +17,9 @@ import { InterviewListItemComponent } from './interview-list-item/interview-list
   declarations: [
     InterviewsComponent,
     InterviewListItemComponent
+  ],
+  exports: [
+    InterviewListItemComponent
   ]
 })
 export class InterviewsModule {}
