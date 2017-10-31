@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { InterviewsComponent } from './interviews.component';
 import { InterviewDetailComponent } from './interview-detail/interview-detail.component';
+import { InterviewFormComponent } from './interview-form/interview-form.component';
 
 export const interviewsRoutes: Routes = [
   { path: '', component: InterviewsComponent, children: [
-    { path: ':id', component: InterviewDetailComponent },
+    { path: 'new', component: InterviewFormComponent, pathMatch: 'full' },
+    { path: ':id', component: InterviewDetailComponent }
   ] },
 ];
 

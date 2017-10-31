@@ -7,6 +7,7 @@ import { InterviewsRoutingModule } from './interviews-routing.module';
 import { InterviewsComponent } from './interviews.component';
 import { InterviewListItemComponent } from './interview-list-item/interview-list-item.component';
 import { InterviewDetailComponent } from './interview-detail/interview-detail.component';
+import { InterviewFormComponent } from './interview-form/interview-form.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { InterviewDetailComponent } from './interview-detail/interview-detail.co
   declarations: [
     InterviewsComponent,
     InterviewListItemComponent,
-    InterviewDetailComponent
+    InterviewDetailComponent,
+    InterviewFormComponent
   ],
   exports: [
     InterviewListItemComponent
