@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
+import {DpDatePickerModule} from 'ng2-date-picker';
 
 import { InterviewsRoutingModule } from './interviews-routing.module';
 import { InterviewsComponent } from './interviews.component';
@@ -14,7 +15,8 @@ import { InterviewFormComponent } from './interview-form/interview-form.componen
     CommonModule,
     ReactiveFormsModule,
     NgxSvgIconModule,
-    InterviewsRoutingModule
+    InterviewsRoutingModule,
+    DpDatePickerModule
   ],
   declarations: [
     InterviewsComponent,

@@ -1,3 +1,71 @@
-<p>
-  interview-form works!
-</p>
+<form class="form" [formGroup]="interviewForm" (ngSubmit)="submit()">
+
+  <div class="form-field">
+    <input
+      placeholder="Candidate"
+      class="field"
+      formControlName="candidate_email"
+      type="text">
+
+    <div class="error" *ngIf="interviewForm.get('candidate_email').touched &&
+      interviewForm.get('candidate_email').hasError('required')">
+      Interview candidate is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of interviewFormErrors['candidate_email']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <input
+      placeholder="Vacancy"
+      class="field"
+      formControlName="vacancy_id"
+      type="text">
+
+    <div class="error" *ngIf="interviewForm.get('vacancy_id').touched &&
+      interviewForm.get('vacancy_id').hasError('required')">
+      Interview vacancy is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of interviewFormErrors['vacancy_id']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <input
+    placeholder="Assigned at"
+    class="field"
+    formControlName="assigned_at"
+    mode="daytime"
+    [dpDayPicker]="datePickerConfig"
+    [theme]="'dp-material dp-main'"
+    type="text">
+
+    <div class="error" *ngIf="interviewForm.get('assigned_at').touched &&
+      interviewForm.get('assigned_at').hasError('required')">
+      Start date is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of interviewFormErrors['assigned_at']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="interviewee_ids" formArrayName="interviewee_ids">
+    <button
+      class="btn btn-default"
+      type="button"
+      (click)="addInterviewee()">Add interview</button>
+    <div
+      *ngFor="let interviewControl of getInterviews(interviewForm); let idx = index">
+      <input type="text" class="fieldcontrol" [formControlName]="idx">
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button success"
+      [disabled]="!interviewForm.valid">Save</button>
+  </div>
+</form>

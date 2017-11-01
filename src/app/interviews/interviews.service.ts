@@ -31,4 +31,15 @@ export class InterviewsService {
       }
     )
   }
+
+  createInterview(companyId: number, params: {}) {
+    this.apiService.post(`/companies/${companyId}/interviews/`, params).subscribe(
+      response => {
+        this.store.dispatch(new InterviewsActions.SuccessCreatedInterview(response.body.interview));
+      },
+      failure => {
+        this.store.dispatch(new InterviewsActions.FailedCreatedInterview(failure.body.errors));
+      }
+    );
+  }
 }

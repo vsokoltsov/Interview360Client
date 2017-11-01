@@ -7,6 +7,14 @@ import * as InterviewActions from './interview.actions';
 import * as fromApp from '../../store/app.reducers';
 
 const interview = new Interview(1, 1, 1);
+const successInterviewResponse = {
+  id: '1'
+};
+const errorResponse = {
+  errors: {
+    name: 'AA'
+  }
+};
 
 describe('CompaniesReducers', () => {
   let store: Store<fromApp.AppState>;
@@ -35,4 +43,19 @@ describe('CompaniesReducers', () => {
     ).toEqual({ ...initialState, detail: interview });
   });
 
+  it('runs SUCCESS_CREATED_INTERVIEW state', () => {
+    expect(
+      interviewsReducer(initialState, {
+        type: InterviewActions.SUCCESS_CREATED_INTERVIEW, payload: interview
+      })
+    ).toEqual({ ...initialState, list: [interview] });
+  });
+
+  it('runs FAILED_CREATED_INTERVIEW state', () => {
+    expect(
+      interviewsReducer(initialState, {
+        type: InterviewActions.FAILED_CREATED_INTERVIEW, payload: errorResponse.errors
+      })
+    ).toEqual({ ...initialState, formErrors: errorResponse.errors });
+  });
 });
