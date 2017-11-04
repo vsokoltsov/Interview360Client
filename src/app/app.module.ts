@@ -25,6 +25,7 @@ import { ProfileService } from './profile/profile.service';
 import { InterviewsService } from './interviews/interviews.service';
 import { CompaniesService } from './companies/companies.service';
 import { VacanciesService } from './vacancies/vacancies.service';
+import { EmployeesService } from './employees/employees.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
@@ -68,6 +69,7 @@ export const MODULES = {
     CompaniesService,
     VacanciesService,
     InterviewsService,
+    EmployeesService,
     ApiService,
     {provide: APP_BASE_HREF, useValue : '/' },
     AuthGuard,

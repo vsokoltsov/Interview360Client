@@ -5,7 +5,9 @@ import { Subscription } from 'rxjs/Subscription';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { IDatePickerConfig } from 'ng2-date-picker';
 import { Interview } from '../interview.model';
+import { User } from '../../auth/user.model';
 import { InterviewsService } from '../interviews.service';
+import { EmployeesService } from '../../employees/employees.service';
 import * as fromApp from '../../store/app.reducers';
 import * as InterviewsActions from '../store/interview.actions';
 
@@ -19,6 +21,7 @@ export class InterviewFormComponent implements OnInit {
   subscription: Subscription;
   companyId: number;
   interviewId: number;
+  employees: User[];
   datePickerConfig: IDatePickerConfig = {
     format: 'YYYY-MM-DD HH:m',
     showSeconds: false,
@@ -29,6 +32,7 @@ export class InterviewFormComponent implements OnInit {
 
   constructor(private store: Store<fromApp.AppState>,
               private interviewsService: InterviewsService,
+              private employeesService: EmployeesService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -42,7 +46,13 @@ export class InterviewFormComponent implements OnInit {
       const parameters = this.activatedRoute.snapshot;
       const parentParans = parameters.parent.params;
       this.companyId = parentParans['companyId'];
+      this.employeesService.searchEmployees(this.companyId, 'vforvad@gmail');
     });
+    this.subscription = this.store.select('employees').subscribe(
+      data => {
+        console.log(data.list);
+      }
+    );
   }
 
   getInterviews(form) {

@@ -4,13 +4,15 @@ import * as fromProfile from '../profile/store/profile.reducers';
 import * as fromCompanies from '../companies/store/companies.reducers';
 import * as fromVacancies from '../vacancies/store/vacancies.reducers';
 import * as fromInterviews from '../interviews/store/interview.reducers';
+import * as fromEmployees from '../employees/store/employees.reducers';
 
 export interface AppState {
   auth: fromAuth.State,
   profile: fromProfile.State,
   companies: fromCompanies.State,
   vacancies: fromVacancies.State,
-  interviews: fromInterviews.State
+  interviews: fromInterviews.State,
+  employees: fromEmployees.State
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -18,5 +20,6 @@ export const reducers: ActionReducerMap<AppState> = {
   profile: fromProfile.profileReducer,
   companies: fromCompanies.companiesReducer,
   vacancies: fromVacancies.vacanciesReducer,
-  interviews: fromInterviews.interviewsReducer
+  interviews: fromInterviews.interviewsReducer,
+  employees: fromEmployees.employeesReducer
 };
