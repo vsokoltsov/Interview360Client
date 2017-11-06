@@ -51,8 +51,8 @@ export class InterviewFormComponent implements OnInit {
     });
     this.subscription = this.store.select('employees').subscribe(
       data => {
-        if (data.list.length > 0) {
-          this.showPopup = true;
+        if (data.list) {
+          if (data.list.length > 0) { this.showPopup = true; }
           this.employees = data.list;
         }
       }
