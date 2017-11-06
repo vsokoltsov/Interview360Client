@@ -5,7 +5,19 @@
       placeholder="Candidate"
       class="field"
       formControlName="candidate_email"
-      type="text">
+      type="text"
+      (keyup)="employeeChange($event)">
+    <div class="items-list card" *ngIf="showPopup">
+      <div *ngFor="let employee of employees" class="item" (click)="selectEmployee(employee)">
+        <svg-icon
+          name="user-placeholder"
+          size="50"
+          *ngIf="employee?.attachment == null">
+        </svg-icon>
+        <img class="logo" [src]="employee.attachment.small_thumb_url" *ngIf="employee?.attachment != null" />
+        <p class="name">{{ employee.email }}</p>
+      </div>
+    </div>
 
     <div class="error" *ngIf="interviewForm.get('candidate_email').touched &&
       interviewForm.get('candidate_email').hasError('required')">

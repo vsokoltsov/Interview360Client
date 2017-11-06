@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
@@ -21,12 +21,13 @@ export class InterviewFormComponent implements OnInit {
   subscription: Subscription;
   companyId: number;
   interviewId: number;
-  employees: User[];
+  employees: User[] = [];
   datePickerConfig: IDatePickerConfig = {
     format: 'YYYY-MM-DD HH:m',
     showSeconds: false,
     showTwentyFourHours: true
   };
+  @Input() showPopup = false;
   public assigned_at: any;
   public interviewFormErrors: Object = { };
 
@@ -46,13 +47,26 @@ export class InterviewFormComponent implements OnInit {
       const parameters = this.activatedRoute.snapshot;
       const parentParans = parameters.parent.params;
       this.companyId = parentParans['companyId'];
-      this.employeesService.searchEmployees(this.companyId, 'vforvad@gmail');
+
     });
+    // this.interviewForm.get('candidate_email').valueChanges.subscribe(
+    //   value => {
+    //     this.employeesService.searchEmployees(this.companyId, value);
+    // });
     this.subscription = this.store.select('employees').subscribe(
       data => {
-        console.log(data.list);
+        if (data.list.length > 0) {
+          this.showPopup = true;
+          this.employees = data.list;
+        }
       }
     );
+  }
+
+
+  selectEmployee(employee: User) {
+    this.interviewForm.get('candidate_email').setValue(employee.email);
+    this.showPopup = false;
   }
 
   getInterviews(form) {
@@ -66,5 +80,9 @@ export class InterviewFormComponent implements OnInit {
 
   submit() {
     this.interviewsService.createInterview(this.companyId, this.interviewForm.value);
+  }
+
+  employeeChange(event: any) {
+    this.employeesService.searchEmployees(this.companyId, event.target.value);
   }
 }
