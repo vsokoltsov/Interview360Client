@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, forwardRef, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -20,6 +20,13 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
   @Input('onChange') _onChange;
   @Input('showPopup') _showPopup;
   @Input('items') _items;
+  @HostListener('document:click', ['$event'])
+  clickOuter(event) {
+    if(!this.eRef.nativeElement.contains(event.target)) {
+      this._showPopup = false;
+    }
+  }
+
   onChange: any = () => { };
   onTouched: any = () => { };
 
@@ -33,14 +40,12 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
     this.onTouched();
   }
 
-  constructor() { }
+  constructor(private eRef: ElementRef) { }
 
   ngOnInit() {
-    console.log(this);
   }
 
   registerOnChange(fn) {
-    console.log(this, fn);
     this.onChange = fn;
   }
 

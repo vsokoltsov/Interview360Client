@@ -63,10 +63,14 @@
   </div>
 
   <div class="interviewee_ids" formArrayName="interviewee_ids">
-    <button
+    <a
       class="btn btn-default"
-      type="button"
-      (click)="addInterviewee()">Add interview</button>
+      (click)="addInterviewee()">
+      <svg-icon
+        size="35"
+        name="plus-icon"></svg-icon>
+        Add interview
+    </a>
     <div
       *ngFor="let interviewControl of getInterviews(interviewForm); let idx = index">
       <input type="text" class="fieldcontrol" [formControlName]="idx">
