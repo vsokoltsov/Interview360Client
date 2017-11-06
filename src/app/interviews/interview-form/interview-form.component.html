@@ -31,10 +31,21 @@
 
   <div class="form-field">
     <input
-      placeholder="Vacancy"
-      class="field"
       formControlName="vacancy_id"
-      type="text">
+      type="hidden">
+
+      <app-autocomplete
+        placeholder="Vacancy"
+        className="field"
+        [value]="vacancyName"
+        [popupId]="['vacancy_id']"
+        [showPopup]="this.popupsShowing['vacancy_id']"
+        [onChange]="vacanciesSearch.bind(this)"
+        [onOut]="focusOut.bind(this)">
+        <div *ngFor="let vacancy of employeesValues['vacancy_id']" class="item" (click)="selectVacancy(vacancy)">
+          <p class="name">{{ vacancy.title }}</p>
+        </div>
+      </app-autocomplete>
 
     <div class="error" *ngIf="interviewForm.get('vacancy_id').touched &&
       interviewForm.get('vacancy_id').hasError('required')">

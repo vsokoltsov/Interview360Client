@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -20,6 +20,15 @@ export class VacanciesService {
         this.store.dispatch(new VacanciesActions.VacanciesLoaded(response.body));
       }
     );
+  }
+
+  searchVacancies(companyId: number, query: string) {
+    const params = new HttpParams().set('q', query);
+    this.apiService.get(`/companies/${companyId}/vacancies/search/`, params).subscribe(
+      response => {
+        this.store.dispatch(new VacanciesActions.VacanciesLoaded(response.body.vacancies));
+      }
+    )
   }
 
   loadSkills() {

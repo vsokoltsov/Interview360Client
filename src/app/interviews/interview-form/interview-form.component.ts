@@ -6,7 +6,9 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import { IDatePickerConfig } from 'ng2-date-picker';
 import { Interview } from '../interview.model';
 import { User } from '../../auth/user.model';
+import { Vacancy } from '../../vacancies/vacancy.model';
 import { InterviewsService } from '../interviews.service';
+import { VacanciesService } from '../../vacancies/vacancies.service';
 import { EmployeesService } from '../../employees/employees.service';
 import * as fromApp from '../../store/app.reducers';
 import * as InterviewsActions from '../store/interview.actions';
@@ -16,12 +18,14 @@ import * as InterviewsActions from '../store/interview.actions';
   templateUrl: './interview-form.component.html',
   styleUrls: ['./interview-form.component.scss']
 })
-export class InterviewFormComponent implements OnInit {
+export class InterviewFormComponent implements OnInit, OnDestroy{
   interviewForm: FormGroup;
   subscription: Subscription;
+  vacanciesSubscription: Subscription;
   companyId: number;
   interviewId: number;
   employees: User[] = [];
+  vacancies: Vacancy[] = [];
   popupsShowing: {} = {};
   employeesValues: {} = {};
   datePickerConfig: IDatePickerConfig = {
@@ -29,6 +33,7 @@ export class InterviewFormComponent implements OnInit {
     showSeconds: false,
     showTwentyFourHours: true
   };
+  vacancyName: string = '';
   @Input() showPopup = false;
   public currentPopupId: string;
   public assigned_at: any;
@@ -36,6 +41,7 @@ export class InterviewFormComponent implements OnInit {
 
   constructor(private store: Store<fromApp.AppState>,
               private interviewsService: InterviewsService,
+              private vacanciesService: VacanciesService,
               private employeesService: EmployeesService,
               private activatedRoute: ActivatedRoute) { }
 
@@ -50,7 +56,6 @@ export class InterviewFormComponent implements OnInit {
       const parameters = this.activatedRoute.snapshot;
       const parentParans = parameters.parent.params;
       this.companyId = parentParans['companyId'];
-
     });
     this.subscription = this.store.select('employees').subscribe(
       data => {
@@ -60,6 +65,19 @@ export class InterviewFormComponent implements OnInit {
         }
       }
     );
+    this.vacanciesSubscription = this.store.select('vacancies').subscribe(
+      data => {
+        if (data.list) {
+          if (data.list.length > 0) { this.popupsShowing[this.currentPopupId] = true; }
+          this.employeesValues[this.currentPopupId] = data.list;
+        }
+      }
+    )
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.vacanciesSubscription.unsubscribe();
   }
 
   selectEmployee(employee: User) {
@@ -70,6 +88,12 @@ export class InterviewFormComponent implements OnInit {
   selectInterviewee(index: number, employee: User) {
     (<FormArray>this.interviewForm.get('interviewee_ids'))
       .controls[index].setValue(employee.email);
+    this.popupsShowing[this.currentPopupId] = false;
+  }
+
+  selectVacancy(vacancy: Vacancy) {
+    this.interviewForm.get('vacancy_id').setValue(vacancy.id);
+    this.vacancyName = vacancy.title;
     this.popupsShowing[this.currentPopupId] = false;
   }
 
@@ -91,6 +115,13 @@ export class InterviewFormComponent implements OnInit {
       this.currentPopupId = popupId;
     }
     this.employeesService.searchEmployees(this.companyId, event.target.value);
+  }
+
+  vacanciesSearch(event: any, popupId?: string) {
+    if (popupId) {
+      this.currentPopupId = popupId;
+    }
+    this.vacanciesService.searchVacancies(this.companyId, event.target.value);
   }
 
   deleteInterviewee(index: number) {

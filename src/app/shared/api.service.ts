@@ -22,7 +22,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient,
               private cookieService: CookieService) {}
 
-  get(url: string, params = null) {
+  get(url: string, params = null): Observable<HttpResponse<any>> {
     if (params) {
       return this.httpClient.get(`${environment.baseUrl}${url}`, {
         params: params,
