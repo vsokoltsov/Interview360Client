@@ -1,13 +1,12 @@
 <form class="form" [formGroup]="interviewForm" (ngSubmit)="submit()">
 
   <div class="form-field">
-    <input
-      placeholder="Candidate"
-      class="field"
+    <app-autocomplete
       formControlName="candidate_email"
-      type="text"
-      (keyup)="employeeChange($event)">
-    <div class="items-list card" *ngIf="showPopup">
+      placeholder="Candidate"
+      className="field"
+      [showPopup]="showPopup"
+      [onChange]="employeeChange.bind(this)">
       <div *ngFor="let employee of employees" class="item" (click)="selectEmployee(employee)">
         <svg-icon
           name="user-placeholder"
@@ -17,7 +16,7 @@
         <img class="logo" [src]="employee.attachment.small_thumb_url" *ngIf="employee?.attachment != null" />
         <p class="name">{{ employee.email }}</p>
       </div>
-    </div>
+    </app-autocomplete>
 
     <div class="error" *ngIf="interviewForm.get('candidate_email').touched &&
       interviewForm.get('candidate_email').hasError('required')">

@@ -49,10 +49,6 @@ export class InterviewFormComponent implements OnInit {
       this.companyId = parentParans['companyId'];
 
     });
-    // this.interviewForm.get('candidate_email').valueChanges.subscribe(
-    //   value => {
-    //     this.employeesService.searchEmployees(this.companyId, value);
-    // });
     this.subscription = this.store.select('employees').subscribe(
       data => {
         if (data.list.length > 0) {

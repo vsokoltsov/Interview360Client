@@ -9,6 +9,7 @@ import { InterviewsComponent } from './interviews.component';
 import { InterviewListItemComponent } from './interview-list-item/interview-list-item.component';
 import { InterviewDetailComponent } from './interview-detail/interview-detail.component';
 import { InterviewFormComponent } from './interview-form/interview-form.component';
+import { AutocompleteModule } from '../shared/autocomplete/autocomplete.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { InterviewFormComponent } from './interview-form/interview-form.componen
     ReactiveFormsModule,
     NgxSvgIconModule,
     InterviewsRoutingModule,
-    DpDatePickerModule
+    DpDatePickerModule,
+    AutocompleteModule
   ],
   declarations: [
     InterviewsComponent,
