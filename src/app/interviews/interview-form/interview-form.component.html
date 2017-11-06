@@ -4,10 +4,12 @@
     <app-autocomplete
       formControlName="candidate_email"
       placeholder="Candidate"
-      className="field"
-      [showPopup]="showPopup"
-      [onChange]="employeeChange.bind(this)">
-      <div *ngFor="let employee of employees" class="item" (click)="selectEmployee(employee)">
+      className="field candidate_email"
+      [popupId]="['candidate_email']"
+      [showPopup]="this.popupsShowing['candidate_email']"
+      [onChange]="employeeChange.bind(this)"
+      [onOut]="focusOut.bind(this)">
+      <div *ngFor="let employee of employeesValues['candidate_email']" class="item" (click)="selectEmployee(employee)">
         <svg-icon
           name="user-placeholder"
           size="50"
@@ -62,18 +64,45 @@
     </div>
   </div>
 
-  <div class="interviewee_ids" formArrayName="interviewee_ids">
-    <a
-      class="btn btn-default"
-      (click)="addInterviewee()">
-      <svg-icon
-        size="35"
-        name="plus-icon"></svg-icon>
-        Add interview
-    </a>
-    <div
-      *ngFor="let interviewControl of getInterviews(interviewForm); let idx = index">
-      <input type="text" class="fieldcontrol" [formControlName]="idx">
+  <div class="form-field interviewee_ids" formArrayName="interviewee_ids">
+    <div class="block">
+      <a
+        class="btn btn-default"
+        (click)="addInterviewee()">
+        <svg-icon
+          size="35"
+          name="plus-icon"></svg-icon>
+          Add interviewee
+      </a>
+      <div class="interviewee-list">
+        <div class="interviewee-item"
+          *ngFor="let interviewControl of getInterviews(interviewForm); let idx = index">
+          <app-autocomplete
+            placeholder="Interviewee"
+            className="field"
+            [popupId]="['interviewee_', idx]"
+            [formControlName]="idx"
+            [showPopup]="this.popupsShowing['interviewee_'+ idx]"
+            [onChange]="employeeChange.bind(this)">
+            <div *ngFor="let employee of employeesValues['interviewee_'+ idx]" class="item" (click)="selectInterviewee(idx, employee)">
+              <svg-icon
+                name="user-placeholder"
+                size="50"
+                *ngIf="employee?.attachment == null">
+              </svg-icon>
+              <img class="logo" [src]="employee.attachment.small_thumb_url" *ngIf="employee?.attachment != null" />
+              <p class="name">{{ employee.email }}</p>
+            </div>
+          </app-autocomplete>
+
+
+          <a (click)="deleteInterviewee(idx)">
+            <svg-icon
+              size="20"
+              name="delete-icon"></svg-icon>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 

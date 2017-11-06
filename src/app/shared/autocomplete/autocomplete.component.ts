@@ -14,16 +14,21 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class AutocompleteComponent implements OnInit, ControlValueAccessor {
-  @Input('value') _value;
+  @Input('value') _value = '';
   @Input('placeholder') _placeholder;
   @Input('className') _class;
   @Input('onChange') _onChange;
+  @Input('onOut') _onOut;
   @Input('showPopup') _showPopup;
   @Input('items') _items;
+  @Input('popupId') _popupId;
   @HostListener('document:click', ['$event'])
   clickOuter(event) {
     if(!this.eRef.nativeElement.contains(event.target)) {
       this._showPopup = false;
+      if (this._onOut) {
+        this._onOut();
+      }
     }
   }
 
@@ -54,6 +59,7 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value) {
+    console.log(value);
     if (value) {
       this.value = value;
     }

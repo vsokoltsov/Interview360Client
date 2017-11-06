@@ -22,12 +22,15 @@ export class InterviewFormComponent implements OnInit {
   companyId: number;
   interviewId: number;
   employees: User[] = [];
+  popupsShowing: {} = {};
+  employeesValues: {} = {};
   datePickerConfig: IDatePickerConfig = {
     format: 'YYYY-MM-DD HH:m',
     showSeconds: false,
     showTwentyFourHours: true
   };
   @Input() showPopup = false;
+  public currentPopupId: string;
   public assigned_at: any;
   public interviewFormErrors: Object = { };
 
@@ -52,17 +55,22 @@ export class InterviewFormComponent implements OnInit {
     this.subscription = this.store.select('employees').subscribe(
       data => {
         if (data.list) {
-          if (data.list.length > 0) { this.showPopup = true; }
-          this.employees = data.list;
+          if (data.list.length > 0) { this.popupsShowing[this.currentPopupId] = true; }
+          this.employeesValues[this.currentPopupId] = data.list;
         }
       }
     );
   }
 
-
   selectEmployee(employee: User) {
     this.interviewForm.get('candidate_email').setValue(employee.email);
-    this.showPopup = false;
+    this.popupsShowing[this.currentPopupId] = false;
+  }
+
+  selectInterviewee(index: number, employee: User) {
+    (<FormArray>this.interviewForm.get('interviewee_ids'))
+      .controls[index].setValue(employee.email);
+    this.popupsShowing[this.currentPopupId] = false;
   }
 
   getInterviews(form) {
@@ -78,7 +86,18 @@ export class InterviewFormComponent implements OnInit {
     this.interviewsService.createInterview(this.companyId, this.interviewForm.value);
   }
 
-  employeeChange(event: any) {
+  employeeChange(event: any, popupId?: string) {
+    if (popupId) {
+      this.currentPopupId = popupId;
+    }
     this.employeesService.searchEmployees(this.companyId, event.target.value);
+  }
+
+  deleteInterviewee(index: number) {
+    (<FormArray>this.interviewForm.get('interviewee_ids')).removeAt(index);
+  }
+
+  focusOut() {
+
   }
 }

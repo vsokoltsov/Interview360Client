@@ -2,7 +2,8 @@
   [placeholder]="_placeholder"
   [class]="_class"
   type="text"
-  (keyup)="_onChange($event)">
+  [value]="value"
+  (keyup)="_onChange($event, _popupId ? _popupId.join('') : null)">
   <div class="items-list card" *ngIf="_showPopup">
     <ng-content></ng-content>
   </div>

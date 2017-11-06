@@ -1,21 +1,16 @@
 :host{
-  // .items-list {
-  //   &.card {
-  //     margin: 0px;
-  //   }
-    // width: 20em;
-    // max-height: 10em;
-    // overflow-y: scroll;
+  .interviewee_ids {
+    display: flex;
+    flex-direction: row;
 
-    // .item{
-    //   display: flex;
-    //   flex-direction: row;
-    //   cursor: pointer;
-    //   padding: 10px;
-    //
-    //   &:hover {
-    //     box-shadow: 0 0 10px rgba(0,0,0,.15);
-    //   }
-    // }
-  // }
+    .block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .interviewee-item {
+      display: flex;
+      flex-direction: row;
+    }
+  }
 }
