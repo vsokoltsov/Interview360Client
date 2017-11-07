@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   exports: [
-    AutocompleteComponent, CommonModule
+    AutocompleteComponent
   ]
 })
 export class AutocompleteModule {}

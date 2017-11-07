@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CookieService } from 'angular2-cookie/core';
 import { Observable } from 'rxjs/Observable';
+import { DpDatePickerModule } from 'ng2-date-picker';
 import 'rxjs';
 import 'rxjs/add/observable/of';
 
@@ -16,12 +17,15 @@ import { InterviewFormComponent } from './interview-form.component';
 import { InterviewsComponent } from '../interviews.component';
 import { InterviewListItemComponent } from '../interview-list-item/interview-list-item.component';
 import { InterviewsService } from '../interviews.service';
+import { VacanciesService } from '../../vacancies/vacancies.service';
+import { EmployeesService } from '../../employees/employees.service';
 import { Company } from '../../companies/company.model';
 import { Interview } from '../interview.model';
 import { Vacancy } from '../../vacancies/vacancy.model';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../shared/api.service';
 import * as fromApp from '../../store/app.reducers';
+import { AutocompleteModule } from '../../shared/autocomplete/autocomplete.module';
 
 const vacancy = new Vacancy(1, 'b', 'c');
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
@@ -58,11 +62,15 @@ describe('InterviewFormComponent', () => {
         RouterTestingModule,
         NgxSvgIconModule,
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        AutocompleteModule,
+        DpDatePickerModule
       ],
       providers: [
         ApiService,
         CookieService,
+        VacanciesService,
+        EmployeesService,
         InterviewsService,
         {
           provide: ActivatedRoute, useValue: {

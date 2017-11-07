@@ -7,8 +7,7 @@
       className="field candidate_email"
       [popupId]="['candidate_email']"
       [showPopup]="this.popupsShowing['candidate_email']"
-      [onChange]="employeeChange.bind(this)"
-      [onOut]="focusOut.bind(this)">
+      [Change]="employeeChange.bind(this)">
       <div *ngFor="let employee of employeesValues['candidate_email']" class="item" (click)="selectEmployee(employee)">
         <svg-icon
           name="user-placeholder"
@@ -40,8 +39,7 @@
         [value]="vacancyName"
         [popupId]="['vacancy_id']"
         [showPopup]="this.popupsShowing['vacancy_id']"
-        [onChange]="vacanciesSearch.bind(this)"
-        [onOut]="focusOut.bind(this)">
+        [Change]="vacanciesSearch.bind(this)">
         <div *ngFor="let vacancy of employeesValues['vacancy_id']" class="item" (click)="selectVacancy(vacancy)">
           <p class="name">{{ vacancy.title }}</p>
         </div>
@@ -94,7 +92,7 @@
             [popupId]="['interviewee_', idx]"
             [formControlName]="idx"
             [showPopup]="this.popupsShowing['interviewee_'+ idx]"
-            [onChange]="employeeChange.bind(this)">
+            [Change]="employeeChange">
             <div *ngFor="let employee of employeesValues['interviewee_'+ idx]" class="item" (click)="selectInterviewee(idx, employee)">
               <svg-icon
                 name="user-placeholder"

@@ -17,7 +17,7 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
   @Input('value') _value = '';
   @Input('placeholder') _placeholder;
   @Input('className') _class;
-  @Input('onChange') _onChange;
+  @Input('Change') _onChange;
   @Input('onOut') _onOut;
   @Input('showPopup') _showPopup;
   @Input('items') _items;
@@ -59,7 +59,6 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value) {
-    console.log(value);
     if (value) {
       this.value = value;
     }
