@@ -1,19 +1,34 @@
 :host {
-  display: flex;
-  .candidate-block {
-    padding: 10px;
+  .interview-page{
+    display: flex;
+    .candidate-block {
+      padding: 10px;
 
-    .name, .email, .role {
-      padding: 5px;
+      .name, .email, .role {
+        padding: 5px;
+      }
     }
-  }
 
-  .calendar-block {
-    padding: 10px;
+    .calendar-block {
+      padding: 10px;
 
-    .base-date {
-      .date {
-        font-size: 60px;
+      .base-date {
+        display: flex;
+        flex-direction: column;
+
+        .date {
+          display: flex;
+          flex-direction: column;
+
+          .number {
+            font-size: 60px;
+          }
+
+          .month {
+            font-size: 30px;
+          }
+
+        }
       }
     }
   }

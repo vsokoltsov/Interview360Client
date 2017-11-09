@@ -30,8 +30,8 @@
     </div>
     <div class="base-date">
       <div class="date">
-        <span class="number">{{getDate(interview)?.getDate()}}</span>
-        <span class="month"></span>
+        <span class="number">{{ interview?.assigned_at | date: 'd' }}</span>
+        <span class="month">{{ interview?.assigned_at | date: 'MMMM' }}</span>
       </div>
       <div class="time"></div>
     </div>
