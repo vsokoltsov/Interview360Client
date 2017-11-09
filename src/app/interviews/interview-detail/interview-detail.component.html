@@ -20,5 +20,21 @@
     </div>
   </div>
 
-  <div class="calendar-block"></div>
+  <div class="calendar-block card">
+    <div class="title">
+      <svg-icon
+        name="calendar-icon"
+        size="25">
+      </svg-icon>
+      <span>Appointed at</span>
+    </div>
+    <div class="base-date">
+      <div class="date">
+        <span class="number">{{getDate(interview)?.getDate()}}</span>
+        <span class="month"></span>
+      </div>
+      <div class="time"></div>
+    </div>
+
+  </div>
 </div>

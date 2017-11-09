@@ -55,6 +55,12 @@ export class InterviewDetailComponent implements OnInit, OnDestroy {
     this.interviewsService.receiveInterview(this.companyId, this.interviewId);
   }
 
+  getDate(interview) {
+    if (interview) {
+      return new Date(interview.assigned_at);
+    }
+  }
+
   getRole(user) {
 
     if (user) {
