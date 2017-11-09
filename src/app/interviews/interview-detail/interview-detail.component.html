@@ -1,6 +1,24 @@
-<p>
-  {{ interview?.id }}
-</p>
-<p>
-  {{ interview?.assigned_at | date: 'dd.MM.yyyy H:M' }}
-</p>
+<div class="interview-page">
+  <div class="candidate-block card">
+    <div class="avatar">
+      <svg-icon
+        name="user-placeholder"
+        size="100"
+        *ngIf="interview?.candidate.attachment == null">
+      </svg-icon>
+      <img class="logo" [src]="interview?.candidate.attachment.thumb_url" *ngIf="interview?.candidate.attachment != null" />
+    </div>
+    <div class="name" *ngIf="interview?.candidate.first_name && interview?.candidate.last_name">
+      {{ interview?.candidate.first_name }}
+      {{ interview?.candidate.last_name }}
+    </div>
+    <div class="email">
+      {{ interview?.candidate.email }}
+    </div>
+    <div class="role">
+      {{ getRole(interview?.candidate) }}
+    </div>
+  </div>
+
+  <div class="calendar-block"></div>
+</div>

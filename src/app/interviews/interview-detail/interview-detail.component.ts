@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
+import { User } from '../../auth/user.model';
 import { Company } from '../../companies/company.model';
 import { Vacancy } from '../../vacancies/vacancy.model';
 import { Interview } from '../interview.model';
@@ -52,6 +53,24 @@ export class InterviewDetailComponent implements OnInit, OnDestroy {
     this.companyId = parentParans['companyId'];
     this.interviewId = params.params['id'];
     this.interviewsService.receiveInterview(this.companyId, this.interviewId);
+  }
+
+  getRole(user) {
+
+    if (user) {
+      switch(user.role.role) {
+        case 1:
+          return 'CEO';
+        case 2:
+          return 'HR';
+        case 3:
+          return 'Candidate'
+        case 4:
+          return 'Employee';
+        default:
+          return 'Employee';
+      }
+    }
   }
 
 }

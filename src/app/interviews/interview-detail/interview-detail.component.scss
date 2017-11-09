@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  .candidate-block {
+    padding: 10px;
+
+    .name, .email, .role {
+      padding: 5px;
+    }
+  }
+}

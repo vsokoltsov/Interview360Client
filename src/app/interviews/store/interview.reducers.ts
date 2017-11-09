@@ -23,7 +23,7 @@ export function interviewsReducer(state=initialState, action: InterviewActions.I
     case InterviewActions.INTERVIEW_LOADED:
       return {
         ...state,
-        detail: action.payload
+        detail: (<Interview>action.payload)
       };
     case InterviewActions.SUCCESS_CREATED_INTERVIEW:
       return {

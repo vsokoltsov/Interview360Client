@@ -12,8 +12,8 @@ export class Interview {
 
 
   constructor(id?: number, vacancy_id?: number, candidate_id?: number,
-              assigned_at?: any, candidate: User = null,
-              vacancy: Vacancy = null) {
+              assigned_at?: any, candidate?: User,
+              vacancy?: Vacancy) {
                 this.id = id;
                 this.vacancy_id = vacancy_id;
                 this.candidate_id = candidate_id;
