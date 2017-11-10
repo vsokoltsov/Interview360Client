@@ -102,6 +102,20 @@
 
   .interviews {
     padding: 10px;
+    .title {
+        display: flex;
+        flex-direction: row;
+
+        h3 {
+          margin: 0px;
+        }
+
+        a {
+          margin-left: 10px;
+          text-decoration: none;
+          color: black;
+        }
+    }
 
     .list {
       display: flex;

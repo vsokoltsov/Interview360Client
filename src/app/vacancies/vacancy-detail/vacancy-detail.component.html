@@ -61,15 +61,22 @@
       </div>
     </div>
   </div>
-  <div class="interviews card" *ngIf="vacancy?.interviews.length > 0">
-    <h3>Interviews</h3>
-    <div class="list">
+  <div class="interviews card" >
+    <div class="title">
+      <h3>Interviews</h3>
+      <a [routerLink]="['/companies', this.companyId, 'interviews', 'new']">
+        <svg-icon name="plus-icon" size="20"></svg-icon>
+      </a>
+    </div>
+    <div class="list" *ngIf="vacancy?.interviews?.length > 0">
       <div app-interview-list-item
         *ngFor="let interview of vacancy?.interviews"
         [interview]="interview"
         [route]="['/companies', companyId, 'interviews', interview.id]"
-        class="item card tab-item">
-      </div>
+        class="item card tab-item"></div>
+    </div>
+    <div *ngIf="vacancy?.interviews?.length === 0" class="empty-interviews">
+      There is no interviews
     </div>
   </div>
 </div>

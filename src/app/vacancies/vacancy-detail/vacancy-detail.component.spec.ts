@@ -23,6 +23,7 @@ import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../auth/auth.service';
 import * as fromApp from '../../store/app.reducers';
 import { PipeModule } from '../../shared/pipe.module';
+import { InterviewsModule } from '../../interviews/interviews.module';
 
 const vacancy = new Vacancy(1, 'b', 'c');
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
@@ -62,7 +63,8 @@ describe('VacancyDetailComponent', () => {
         NgxSvgIconModule,
         HttpClientModule,
         HttpClientTestingModule,
-        PipeModule
+        PipeModule,
+        InterviewsModule
       ],
       providers: [
         ApiService,
