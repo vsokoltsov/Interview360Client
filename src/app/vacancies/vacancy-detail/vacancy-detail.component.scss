@@ -102,5 +102,10 @@
 
   .interviews {
     padding: 10px;
+
+    .list {
+      display: flex;
+      flex-direction: row;
+    }
   }
 }
