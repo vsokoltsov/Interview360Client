@@ -60,6 +60,16 @@
         </div>
       </div>
     </div>
-
+  </div>
+  <div class="interviews card" *ngIf="vacancy?.interviews.length > 0">
+    <h3>Interviews</h3>
+    <div class="list">
+      <div app-interview-list-item
+        *ngFor="let interview of vacancy?.interviews"
+        [interview]="interview"
+        [route]="['/companies', companyId, 'interviews', interview.id]"
+        class="item card tab-item">
+      </div>
+    </div>
   </div>
 </div>
