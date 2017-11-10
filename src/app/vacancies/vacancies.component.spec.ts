@@ -3,6 +3,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { StoreModule, Store } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { Observable } from 'rxjs/Observable';
@@ -68,7 +69,8 @@ describe('VacanciesComponent', () => {
         ]),
         NgxSvgIconModule,
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ReactiveFormsModule
       ],
       providers: [
         ApiService,
