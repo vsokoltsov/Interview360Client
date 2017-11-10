@@ -9,13 +9,15 @@ import { VacanciesListItemComponent } from './vacancies-list-item/vacancies-list
 import { VacancyEmpty } from './vacancy-empty/vacancy-empty.component';
 import { VacancyDetailComponent } from './vacancy-detail/vacancy-detail.component';
 import { VacancyFormComponent } from './vacancy-form/vacancy-form.component';
+import { PipeModule } from '../shared/pipe.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     VacanciesRoutingModule,
-    NgxSvgIconModule
+    NgxSvgIconModule,
+    PipeModule
   ],
   declarations: [
     VacanciesComponent,

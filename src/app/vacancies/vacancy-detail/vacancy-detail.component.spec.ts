@@ -90,6 +90,7 @@ describe('VacancyDetailComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VacancyDetailComponent);
     component = fixture.componentInstance;
+    component.vacancy = vacancy;
     store = TestBed.get(Store);
     vacanciesService = TestBed.get(VacanciesService);
     httpMock = TestBed.get(HttpTestingController);

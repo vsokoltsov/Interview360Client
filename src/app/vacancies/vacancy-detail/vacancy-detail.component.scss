@@ -1,3 +1,5 @@
+@import '~variables.scss';
+
 :host {
   display: flex;
 
@@ -16,23 +18,9 @@
         margin: 0px 5px;
         cursor: pointer;
       }
-    }
 
-    .base-info-block {
-      display: flex;
-      flex-direction: row;
+      .content-block {
 
-      .company-image {
-        padding: 2em;
-      }
-
-      .company-information {
-        padding-right: 2em;
-
-        .info {
-          text-align: left;
-          margin-top: 1em;
-        }
       }
     }
   }
@@ -45,6 +33,41 @@
         width: auto;
         min-width: 5em;
       }
+    }
+  }
+
+  .skills-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .skill-item {
+      padding: 5px;
+      background-color: $skill_tag;
+      margin: 5px;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+
+      &.unselected {
+        background-color: $unselected_skill_tag;
+      }
+    }
+  }
+
+  .company.card {
+    padding: 10px;
+
+    .title {
+      font-size: 30px;
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+
+    .city {
+      font-size: 20px;
     }
   }
 }
