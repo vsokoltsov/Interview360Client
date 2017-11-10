@@ -20,6 +20,7 @@ export class VacancyDetailComponent implements OnInit, OnDestroy {
   vacancyId: number;
   companyId: number;
   subscription: Subscription;
+  showDescription: boolean = false;
 
   constructor(
     private vacanciesService: VacanciesService,
@@ -60,6 +61,10 @@ export class VacancyDetailComponent implements OnInit, OnDestroy {
     this.companyId = parentParans['companyId'];
     this.vacancyId = params.params['id'];
     this.vacanciesService.receiveVacancy(this.companyId, this.vacancyId);
+  }
+
+  toggleDescription() {
+    this.showDescription = !this.showDescription;
   }
 
 }

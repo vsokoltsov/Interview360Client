@@ -43,7 +43,10 @@
           {{ vacancy.salary }}
         </div>
         <div class="description" *ngIf="vacancy">
-          {{ vacancy.description | truncate: 200 }}
+          {{ vacancy.description | truncate: 200:showDescription }}
+          <a (click)="toggleDescription()" class="desc-toggler">
+            {{ showDescription ? 'Show less' : 'Show more' }}
+          </a>
         </div>
       </div>
 
