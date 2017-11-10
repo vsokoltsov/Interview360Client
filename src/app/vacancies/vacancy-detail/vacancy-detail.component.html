@@ -34,22 +34,27 @@
       </div>
     </div>
 
-    <div class="vacancy card">
-      <div class="title" *ngIf="vacancy">
-        {{ vacancy.title }}
+    <div class="vacancy-info">
+      <div class="vacancy card">
+        <div class="title" *ngIf="vacancy">
+          {{ vacancy.title }}
+        </div>
+        <div class="salary" *ngIf="vacancy">
+          {{ vacancy.salary }}
+        </div>
+        <div class="description" *ngIf="vacancy">
+          {{ vacancy.description | truncate: 200 }}
+        </div>
       </div>
-      <div class="salary" *ngIf="vacancy">
-        {{ vacancy.salary }}
-      </div>
-      <div class="description" *ngIf="vacancy">
-        {{ vacancy.description }}
-      </div>
-      <div class="skills-list" *ngIf="vacancy">
-        <a
-          *ngFor="let skill of vacancy.skills"
-          class="skill-item">
-          {{ skill.name }}
-        </a>
+
+      <div class="skills card">
+        <div class="skills-list" *ngIf="vacancy">
+          <a
+            *ngFor="let skill of vacancy.skills"
+            class="skill-item">
+            {{ skill.name }}
+          </a>
+        </div>
       </div>
     </div>
 
