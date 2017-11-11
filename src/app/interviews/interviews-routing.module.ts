@@ -8,7 +8,8 @@ import { InterviewFormComponent } from './interview-form/interview-form.componen
 export const interviewsRoutes: Routes = [
   { path: '', component: InterviewsComponent, children: [
     { path: 'new', component: InterviewFormComponent, pathMatch: 'full' },
-    { path: ':id', component: InterviewDetailComponent }
+    { path: ':id', component: InterviewDetailComponent },
+    { path: ':id/edit', component: InterviewFormComponent }
   ] },
 ];
 

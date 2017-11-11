@@ -22,6 +22,7 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
   @Input('showPopup') _showPopup;
   @Input('items') _items;
   @Input('popupId') _popupId;
+  @Input('disabled') _disabled;
   @HostListener('document:click', ['$event'])
   clickOuter(event) {
     if(!this.eRef.nativeElement.contains(event.target)) {

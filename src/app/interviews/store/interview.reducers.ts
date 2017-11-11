@@ -36,6 +36,27 @@ export function interviewsReducer(state=initialState, action: InterviewActions.I
         ...state,
         formErrors: action.payload
       };
+    case InterviewActions.SUCCESS_UPDATED_INTERVIEW:
+      const interview = state.list.find(item => item.id == action.payload.id);
+      const index = state.list.findIndex(item => item.id == action.payload.id);
+      const updatedInterviewParams = {
+        ...interview,
+        ...action.payload
+      };
+      const updatedInterview = Object.assign(new Interview(), updatedInterviewParams);
+      const interviews = [...state.list];
+      interviews[index] = updatedInterview;
+      return {
+        ...state,
+        list: interviews,
+        detail: action.payload,
+        formErrors: null
+      };
+    case InterviewActions.FAILED_UPDATED_INTERVIEW:
+    return {
+      ...state,
+      updateErrors: action.payload
+    };
     default:
       return state;
   }

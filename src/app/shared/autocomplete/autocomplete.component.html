@@ -3,6 +3,7 @@
   [class]="_class"
   type="text"
   [value]="value"
+  [disabled]="_disabled"
   (keyup)="_onChange($event, _popupId ? _popupId.join('') : null)">
   <div class="items-list card" *ngIf="_showPopup">
     <ng-content></ng-content>

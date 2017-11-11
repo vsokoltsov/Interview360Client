@@ -42,4 +42,15 @@ export class InterviewsService {
       }
     );
   }
+
+  updateInterview(companyId: number, interviewId: number, params: {}) {
+    this.apiService.put(`/companies/${companyId}/interviews/${interviewId}/`, params).subscribe(
+      response => {
+        this.store.dispatch(new InterviewsActions.SuccessUpdatedInterview(response.body.interview));
+      },
+      failure => {
+        this.store.dispatch(new InterviewsActions.FailedUpdatedInterview(failure.body.errors));
+      }
+    );
+  }
 }

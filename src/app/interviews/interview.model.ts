@@ -9,16 +9,18 @@ export class Interview {
   public candidate: User;
   public vacancy: Vacancy;
   public assigned_at: any;
+  public interviewees: User[];
 
 
   constructor(id?: number, vacancy_id?: number, candidate_id?: number,
               assigned_at?: any, candidate?: User,
-              vacancy?: Vacancy) {
+              vacancy?: Vacancy, interviewees?: User[]) {
                 this.id = id;
                 this.vacancy_id = vacancy_id;
                 this.candidate_id = candidate_id;
                 this.assigned_at = assigned_at;
                 this.candidate = candidate;
                 this.vacancy = vacancy;
+                this.interviewees = interviewees;
               }
 }

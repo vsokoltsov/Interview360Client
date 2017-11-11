@@ -1,6 +1,20 @@
 :host {
   .interview-page{
     display: flex;
+    flex-direction: column;
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 2em;
+      padding-top: 10px;
+    }
+
+    .page-content {
+      display: flex;
+      flex-direction: row;
+    }
+
     .candidate-block {
       padding: 10px;
 

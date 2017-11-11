@@ -22,6 +22,7 @@ export class InterviewFormComponent implements OnInit, OnDestroy{
   interviewForm: FormGroup;
   subscription: Subscription;
   vacanciesSubscription: Subscription;
+  interviewsSubscrition: Subscription;
   companyId: number;
   interviewId: number;
   employees: User[] = [];
@@ -34,6 +35,7 @@ export class InterviewFormComponent implements OnInit, OnDestroy{
     showTwentyFourHours: true
   };
   vacancyName: string = '';
+  interview: Interview;
   @Input() showPopup = false;
   public currentPopupId: string;
   public assigned_at: any;
@@ -47,15 +49,29 @@ export class InterviewFormComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.interviewForm = new FormGroup({
-      'candidate_email': new FormControl(null, [Validators.required]),
-      'vacancy_id': new FormControl(null, [Validators.required]),
+      'candidate_email': new FormControl({value: null, disabled: this.interview !== null }, [Validators.required]),
+      'vacancy_id': new FormControl({value: null, disabled: this.interview !== null }, [Validators.required]),
       'assigned_at': new FormControl(null, [Validators.required]),
       'interviewee_ids': new FormArray([])
     });
     this.activatedRoute.params.subscribe((params: Params) => {
       const parameters = this.activatedRoute.snapshot;
-      const parentParans = parameters.parent.params;
-      this.companyId = parentParans['companyId'];
+      const parentParams = parameters.parent.params;
+      this.companyId = parentParams['companyId'];
+      this.interviewId = parameters.params['id'];
+      if (this.interviewId) {
+        this.interviewsService.receiveInterview(this.companyId, this.interviewId);
+      }
+      else {
+        if (this.interviewForm) {
+          this.interviewForm.patchValue({
+            candidate_email: null,
+            vacancy_id: null,
+            assigned_at: null,
+            interviewee_ids: []
+          });
+        }
+      }
     });
     this.subscription = this.store.select('employees').subscribe(
       data => {
@@ -72,12 +88,35 @@ export class InterviewFormComponent implements OnInit, OnDestroy{
           this.employeesValues[this.currentPopupId] = data.list;
         }
       }
-    )
+    );
+    this.interviewsSubscrition = this.store.select('interviews').subscribe(
+      data => {
+        if (data.detail) {
+          let intervieweesIds = [];
+          this.interview = data.detail;
+          this.vacancyName = this.interview.vacancy.title;
+          if (this.interview.interviewees) {
+            intervieweesIds = this.interview.interviewees.map(item => {
+                return new FormControl({value: item.email, disabled: this.interview !== null }, Validators.required);
+            });
+          }
+          this.interviewForm.patchValue({
+            'candidate_email': data.detail.candidate.email,
+            'vacancy_id':  data.detail.vacancy.id,
+            'assigned_at': data.detail.assigned_at
+          });
+          if ((<FormArray>this.interviewForm.get('interviewee_ids')).controls.length == 0) {
+            this.interviewForm.setControl('interviewee_ids', new FormArray(intervieweesIds));
+          }
+        }
+      }
+    );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.vacanciesSubscription.unsubscribe();
+    this.interviewsSubscrition.unsubscribe();
   }
 
   selectEmployee(employee: User) {
@@ -107,7 +146,11 @@ export class InterviewFormComponent implements OnInit, OnDestroy{
   }
 
   submit() {
-    this.interviewsService.createInterview(this.companyId, this.interviewForm.value);
+    if (this.interview) {
+      this.interviewsService.updateInterview(this.companyId, this.interview.id, this.interviewForm.value);
+    } else {
+        this.interviewsService.createInterview(this.companyId, this.interviewForm.value);
+    }
   }
 
   employeeChange(event: any, popupId?: string) {
