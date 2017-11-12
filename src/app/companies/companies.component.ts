@@ -43,4 +43,9 @@ export class CompaniesComponent implements OnInit {
     this.companiesService.searchCompanies(query)
   }
 
+  submitSearch() {
+    const query = this.companiesSearchForm.get('query').value;
+    this.companiesService.searchCompanies(query);
+  }
+
 }

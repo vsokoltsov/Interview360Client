@@ -9,8 +9,7 @@
       <div class="search card">
         <form class="form horizontal"
           [formGroup]="vacanciesSearchForm"
-          (ngSubmit)="searchVacancies()">
-
+          (ngSubmit)="searchSubmit()">
           <div class="form-field">
             <input
               formControlName="query"
@@ -30,7 +29,7 @@
           *ngFor="let vacancy of vacancies"
           [vacancy]="vacancy"
           [route]="[vacancy?.id]"
-          class="item card list-item"></div>
+          class="item card list-item">
       </div>
     </div>
     <div class="inner-elements card">

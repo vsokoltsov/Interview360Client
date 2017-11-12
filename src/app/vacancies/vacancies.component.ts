@@ -50,4 +50,9 @@ export class VacanciesComponent implements OnInit {
     this.vacanciesService.searchVacancies(this.companyId, query);
   }
 
+  searchSubmit() {
+    const query = this.vacanciesSearchForm.get('query').value;
+    this.searchVacancies(query);
+  }
+
 }

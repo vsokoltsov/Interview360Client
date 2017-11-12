@@ -10,13 +10,13 @@
         <form
           class="form horizontal"
           [formGroup]="companiesSearchForm"
-          (ngSubmit)="searchCompanies()">
+          (ngSubmit)="submitSearch()">
           <div class="form-field">
             <input
               formControlName="query"
               placeholder="Search"
               class="field"
-              type="text">
+              type="text" />
           </div>
           <div class="form-actions">
             <button class="button clear icon">

@@ -1,5 +1,6 @@
 import { Company } from '../companies/company.model';
 import { Skill } from './skill.model';
+import { Interview } from '../interviews/interview.model';
 
 export class Vacancy {
   public id: number;
@@ -11,9 +12,11 @@ export class Vacancy {
   public company_id: number;
   public company: Company;
   public updated_at: any;
+  public interviews: Interview[];
 
   constructor(id?: number, title?: string, description?: string, salary?: number,
-              active?: boolean, company_id?: number, updated_at?: any, skills = null, company: Company = null) {
+              active?: boolean, company_id?: number, updated_at?: any, skills = null,
+              company: Company = null, interviews: Interview[] = null) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -22,5 +25,6 @@ export class Vacancy {
     this.skills = skills;
     this.company = company;
     this.updated_at = updated_at;
+    this.interviews = interviews;
   }
 }
