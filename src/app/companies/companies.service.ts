@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -60,5 +60,14 @@ export class CompaniesService {
         this.store.dispatch(new CompaniesActions.DeleteCompany(company));
       }
     );
+  }
+
+  searchCompanies(query: string) {
+    const params = new HttpParams().set('q', query);
+    this.apiService.get(`/companies/search/`, params).subscribe(
+      response => {
+        this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.body.companies));
+      }
+    )
   }
 }
