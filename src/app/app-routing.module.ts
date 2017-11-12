@@ -6,12 +6,14 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { profileRoutes } from './profile/profile-routing.module';
 import { companiesRoutes } from './companies/companies-routing.module';
 import { vacanciesRoutes } from './vacancies/vacancies-routing.module';
+import { interviewsRoutes } from './interviews/interviews-routing.module';
 
 export const appRoutes: Routes = [
   { path: '', component: RootComponent, canActivate: [AuthGuard], children: [
     { path: '', redirectTo: 'companies', pathMatch: 'full' },
     { path: 'companies', children: [...companiesRoutes] },
     { path: 'companies/:companyId/vacancies', children: [...vacanciesRoutes] },
+    { path: 'companies/:companyId/interviews', children: [...interviewsRoutes] },
     { path: 'users', children: [...profileRoutes] }
   ]}
 ];

@@ -9,6 +9,7 @@ import { Vacancy } from '../vacancy.model';
 })
 export class VacanciesListItemComponent implements OnInit {
   @Input() vacancy: Vacancy;
+  @Input() route: string[];
 
   constructor() { }
 

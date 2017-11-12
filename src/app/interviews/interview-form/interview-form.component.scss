@@ -1,0 +1,16 @@
+:host{
+  .interviewee_ids {
+    display: flex;
+    flex-direction: row;
+
+    .block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .interviewee-item {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}

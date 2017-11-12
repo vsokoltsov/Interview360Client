@@ -22,8 +22,10 @@ import { RootComponent } from './root/root.component';
 import { reducers } from './store/app.reducers';
 import { AuthService } from './auth/auth.service';
 import { ProfileService } from './profile/profile.service';
+import { InterviewsService } from './interviews/interviews.service';
 import { CompaniesService } from './companies/companies.service';
 import { VacanciesService } from './vacancies/vacancies.service';
+import { EmployeesService } from './employees/employees.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
@@ -33,6 +35,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 import { CompaniesModule } from './companies/companies.module';
 import { VacanciesModule } from './vacancies/vacancies.module';
+import { InterviewsModule } from './interviews/interviews.module';
 import { PipeModule } from './shared/pipe.module';
 
 export const MODULES = {
@@ -56,6 +59,7 @@ export const MODULES = {
     ProfileModule,
     CompaniesModule,
     VacanciesModule,
+    InterviewsModule,
     PipeModule
   ],
   providers: [
@@ -64,6 +68,8 @@ export const MODULES = {
     CookieService,
     CompaniesService,
     VacanciesService,
+    InterviewsService,
+    EmployeesService,
     ApiService,
     {provide: APP_BASE_HREF, useValue : '/' },
     AuthGuard,

@@ -1,0 +1,12 @@
+:host {
+  padding: 10px;
+
+  &.list-item {
+    display: flex;
+    flex-direction: row;
+  }
+  &.tab-item {
+    display: flex;
+    flex-direction: row;
+  }
+}

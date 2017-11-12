@@ -35,7 +35,8 @@ describe('VacanciesTabComponent', () => {
         RouterTestingModule,
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        NgxSvgIconModule
       ],
       providers: [
         ApiService,

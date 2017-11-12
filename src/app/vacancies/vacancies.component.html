@@ -6,21 +6,30 @@
   </div>
   <div class="page">
     <div class="content-panel">
-      <div class="form horizontal search card">
-        <div class="form-field">
-          <input placeholder="Search" class="field" type="text">
-        </div>
-        <div class="form-actions">
-          <button class="button clear icon">
-            <svg-icon name="search-magnifier" size="25"></svg-icon>
-          </button>
-        </div>
+      <div class="search card">
+        <form class="form horizontal"
+          [formGroup]="vacanciesSearchForm"
+          (ngSubmit)="searchSubmit()">
+          <div class="form-field">
+            <input
+              formControlName="query"
+              placeholder="Search"
+              class="field"
+              type="text">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="button clear icon">
+              <svg-icon name="search-magnifier" size="25"></svg-icon>
+            </button>
+          </div>
+        </form>
       </div>
       <div class="base list">
         <div app-vacancies-list-item
           *ngFor="let vacancy of vacancies"
           [vacancy]="vacancy"
-          class="item card list-item"></div>
+          [route]="[vacancy?.id]"
+          class="item card list-item">
       </div>
     </div>
     <div class="inner-elements card">

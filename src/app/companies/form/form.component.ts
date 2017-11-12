@@ -23,7 +23,7 @@ export class FormComponent implements OnInit, OnDestroy {
   owner: User;
   public companyFormErrors: Object = { name: null, start_date: null };
   config = {
-    format: 'YYYY-MM-DD',
+    format: 'YYYY-MM-DD H:m',
     required: true
   };
   imageUrl: string;

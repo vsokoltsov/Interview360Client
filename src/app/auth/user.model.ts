@@ -12,24 +12,35 @@ export class User {
     large_url: string
   };
   public roles: {};
-  public member_role: {
+  public role: {
     id: number,
     role: number
   };
 
   constructor(id?: number, email?: string,
-              first_name?: string, last_name?: string, roles: {} = null, member_role = null) {
+              first_name?: string, last_name?: string, roles?: {}, role: any = null) {
     this.id = id;
     this.email = email;
     this.first_name = first_name;
     this.last_name = last_name;
     this.roles = roles;
-    this.member_role = member_role;
+    this.role = role;
   }
 
   getRoleName() {
-    if (this.member_role && this.member_role.role == 1) {
-      return 'CEO';
+    if (this.role.role) {
+      switch(this.role.role) {
+        case 1:
+          return 'CEO';
+        case 2:
+          return 'HR';
+        case 3:
+          return 'Candidate'
+        case 4:
+          return 'Employee';
+        default:
+          return 'Employee';
+      }
     }
   }
 }

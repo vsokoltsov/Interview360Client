@@ -1,0 +1,49 @@
+<div class="interview-page">
+  <div class="actions">
+    <a [routerLink]="['edit']">
+      <svg-icon
+        name="edit-icon"
+        size="25"></svg-icon>
+    </a>
+  </div>
+  <div class="page-content">
+    <div class="candidate-block card">
+      <div class="avatar">
+        <svg-icon
+          name="user-placeholder"
+          size="100"
+          *ngIf="interview?.candidate.attachment == null">
+        </svg-icon>
+        <img class="logo" [src]="interview?.candidate.attachment.thumb_url" *ngIf="interview?.candidate.attachment != null" />
+      </div>
+      <div class="name" *ngIf="interview?.candidate.first_name && interview?.candidate.last_name">
+        {{ interview?.candidate.first_name }}
+        {{ interview?.candidate.last_name }}
+      </div>
+      <div class="email">
+        {{ interview?.candidate.email }}
+      </div>
+      <div class="role">
+        {{ getRole(interview?.candidate) }}
+      </div>
+    </div>
+
+    <div class="calendar-block card">
+      <div class="title">
+        <svg-icon
+          name="calendar-icon"
+          size="25">
+        </svg-icon>
+        <span>Appointed at</span>
+      </div>
+      <div class="base-date">
+        <div class="date">
+          <span class="number">{{ interview?.assigned_at | date: 'd' }}</span>
+          <span class="month">{{ interview?.assigned_at | date: 'MMMM' }}</span>
+        </div>
+        <div class="time"></div>
+      </div>
+
+    </div>
+  </div>
+</div>

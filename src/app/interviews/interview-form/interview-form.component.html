@@ -1,0 +1,124 @@
+<form class="form" [formGroup]="interviewForm" (ngSubmit)="submit()">
+
+  <div class="form-field">
+    <app-autocomplete
+      formControlName="candidate_email"
+      placeholder="Candidate"
+      className="field candidate_email"
+      [popupId]="['candidate_email']"
+      [showPopup]="this.popupsShowing['candidate_email']"
+      [Change]="employeeChange.bind(this)">
+      <div *ngFor="let employee of employeesValues['candidate_email']" class="item" (click)="selectEmployee(employee)">
+        <svg-icon
+          name="user-placeholder"
+          size="50"
+          *ngIf="employee?.attachment == null">
+        </svg-icon>
+        <img class="logo" [src]="employee.attachment.small_thumb_url" *ngIf="employee?.attachment != null" />
+        <p class="name">{{ employee.email }}</p>
+      </div>
+    </app-autocomplete>
+
+    <div class="error" *ngIf="interviewForm.get('candidate_email').touched &&
+      interviewForm.get('candidate_email').hasError('required')">
+      Interview candidate is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of interviewFormErrors['candidate_email']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <input
+      formControlName="vacancy_id"
+      type="hidden">
+
+      <app-autocomplete
+        placeholder="Vacancy"
+        className="field"
+        [value]="vacancyName"
+        [popupId]="['vacancy_id']"
+        [showPopup]="this.popupsShowing['vacancy_id']"
+        [Change]="vacanciesSearch.bind(this)">
+        <div *ngFor="let vacancy of employeesValues['vacancy_id']" class="item" (click)="selectVacancy(vacancy)">
+          <p class="name">{{ vacancy.title }}</p>
+        </div>
+      </app-autocomplete>
+
+    <div class="error" *ngIf="interviewForm.get('vacancy_id').touched &&
+      interviewForm.get('vacancy_id').hasError('required')">
+      Interview vacancy is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of interviewFormErrors['vacancy_id']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <input
+    placeholder="Assigned at"
+    class="field"
+    formControlName="assigned_at"
+    mode="daytime"
+    [dpDayPicker]="datePickerConfig"
+    [theme]="'dp-material dp-main'"
+    type="text">
+
+    <div class="error" *ngIf="interviewForm.get('assigned_at').touched &&
+      interviewForm.get('assigned_at').hasError('required')">
+      Start date is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of interviewFormErrors['assigned_at']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field interviewee_ids" formArrayName="interviewee_ids">
+    <div class="block">
+      <a
+        class="btn btn-default"
+        (click)="addInterviewee()">
+        <svg-icon
+          size="35"
+          name="plus-icon"></svg-icon>
+          Add interviewee
+      </a>
+      <div class="interviewee-list">
+        <div class="interviewee-item"
+          *ngFor="let interviewControl of getInterviews(interviewForm); let idx = index">
+          <app-autocomplete
+            placeholder="Interviewee"
+            className="field"
+            [popupId]="['interviewee_', idx]"
+            [formControlName]="idx"
+            [showPopup]="this.popupsShowing['interviewee_'+ idx]"
+            [Change]="employeeChange">
+            <div *ngFor="let employee of employeesValues['interviewee_'+ idx]" class="item" (click)="selectInterviewee(idx, employee)">
+              <svg-icon
+                name="user-placeholder"
+                size="50"
+                *ngIf="employee?.attachment == null">
+              </svg-icon>
+              <img class="logo" [src]="employee.attachment.small_thumb_url" *ngIf="employee?.attachment != null" />
+              <p class="name">{{ employee.email }}</p>
+            </div>
+          </app-autocomplete>
+
+
+          <a (click)="deleteInterviewee(idx)">
+            <svg-icon
+              size="20"
+              name="delete-icon"></svg-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button success"
+      [disabled]="!interviewForm.valid">Save</button>
+  </div>
+</form>

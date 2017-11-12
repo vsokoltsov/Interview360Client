@@ -8,4 +8,19 @@
       flex-direction: row;
     }
   }
+  .search.card {
+    .form {
+      .form-field {
+        width: 100%;
+
+        input {
+          width: auto;
+        }
+      }
+
+      .form-actions {
+        width: auto;
+      }
+    }
+  }
 }

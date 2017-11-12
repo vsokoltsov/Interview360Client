@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { StoreModule, Store } from '@ngrx/store';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
@@ -21,6 +22,8 @@ import { VacanciesService } from '../vacancies.service';
 import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../auth/auth.service';
 import * as fromApp from '../../store/app.reducers';
+import { PipeModule } from '../../shared/pipe.module';
+import { InterviewsModule } from '../../interviews/interviews.module';
 
 const vacancy = new Vacancy(1, 'b', 'c');
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
@@ -55,10 +58,13 @@ describe('VacancyDetailComponent', () => {
       ],
       imports: [
         StoreModule.forRoot(fromApp.reducers),
+        ReactiveFormsModule,
         RouterTestingModule,
         NgxSvgIconModule,
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        PipeModule,
+        InterviewsModule
       ],
       providers: [
         ApiService,
@@ -88,6 +94,7 @@ describe('VacancyDetailComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VacancyDetailComponent);
     component = fixture.componentInstance;
+    component.vacancy = vacancy;
     store = TestBed.get(Store);
     vacanciesService = TestBed.get(VacanciesService);
     httpMock = TestBed.get(HttpTestingController);

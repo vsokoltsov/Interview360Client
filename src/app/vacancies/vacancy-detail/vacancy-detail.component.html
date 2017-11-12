@@ -11,22 +11,72 @@
         size="25"></svg-icon>
     </a>
   </div>
-  <div class="base-infor-block">
-    <div class="title" *ngIf="vacancy">
-      {{ vacancy.title }}
+  <div class="content-block">
+    <div class="company card" *ngIf="vacancy?.company">
+      <div class="image">
+        <svg-icon
+          name="company-image-placeholder"
+          size="100"
+          *ngIf="vacancy.company.attachment == null">
+        </svg-icon>
+        <img [src]="vacancy.company.attachment.thumb_url" *ngIf="vacancy.company.attachment !== null" />
+      </div>
+      <div class="title">
+        <a [routerLink]="['/companies', vacancy.company.id]">
+          {{ vacancy.company.name }}
+        </a>
+      </div>
+      <div class="city">
+        {{ vacancy.company.city }}
+      </div>
+      <div class="short-description">
+        {{ vacancy.company.description | truncate:20 }}
+      </div>
     </div>
-    <div class="salary" *ngIf="vacancy">
-      {{ vacancy.salary }}
+
+    <div class="vacancy-info">
+      <div class="vacancy card">
+        <div class="title" *ngIf="vacancy">
+          {{ vacancy.title }}
+        </div>
+        <div class="salary" *ngIf="vacancy">
+          {{ vacancy.salary }}
+        </div>
+        <div class="description" *ngIf="vacancy">
+          {{ vacancy.description | truncate: 200:showDescription }}
+          <a (click)="toggleDescription()" class="desc-toggler">
+            {{ showDescription ? 'Show less' : 'Show more' }}
+          </a>
+        </div>
+      </div>
+
+      <div class="skills card">
+        <div class="skills-list" *ngIf="vacancy">
+          <a
+            *ngFor="let skill of vacancy.skills"
+            class="skill-item">
+            {{ skill.name }}
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="description" *ngIf="vacancy">
-      {{ vacancy.description }}
-    </div>
-    <div class="skills" *ngIf="vacancy">
-      <a
-        *ngFor="let skill of vacancy.skills"
-        class="skill-item">
-        {{ skill.name }}
+  </div>
+  <div class="interviews card" >
+    <div class="title">
+      <h3>Interviews</h3>
+      <a [routerLink]="['/companies', this.companyId, 'interviews', 'new']">
+        <svg-icon name="plus-icon" size="20"></svg-icon>
       </a>
+    </div>
+    <div class="list" *ngIf="vacancy?.interviews?.length > 0">
+      <div app-interview-list-item
+        *ngFor="let interview of vacancy?.interviews"
+        [interview]="interview"
+        [route]="['/companies', companyId, 'interviews', interview.id]"
+        class="item card tab-item"></div>
+    </div>
+    <div *ngIf="vacancy?.interviews?.length === 0" class="empty-interviews">
+      There is no interviews
     </div>
   </div>
 </div>
