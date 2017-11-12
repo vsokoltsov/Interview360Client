@@ -9,5 +9,8 @@
   </div>
   <div class="tab-action">
     <a *ngIf="companyId" class="button info" [routerLink]="['/companies', companyId, 'vacancies']">See more</a>
+    <a *ngIf="companyId" class="button success " [routerLink]="['/companies', companyId, 'vacancies', 'new']">
+      <svg-icon name="plus-icon" size="25"></svg-icon> Create
+    </a>
   </div>
 </div>
