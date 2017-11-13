@@ -7,6 +7,7 @@ import { profileRoutes } from './profile/profile-routing.module';
 import { companiesRoutes } from './companies/companies-routing.module';
 import { vacanciesRoutes } from './vacancies/vacancies-routing.module';
 import { interviewsRoutes } from './interviews/interviews-routing.module';
+import { employeesRoutes } from './employees/employees-routing.module';
 
 export const appRoutes: Routes = [
   { path: '', component: RootComponent, canActivate: [AuthGuard], children: [
@@ -14,6 +15,7 @@ export const appRoutes: Routes = [
     { path: 'companies', children: [...companiesRoutes] },
     { path: 'companies/:companyId/vacancies', children: [...vacanciesRoutes] },
     { path: 'companies/:companyId/interviews', children: [...interviewsRoutes] },
+    { path: 'companies/:companyId/employees', children: [...employeesRoutes] },
     { path: 'users', children: [...profileRoutes] }
   ]}
 ];
