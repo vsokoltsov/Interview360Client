@@ -33,8 +33,8 @@ export class VacanciesComponent implements OnInit {
       }
     );
     this.activatedRoute.params.subscribe((params: Params) => {
-        this.companyId = params['companyId'];
-        this.vacanciesService.loadList(this.companyId);
+      this.companyId = params['companyId'];
+      this.vacanciesService.loadList(this.companyId);
     });
 
     this.subscription = this.store.select('vacancies').subscribe(
