@@ -6,6 +6,7 @@ import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { EmployeesRoutingModule } from './employees-routing.module';
 import { EmployeesComponent } from './employees.component';
 import { EmployeesListItemComponent } from './employees-list-item/employees-list-item.component';
+import { EmployeesEmptyComponent } from './employees-empty/employees-empty.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { EmployeesListItemComponent } from './employees-list-item/employees-list
   ],
   declarations: [
     EmployeesComponent,
-    EmployeesListItemComponent
+    EmployeesListItemComponent,
+    EmployeesEmptyComponent
   ]
 })
 export class EmployeesModule {}
