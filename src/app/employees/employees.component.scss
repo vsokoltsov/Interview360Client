@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .item.card.vacancy-item {
+    .base-info {
+      flex-direction: row;
+    }
+  }
+  .search.card {
+    .form {
+      .form-field {
+        width: 100%;
+
+        input {
+          width: auto;
+        }
+      }
+
+      .form-actions {
+        width: auto;
+      }
+    }
+  }
+}

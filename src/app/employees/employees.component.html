@@ -1,3 +1,31 @@
-<p>
-  employees works!
-</p>
+<div class="list-block">
+  <div class="base-actions">
+    <a [routerLink]="['new']">
+      <svg-icon name="plus-icon" size="35"></svg-icon>
+    </a>
+  </div>
+  <div class="page">
+    <div class="content-panel">
+      <div class="form horizontal search card">
+        <div class="form-field">
+          <input placeholder="Search" class="field" type="text">
+        </div>
+        <div class="form-actions">
+          <button class="button clear icon">
+            <svg-icon name="search-magnifier" size="25"></svg-icon>
+          </button>
+        </div>
+      </div>
+      <div class="base list">
+        <div app-employees-list-item
+          *ngFor="let employee of employees"
+          [employee]="employee"
+          [route]="[employee?.id]"
+          class="item card list-item"></div>
+      </div>
+    </div>
+    <div class="inner-elements card">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

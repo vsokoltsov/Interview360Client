@@ -28,7 +28,6 @@ export class EmployeesTabComponent implements OnInit, OnDestroy {
           this.company = data.detail;
           this.companyId = this.company.id;
           this.employees = data.detail.employees;
-          console.log(this.employees);
         }
       }
     );

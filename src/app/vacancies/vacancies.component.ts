@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
@@ -13,7 +13,7 @@ import * as fromApp from '../store/app.reducers';
   templateUrl: './vacancies.component.html',
   styleUrls: ['./vacancies.component.scss']
 })
-export class VacanciesComponent implements OnInit {
+export class VacanciesComponent implements OnInit, OnDestroy {
   vacanciesSearchForm: FormGroup;
   vacancies: Vacancy[];
   subscription: Subscription;
@@ -44,6 +44,10 @@ export class VacanciesComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   searchVacancies(query: string) {
