@@ -27,8 +27,7 @@ export class EmployeesComponent implements OnInit, OnDestroy {
     this.subscription = this.store.select('employees').subscribe(
       data => {
         if (data.list) {
-          console.log(data.list);
-          this.employees = data.list;
+          this.employees = (<User[]>data.list);
         }
       }
     );

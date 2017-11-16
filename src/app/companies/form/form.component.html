@@ -29,7 +29,13 @@
   </div>
 
   <div class="form-field">
-    <input placeholder="Start date" class="field" formControlName="start_date" [dpDayPicker]="config" type="text">
+    <input
+      placeholder="Start date"
+      class="field"
+      formControlName="start_date"
+      [dpDayPicker]="config"
+      [theme]="'dp-material dp-main'"
+      type="text">
 
     <div class="error" *ngIf="companyForm.get('start_date').touched &&
       companyForm.get('start_date').hasError('required')">

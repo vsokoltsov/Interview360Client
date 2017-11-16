@@ -1,7 +1,16 @@
 <div class="side-navigation">
   <div class="user_panel side-nav-header" *ngIf="user">
     <div class="image">
-      <img class="logo" [src]="avatarUrl" />
+      <svg-icon
+        name="user-placeholder"
+        size="75"
+        *ngIf="cavatarUrl == null">
+      </svg-icon>
+      <img
+        [src]="avatarUrl"
+        width="75" height="75"
+        class="logo"
+        *ngIf="avatarUrl != null" />
     </div>
     <div class="base-info info-block">
       {{ user.first_name }} {{user.last_name}}
