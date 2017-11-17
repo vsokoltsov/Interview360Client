@@ -14,6 +14,7 @@ import 'rxjs/add/observable/of';
 
 import { EmployeesComponent } from './employees.component';
 import { EmployeesService } from './employees.service';
+import { EmployeesListItemComponent } from './employees-list-item/employees-list-item.component';
 import { User } from '../auth/user.model';
 import { ApiService } from '../shared/api.service';
 import * as fromApp from '../store/app.reducers';
@@ -28,7 +29,8 @@ describe('EmployeesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        EmployeesComponent
+        EmployeesComponent,
+        EmployeesListItemComponent
       ],
       imports: [
         StoreModule.forRoot(fromApp.reducers),

@@ -7,6 +7,7 @@ import { EmployeesRoutingModule } from './employees-routing.module';
 import { EmployeesComponent } from './employees.component';
 import { EmployeesListItemComponent } from './employees-list-item/employees-list-item.component';
 import { EmployeesEmptyComponent } from './employees-empty/employees-empty.component';
+import { EmployeesFormComponent } from './employees-form/employees-form.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,11 @@ import { EmployeesEmptyComponent } from './employees-empty/employees-empty.compo
   declarations: [
     EmployeesComponent,
     EmployeesListItemComponent,
-    EmployeesEmptyComponent
+    EmployeesEmptyComponent,
+    EmployeesFormComponent
+  ],
+  exports: [
+    EmployeesListItemComponent
   ]
 })
 export class EmployeesModule {}

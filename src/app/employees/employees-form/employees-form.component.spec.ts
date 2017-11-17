@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
 
-import { EmployeesEmptyComponent } from './employees-empty.component';
+import { EmployeesFormComponent } from './employees-form.component';
 
-describe('EmployeesEmptyComponent', () => {
-  let component: EmployeesEmptyComponent;
-  let fixture: ComponentFixture<EmployeesEmptyComponent>;
+describe('EmployeesFormComponent', () => {
+  let component: EmployeesFormComponent;
+  let fixture: ComponentFixture<EmployeesFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        EmployeesEmptyComponent
+        EmployeesFormComponent
       ],
       imports: [
         NgxSvgIconModule
@@ -20,7 +20,7 @@ describe('EmployeesEmptyComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmployeesEmptyComponent);
+    fixture = TestBed.createComponent(EmployeesFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

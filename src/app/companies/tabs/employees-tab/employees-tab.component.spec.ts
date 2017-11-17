@@ -3,6 +3,8 @@ import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/core';
+import { StoreModule, Store } from '@ngrx/store';
+import * as fromApp from '../../../store/app.reducers';
 
 import { EmployeesTabComponent } from './employees-tab.component';
 import { PipeModule } from '../../../shared/pipe.module';
@@ -15,7 +17,15 @@ describe('EmployeesTabComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmployeesTabComponent ]
+      declarations: [
+        EmployeesTabComponent
+      ],
+      imports: [
+        StoreModule.forRoot(fromApp.reducers),
+        RouterTestingModule,
+        HttpClientModule,
+        NgxSvgIconModule
+      ]
     })
     .compileComponents();
   }));
