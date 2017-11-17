@@ -1,0 +1,17 @@
+:host {
+  .employees-item {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+
+    input {
+      margin: 0px 10px;
+    }
+  }
+
+  .form {
+    .form-actions {
+      justify-content: flex-start;
+    }
+  }
+}
