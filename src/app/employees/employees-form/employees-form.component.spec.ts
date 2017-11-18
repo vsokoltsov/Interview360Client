@@ -5,12 +5,20 @@ import { StoreModule, Store } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CookieService } from 'angular2-cookie/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs';
+import 'rxjs/add/observable/of';
 
+import { Company } from '../../companies/company.model';
 import { EmployeesFormComponent } from './employees-form.component';
 import { EmployeesService } from '..//employees.service';
 import * as fromApp from '../../store/app.reducers';
 import * as EmployeesActions from '..//store/employees.actions';
 import { ApiService } from '../../shared/api.service';
+
+const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
 
 describe('EmployeesFormComponent', () => {
   let component: EmployeesFormComponent;
@@ -26,12 +34,25 @@ describe('EmployeesFormComponent', () => {
         NgxSvgIconModule,
         ReactiveFormsModule,
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RouterTestingModule
       ],
       providers: [
         EmployeesService,
         ApiService,
-        CookieService
+        CookieService,
+        {
+          provide: ActivatedRoute, useValue: {
+            params: Observable.of({ companyId: company.id }),
+            snapshot: {
+              parent: {
+                params: {
+                  companyId: company.id
+                }
+              }
+            }
+          }
+        }
       ]
     })
     .compileComponents();
