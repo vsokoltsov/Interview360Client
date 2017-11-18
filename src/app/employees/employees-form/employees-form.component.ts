@@ -15,18 +15,27 @@ import * as EmployeesActions from '../store/employees.actions';
 })
 export class EmployeesFormComponent implements OnInit {
   employeesForm: FormGroup;
+  companyId: number;
 
   constructor(private store: Store<fromApp.AppState>,
-              private employeesService: EmployeesService) { }
+              private employeesService: EmployeesService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      const parameters = this.activatedRoute.snapshot;
+      const parentParans = parameters.parent.params;
+      this.companyId = parentParans['companyId'];
+    });
     this.employeesForm = new FormGroup({
       'employees': new FormArray([])
     });
   }
 
   submit() {
-    console.log(this.employeesForm.value);
+    const params = this.employeesForm.value;
+    params.company_id = this.companyId;
+    this.employeesService.createEmployee(this.companyId, params);
   }
 
   addEmployee() {

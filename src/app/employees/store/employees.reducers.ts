@@ -2,11 +2,13 @@ import { User } from '../../auth/user.model';
 import * as EmployeesActions from './employees.actions';
 
 export interface State {
-  list: User[]
+  list: User[],
+  formErrors: {}
 };
 
 export const initialState: State = {
-  list: []
+  list: [],
+  formErrors: null
 };
 
 export function employeesReducer(
@@ -16,6 +18,16 @@ export function employeesReducer(
       return {
         ...state,
         list: action.payload
+      };
+    case EmployeesActions.SUCCESS_EMPLOYEE_CREATED:
+      return {
+        ...state,
+        list: [...action.payload, ...state.list]
+      };
+    case EmployeesActions.FAILED_EMPLOYEE_CREATED:
+      return {
+        ...state,
+        formErrors: action.payload
       };
     default:
       return state;

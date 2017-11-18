@@ -33,4 +33,12 @@ export class EmployeesService {
       }
     )
   }
+
+  createEmployee(companyId: number, params: {}) {
+    this.apiService.post(`/companies/${companyId}/employees/`, params).subscribe(
+      response => {
+        this.store.dispatch(new EmployeesActions.SuccessEmployeeCreated(response.body.employees));
+      }
+    )
+  }
 }
