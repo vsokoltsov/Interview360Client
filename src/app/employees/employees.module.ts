@@ -8,6 +8,7 @@ import { EmployeesComponent } from './employees.component';
 import { EmployeesListItemComponent } from './employees-list-item/employees-list-item.component';
 import { EmployeesEmptyComponent } from './employees-empty/employees-empty.component';
 import { EmployeesFormComponent } from './employees-form/employees-form.component';
+import { EmployeesDetailComponent } from './employees-detail/employees-detail.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { EmployeesFormComponent } from './employees-form/employees-form.componen
     EmployeesComponent,
     EmployeesListItemComponent,
     EmployeesEmptyComponent,
-    EmployeesFormComponent
+    EmployeesFormComponent,
+    EmployeesDetailComponent
   ],
   exports: [
     EmployeesListItemComponent
