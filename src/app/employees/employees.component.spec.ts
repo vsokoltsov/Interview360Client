@@ -18,7 +18,7 @@ import { EmployeesListItemComponent } from './employees-list-item/employees-list
 import { User } from '../auth/user.model';
 import { ApiService } from '../shared/api.service';
 import * as fromApp from '../store/app.reducers';
-
+import { ImageModule } from '../shared/image/image.module';
 const user = new User(1, 'a', 'b');
 
 describe('EmployeesComponent', () => {
@@ -38,7 +38,8 @@ describe('EmployeesComponent', () => {
         RouterTestingModule,
         NgxSvgIconModule,
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ImageModule
       ],
       providers: [
         EmployeesService,

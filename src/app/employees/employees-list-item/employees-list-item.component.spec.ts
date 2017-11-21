@@ -3,6 +3,7 @@ import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { EmployeesListItemComponent } from './employees-list-item.component';
+import { ImageModule } from '../../shared/image/image.module';
 
 describe('EmployeesListItemComponent', () => {
   let component: EmployeesListItemComponent;
@@ -13,7 +14,8 @@ describe('EmployeesListItemComponent', () => {
       declarations: [ EmployeesListItemComponent ],
       imports: [
         NgxSvgIconModule,
-        RouterTestingModule
+        RouterTestingModule,
+        ImageModule
       ]
     })
     .compileComponents();
