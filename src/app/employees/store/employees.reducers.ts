@@ -36,6 +36,16 @@ export function employeesReducer(
         ...state,
         formErrors: action.payload
       };
+    case EmployeesActions.SUCCESS_EMPLOYEE_UPDATED:
+      return {
+        ...state,
+        detail: action.payload
+      };
+    case EmployeesActions.FAILED_EMPLOYEE_UPDATED:
+      return {
+        ...state,
+        formErrors: action.payload
+      };
     default:
       return state;
   }

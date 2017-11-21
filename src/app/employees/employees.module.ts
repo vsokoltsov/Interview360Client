@@ -10,6 +10,9 @@ import { EmployeesEmptyComponent } from './employees-empty/employees-empty.compo
 import { EmployeesFormComponent } from './employees-form/employees-form.component';
 import { EmployeesDetailComponent } from './employees-detail/employees-detail.component';
 import { ImageModule } from '../shared/image/image.module';
+import { EmployeeUpdateFormComponent } from './employee-update-form/employee-update-form.component';
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { UploaderModule } from '../shared/uploader/uploader.module';
 
 @NgModule({
   imports: [
@@ -17,14 +20,17 @@ import { ImageModule } from '../shared/image/image.module';
     ReactiveFormsModule,
     EmployeesRoutingModule,
     NgxSvgIconModule,
-    ImageModule
+    ImageModule,
+    UploaderModule,
+    FileUploadModule
   ],
   declarations: [
     EmployeesComponent,
     EmployeesListItemComponent,
     EmployeesEmptyComponent,
     EmployeesFormComponent,
-    EmployeesDetailComponent
+    EmployeesDetailComponent,
+    EmployeeUpdateFormComponent
   ],
   exports: [
     EmployeesListItemComponent

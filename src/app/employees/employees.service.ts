@@ -47,6 +47,20 @@ export class EmployeesService {
     this.apiService.post(`/companies/${companyId}/employees/`, params).subscribe(
       response => {
         this.store.dispatch(new EmployeesActions.SuccessEmployeeCreated(response.body.employees));
+      },
+      errors => {
+        this.store.dispatch(new EmployeesActions.FailedEmployeeCreated(errors.body.errors));
+      }
+    )
+  }
+
+  updateEmployee(companyId: number, employeeId: number, params: {}) {
+    this.apiService.put(`/companies/${companyId}/employees/${employeeId}/`, params).subscribe(
+      response => {
+        this.store.dispatch(new EmployeesActions.SuccessEmployeeUpdated(response.body.employees));
+      },
+      errors => {
+        this.store.dispatch(new EmployeesActions.FailedEmployeeUpdated(errors.body.errors));
       }
     )
   }
