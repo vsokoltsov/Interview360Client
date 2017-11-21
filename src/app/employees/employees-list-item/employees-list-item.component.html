@@ -1,13 +1,15 @@
-<div class="image">
-  <app-image
-    [size]="75"
-    [url]="employee?.attachment?.small_thumb_url"
-    placeholder="user-placeholder"></app-image>
-</div>
-<div class="base-info">
-  <div class="employee-name" *ngIf="employee?.email">
-    <a [routerLink]="route">
-      {{ employee?.email }}
-    </a>
+<div class="base-item">
+  <div class="image">
+    <app-image
+      [size]="75"
+      [url]="employee?.attachment?.small_thumb_url"
+      placeholder="user-placeholder"></app-image>
+  </div>
+  <div class="base-info">
+    <div class="employee-name" *ngIf="employee?.email">
+      <a [routerLink]="route">
+        {{ employee?.email }}
+      </a>
+    </div>
   </div>
 </div>
