@@ -6,13 +6,14 @@ import { Component, OnInit, Input, Output } from '@angular/core';
   styleUrls: ['./image.component.scss']
 })
 export class ImageComponent implements OnInit {
-  @Input() url: string;
-  @Input() size: number;
-  @Input() placeholder: string;
+  @Input('url') url: string;
+  @Input('size') size: number;
+  @Input('placeholder') placeholder: string;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this);
   }
 
 }

@@ -9,13 +9,15 @@ import { EmployeesListItemComponent } from './employees-list-item/employees-list
 import { EmployeesEmptyComponent } from './employees-empty/employees-empty.component';
 import { EmployeesFormComponent } from './employees-form/employees-form.component';
 import { EmployeesDetailComponent } from './employees-detail/employees-detail.component';
+import { ImageModule } from '../shared/image/image.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     EmployeesRoutingModule,
-    NgxSvgIconModule
+    NgxSvgIconModule,
+    ImageModule
   ],
   declarations: [
     EmployeesComponent,
