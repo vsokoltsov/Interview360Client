@@ -20,6 +20,11 @@
     .employee-block {
       display: flex;
       flex-direction: row;
+
+      .role {
+        display: flex;
+        flex-direction: row;
+      }
     }
   }
 }

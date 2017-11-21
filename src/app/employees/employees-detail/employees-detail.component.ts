@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
 import { User } from '../../auth/user.model';
+import { getRole } from '../../shared/roles';
 import { EmployeesService } from '../employees.service';
 import * as fromApp from '../../store/app.reducers';
 import * as EmployeesActions from '../store/employees.actions';
@@ -18,6 +19,7 @@ export class EmployeesDetailComponent implements OnInit, OnDestroy {
   companyId: number;
   employeeId: number;
   employee: User;
+  role: {};
 
   constructor(
     private employeesService: EmployeesService,
@@ -34,8 +36,8 @@ export class EmployeesDetailComponent implements OnInit, OnDestroy {
     this.subscription = this.store.select('employees').subscribe(
       data => {
         if (data.detail) {
-          console.log(data.detail);
           this.employee = data.detail;
+          this.role = getRole(this.employee.member_role)
         }
       }
     );

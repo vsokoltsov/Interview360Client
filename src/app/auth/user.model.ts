@@ -17,14 +17,21 @@ export class User {
     role: number
   };
 
+  public member_role: {
+    id: number,
+    role: number
+  };
+
   constructor(id?: number, email?: string,
-              first_name?: string, last_name?: string, roles?: {}, role: any = null) {
+              first_name?: string, last_name?: string, roles?: {},
+              role: any = null, member_role: any = null) {
     this.id = id;
     this.email = email;
     this.first_name = first_name;
     this.last_name = last_name;
     this.roles = roles;
     this.role = role;
+    this.member_role = member_role;
   }
 
   getRoleName() {
