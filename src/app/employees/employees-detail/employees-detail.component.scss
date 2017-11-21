@@ -1,0 +1,25 @@
+:host {
+  .employee-page {
+    display: flex;
+    flex-direction: column;
+
+    .employee-actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      padding-right: 1em;
+      padding-top: 1em;
+
+      a {
+        margin: 0px 5px;
+        cursor: pointer;
+      }
+    }
+
+    .employee-block {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}

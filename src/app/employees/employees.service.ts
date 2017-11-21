@@ -25,6 +25,15 @@ export class EmployeesService {
     )
   }
 
+  receiveEmployee(companyId: number, employeeId: number) {
+    this.apiService.get(`/companies/${companyId}/employees/${employeeId}/`).subscribe(
+      response => {
+
+        this.store.dispatch(new EmployeesActions.ReceiveEmployee(response.body));
+      }
+    )
+  }
+
   searchEmployees(companyId: number, query: string) {
     const params = new HttpParams().set('q', query);
     this.apiService.get(`/companies/${companyId}/employees/search/`, params).subscribe(
