@@ -19,6 +19,9 @@
         placeholder="user-placeholder"></app-image>
     </div>
     <div class="base-info">
+      <div class="name" *ngIf="employee?.first_name && employee?.last_name">
+        {{ employee?.first_name }} {{ employee?.last_name }}
+      </div>
       <div class="email">
         {{ employee?.email }}
       </div>
