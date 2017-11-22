@@ -12,7 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import 'rxjs';
 import 'rxjs/add/observable/of';
 
-
 import { User } from '../../auth/user.model';
 import { UploaderModule } from '../../shared/uploader/uploader.module';
 import { Company } from '../../companies/company.model';

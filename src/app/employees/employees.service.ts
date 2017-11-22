@@ -57,7 +57,7 @@ export class EmployeesService {
   updateEmployee(companyId: number, employeeId: number, params: {}) {
     this.apiService.put(`/companies/${companyId}/employees/${employeeId}/`, params).subscribe(
       response => {
-        this.store.dispatch(new EmployeesActions.SuccessEmployeeUpdated(response.body.employees));
+        this.store.dispatch(new EmployeesActions.SuccessEmployeeUpdated(response.body.employee));
       },
       errors => {
         this.store.dispatch(new EmployeesActions.FailedEmployeeUpdated(errors.body.errors));

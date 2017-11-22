@@ -37,9 +37,20 @@ export function employeesReducer(
         formErrors: action.payload
       };
     case EmployeesActions.SUCCESS_EMPLOYEE_UPDATED:
+      const employee = state.list.find(item => item.id == action.payload.id);
+      const index = state.list.findIndex(item => item.id == action.payload.id);
+      const updatedEmployeeParams = {
+        ...employee,
+        ...action.payload
+      };
+      const updatedEmployee = Object.assign(new User(), updatedEmployeeParams);
+      const employees = [...state.list];
+      employees[index] = <User>updatedEmployee;
       return {
         ...state,
-        detail: action.payload
+        list: employees,
+        detail: action.payload,
+        formErrors: null
       };
     case EmployeesActions.FAILED_EMPLOYEE_UPDATED:
       return {
