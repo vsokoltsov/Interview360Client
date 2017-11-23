@@ -1,0 +1,38 @@
+<div class="employee-page">
+  <div class="employee-actions">
+    <a [routerLink]="['edit']">
+      <svg-icon
+        name="edit-icon"
+        size="25"></svg-icon>
+    </a>
+    <a (click)="deleteVacancy()">
+      <svg-icon
+        name="delete-icon"
+        size="25"></svg-icon>
+    </a>
+  </div>
+  <div class="employee-block">
+    <div class="image">
+      <app-image
+        [size]="100"
+        [url]="employee?.attachment?.thumb_url"
+        placeholder="user-placeholder"></app-image>
+    </div>
+    <div class="base-info">
+      <div class="name" *ngIf="employee?.first_name && employee?.last_name">
+        {{ employee?.first_name }} {{ employee?.last_name }}
+      </div>
+      <div class="email">
+        {{ employee?.email }}
+      </div>
+      <div class="role">
+        <div class="icon">
+          <app-image
+            [url]="null"
+            [size]="30"
+            [placeholder]="role?.icon"></app-image>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

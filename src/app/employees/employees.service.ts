@@ -17,11 +17,58 @@ export class EmployeesService {
   constructor(private apiService: ApiService,
               private store: Store<fromApp.AppState>) {}
 
+  loadEmployees(companyId: number) {
+    this.apiService.get(`/companies/${companyId}/employees/`).subscribe(
+      response => {
+        this.store.dispatch(new EmployeesActions.EmployeesLoaded(response.body.employees));
+      }
+    )
+  }
+
+  receiveEmployee(companyId: number, employeeId: number) {
+    this.apiService.get(`/companies/${companyId}/employees/${employeeId}/`).subscribe(
+      response => {
+
+        this.store.dispatch(new EmployeesActions.ReceiveEmployee(response.body));
+      }
+    )
+  }
+
   searchEmployees(companyId: number, query: string) {
     const params = new HttpParams().set('q', query);
     this.apiService.get(`/companies/${companyId}/employees/search/`, params).subscribe(
       (response: HttpResponse<{users: User[]}>) => {
         this.store.dispatch(new EmployeesActions.EmployeesLoaded(response.body.users));
+      }
+    )
+  }
+
+  createEmployee(companyId: number, params: {}) {
+    this.apiService.post(`/companies/${companyId}/employees/`, params).subscribe(
+      response => {
+        this.store.dispatch(new EmployeesActions.SuccessEmployeeCreated(response.body.employees));
+      },
+      errors => {
+        this.store.dispatch(new EmployeesActions.FailedEmployeeCreated(errors.error.errors));
+      }
+    )
+  }
+
+  updateEmployee(companyId: number, employeeId: number, params: {}) {
+    this.apiService.put(`/companies/${companyId}/employees/${employeeId}/`, params).subscribe(
+      response => {
+        this.store.dispatch(new EmployeesActions.SuccessEmployeeUpdated(response.body.employee));
+      },
+      errors => {
+        this.store.dispatch(new EmployeesActions.FailedEmployeeUpdated(errors.error.errors));
+      }
+    )
+  }
+
+  deleteEmployee(companyId: number, employeeId: number, employee: User) {
+    this.apiService.destroy(`/companies/${companyId}/employees/${employeeId}/`).subscribe(
+      response => {
+        this.store.dispatch(new EmployeesActions.DeleteEmployee(employee));
       }
     )
   }

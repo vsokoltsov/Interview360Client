@@ -1,0 +1,15 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center; /* align items in Main Axis */
+  align-items: center; /* align items in Cross Axis */
+
+  text-align: center;
+
+  h2 {
+    width: 100%;
+  }
+}

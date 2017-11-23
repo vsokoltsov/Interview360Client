@@ -1,0 +1,38 @@
+<form class="form" [formGroup]="employeesForm" (ngSubmit)="submit()">
+  <div class="form-field employees" formArrayName="employees">
+    <div class="action">
+      <a
+        class="btn btn-default"
+        (click)="addEmployee()">
+        <svg-icon
+          size="35"
+          name="plus-icon"></svg-icon>
+          Add employee
+      </a>
+    </div>
+    <div
+      class="employees-item"
+      *ngFor="let employeeControl of employeesForm.get('employees').controls; let idx = index"
+      [formGroupName]="idx">
+      <div></div>
+      <input
+        type="text"
+        class="field"
+        formControlName="email"
+        placeholder="Email"
+        name="email" />
+      <input
+        type="text"
+        class="field"
+        formControlName="role"
+        placeholder="Role"
+        name="role" />
+    </div>
+  </div>
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button success"
+      [disabled]="!employeesForm.valid">Save</button>
+  </div>
+</form>

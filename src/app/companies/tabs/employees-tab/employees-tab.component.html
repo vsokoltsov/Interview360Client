@@ -1,3 +1,10 @@
-<p>
-  employees-tab works!
-</p>
+<div class="employees-tabs">
+  <div class="employees tab-list">
+  </div>
+  <div class="tab-action">
+    <a *ngIf="companyId" class="button info" [routerLink]="['/companies', companyId, 'employees']">See more</a>
+    <a *ngIf="companyId" class="button success " [routerLink]="['/companies', companyId, 'employees', 'new']">
+      <svg-icon name="plus-icon" size="25"></svg-icon> Create
+    </a>
+  </div>
+</div>
