@@ -12,7 +12,7 @@
     </div>
     <div
       class="employees-item"
-      *ngFor="let employeeControl of employeesForm.get('employees').controls; let idx = index"
+      *ngFor="let employeeControl of getEmployeesControls(); let idx = index"
       [formGroupName]="idx">
       <div></div>
       <input

@@ -19,7 +19,7 @@ export class EmployeesDetailComponent implements OnInit, OnDestroy {
   companyId: number;
   employeeId: number;
   employee: User;
-  role: {};
+  role: any;
 
   constructor(
     private employeesService: EmployeesService,
