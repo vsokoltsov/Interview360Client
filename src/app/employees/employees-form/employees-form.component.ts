@@ -32,6 +32,10 @@ export class EmployeesFormComponent implements OnInit {
     });
   }
 
+  getEmployeesControls() {
+    return (<FormArray>this.employeesForm.get('employees')).controls;
+  }
+
   submit() {
     const params = this.employeesForm.value;
     params.company_id = this.companyId;
