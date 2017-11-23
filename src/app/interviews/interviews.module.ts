@@ -10,6 +10,7 @@ import { InterviewListItemComponent } from './interview-list-item/interview-list
 import { InterviewDetailComponent } from './interview-detail/interview-detail.component';
 import { InterviewFormComponent } from './interview-form/interview-form.component';
 import { AutocompleteModule } from '../shared/autocomplete/autocomplete.module';
+import { InterviewEmptyComponent } from './interview-empty/interview-empty.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { AutocompleteModule } from '../shared/autocomplete/autocomplete.module';
     InterviewsComponent,
     InterviewListItemComponent,
     InterviewDetailComponent,
-    InterviewFormComponent
+    InterviewFormComponent,
+    InterviewEmptyComponent
   ],
   exports: [
     InterviewListItemComponent
