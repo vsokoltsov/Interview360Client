@@ -39,6 +39,11 @@ export class EmployeesDetailComponent implements OnInit, OnDestroy {
           this.employee = data.detail;
           this.role = getRole(this.employee.member_role)
         }
+
+        if (data.employeeDeleted) {
+          this.store.dispatch(new EmployeesActions.DisableDeleteEmployee());
+          this.router.navigate(['/companies', this.companyId, 'employees']);
+        }
       }
     );
   }
@@ -47,6 +52,9 @@ export class EmployeesDetailComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  deleteVacancy() {
+    this.employeesService.deleteEmployee(this.companyId, this.employeeId, this.employee);
+  }
 
   private loadVacancy() {
     const params = this.activatedRoute.snapshot;

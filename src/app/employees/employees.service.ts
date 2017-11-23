@@ -64,4 +64,12 @@ export class EmployeesService {
       }
     )
   }
+
+  deleteEmployee(companyId: number, employeeId: number, employee: User) {
+    this.apiService.destroy(`/companies/${companyId}/employees/${employeeId}/`).subscribe(
+      response => {
+        this.store.dispatch(new EmployeesActions.DeleteEmployee(employee));
+      }
+    )
+  }
 }

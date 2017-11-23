@@ -8,6 +8,8 @@ export const FAILED_EMPLOYEE_CREATED = 'FAILED_EMPLOYEE_CREATED';
 export const EMPLOYEE_LOADED = 'EMPLOYEE_LOADED';
 export const SUCCESS_EMPLOYEE_UPDATED = 'SUCCESS_EMPLOYEE_UPDATED';
 export const FAILED_EMPLOYEE_UPDATED = 'FAILED_EMPLOYEE_UPDATED';
+export const DELETE_EMPLOYEE = 'DELETE_EMPLOYEE';
+export const DISABLE_DELETE_EMPLOYEE = 'DISABLE_DELETE_EMPLOYEE';
 
 export class EmployeesLoaded implements Action {
   readonly type = EMPLOYEES_LOADED;
@@ -45,10 +47,22 @@ export class FailedEmployeeUpdated implements Action {
   constructor(public payload: {}) { }
 }
 
+export class DeleteEmployee implements Action {
+  readonly type = DELETE_EMPLOYEE;
+
+  constructor(public payload: User) { }
+}
+
+export class DisableDeleteEmployee implements Action {
+  readonly type = DISABLE_DELETE_EMPLOYEE;
+}
+
 export type EmployeesActions =
 EmployeesLoaded |
 ReceiveEmployee |
 SuccessEmployeeCreated |
 FailedEmployeeCreated |
 SuccessEmployeeUpdated |
-FailedEmployeeUpdated;
+FailedEmployeeUpdated |
+DeleteEmployee |
+DisableDeleteEmployee;

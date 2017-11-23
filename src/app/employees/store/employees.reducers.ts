@@ -4,13 +4,15 @@ import * as EmployeesActions from './employees.actions';
 export interface State {
   list: User[],
   detail: User,
-  formErrors: {}
+  formErrors: {},
+  employeeDeleted: boolean
 };
 
 export const initialState: State = {
   list: [],
   detail: null,
-  formErrors: null
+  formErrors: null,
+  employeeDeleted: false
 };
 
 export function employeesReducer(
@@ -56,6 +58,21 @@ export function employeesReducer(
       return {
         ...state,
         formErrors: action.payload
+      };
+    case EmployeesActions.DELETE_EMPLOYEE:
+      const deleteIndex = state.list.findIndex(item => item.id == action.payload.id);
+      const oldEmployees = [...state.list];
+
+      oldEmployees.splice(deleteIndex, 1);
+      return {
+        ...state,
+        list: oldEmployees,
+        employeeDeleted: true
+      };
+    case EmployeesActions.DISABLE_DELETE_EMPLOYEE:
+      return {
+        ...state,
+        employeeDeleted: false
       };
     default:
       return state;
