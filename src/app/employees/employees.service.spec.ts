@@ -60,7 +60,7 @@ describe('EmployeesService', () => {
   });
 
   it('searchEmployees(): success response', () => {
-    store.select('vacancies').subscribe(
+    store.select('employees').subscribe(
       data => {
         if (data.list.length > 0) {
           expect(data.list[0].id).toEqual(response.id);
@@ -69,8 +69,105 @@ describe('EmployeesService', () => {
 
     employeesService.searchEmployees(company.id, 'test');
     let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/employees/search/?q=test`);
-    result.flush([response]);
+    result.flush({ users: [response] });
     httpMock.verify();
   });
 
+  it('loadEmployees(): success response', () => {
+    store.select('employees').subscribe(
+      data => {
+        if (data.list.length > 0) {
+          expect(data.list[0].id).toEqual(response.id);
+        }
+    });
+
+    employeesService.loadEmployees(company.id);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/employees/`);
+    result.flush({ employees: [response]});
+    httpMock.verify();
+  });
+
+  it('loadEmployee(): success response', () => {
+    store.select('employees').subscribe(
+      data => {
+        if (data.detail) {
+          expect(data.detail.id).toEqual(response.id);
+        }
+    });
+
+    employeesService.receiveEmployee(company.id, user.id);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/employees/${user.id}/`);
+    result.flush(response);
+    httpMock.verify();
+  });
+
+  it('createEmployee(): success response', () => {
+    store.select('employees').subscribe(
+      data => {
+        if (data.list.length > 0) {
+          expect(data.list[0].id).toEqual(response.id);
+        }
+    });
+
+    employeesService.createEmployee(company.id, [response]);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/employees/`);
+    result.flush({employees: [response]});
+    httpMock.verify();
+  });
+
+  it('createEmployee(): failed response', () => {
+    store.select('employees').subscribe(
+      data => {
+        if (data.formErrors) {
+          expect(data.formErrors).toEqual(errors.errors);
+        }
+    });
+
+    employeesService.createEmployee(company.id, [response]);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/employees/`);
+    result.flush(errors, { status: 400, statusText: 'BAD_REQUEST' });
+    httpMock.verify();
+  });
+
+  it('updateEmployee(): success response', () => {
+    store.select('employees').subscribe(
+      data => {
+        if (data.list.length > 0) {
+          expect(data.list[0].id).toEqual(response.id);
+        }
+    });
+
+    employeesService.updateEmployee(company.id, user.id, response);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/employees/${user.id}/`);
+    result.flush({employee: response});
+    httpMock.verify();
+  });
+
+  it('updateEmployee(): failed response', () => {
+    store.select('employees').subscribe(
+      data => {
+        if (data.formErrors) {
+          expect(data.formErrors).toEqual(errors.errors);
+        }
+    });
+
+    employeesService.updateEmployee(company.id, user.id, response);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/employees/${user.id}/`);
+    result.flush(errors, { status: 400, statusText: 'BAD_REQUEST' });
+    httpMock.verify();
+  });
+
+  it('deleteEmployee(): success response', () => {
+    store.select('employees').subscribe(
+      data => {
+        if (data.employeeDeleted) {
+          expect(data.employeeDeleted).toEqual(true);
+        }
+    });
+
+    employeesService.deleteEmployee(company.id, user.id, user);
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/employees/${user.id}/`);
+    result.flush(response);
+    httpMock.verify();
+  });
 });

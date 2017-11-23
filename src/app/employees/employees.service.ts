@@ -49,7 +49,7 @@ export class EmployeesService {
         this.store.dispatch(new EmployeesActions.SuccessEmployeeCreated(response.body.employees));
       },
       errors => {
-        this.store.dispatch(new EmployeesActions.FailedEmployeeCreated(errors.body.errors));
+        this.store.dispatch(new EmployeesActions.FailedEmployeeCreated(errors.error.errors));
       }
     )
   }
@@ -60,7 +60,7 @@ export class EmployeesService {
         this.store.dispatch(new EmployeesActions.SuccessEmployeeUpdated(response.body.employee));
       },
       errors => {
-        this.store.dispatch(new EmployeesActions.FailedEmployeeUpdated(errors.body.errors));
+        this.store.dispatch(new EmployeesActions.FailedEmployeeUpdated(errors.error.errors));
       }
     )
   }
