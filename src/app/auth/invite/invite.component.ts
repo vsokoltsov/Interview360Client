@@ -39,6 +39,10 @@ export class InviteComponent implements OnInit, OnDestroy {
           this.store.dispatch(new AuthActions.DisableSuccessInvite());
           this.router.navigate(['/auth', 'sign-in']);
         }
+
+        if (data.inviteErrors) {
+          this.inviteFormErrors = data.inviteErrors;
+        }
       }
     );
     this.activatedRoute.queryParams.subscribe((params: Params) => {

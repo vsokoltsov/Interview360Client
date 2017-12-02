@@ -62,4 +62,34 @@ describe('InviteComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set errors to the component resetPasswordErrors variable', () => {
+    const failedData = { errors: { password: ['Can\'t be blank'] } };
+    const action = new AuthActions.FailedInviteSubmit(failedData);
+    store.dispatch(action);
+
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.inviteFormErrors).toEqual(failedData);
+    });
+  });
+
+  it('should show erros under the password field', () => {
+    const failedData = { errors: {password: ['Can\'t be blank'] } };
+    const action = new AuthActions.FailedInviteSubmit(failedData.errors);
+    store.dispatch(action);
+
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const errorEmail = de.query(By.css('.form .error')).nativeElement;
+      expect(errorEmail.textContent).toContain(failedData.errors.password[0]);
+    });
+  });
+
+  it('call inviteSubmit action in authService', () => {
+    spyOn(authService, 'inviteSubmit').and.callThrough();
+
+    component.submitInvite();
+    expect(authService.inviteSubmit).toHaveBeenCalled();
+  });
 });
