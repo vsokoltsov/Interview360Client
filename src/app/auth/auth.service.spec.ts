@@ -11,6 +11,7 @@ import * as AuthActions from './store/auth.actions';
 import { ApiService } from '../shared/api.service';
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
+import { Company } from '../companies/company.model';
 
 const responseData = {current_user: {
   id: 1,
@@ -19,6 +20,7 @@ const responseData = {current_user: {
   last_name: 'b'
 }};
 const user = new User(1, 'example@mail.com', 'a', 'b');
+const company = new Company(1);
 
 describe('Service: AuthService', () => {
   let store: Store<fromApp.AppState>;
@@ -151,6 +153,21 @@ describe('Service: AuthService', () => {
     authService.resetPassword({ password: '123', password_confirmation: '123' });
     let result = httpMock.expectOne(`${environment.baseUrl}/reset_password/`);
     result.flush({errors: { email: 'Can\'t be blank' }}, {statusText: 'BAD_REQUEST', status: 401});
+    httpMock.verify();
+  });
+
+  it('inviteSubmit(): failed response', () => {
+    const errors = { email: ['AAa'] };
+
+    store.select('auth').subscribe(
+      (data: any) => {
+        if (data.inviteErrors) {
+          expect(data.inviteErrors).toEqual(errors);
+        }
+    });
+    authService.inviteSubmit(1, { password: '123', password_confirmation: '123' });
+    let result = httpMock.expectOne(`${environment.baseUrl}/companies/${company.id}/activate_member/`);
+    result.flush({errors: errors}, {statusText: 'BAD_REQUEST', status: 401});
     httpMock.verify();
   });
 });

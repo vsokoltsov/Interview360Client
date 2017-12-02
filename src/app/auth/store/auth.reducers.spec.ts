@@ -81,4 +81,32 @@ describe('AuthReducer', () => {
       })
     ).toEqual({ ...initialState, currentUser: user })
   });
+
+  it('runs SUCCESS_INVITE_SUBMIT action', () => {
+    initialState['inviteErrors'] = {};
+
+    expect(
+      authReducer(initialState, {
+        type: AuthActions.SUCCESS_INVITE_SUBMIT
+      })
+    ).toEqual({ ...initialState, inviteErrors: null, successSubmitInvite: true })
+  });
+
+  it('runs FAILED_INVITE_SUBMIT action', () => {
+    expect(
+      authReducer(initialState, {
+        type: AuthActions.FAILED_INVITE_SUBMIT, payload: {}
+      })
+    ).toEqual({ ...initialState, inviteErrors: {}, successSubmitInvite: false })
+  });
+
+  it('runs DISABLE_SUCCESS_INVITE action', () => {
+    initialState['successSubmitInvite'] = true;
+
+    expect(
+      authReducer(initialState, {
+        type: AuthActions.DISABLE_SUCCESS_INVITE
+      })
+    ).toEqual({ ...initialState, successSubmitInvite: false })
+  });
 });
