@@ -11,6 +11,8 @@ export const FAILED_SIGN_UP = 'FAILED_SIGN_UP';
 export const SUCCESS_RESET_PASSWORD = 'SUCCESS_RESET_PASSWORD';
 export const FAILED_RESET_PASSWORD = 'FAILED_RESET_PASSWORD';
 export const SIGN_OUT = 'SIGN_OUT';
+export const SUCCESS_INVITE_SUBMIT = 'SUCCESS_INVITE_SUBMIT';
+export const FAILED_INVITE_SUBMIT = 'FAILED_INVITE_SUBMIT';
 
 export class CurrentUserReceived implements Action {
   readonly type = CURRENT_USER_RECEIVED;
@@ -54,6 +56,16 @@ export class SignOut implements Action {
   readonly type = SIGN_OUT;
 }
 
+export class SuccessInviteSubmit implements Action {
+  readonly type = SUCCESS_INVITE_SUBMIT;
+}
+
+export class FailedInviteSubmit implements Action {
+  readonly type = FAILED_INVITE_SUBMIT;
+
+  constructor(public payload: { }) {}
+}
+
 export type AuthActions =
 CurrentUserReceived |
 FailedSignIn |
@@ -62,4 +74,6 @@ FailedRestorePassword |
 SuccessResetPassword |
 FailedResetPassword |
 ProfileActions.SuccessProfileUpdate |
-SignOut;
+SignOut |
+SuccessInviteSubmit |
+FailedInviteSubmit;

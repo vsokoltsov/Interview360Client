@@ -81,4 +81,22 @@ describe('AuthReducer', () => {
       })
     ).toEqual({ ...initialState, currentUser: user })
   });
+
+  it('runs SUCCESS_INVITE_SUBMIT action', () => {
+    initialState['inviteErrors'] = {};
+
+    expect(
+      authReducer(initialState, {
+        type: AuthActions.SUCCESS_INVITE_SUBMIT
+      })
+    ).toEqual({ ...initialState, inviteErrors: null })
+  });
+
+  it('runs FAILED_INVITE_SUBMIT action', () => {
+    expect(
+      authReducer(initialState, {
+        type: AuthActions.FAILED_INVITE_SUBMIT, payload: {}
+      })
+    ).toEqual({ ...initialState, inviteErrors: {} })
+  });
 });
