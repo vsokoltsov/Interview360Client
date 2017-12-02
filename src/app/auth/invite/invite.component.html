@@ -1,0 +1,34 @@
+<form class="form" [formGroup]="inviteForm" (ngSubmit)="submitInvite()">
+  <div class="form-field">
+    <input placeholder="Password" class="field" formControlName="password" type="password">
+
+    <div class="error" *ngIf="inviteForm.get('password').touched &&
+        inviteForm.get('password').hasError('required')">
+      Password is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of inviteFormErrors['password']" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class="form-field">
+    <input placeholder="Password confirmation" class="field" formControlName="password_confirmation" type="password">
+
+    <div class="error" *ngIf="inviteForm.get('password_confirmation').touched &&
+        inviteForm.get('password_confirmation').hasError('required')">
+      Password confirmation is <strong>required</strong>
+    </div>
+    <div class="error" *ngIf="inviteForm.get('password_confirmation').touched &&
+        inviteForm.get('password_confirmation').hasError('notMatching')">
+      Password confirmation is not matching the password
+    </div>
+    <div *ngFor="let error of inviteFormErrors['password_confirmation']" class="error">
+      {{error}}
+    </div>
+  </div>
+  <div class="form-actions">
+    <button
+      type="submit"
+      class="button primary"
+      [disabled]="inviteForm.invalid">Submit invite</button>
+  </div>
+</form>
