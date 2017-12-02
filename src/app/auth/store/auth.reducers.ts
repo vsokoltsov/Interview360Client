@@ -10,6 +10,7 @@ export interface State {
   restorePasswordErrors: {};
   resetPasswordErrors: {};
   inviteErrors: {};
+  successSubmitInvite: boolean;
 }
 
 export const initialState: State = {
@@ -19,7 +20,8 @@ export const initialState: State = {
   signUpErrors: null,
   restorePasswordErrors: null,
   resetPasswordErrors: null,
-  inviteErrors: null
+  inviteErrors: null,
+  successSubmitInvite: false
 };
 
 export function authReducer(state = initialState, action: AuthActions.AuthActions)  {
@@ -62,12 +64,19 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
     case AuthActions.SUCCESS_INVITE_SUBMIT:
       return {
         ...state,
-        inviteErrors: null
+        inviteErrors: null,
+        successSubmitInvite: true
       };
     case AuthActions.FAILED_INVITE_SUBMIT:
       return {
         ...state,
-        inviteErrors: action.payload
+        inviteErrors: action.payload,
+        successSubmitInvite: false
+      };
+    case AuthActions.DISABLE_SUCCESS_INVITE:
+      return {
+        ...state,
+        successSubmitInvite: false
       };
     default: return state;
   }

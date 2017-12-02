@@ -87,7 +87,7 @@ export class AuthService {
   }
 
   inviteSubmit(companyId: number, params: {}) {
-    this.apiService.post(`/companies/${companyId}/activate_member/`, params)
+    this.apiService.put(`/companies/${companyId}/activate_member/`, params)
       .subscribe(
         response => {
           this.store.dispatch(new AuthActions.SuccessInviteSubmit());

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -14,7 +14,7 @@ import * as AuthActions from '../store/auth.actions';
   templateUrl: './invite.component.html',
   styleUrls: ['./invite.component.scss']
 })
-export class InviteComponent implements OnInit {
+export class InviteComponent implements OnInit, OnDestroy {
   inviteForm: FormGroup;
   subscription: Subscription;
   token: string;
@@ -22,6 +22,7 @@ export class InviteComponent implements OnInit {
   public inviteFormErrors: Object = { };
 
   constructor(private store: Store<fromApp.AppState>,
+              private router: Router,
               private authService: AuthService,
               private activatedRoute: ActivatedRoute) { }
 
@@ -32,11 +33,17 @@ export class InviteComponent implements OnInit {
         Validators.required, this.matchingPassword.bind(this)
       ])
     });
-
+    this.subscription = this.store.select('auth').subscribe(
+      data => {
+        if (data.successSubmitInvite) {
+          this.store.dispatch(new AuthActions.DisableSuccessInvite());
+          this.router.navigate(['/auth', 'sign-in']);
+        }
+      }
+    );
     this.activatedRoute.queryParams.subscribe((params: Params) => {
         this.token = params['token'];
         this.companyId = params['company_id'];
-        console.log(params);
     });
   }
 
@@ -55,7 +62,13 @@ export class InviteComponent implements OnInit {
   }
 
   submitInvite() {
-
+    const params = this.inviteForm.value;
+    params['token'] = this.token;
+    params['company_pk'] = this.companyId;
+    this.authService.inviteSubmit(this.companyId, params);
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
