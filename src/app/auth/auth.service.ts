@@ -86,6 +86,18 @@ export class AuthService {
     )
   }
 
+  inviteSubmit(companyId: number, params: {}) {
+    this.apiService.post(`/companies/${companyId}/activate_member/`, params)
+      .subscribe(
+        response => {
+          this.store.dispatch(new AuthActions.SuccessInviteSubmit());
+        },
+        (failure: HttpErrorResponse) => {
+          this.store.dispatch(new AuthActions.FailedInviteSubmit(failure.error.errors));
+        }
+      )
+  }
+
   signOut() {
     this.cookieService.remove(TOKEN_NAME);
     this.store.dispatch(new AuthActions.SignOut());
