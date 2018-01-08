@@ -9,6 +9,7 @@ import { User } from '../auth/user.model';
 import { ApiService } from '../shared/api.service';
 import * as fromApp from '../store/app.reducers';
 import * as CompaniesActions from './store/companies.actions';
+import * as LoaderActions from '../shared/loader/store/loaders.actions';
 
 @Injectable()
 export class CompaniesService {
@@ -16,8 +17,10 @@ export class CompaniesService {
               private store: Store<fromApp.AppState>) {}
 
   loadList() {
+    this.store.dispatch(new LoaderActions.RequestStarted());
     this.apiService.get('/companies/').subscribe(
       response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.body));
       }
     )

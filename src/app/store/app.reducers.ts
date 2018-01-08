@@ -5,6 +5,7 @@ import * as fromCompanies from '../companies/store/companies.reducers';
 import * as fromVacancies from '../vacancies/store/vacancies.reducers';
 import * as fromInterviews from '../interviews/store/interview.reducers';
 import * as fromEmployees from '../employees/store/employees.reducers';
+import * as fromLoader from '../shared/loader/store/loaders.reducers';
 
 export interface AppState {
   auth: fromAuth.State,
@@ -12,7 +13,8 @@ export interface AppState {
   companies: fromCompanies.State,
   vacancies: fromVacancies.State,
   interviews: fromInterviews.State,
-  employees: fromEmployees.State
+  employees: fromEmployees.State,
+  loaders: fromLoader.State
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -21,5 +23,6 @@ export const reducers: ActionReducerMap<AppState> = {
   companies: fromCompanies.companiesReducer,
   vacancies: fromVacancies.vacanciesReducer,
   interviews: fromInterviews.interviewsReducer,
-  employees: fromEmployees.employeesReducer
+  employees: fromEmployees.employeesReducer,
+  loaders: fromLoader.loadersReducers
 };
