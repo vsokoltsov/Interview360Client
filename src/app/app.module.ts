@@ -30,6 +30,7 @@ import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { UploaderModule } from './shared/uploader/uploader.module';
+import { LoaderModule } from './shared/loader/loader.module';
 
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
@@ -62,7 +63,8 @@ export const MODULES = {
     VacanciesModule,
     InterviewsModule,
     EmployeesModule,
-    PipeModule
+    PipeModule,
+    LoaderModule
   ],
   providers: [
     AuthService,

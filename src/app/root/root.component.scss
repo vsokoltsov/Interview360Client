@@ -1,6 +1,7 @@
 @import '~variables.scss';
 :host {
   display: flex;
+  flex-direction: column;
   height: 100%;
 
   .base-container {
@@ -11,13 +12,16 @@
     flex-direction: row;
 
     .toolbar.main-header {
-      height: 3em;
+      display: flex;
+      flex-direction: column;
+      min-height: 3em;
       background-color: $primary;
     }
 
     .content {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       height: 100%;
       width: 100%;
 
