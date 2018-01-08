@@ -20,6 +20,7 @@ import { HeaderComponent } from '../header/header.component';
 import { SideNavComponent } from '../side-nav/side-nav.component';
 import { CompaniesModule } from '../companies/companies.module';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
+import { LoaderModule } from '../shared/loader/loader.module';
 
 describe('RootComponent', () => {
   let component: RootComponent;
@@ -41,7 +42,8 @@ describe('RootComponent', () => {
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         CompaniesModule,
-        NgxSvgIconModule
+        NgxSvgIconModule,
+        LoaderModule
       ],
       providers: [
         AuthService,
