@@ -31,6 +31,7 @@ import { RestorePasswordComponent } from './auth/restore-password/restore-passwo
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { UploaderModule } from './shared/uploader/uploader.module';
 import { LoaderModule } from './shared/loader/loader.module';
+import { PopupNotificationsModule } from './popup-notifications/popup-notifications.module';
 
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';

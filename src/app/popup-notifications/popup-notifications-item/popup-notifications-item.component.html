@@ -1,0 +1,10 @@
+<div [ngClass]="['Notification', popupNotification.type, { Display: display, Reduced: reduced }]">
+{# {CN(css.Notification, type, { Display: this.state.display, Reduced: this.state.reduced })} #}
+  <div class="NotifContent">
+    <div class="NotifTitle">{popupNotification.title}</div>
+    <div class="NotifDescription">{popupNotification.text}</div>
+  </div>
+  <div class="CloseButton" (click)={this.hide}>
+    {# <SvgIcon icon="close" /> #}
+  </div>
+</div>

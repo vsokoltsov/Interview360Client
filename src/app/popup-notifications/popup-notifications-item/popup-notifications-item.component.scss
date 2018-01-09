@@ -1,0 +1,91 @@
+@import '~variables.scss';
+
+:host {
+  .notification {
+    display: flex;
+    width: 600px;
+    border: 1px solid #444;
+    color: #444;
+    background: #eee;
+    position: relative;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    border-radius: 5px;
+    flex-direction: row;
+    min-height: 60px;
+    transition: all .5s;
+    top: -100px;
+    opacity: 0;
+    margin-bottom: -100px;
+
+  &:first-child {
+    margin-top: 30px;
+  }
+
+  .NotifContent {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px;
+    padding-right: 0;
+
+    .NotifTitle {
+      font-weight: 700;
+      color: currentColor;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .NotifDescription {
+      font-weight: 500;
+      font-size: 14px;
+      color: #666666;
+    }
+
+      span {
+        display: block;
+        margin-bottom: 2px;
+      }
+  }
+
+  .CloseButton {
+    display: flex;
+    padding: 11px;
+    background: currentColor;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    opacity: .5;
+    transition: opacity .26s;
+
+
+    svg {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      fill: white;
+    }
+
+      &:hover {
+        opacity: .9;
+      }
+    }
+
+  &.info {
+    color: uprogress-blue-border-color;
+    border-color: uprogress-placeholder-color;
+    background: #f4f9fe;
+  }
+
+  &.danger {
+    color: uprogress-red-button-color;
+    border-color: uprogress-red-button-dark-color;
+    background: #fff5f5;
+  }
+
+  &.Display {
+    top: 0
+    opacity: 1
+    margin-bottom: 18px
+  }
+}
