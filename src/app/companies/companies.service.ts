@@ -22,51 +22,61 @@ export class CompaniesService {
     this.store.dispatch(new LoaderActions.RequestStarted());
     this.apiService.get('/companies/').subscribe(
       response => {
-        this.popupNotificationsService.info('successReceived');
-        this.popupNotificationsService.info('successReceived');
-        this.popupNotificationsService.info('successReceived');
-        this.popupNotificationsService.info('successReceived');
-        this.popupNotificationsService.info('successReceived');
         this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.body));
       }
-    )
+    );
   }
 
   receiveCompany(id: number) {
+    this.store.dispatch(new LoaderActions.RequestStarted())
     this.apiService.get(`/companies/${id}/`)
     .subscribe(
       response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new CompaniesActions.CompanyLoaded(response.body));
       }
     )
   }
 
   createCompany(params: {}) {
+    this.store.dispatch(new LoaderActions.RequestStarted());
     this.apiService.post('/companies/', params).subscribe(
       response => {
+        this.popupNotificationsService.info('successCompanyCreated');
+        this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new CompaniesActions.SuccessCompanyCreated(response.body));
       },
       failed => {
+        this.popupNotificationsService.alert('failedCompanyCreated');
+        this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new CompaniesActions.FailedCompanyCreated(failed.error.errors));
       }
     );
   }
 
   updateCompany(id:number, params: {}) {
+    this.store.dispatch(new LoaderActions.RequestStarted());
     this.apiService.put(`/companies/${id}/`, params).subscribe(
       response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.popupNotificationsService.info('successCompanyUpdate');
         this.store.dispatch(new CompaniesActions.SuccessUpdate(response.body.company));
       },
       failed => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.popupNotificationsService.alert('failedCompanyUpdate');
         this.store.dispatch(new CompaniesActions.FailedUpdate(failed.error.errors));
       }
     );
   }
 
   deleteCompany(id: number, company: Company) {
+    this.store.dispatch(new LoaderActions.RequestStarted());
     this.apiService.destroy(`/companies/${id}/`).subscribe(
       response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.popupNotificationsService.info('successCompanyDelete');
         this.store.dispatch(new CompaniesActions.DeleteCompany(company));
       }
     );

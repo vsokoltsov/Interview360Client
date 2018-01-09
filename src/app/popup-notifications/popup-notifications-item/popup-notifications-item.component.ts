@@ -16,18 +16,18 @@ export class PopupNotificationsItemComponent implements OnInit {
   constructor(private popupNotificationsService: PopupNotificationsService) { }
 
   ngOnInit() {
-    // setTimeout(() => {
-    //   this.display = true;
-    // }, 300);
-    //
-    // let result = {};
-    //
-    // if (this.popupNotification.type) {
-    //   result = setTimeout(() => {this.hide()}, 7300);
-    // }
-    // else {
-    //   result = setTimeout(() => {this.hide()}, 4000);
-    // }
+    setTimeout(() => {
+      this.display = true;
+    }, 300);
+
+    let result = {};
+
+    if (this.popupNotification.type) {
+      result = setTimeout(() => {this.hide()}, 7300);
+    }
+    else {
+      result = setTimeout(() => {this.hide()}, 4000);
+    }
   }
 
   hide() {

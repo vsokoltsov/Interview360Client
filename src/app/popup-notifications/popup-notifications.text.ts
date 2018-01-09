@@ -1,6 +1,25 @@
+const defaultSuccessTitle = 'Success!';
+const defaultFailedTitle = 'Failed...';
+
 export const messages = {
-  successReceived: {
-    title: '1',
-    text: '2'
+  successCompanyCreated: {
+    title: defaultSuccessTitle,
+    text: 'Company was succesfully created'
+  },
+  failedCompanyCreated: {
+    title: defaultFailedTitle,
+    text: 'An error has occured'
+  },
+  successCompanyUpdate: {
+    title: defaultSuccessTitle,
+    text: 'Company was succesfully updated'
+  },
+  failedCompanyUpdate: {
+    title: defaultFailedTitle,
+    text: 'An error has occured'
+  },
+  successCompanyDelete: {
+    title: defaultSuccessTitle,
+    text: 'Company was succesfully deleted'
   }
 };
