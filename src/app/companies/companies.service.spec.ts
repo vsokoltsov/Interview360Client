@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 import { CompaniesService } from './companies.service';
 import { ApiService } from '../shared/api.service';
 import * as fromApp from '../store/app.reducers';
+import { PopupNotificationsService } from '../popup-notifications/popup-notifications.service';
 
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
 const response = {
@@ -34,7 +35,8 @@ describe('CompaniesService', () => {
       providers: [
         CompaniesService,
         ApiService,
-        CookieService
+        CookieService,
+        PopupNotificationsService
       ]
     });
 

@@ -24,6 +24,9 @@ import { ApiService } from '../../shared/api.service';
 import { CookieService } from 'angular2-cookie/core';
 import { AuthService } from '../../auth/auth.service';
 import { UploaderModule } from '../../shared/uploader/uploader.module';
+import { LoaderModule } from '../../shared/loader/loader.module';
+import { PopupNotificationsModule } from '../../popup-notifications/popup-notifications.module';
+import { PopupNotificationsService } from '../../popup-notifications/popup-notifications.service';
 
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
 const user = new User(1);
@@ -54,7 +57,9 @@ describe('FormComponent', () => {
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         HttpClientTestingModule,
-        UploaderModule
+        UploaderModule,
+        LoaderModule,
+        PopupNotificationsModule
       ],
       providers: [
         ApiService,
@@ -65,7 +70,8 @@ describe('FormComponent', () => {
           provide: ActivatedRoute, useValue: {
             params: Observable.of({ id: company.id })
           }
-        }
+        },
+        PopupNotificationsService
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();

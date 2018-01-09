@@ -23,6 +23,9 @@ import { CompaniesService } from '../companies.service';
 import { ApiService } from '../../shared/api.service';
 import { CookieService } from 'angular2-cookie/core';
 import { AuthService } from '../../auth/auth.service';
+import { LoaderModule } from '../../shared/loader/loader.module';
+import { PopupNotificationsModule } from '../../popup-notifications/popup-notifications.module';
+import { PopupNotificationsService } from '../../popup-notifications/popup-notifications.service';
 // import { UploaderModule } from '../shared/uploader/uploader.module';
 //
 // import { PipeModule } from '../shared/pipe.module';
@@ -62,6 +65,8 @@ describe('DetailComponent', () => {
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         HttpClientTestingModule,
+        LoaderModule,
+        PopupNotificationsModule
       ],
       providers: [
         CompaniesService,
@@ -72,7 +77,8 @@ describe('DetailComponent', () => {
           provide: MockActivatedRoute, useValue: {
             params: Observable.of({ id: company.id })
           }
-        }
+        },
+        PopupNotificationsService
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();

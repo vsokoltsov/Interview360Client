@@ -21,6 +21,7 @@ import { SideNavComponent } from '../side-nav/side-nav.component';
 import { CompaniesModule } from '../companies/companies.module';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { LoaderModule } from '../shared/loader/loader.module';
+import { PopupNotificationsModule } from '../popup-notifications/popup-notifications.module';
 
 describe('RootComponent', () => {
   let component: RootComponent;
@@ -43,7 +44,8 @@ describe('RootComponent', () => {
         HttpClientModule,
         CompaniesModule,
         NgxSvgIconModule,
-        LoaderModule
+        LoaderModule,
+        PopupNotificationsModule
       ],
       providers: [
         AuthService,

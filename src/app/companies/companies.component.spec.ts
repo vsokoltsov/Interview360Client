@@ -24,6 +24,9 @@ import { PipeModule } from '../shared/pipe.module';
 import { CompaniesService } from './companies.service';
 import { AuthService } from '../auth/auth.service';
 import { ApiService } from '../shared/api.service';
+import { LoaderModule } from '../shared/loader/loader.module';
+import { PopupNotificationsModule } from '../popup-notifications/popup-notifications.module';
+import { PopupNotificationsService } from '../popup-notifications/popup-notifications.service';
 
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
 const response = { companies: [
@@ -59,13 +62,16 @@ describe('CompaniesComponent', () => {
         StoreModule.forRoot(fromApp.reducers),
         FileUploadModule,
         ReactiveFormsModule,
-        UploaderModule
+        UploaderModule,
+        PopupNotificationsModule,
+        LoaderModule
       ],
       providers: [
         CompaniesService,
         ApiService,
         CookieService,
-        AuthService
+        AuthService,
+        PopupNotificationsService
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
