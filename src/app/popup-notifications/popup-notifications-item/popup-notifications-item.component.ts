@@ -3,7 +3,7 @@ import { PopupNotification } from '../popup-notification.model';
 import { PopupNotificationsService } from '../popup-notifications.service';
 
 @Component({
-  selector: 'app-popup-notifications-item',
+  selector: '[app-popup-notifications-item]',
   templateUrl: './popup-notifications-item.component.html',
   styleUrls: ['./popup-notifications-item.component.scss']
 })

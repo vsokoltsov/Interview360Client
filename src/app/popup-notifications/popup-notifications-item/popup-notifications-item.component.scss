@@ -2,12 +2,13 @@
 //
 :host {
     width: 620px;
-
+    margin-bottom: 30px;
+    transition: all .5s;
     &:first-child {
       margin-top: 30px;
     }
 
-    .notification {
+    // .notification {
       display: flex;
       color: #444;
       background: #eee;
@@ -85,5 +86,5 @@
         opacity: 1;
         margin-bottom: 18px;
       }
-    }
+    // }
 }
