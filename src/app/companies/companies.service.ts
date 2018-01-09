@@ -23,6 +23,10 @@ export class CompaniesService {
     this.apiService.get('/companies/').subscribe(
       response => {
         this.popupNotificationsService.info('successReceived');
+        this.popupNotificationsService.info('successReceived');
+        this.popupNotificationsService.info('successReceived');
+        this.popupNotificationsService.info('successReceived');
+        this.popupNotificationsService.info('successReceived');
         this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.body));
       }

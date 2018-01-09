@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PopupNotification } from '../popup-notification.model';
+import { PopupNotificationsService } from '../popup-notifications.service';
 
 @Component({
   selector: 'app-popup-notifications-item',
@@ -12,22 +13,21 @@ export class PopupNotificationsItemComponent implements OnInit {
   @Input() popupNotification: PopupNotification;
   killTimeout = null;
 
-  constructor() { }
+  constructor(private popupNotificationsService: PopupNotificationsService) { }
 
   ngOnInit() {
-    console.log(this.popupNotification);
-    setTimeout(() => {
-      this.display = true;
-    }, 300);
-
-    let result = {};
-
-    if (this.popupNotification.type) {
-      result = setTimeout(this.hide, 7300);
-    }
-    else {
-      result = setTimeout(this.hide, 4000);
-    }
+    // setTimeout(() => {
+    //   this.display = true;
+    // }, 300);
+    //
+    // let result = {};
+    //
+    // if (this.popupNotification.type) {
+    //   result = setTimeout(() => {this.hide()}, 7300);
+    // }
+    // else {
+    //   result = setTimeout(() => {this.hide()}, 4000);
+    // }
   }
 
   hide() {
@@ -36,7 +36,7 @@ export class PopupNotificationsItemComponent implements OnInit {
 
     this.killTimeout = setTimeout(() => {
       // this.setState({ reduced: true });
-      // DropNotification(this.props.id);
+      this.popupNotificationsService.drop(this.popupNotification.id);
     }, 500);
   }
 

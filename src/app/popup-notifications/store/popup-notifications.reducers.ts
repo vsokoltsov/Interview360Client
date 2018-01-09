@@ -25,7 +25,7 @@ export function popupNotificationReducer(state = initialState,
         oldNotifications.splice(deleteIndex, 1);
         return {
           ...state,
-          list: oldNotifications
+          notifications: oldNotifications
         };
       default:
         return state;

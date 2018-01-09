@@ -6,7 +6,7 @@ import { PopupNotification } from './popup-notification.model';
 import * as fromApp from '../store/app.reducers';
 
 @Component({
-  selector: 'app-popup-notifications',
+  selector: '[app-popup-notifications]',
   templateUrl: './popup-notifications.component.html',
   styleUrls: ['./popup-notifications.component.scss']
 })
