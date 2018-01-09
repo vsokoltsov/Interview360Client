@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { Company } from './company.model';
 import { User } from '../auth/user.model';
 import { ApiService } from '../shared/api.service';
+import { PopupNotificationsService } from '../popup-notifications/popup-notifications.service';
 import * as fromApp from '../store/app.reducers';
 import * as CompaniesActions from './store/companies.actions';
 import * as LoaderActions from '../shared/loader/store/loaders.actions';
@@ -14,12 +15,14 @@ import * as LoaderActions from '../shared/loader/store/loaders.actions';
 @Injectable()
 export class CompaniesService {
   constructor(private apiService: ApiService,
-              private store: Store<fromApp.AppState>) {}
+              private store: Store<fromApp.AppState>,
+              private popupNotificationsService: PopupNotificationsService) {}
 
   loadList() {
     this.store.dispatch(new LoaderActions.RequestStarted());
     this.apiService.get('/companies/').subscribe(
       response => {
+        this.popupNotificationsService.info('successReceived');
         this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.body));
       }

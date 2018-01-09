@@ -26,6 +26,7 @@ import { InterviewsService } from './interviews/interviews.service';
 import { CompaniesService } from './companies/companies.service';
 import { VacanciesService } from './vacancies/vacancies.service';
 import { EmployeesService } from './employees/employees.service';
+import { PopupNotificationsService } from './popup-notifications/popup-notifications.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
@@ -65,7 +66,8 @@ export const MODULES = {
     InterviewsModule,
     EmployeesModule,
     PipeModule,
-    LoaderModule
+    LoaderModule,
+    PopupNotificationsModule
   ],
   providers: [
     AuthService,
@@ -76,6 +78,7 @@ export const MODULES = {
     InterviewsService,
     EmployeesService,
     ApiService,
+    PopupNotificationsService,
     {provide: APP_BASE_HREF, useValue : '/' },
     AuthGuard,
     { provide: CookieOptions, useValue: {} }

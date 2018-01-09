@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
+import { PopupNotification } from './popup-notification.model';
 
 import * as fromApp from '../store/app.reducers';
 
@@ -11,14 +12,15 @@ import * as fromApp from '../store/app.reducers';
 })
 export class PopupNotificationsComponent implements OnInit {
   subscription: Subscription;
-
+  notifications: PopupNotification[];
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    this.subscription = this.store.select('loaders').subscribe(
+    this.subscription = this.store.select('popupNotifications').subscribe(
       data => {
-        // this.loading = data.isLoading;
-        // this.cdr.detectChanges();
+        if (data.notifications) {
+          this.notifications = data.notifications;
+        }
       }
     );
   }

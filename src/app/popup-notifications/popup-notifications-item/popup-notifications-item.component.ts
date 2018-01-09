@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PopupNotification } from '../popup-notification.model';
 
 @Component({
@@ -9,12 +9,13 @@ import { PopupNotification } from '../popup-notification.model';
 export class PopupNotificationsItemComponent implements OnInit {
   display: boolean = false;
   reduced: boolean = false;
-  popupNotification: PopupNotification;
+  @Input() popupNotification: PopupNotification;
   killTimeout = null;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.popupNotification);
     setTimeout(() => {
       this.display = true;
     }, 300);
