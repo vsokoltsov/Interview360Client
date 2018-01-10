@@ -7,6 +7,7 @@ import * as fromInterviews from '../interviews/store/interview.reducers';
 import * as fromEmployees from '../employees/store/employees.reducers';
 import * as fromLoader from '../shared/loader/store/loaders.reducers';
 import * as fromPopupNotifications from '../popup-notifications/store/popup-notifications.reducers';
+import * as fromResumes from '../resumes/store/resumes.reducers';
 
 export interface AppState {
   auth: fromAuth.State,
@@ -16,7 +17,8 @@ export interface AppState {
   interviews: fromInterviews.State,
   employees: fromEmployees.State,
   loaders: fromLoader.State,
-  popupNotifications: fromPopupNotifications.State
+  popupNotifications: fromPopupNotifications.State,
+  resumes: fromResumes.State
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -27,5 +29,6 @@ export const reducers: ActionReducerMap<AppState> = {
   interviews: fromInterviews.interviewsReducer,
   employees: fromEmployees.employeesReducer,
   loaders: fromLoader.loadersReducers,
-  popupNotifications: fromPopupNotifications.popupNotificationReducer
+  popupNotifications: fromPopupNotifications.popupNotificationReducer,
+  resumes: fromResumes.resumesReducer
 };
