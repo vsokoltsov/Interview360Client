@@ -41,6 +41,7 @@ import { VacanciesModule } from './vacancies/vacancies.module';
 import { InterviewsModule } from './interviews/interviews.module';
 import { EmployeesModule } from './employees/employees.module';
 import { PipeModule } from './shared/pipe.module';
+import { ResumesModule } from './resumes/resumes.module';
 
 export const MODULES = {
   declarations: [
@@ -65,6 +66,7 @@ export const MODULES = {
     VacanciesModule,
     InterviewsModule,
     EmployeesModule,
+    ResumesModule,
     PipeModule,
     LoaderModule,
     PopupNotificationsModule
