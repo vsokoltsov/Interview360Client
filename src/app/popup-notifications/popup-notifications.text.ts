@@ -21,5 +21,13 @@ export const messages = {
   successCompanyDelete: {
     title: defaultSuccessTitle,
     text: 'Company was succesfully deleted'
+  },
+  successResumeCreated: {
+    title: defaultSuccessTitle,
+    text: 'Resume was succesfully created'
+  },
+  failedResumeCreated: {
+    title: defaultFailedTitle,
+    text: 'An error has occured'
   }
 };
