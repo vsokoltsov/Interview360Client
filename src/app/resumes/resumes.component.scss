@@ -1,0 +1,12 @@
+:host {
+  .resumes-page {
+    display: flex;
+    flex-direction: row;
+
+    .content-block {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+  }
+}
