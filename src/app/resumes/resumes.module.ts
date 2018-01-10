@@ -6,6 +6,7 @@ import { DpDatePickerModule } from 'ng2-date-picker';
 
 import { ResumesRoutingModule } from './resumes-routing.module';
 import { ResumesComponent } from './resumes.component';
+import { ResumeFormComponent } from './resume-form/resume-form.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ResumesComponent } from './resumes.component';
     ResumesRoutingModule
   ],
   declarations: [
-    ResumesComponent
+    ResumesComponent,
+    ResumeFormComponent
   ]
 })
 export class ResumesModule {}
