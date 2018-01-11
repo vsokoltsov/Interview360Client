@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Location } from '@angular/common';
 import { Subscription } from 'rxjs/Subscription';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
@@ -32,7 +33,8 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromApp.AppState>,
               private resumesService: ResumesService,
               private activatedRoute: ActivatedRoute,
-              private skillsService: SkillsService) { }
+              private skillsService: SkillsService,
+              private location: Location) { }
 
   ngOnInit() {
     this.resumeForm = new FormGroup({
@@ -96,6 +98,10 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     if (idx !== -1) {
       this.selectedSkills.splice(idx, 1);
     }
+  }
+
+  returnBack() {
+    this.location.back();
   }
 
   private setSkills(detail: Resume) {
