@@ -8,6 +8,7 @@ import { ResumesRoutingModule } from './resumes-routing.module';
 import { ResumesComponent } from './resumes.component';
 import { ResumeFormComponent } from './resume-form/resume-form.component';
 import { AutocompleteModule } from '../shared/autocomplete/autocomplete.module';
+import { ResumesItemComponent } from './resumes-item/resumes-item.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { AutocompleteModule } from '../shared/autocomplete/autocomplete.module';
   ],
   declarations: [
     ResumesComponent,
-    ResumeFormComponent
+    ResumeFormComponent,
+    ResumesItemComponent
   ]
 })
 export class ResumesModule {}
