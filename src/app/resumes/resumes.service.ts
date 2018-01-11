@@ -18,6 +18,16 @@ export class ResumesService {
               private store: Store<fromApp.AppState>,
               private popupNotificationsService: PopupNotificationsService) {}
 
+  loadResumes() {
+    this.store.dispatch(new LoaderActions.RequestStarted());
+    this.apiService.get('/resumes/').subscribe(
+      response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.store.dispatch(new ResumesActions.ResumesList(response.body));
+      }
+    );
+  }
+
   createResume(params: {}) {
     this.store.dispatch(new LoaderActions.RequestStarted());
     this.apiService.post('/resumes/', params).subscribe(

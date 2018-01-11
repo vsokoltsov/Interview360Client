@@ -4,7 +4,11 @@
       Search
     </div>
     <div class="resumes-block card">
-      Resumes
+      <div app-resumes-item
+      *ngFor="let resume of resumes"
+      class="card"
+      [resume]="resume"
+      ></div>
     </div>
   </div>
   <div class="filter-block card">
