@@ -28,7 +28,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
     this.resumesService.loadResumes();
     this.subscription = this.store.select('resumes').subscribe(
       data => {
-        if (data.list.length > 0) {
+        if (data.list) {
           this.resumes = data.list;
         }
       }
@@ -38,7 +38,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
     });
     this.resumesSearchForm.get('query').valueChanges.subscribe(
       data => {
-        console.log(data);
+        this.resumesService.searchResumes(data);
       }
     );
   }
@@ -48,7 +48,8 @@ export class ResumesComponent implements OnInit, OnDestroy {
   }
 
   submitSearch() {
-
+    const queryString = this.resumesSearchForm.get('query').value;
+    this.resumesService.searchResumes(queryString);
   }
 
 }
