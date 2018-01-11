@@ -1,7 +1,33 @@
 <div class="resumes-page">
   <div class="content-block">
     <div class="search-block card">
-      Search
+      <div class="search-form">
+        <form
+          *ngIf="resumesSearchForm"
+          class="form horizontal"
+          [formGroup]="resumesSearchForm"
+          (ngSubmit)="submitSearch()">
+          <div class="form-field full-width">
+            <input
+              formControlName="query"
+              placeholder="Search"
+              class="field"
+              type="text" />
+          </div>
+          <div class="form-actions">
+            <button class="button clear icon">
+              <svg-icon name="search-magnifier" size="25"></svg-icon>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="options-block">
+        <div class="new-resume">
+          <a [routerLink]="['new']">
+            <svg-icon name="plus-icon" size="35"></svg-icon>
+          </a>
+        </div>
+      </div>
     </div>
     <div class="resumes-block card">
       <div app-resumes-item

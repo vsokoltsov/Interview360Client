@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import {Router, ActivatedRoute, Params} from '@angular/router';
@@ -13,6 +14,7 @@ import * as fromApp from '../store/app.reducers';
   styleUrls: ['./resumes.component.scss']
 })
 export class ResumesComponent implements OnInit, OnDestroy {
+  resumesSearchForm: FormGroup;
   resumes: Resume[];
   subscription: Subscription;
 
@@ -31,10 +33,22 @@ export class ResumesComponent implements OnInit, OnDestroy {
         }
       }
     );
+    this.resumesSearchForm = new FormGroup({
+      'query': new FormControl(null)
+    });
+    this.resumesSearchForm.get('query').valueChanges.subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  submitSearch() {
+
   }
 
 }
