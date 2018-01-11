@@ -27,6 +27,12 @@
         {{error}}
       </div>
     </div>
+    <div class="form-field">
+      <div class="field skills" contenteditable="true" (keyup)="searchSkills($event)"></div>
+      <div *ngFor="let skills of searchedSkills" class="item" (click)="selectSkill(skill)">
+        <p class="name">{{ skill.name }}</p>
+      </div>
+    </div>
     <div class="form-actions">
       <button
         type="submit"

@@ -6,7 +6,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 
 import { Resume } from '../resume.model';
 import { User } from '../../auth/user.model';
-import { Skill } from '../../vacancies/skill.model';
+import { Skill } from '../../shared/skills/skill.model';
 import * as fromApp from '../../store/app.reducers';
 import * as ResumesActions from '../store/resumes.actions';
 
@@ -32,6 +32,10 @@ export class ResumeFormComponent implements OnInit {
 
   submit() {
 
+  }
+
+  searchSkills(event: any) {
+    console.log(event.target.innerText);
   }
 
   addSkill(skill: Skill) {

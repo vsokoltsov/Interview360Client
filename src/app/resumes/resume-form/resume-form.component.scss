@@ -1,5 +1,9 @@
 :host {
   .form {
     min-width: 600px;
+
+    .skills.field {
+      text-align: left;
+    }
   }
 }
