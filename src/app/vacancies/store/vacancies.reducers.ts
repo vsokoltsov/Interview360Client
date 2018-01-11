@@ -1,5 +1,5 @@
 import { Vacancy } from '../vacancy.model';
-import { Skill } from '../skill.model';
+import { Skill } from '../../shared/skills/skill.model';
 import * as VacanciesActions from './vacancies.actions';
 
 export interface State {

@@ -17,6 +17,7 @@ import * as ResumesActions from '../store/resumes.actions';
 })
 export class ResumeFormComponent implements OnInit {
   resumeForm: FormGroup;
+  resumeFormErrors: {} = {};
 
   constructor(private store: Store<fromApp.AppState>,
               private activatedRoute: ActivatedRoute) { }
@@ -27,6 +28,10 @@ export class ResumeFormComponent implements OnInit {
       'description': new FormControl(null, [Validators.required]),
       'skills': new FormArray([])
     });
+  }
+
+  submit() {
+
   }
 
   addSkill(skill: Skill) {

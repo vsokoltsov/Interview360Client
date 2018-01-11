@@ -1,3 +1,37 @@
-<p>
-  resume-form works!
-</p>
+<div class="resume-form-page card">
+  <form class="form" [formGroup]="resumeForm" (ngSubmit)="submit()">
+    <div class="form-field">
+      <input placeholder="Title" class="field" formControlName="title" type="text">
+
+      <div class="error" *ngIf="resumeForm.get('title').touched &&
+        resumeForm.get('title').hasError('required')">
+        Resume title is <strong>required</strong>
+      </div>
+      <div *ngFor="let error of resumeFormErrors['title']" class="error">
+        {{error}}
+      </div>
+    </div>
+
+    <div class="form-field">
+      <input
+        placeholder="Description"
+        class="field"
+        formControlName="description"
+        type="text">
+
+      <div class="error" *ngIf="resumeForm.get('description').touched &&
+        resumeForm.get('description').hasError('required')">
+        Resume description is <strong>required</strong>
+      </div>
+      <div *ngFor="let error of resumeFormErrors['description']" class="error">
+        {{error}}
+      </div>
+    </div>
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="button success"
+        [disabled]="!resumeForm.valid">Save</button>
+    </div>
+  </form>
+</div>
