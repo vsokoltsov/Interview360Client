@@ -27,6 +27,7 @@ import { CompaniesService } from './companies/companies.service';
 import { VacanciesService } from './vacancies/vacancies.service';
 import { EmployeesService } from './employees/employees.service';
 import { PopupNotificationsService } from './popup-notifications/popup-notifications.service';
+import { ResumesService } from './resumes/resumes.service';
 import { SkillsService } from './shared/skills/skills.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
@@ -80,6 +81,7 @@ export const MODULES = {
     VacanciesService,
     InterviewsService,
     EmployeesService,
+    ResumesService,
     ApiService,
     PopupNotificationsService,
     SkillsService,

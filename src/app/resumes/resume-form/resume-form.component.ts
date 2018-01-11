@@ -8,6 +8,7 @@ import { Resume } from '../resume.model';
 import { User } from '../../auth/user.model';
 import { Skill } from '../../shared/skills/skill.model';
 import { SkillsService } from '../../shared/skills/skills.service';
+import { ResumesService } from '../resumes.service';
 import * as fromApp from '../../store/app.reducers';
 import * as ResumesActions from '../store/resumes.actions';
 
@@ -16,17 +17,20 @@ import * as ResumesActions from '../store/resumes.actions';
   templateUrl: './resume-form.component.html',
   styleUrls: ['./resume-form.component.scss']
 })
-export class ResumeFormComponent implements OnInit {
+export class ResumeFormComponent implements OnInit, OnDestroy {
   resumeForm: FormGroup;
   resumeFormErrors: {} = {};
   skillsSubscription: Subscription;
+  userSubscription: Subscription;
   searchedSkills: Skill[];
   selectedSkills: Skill[] = [];
   popupsShowing: {} = {};
   values: {} = {};
+  currentUser: User;
   public currentPopupId: string;
 
   constructor(private store: Store<fromApp.AppState>,
+              private resumesService: ResumesService,
               private activatedRoute: ActivatedRoute,
               private skillsService: SkillsService) { }
 
@@ -45,12 +49,25 @@ export class ResumeFormComponent implements OnInit {
         // }
       }
     );
+    this.userSubscription = this.store.select('auth').subscribe(
+      data => {
+        if (data.currentUser) {
+          this.currentUser = data.currentUser;
+        }
+      }
+    );
+  }
+
+  ngOnDestroy(){
+    this.skillsSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
   submit() {
     const params = this.resumeForm.value;
     params['skills'] = this.selectedSkills.map(item => item.id);
-    console.log(params);
+    params['user'] = this.currentUser.id;
+    this.resumesService.createResume(params);
   }
 
   selectSkill(skill: Skill) {

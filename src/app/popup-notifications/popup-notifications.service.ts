@@ -30,10 +30,12 @@ export class PopupNotificationsService {
     const content = messages[textId];
     const structure = {
       id: `id-${++lastNotifId}`,
-      type: 'alert',
+      type: 'danger',
       ...content
     };
-    const notification = new PopupNotification(structure);
+    const notification = new PopupNotification(
+      structure.id, structure.title, structure.type, structure.text
+    );
 
     this.store.dispatch(new PopupNotificationsActions.AddAlertNotification(notification));
   }
