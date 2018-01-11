@@ -30,8 +30,10 @@ export class ResumesService {
 
   searchResumes(query: string) {
     const params = new HttpParams().set('q', query);
+    this.store.dispatch(new LoaderActions.RequestStarted());
     this.apiService.get(`/resumes/search/`, params).subscribe(
       response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new ResumesActions.ResumesList(response.body.resumes));
       }
     );
