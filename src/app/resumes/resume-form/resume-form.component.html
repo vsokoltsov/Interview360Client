@@ -28,9 +28,23 @@
       </div>
     </div>
     <div class="form-field">
-      <div class="field skills" contenteditable="true" (keyup)="searchSkills($event)"></div>
-      <div *ngFor="let skills of searchedSkills" class="item" (click)="selectSkill(skill)">
-        <p class="name">{{ skill.name }}</p>
+      <app-autocomplete
+        formControlName="skills"
+        placeholder="Skills"
+        className="field"
+        [popupId]="['skills']"
+        [showPopup]="popupsShowing['skills']"
+        [Change]="searchSkills.bind(this)">
+        <div *ngFor="let skill of values['skills']" class="item" (click)="selectSkill(skill)">
+          <p>{{ skill.name }}</p>
+        </div>
+      </app-autocomplete>
+
+      <div class="skills">
+        <div class="skill-item" *ngFor="let skill of selectedSkills">
+          <span>{{ skill.name }}</span>
+          <a (click)="deleteSkill(skill)">x</a>
+        </div>
       </div>
     </div>
     <div class="form-actions">

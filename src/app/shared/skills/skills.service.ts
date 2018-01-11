@@ -21,4 +21,13 @@ export class SkillsService {
       }
     );
   }
+
+  searchSkills(query: string) {
+    const params = new HttpParams().set('q', query);
+    this.apiService.get(`/skills/search/`, params).subscribe(
+      response => {
+        this.store.dispatch(new SkillsActions.SkillsLoaded(response.body.skills));
+      }
+    )
+  }
 }

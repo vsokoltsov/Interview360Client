@@ -6,4 +6,25 @@
       text-align: left;
     }
   }
+
+  /deep/ .items-list {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+    max-height: 10em;
+    overflow-y: scroll;
+
+    /deep/ .item {
+      min-height: 3em;
+      display: flex;
+      flex-direction: row;
+      cursor: pointer;
+      padding: 10px;
+
+      &:hover {
+        box-shadow: 0 0 10px rgba(0,0,0,.15);
+      }
+    }
+  }
 }

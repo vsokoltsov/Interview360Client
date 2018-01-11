@@ -7,6 +7,7 @@ import { DpDatePickerModule } from 'ng2-date-picker';
 import { ResumesRoutingModule } from './resumes-routing.module';
 import { ResumesComponent } from './resumes.component';
 import { ResumeFormComponent } from './resume-form/resume-form.component';
+import { AutocompleteModule } from '../shared/autocomplete/autocomplete.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ResumeFormComponent } from './resume-form/resume-form.component';
     DpDatePickerModule,
     ReactiveFormsModule,
     NgxSvgIconModule,
-    ResumesRoutingModule
+    ResumesRoutingModule,
+    AutocompleteModule
   ],
   declarations: [
     ResumesComponent,
