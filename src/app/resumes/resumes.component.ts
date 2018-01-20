@@ -17,6 +17,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
   resumesSearchForm: FormGroup;
   resumes: Resume[];
   subscription: Subscription;
+  searchTimeout: any;
 
   constructor(
     private resumesService: ResumesService,
@@ -38,9 +39,20 @@ export class ResumesComponent implements OnInit, OnDestroy {
     });
     this.resumesSearchForm.get('query').valueChanges.subscribe(
       data => {
-        this.resumesService.searchResumes(data);
+        if (!this.searchTimeout) {
+          this.searchTimeout = setTimeout(() => {
+            this.resumesService.searchResumes(data);
+            clearTimeout(this.searchTimeout);
+            this.searchTimeout = null;
+          }, 1000);
+        }
       }
     );
+  }
+
+  searchResumes(event) {
+    console.log(event.target.value);
+    this.resumesService.searchResumes(event.target.value);
   }
 
   ngOnDestroy() {

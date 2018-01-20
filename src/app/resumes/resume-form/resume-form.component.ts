@@ -40,6 +40,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     this.resumeForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required]),
+      'salary': new FormControl(null, [Validators.required]),
       'skills': new FormControl(null)
     });
     this.skillsSubscription = this.store.select('skills').subscribe(

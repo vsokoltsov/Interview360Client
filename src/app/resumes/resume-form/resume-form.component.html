@@ -27,6 +27,19 @@
         {{error}}
       </div>
     </div>
+
+    <div class="form-field">
+      <input placeholder="Salary" class="field" formControlName="salary" type="number">
+
+      <div class="error" *ngIf="resumeForm.get('salary').touched &&
+        resumeForm.get('salary').hasError('required')">
+        Salary is <strong>required</strong>
+      </div>
+      <div *ngFor="let error of resumeFormErrors['salary']" class="error">
+        {{error}}
+      </div>
+    </div>
+
     <div class="form-field">
       <app-autocomplete
         formControlName="skills"
