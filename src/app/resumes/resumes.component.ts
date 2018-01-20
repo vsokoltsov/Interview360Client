@@ -51,7 +51,6 @@ export class ResumesComponent implements OnInit, OnDestroy {
   }
 
   searchResumes(event) {
-    console.log(event.target.value);
     this.resumesService.searchResumes(event.target.value);
   }
 
