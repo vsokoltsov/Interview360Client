@@ -1,3 +1,37 @@
-<div class="workplaces-page card">
+<div class="workplaces-page card" >
+  Workplaces list
+  <form [formGroup]="workplacesForm" (ngSubmit)="submit()">
+    <div class="workplaces list" formArrayName="workplaces">
+      <div
+        class="workplace-item"
+        *ngFor="let workplaceControl of getWorkplaces(workplacesForm); let idx = index"
+        [formGroupName]="idx">
+        <input formControlName="company" placeholder="Company name">
+        <input formControlName="position" placeholder="Position name">
+        <textarea formControlName="description"></textarea>
+        <input
+          placeholder="Start date"
+          formControlName="start_date"
+          mode="daytime"
+          [theme]="'dp-material dp-main'"
+          [dpDayPicker]="datePickerConfig"
+          type="text">
+        <input
+        placeholder="End date"
+        formControlName="end_date"
+        mode="daytime"
+        [theme]="'dp-material dp-main'"
+        [dpDayPicker]="datePickerConfig"
+        type="text">
+      </div>
+      <div class="add-item">
+        <button class="button" (click)="addNewWorkplace()">Add</button>
+      </div>
+    </div>
 
+    <div class="actions">
+      <button class="button">Save</button>
+      <button class="button">Cancel</button>
+    </div>
+  </form>
 </div>
