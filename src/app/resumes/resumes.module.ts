@@ -10,6 +10,7 @@ import { ResumeFormComponent } from './resume-form/resume-form.component';
 import { AutocompleteModule } from '../shared/autocomplete/autocomplete.module';
 import { ResumesItemComponent } from './resumes-item/resumes-item.component';
 import { ResumesDetailComponent } from './resumes-detail/resumes-detail.component';
+import { WorkplacesFormComponent } from './workplaces/workplaces-form/workplaces-form.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { ResumesDetailComponent } from './resumes-detail/resumes-detail.componen
     ResumesComponent,
     ResumeFormComponent,
     ResumesItemComponent,
-    ResumesDetailComponent
+    ResumesDetailComponent,
+    WorkplacesFormComponent
   ]
 })
 export class ResumesModule {}
