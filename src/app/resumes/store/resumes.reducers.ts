@@ -1,4 +1,5 @@
 import { Resume } from '../resume.model';
+
 import * as ResumesActions from './resumes.actions';
 
 export interface State {
