@@ -14,6 +14,7 @@ import { ResumesService } from '../../resumes.service';
 import { CompaniesService } from '../../../companies/companies.service';
 import * as fromApp from '../../../store/app.reducers';
 import * as ResumesActions from '../../store/resumes.actions';
+import * as WorkplacesActions from '../../store/workplaces.actions';
 
 @Component({
   selector: 'app-workplaces-form',
@@ -28,7 +29,8 @@ export class WorkplacesFormComponent implements OnInit {
     showTwentyFourHours: true
   };
 
-  constructor() { }
+  constructor(private store: Store<fromApp.AppState>,
+              private location: Location) { }
 
   ngOnInit() {
     this.workplacesForm = new FormGroup({
@@ -52,6 +54,7 @@ export class WorkplacesFormComponent implements OnInit {
   }
 
   submit() {
-
+    this.store.dispatch(new WorkplacesActions.AddWorkplace(this.workplacesForm.value.workplaces));
+    this.location.back();
   }
 }

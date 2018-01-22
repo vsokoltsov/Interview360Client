@@ -23,11 +23,13 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
   resumeFormErrors: {} = {};
   skillsSubscription: Subscription;
   userSubscription: Subscription;
+  workplacesSubscription: Subscription;
   searchedSkills: Skill[];
   selectedSkills: Skill[] = [];
   popupsShowing: {} = {};
   values: {} = {};
   currentUser: User;
+  workplacesList: any[];
   public currentPopupId: string;
 
   constructor(private store: Store<fromApp.AppState>,
@@ -46,10 +48,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     this.skillsSubscription = this.store.select('skills').subscribe(
       data => {
         if (data.list.length > 0) { this.popupsShowing['skills'] = true; }
-        // if (data.list.length > 0) {
-
         this.values['skills'] = data.list;
-        // }
       }
     );
     this.userSubscription = this.store.select('auth').subscribe(
@@ -59,17 +58,27 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
         }
       }
     );
+    this.workplacesSubscription = this.store.select('resumes').subscribe(
+      data => {
+        if (data.form) {
+          this.workplacesList = data.form.workplaces;
+          console.log(this.workplacesList);
+        }
+      }
+    );
   }
 
   ngOnDestroy(){
     this.skillsSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
+    this.workplacesSubscription.unsubscribe();
   }
 
   submit() {
     const params = this.resumeForm.value;
     params['skills'] = this.selectedSkills.map(item => item.id);
-    params['user'] = this.currentUser.id;
+    params['user_id'] = this.currentUser.id;
+    params['workplaces'] = this.workplacesList;
     this.resumesService.createResume(params);
   }
 
