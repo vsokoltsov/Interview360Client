@@ -60,18 +60,26 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     );
     this.workplacesSubscription = this.store.select('resumes').subscribe(
       data => {
-        if (data.form) {
+        if (Object.keys(data.form).length > 0) {
+          console.log(data.form);
+          this.resumeForm.patchValue({...data.form});
           this.workplacesList = data.form.workplaces;
-          console.log(this.workplacesList);
+          this.selectedSkills = data.form.selectedSkills;
         }
       }
     );
   }
 
   ngOnDestroy(){
+    this.popupsShowing['skills'] = false;
     this.skillsSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
     this.workplacesSubscription.unsubscribe();
+    const formValue = {
+      ...this.resumeForm.value,
+      selectedSkills: this.selectedSkills
+    };
+    this.store.dispatch(new ResumesActions.SaveForm(formValue));
   }
 
   submit() {

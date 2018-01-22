@@ -5,6 +5,7 @@ import { Resume } from '../resume.model';
 export const RESUMES_LIST = 'RESUMES_LIST';
 export const SUCCESS_RESUME_CREATED = 'SUCCESS_RESUME_CREATED';
 export const FAILED_RESUME_CREATED = 'FAILED_RESUME_CREATED';
+export const SAVE_FORM = 'SAVE_FORM';
 
 export class SuccessResumeCreated implements Action {
   readonly type = SUCCESS_RESUME_CREATED;
@@ -24,6 +25,13 @@ export class ResumesList implements Action {
   constructor(public payload: Resume[]) {}
 }
 
+export class SaveForm implements Action {
+  readonly type = SAVE_FORM;
+
+  constructor(public payload: {}) {}
+}
+
 export type ResumesActions = SuccessResumeCreated |
 FailedResumeCreated |
-ResumesList;
+ResumesList |
+SaveForm;

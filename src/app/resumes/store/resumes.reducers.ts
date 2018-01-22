@@ -35,8 +35,12 @@ export function resumesReducer(state = initialState,
           ...state,
           formErrors: action.payload
         };
+      case ResumesActions.SAVE_FORM:
+        return {
+          ...state,
+          form: action.payload
+        };
       case WorkplacesActions.ADD_WORKPLACE:
-        console.log(action.payload);
         return {
           ...state,
           form: {
