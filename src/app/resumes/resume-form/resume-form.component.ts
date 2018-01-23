@@ -61,7 +61,6 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     this.workplacesSubscription = this.store.select('resumes').subscribe(
       data => {
         if (Object.keys(data.form).length > 0) {
-          console.log(data.form);
           this.resumeForm.patchValue({...data.form});
           this.workplacesList = data.form.workplaces;
           this.selectedSkills = data.form.selectedSkills;
@@ -80,6 +79,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
       selectedSkills: this.selectedSkills
     };
     this.store.dispatch(new ResumesActions.SaveForm(formValue));
+    this.skillsService.removeSkills();
   }
 
   submit() {

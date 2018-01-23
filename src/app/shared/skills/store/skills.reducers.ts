@@ -18,6 +18,11 @@ export function skillsReducer(
         ...state,
         list: action.payload
       };
+    case SkillsActions.REMOVE_SKILLS:
+      return {
+        ...state,
+        list: []
+      };
     default:
       return state;
   }

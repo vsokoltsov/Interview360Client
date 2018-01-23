@@ -30,4 +30,8 @@ export class SkillsService {
       }
     )
   }
+
+  removeSkills() {
+    this.store.dispatch(new SkillsActions.RemoveSkills());
+  }
 }

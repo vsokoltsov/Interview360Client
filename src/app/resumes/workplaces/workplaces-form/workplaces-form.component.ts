@@ -57,4 +57,8 @@ export class WorkplacesFormComponent implements OnInit {
     this.store.dispatch(new WorkplacesActions.AddWorkplace(this.workplacesForm.value.workplaces));
     this.location.back();
   }
+
+  back() {
+    this.location.back();
+  }
 }
