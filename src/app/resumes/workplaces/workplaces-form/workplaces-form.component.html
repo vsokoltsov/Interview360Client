@@ -16,6 +16,14 @@
             [theme]="'dp-material dp-main'"
             [dpDayPicker]="datePickerConfig"
             type="text">
+            <div class="error" *ngIf="workplaceControl.get('start_date').touched &&
+              workplaceControl.hasError('startDateInFuture')">
+              Start date cannot be more than current date!
+            </div>
+            <div class="error" *ngIf="workplaceControl.get('start_date').touched &&
+              workplaceControl.hasError('startDateMoreEndDate')">
+              Start date cannot be more than end date!
+            </div>
           <input
             placeholder="End date"
             formControlName="end_date"

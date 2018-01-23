@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs/Subscription';
@@ -15,6 +15,17 @@ import { CompaniesService } from '../../../companies/companies.service';
 import * as fromApp from '../../../store/app.reducers';
 import * as ResumesActions from '../../store/resumes.actions';
 import * as WorkplacesActions from '../../store/workplaces.actions';
+//
+// function validateStartDate(control: FormGroup) {
+//   // if (control.value) {
+//   //   const todayDate = new Date();
+//   //   const selectedDate = new Date(control.value);
+//   //   if (todayDate < selectedDate) {
+//   //     return { startDateInFuture: true  };
+//   //   }
+//   // }
+//   return null;
+// }
 
 @Component({
   selector: 'app-workplaces-form',
@@ -45,8 +56,9 @@ export class WorkplacesFormComponent implements OnInit {
       'description': new FormControl(null, [Validators.required]),
       'start_date': new FormControl(null, [Validators.required]),
       'end_date': new FormControl(null, [Validators.required])
-    });
+    }, (formGroup: FormGroup) => this.validateStartDate(formGroup) );
     (<FormArray>this.workplacesForm.get('workplaces')).push(control);
+    console.log((<FormArray>this.workplacesForm.get('workplaces')).at(0));
   }
 
   getWorkplaces(form) {
@@ -60,5 +72,27 @@ export class WorkplacesFormComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  validateStartDate(group: FormGroup) {
+    if (group.value.start_date) {
+      const todayDate = new Date();
+      const selectedDate = new Date(group.value.start_date);
+      if (todayDate < selectedDate) {
+        return { startDateInFuture: true  };
+      }
+    }
+    if (group.value.start_date && group.value.end_date) {
+      const startDate = new Date(group.value.start_date);
+      const endDate = new Date(group.value.end_date);
+      if (startDate > endDate) {
+        return { startDateMoreEndDate: true  };
+      }
+    }
+    return null;
+  }
+
+  validateEndDate(group: FormGroup) {
+    return null;
   }
 }
