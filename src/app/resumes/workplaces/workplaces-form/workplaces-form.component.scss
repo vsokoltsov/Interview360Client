@@ -1,8 +1,51 @@
+@import '~variables.scss';
+
 :host {
+  display: flex;
+
   .workplaces-page {
+    width: 100%;
+    margin-left: 10em;
+    margin-right: 10em;
+
     .add-item {
       display: flex;
       justify-content: flex-start;
+    }
+    .form {
+      .workplace-item {
+        border-top: 2px solid #ccc;
+
+        &:first-child {
+          border-top: none;
+        }
+
+        .base-field {
+          margin: 10px 0;
+
+          &.text-field {
+            input {
+              width: 100%;
+              font-size: 1em;
+              border-radius: 5px;
+              border: 1px solid #ccc;
+              line-height: 1.5em;
+            }
+          }
+          &.text-area-field {
+            textarea {
+              width: 100%;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+
+    .error {
+      color: $red;
     }
   }
 }

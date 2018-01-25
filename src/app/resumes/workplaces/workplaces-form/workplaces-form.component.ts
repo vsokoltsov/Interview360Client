@@ -58,7 +58,6 @@ export class WorkplacesFormComponent implements OnInit {
       'end_date': new FormControl(null, [Validators.required])
     }, this.validateStartDate, this.validateEndDate);
     (<FormArray>this.workplacesForm.get('workplaces')).push(control);
-    console.log((<FormArray>this.workplacesForm.get('workplaces')).at(0));
   }
 
   getWorkplaces(form) {

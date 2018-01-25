@@ -1,14 +1,21 @@
 <div class="workplaces-page card" >
   Workplaces list
-  <form [formGroup]="workplacesForm" (ngSubmit)="submit()">
+  <form [formGroup]="workplacesForm" class="form" (ngSubmit)="submit()">
     <div class="workplaces list" formArrayName="workplaces">
       <div
         class="workplace-item"
         *ngFor="let workplaceControl of getWorkplaces(workplacesForm); let idx = index"
         [formGroupName]="idx">
+        <div class="base-field text-field">
           <input formControlName="company" placeholder="Company name">
+        </div>
+        <div class="base-field text-field">
           <input formControlName="position" placeholder="Position name">
-          <textarea formControlName="description"></textarea>
+        </div>
+        <div class="base-field text-area-field">
+          <textarea formControlName="description" rows="10"></textarea>
+        </div>
+        <div class="base-field text-field">
           <input
             placeholder="Start date"
             formControlName="start_date"
@@ -24,6 +31,8 @@
               workplaceControl.hasError('startDateMoreEndDate')">
               Start date cannot be more than end date!
             </div>
+        </div>
+        <div class="base-field text-field">
           <input
             placeholder="End date"
             formControlName="end_date"
@@ -31,14 +40,15 @@
             [theme]="'dp-material dp-main'"
             [dpDayPicker]="datePickerConfig"
             type="text">
+        </div>
       </div>
       <div class="add-item">
-        <button type="button" class="button" (click)="addNewWorkplace()">Add</button>
+        <button type="button" class="button primary" (click)="addNewWorkplace()">Add</button>
       </div>
     </div>
 
     <div class="actions">
-      <button type="submit" class="button">Save</button>
+      <button type="submit" class="button success">Save</button>
       <button type="button" class="button" (click)="back()">Cancel</button>
     </div>
   </form>
