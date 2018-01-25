@@ -56,7 +56,7 @@ export class WorkplacesFormComponent implements OnInit {
       'description': new FormControl(null, [Validators.required]),
       'start_date': new FormControl(null, [Validators.required]),
       'end_date': new FormControl(null, [Validators.required])
-    }, this.validateStartDate, this.validateEndDate);
+    }, this.validateForm);
     (<FormArray>this.workplacesForm.get('workplaces')).push(control);
   }
 
@@ -73,7 +73,7 @@ export class WorkplacesFormComponent implements OnInit {
     this.location.back();
   }
 
-  validateStartDate(group: FormGroup) {
+  validateForm(group: FormGroup) {
     if (group.value.start_date) {
       const todayDate = new Date();
       const selectedDate = new Date(group.value.start_date);
@@ -88,10 +88,6 @@ export class WorkplacesFormComponent implements OnInit {
         return { startDateMoreEndDate: true  };
       }
     }
-    return null;
-  }
-
-  validateEndDate(group: FormGroup) {
     return null;
   }
 }

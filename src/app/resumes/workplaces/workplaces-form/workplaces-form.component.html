@@ -40,6 +40,10 @@
             [theme]="'dp-material dp-main'"
             [dpDayPicker]="datePickerConfig"
             type="text">
+            <div class="error" *ngIf="workplaceControl.get('end_date').touched &&
+              workplaceControl.hasError('endDateLessStartDate')">
+              Start date cannot be more than end date!
+            </div>
         </div>
       </div>
       <div class="add-item">
