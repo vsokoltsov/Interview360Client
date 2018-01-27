@@ -88,7 +88,6 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
             delete newItem['updated_at'];
             return newItem;
           });
-          // this.resumesService.saveForm(this.resume);
         }
       }
     );
