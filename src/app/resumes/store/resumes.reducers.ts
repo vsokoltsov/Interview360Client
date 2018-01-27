@@ -7,14 +7,16 @@ export interface State {
   form: any,
   list: Resume[],
   detail: Resume,
-  formErrors: {}
+  formErrors: {},
+  updated: boolean
 };
 
 export const initialState: State = {
   form: {},
   list: [],
   detail: null,
-  formErrors: null
+  formErrors: null,
+  updated: false
 };
 
 export function resumesReducer(state = initialState,
@@ -45,12 +47,28 @@ export function resumesReducer(state = initialState,
           ...state,
           form: action.payload
         };
+      case ResumesActions.SUCCESS_RESUME_UPDATED:
+        return {
+          ...state,
+          detail: action.payload,
+          updated: true
+        };
+      case ResumesActions.FAILED_RESUME_UPDATED:
+        return {
+          ...state,
+          formErrors: action.payload
+        };
+      case ResumesActions.DISABLE_UPDATE:
+        return {
+          ...state,
+          updated: false
+        };
       case WorkplacesActions.ADD_WORKPLACE:
         return {
           ...state,
           form: {
             ...state.form,
-            workplaces: action.payload
+            workplaces: action.payload,
           }
         };
       default:

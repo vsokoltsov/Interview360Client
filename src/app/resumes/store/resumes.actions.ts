@@ -7,6 +7,9 @@ export const SUCCESS_RESUME_CREATED = 'SUCCESS_RESUME_CREATED';
 export const FAILED_RESUME_CREATED = 'FAILED_RESUME_CREATED';
 export const SAVE_FORM = 'SAVE_FORM';
 export const RECEIVE_RESUME = 'RECEIVE_RESUME';
+export const SUCCESS_RESUME_UPDATED = 'SUCCESS_RESUME_UPDATED';
+export const FAILED_RESUME_UPDATED = 'FAILED_RESUME_UPDATED';
+export const DISABLE_UPDATE = 'DISABLE_UPDATE';
 
 export class SuccessResumeCreated implements Action {
   readonly type = SUCCESS_RESUME_CREATED;
@@ -38,8 +41,27 @@ export class SaveForm implements Action {
   constructor(public payload: {}) {}
 }
 
+export class SuccessResumeUpdate implements Action {
+  readonly type = SUCCESS_RESUME_UPDATED;
+
+  constructor(public payload: Resume) {}
+}
+
+export class FailedResumeUpdate implements Action {
+  readonly type = FAILED_RESUME_UPDATED;
+
+  constructor(public payload: {}) {}
+}
+
+export class DisableResumeUpdated implements Action {
+  readonly type = DISABLE_UPDATE;
+}
+
 export type ResumesActions = SuccessResumeCreated |
 FailedResumeCreated |
 ResumesList |
 ReceiveResume |
-SaveForm;
+SaveForm |
+SuccessResumeUpdate |
+FailedResumeUpdate |
+DisableResumeUpdated;
