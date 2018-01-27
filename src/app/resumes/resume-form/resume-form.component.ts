@@ -70,13 +70,32 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
         }
         if (data.detail) {
           this.resume = data.detail;
-          console.log(this.resume);
+          this.resumeForm.patchValue({
+            'title': this.resume.title,
+            'description': this.resume.description,
+            'salary': this.resume.salary
+          });
+          if (this.resume.skills) {
+            this.selectedSkills = this.resume.skills;
+          }
         }
       }
     );
     this.activatedRoute.params.subscribe((params: Params) => {
       const resumeId = params['id'];
-      this.resumesService.getResume(resumeId);
+      if (resumeId) {
+          this.resumesService.getResume(resumeId);
+      }
+      else {
+        if (this.resumeForm) {
+          this.resumeForm.patchValue({
+            'title': null,
+            'description': null,
+            'salary': null,
+            'skills': []
+          });
+        }
+      }
     });
   }
 
