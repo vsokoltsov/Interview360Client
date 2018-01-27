@@ -33,6 +33,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
   currentUser: User;
   workplacesList: any[];
   public currentPopupId: string;
+  resume: Resume;
 
   constructor(private store: Store<fromApp.AppState>,
               private resumesService: ResumesService,
@@ -67,8 +68,16 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
           this.workplacesList = data.form.workplaces;
           this.selectedSkills = data.form.selectedSkills;
         }
+        if (data.detail) {
+          this.resume = data.detail;
+          console.log(this.resume);
+        }
       }
     );
+    this.activatedRoute.params.subscribe((params: Params) => {
+      const resumeId = params['id'];
+      this.resumesService.getResume(resumeId);
+    });
   }
 
   ngOnDestroy(){

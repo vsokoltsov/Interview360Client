@@ -10,7 +10,9 @@ export const resumesRoutes: Routes = [
  { path: '', component: ResumesComponent },
  { path: 'new', component: ResumeFormComponent },
  { path: 'new/workplaces', component: WorkplacesFormComponent },
- { path: ':id', component: ResumesDetailComponent }
+ { path: ':id', component: ResumesDetailComponent },
+ { path: ':id/edit', component: ResumeFormComponent },
+ { path: ':id/edit/workplaces', component: WorkplacesFormComponent }
 ];
 
 

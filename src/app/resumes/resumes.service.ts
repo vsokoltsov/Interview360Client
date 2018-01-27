@@ -28,6 +28,16 @@ export class ResumesService {
     );
   }
 
+  getResume(id: number) {
+    this.store.dispatch(new LoaderActions.RequestStarted());
+    this.apiService.get(`/resumes/${id}/`).subscribe(
+      response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.store.dispatch(new ResumesActions.ReceiveResume(response.body));
+      }
+    );
+  }
+
   searchResumes(query: string) {
     const params = new HttpParams().set('q', query);
     this.store.dispatch(new LoaderActions.RequestStarted());

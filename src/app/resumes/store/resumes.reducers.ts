@@ -25,6 +25,11 @@ export function resumesReducer(state = initialState,
           ...state,
           list: action.payload
         };
+      case ResumesActions.RECEIVE_RESUME:
+        return {
+          ...state,
+          detail: action.payload
+        }
       case ResumesActions.SUCCESS_RESUME_CREATED:
         return {
           ...state,
