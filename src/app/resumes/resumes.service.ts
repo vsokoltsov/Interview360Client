@@ -64,4 +64,18 @@ export class ResumesService {
       }
     );
   }
+
+  updateResume(id: number, params: {}) {
+    this.store.dispatch(new LoaderActions.RequestStarted());
+    this.apiService.post(`/resumes/${id}/`, params).subscribe(
+      response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.store.dispatch(new ResumesActions.SuccessResumeUpdate(response.body.resume));
+      },
+      failed => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.store.dispatch(new ResumesActions.FailedResumeUpdate(failed.error.errors));
+      }
+    );
+  }
 }

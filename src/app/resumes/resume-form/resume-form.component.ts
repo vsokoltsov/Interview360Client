@@ -117,7 +117,12 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     params['skills'] = this.selectedSkills.map(item => item.id);
     params['user_id'] = this.currentUser.id;
     params['workplaces'] = this.workplacesList;
-    this.resumesService.createResume(params);
+    if (this.resume.id) {
+
+    }
+    else {
+        this.resumesService.createResume(params);
+    }
   }
 
   selectSkill(skill: Skill) {
