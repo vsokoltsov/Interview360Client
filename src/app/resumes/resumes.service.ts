@@ -6,10 +6,12 @@ import { Store } from '@ngrx/store';
 
 import { User } from '../auth/user.model';
 import { Resume } from './resume.model';
+import { Workplace } from './workplace.model';
 import { ApiService } from '../shared/api.service';
 import { PopupNotificationsService } from '../popup-notifications/popup-notifications.service';
 import * as fromApp from '../store/app.reducers';
 import * as ResumesActions from './store/resumes.actions';
+import * as WorkplacesActions from './store/workplaces.actions';
 import * as LoaderActions from '../shared/loader/store/loaders.actions';
 
 @Injectable()
@@ -67,7 +69,7 @@ export class ResumesService {
 
   updateResume(id: number, params: {}) {
     this.store.dispatch(new LoaderActions.RequestStarted());
-    this.apiService.post(`/resumes/${id}/`, params).subscribe(
+    this.apiService.put(`/resumes/${id}/`, params).subscribe(
       response => {
         this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new ResumesActions.SuccessResumeUpdate(response.body.resume));
@@ -77,5 +79,13 @@ export class ResumesService {
         this.store.dispatch(new ResumesActions.FailedResumeUpdate(failed.error.errors));
       }
     );
+  }
+
+  addWorkplaces(workplaces: Workplace[]) {
+    this.store.dispatch(new WorkplacesActions.AddWorkplace(workplaces));
+  }
+
+  saveForm(form: {}) {
+    this.store.dispatch(new ResumesActions.SaveForm(form));
   }
 }

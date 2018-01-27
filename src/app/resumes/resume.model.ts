@@ -1,4 +1,5 @@
 import { Skill } from '../shared/skills/skill.model';
+import { Workplace } from './workplace.model';
 
 export class Resume {
   public id: number;
@@ -9,10 +10,11 @@ export class Resume {
   public skills: Skill[];
   public created_at: string;
   public updated_at: string;
+  public workplaces: Workplace[];
 
   constructor(id?: number, title?: string,
     description?: string, user?: object, salary?: number, skills?: Skill[],
-    created_at?: string, updated_at?: string) {
+    created_at?: string, updated_at?: string, workplaces?: Workplace[]) {
       this.id = id;
       this.title = title;
       this.description = description;
@@ -21,5 +23,6 @@ export class Resume {
       this.skills = skills;
       this.created_at = created_at;
       this.updated_at = updated_at;
+      this.workplaces = workplaces;
     }
 }

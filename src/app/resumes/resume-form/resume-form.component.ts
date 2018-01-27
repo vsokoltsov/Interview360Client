@@ -78,6 +78,17 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
           if (this.resume.skills) {
             this.selectedSkills = this.resume.skills;
           }
+          this.workplacesList = this.resume.workplaces.map(item => {
+            const newItem = {
+              ...item,
+              resume_id: item.resume.id,
+              company: item.company.name
+            };
+            delete newItem['resume'];
+            delete newItem['updated_at'];
+            return newItem;
+          });
+          // this.resumesService.saveForm(this.resume);
         }
       }
     );
@@ -114,11 +125,12 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
 
   submit() {
     const params = this.resumeForm.value;
+    params['salary'] = parseFloat(params['salary'].toString());
     params['skills'] = this.selectedSkills.map(item => item.id);
     params['user_id'] = this.currentUser.id;
     params['workplaces'] = this.workplacesList;
     if (this.resume.id) {
-
+      this.resumesService.updateResume(this.resume.id, params);
     }
     else {
         this.resumesService.createResume(params);
