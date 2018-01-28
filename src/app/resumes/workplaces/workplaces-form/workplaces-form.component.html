@@ -7,7 +7,7 @@
         *ngFor="let workplaceControl of getWorkplaces(workplacesForm); let idx = index"
         [formGroupName]="idx">
         <div class="base-field text-field">
-          <app-autocomplete
+          <div app-autocomplete
             formControlName="company"
             placeholder="Company"
             [showPopup]="this.showCompanyPopup"
@@ -15,7 +15,7 @@
             <div *ngFor="let company of searchedCompanies" class="item" (click)="selectCompany(company)">
               <p>{{ company.name }}</p>
             </div>
-          </app-autocomplete>
+          </div>
         </div>
         <div class="base-field text-field">
           <input formControlName="position" placeholder="Position name">

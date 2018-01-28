@@ -24,6 +24,7 @@ import * as WorkplacesActions from '../../store/workplaces.actions';
 })
 export class WorkplacesFormComponent implements OnInit, OnDestroy {
   resume: Resume;
+  companyName: string;
   showCompanyPopup: boolean = false;
   workplacesForm: FormGroup;
   searchedCompanies: Company[];
@@ -62,7 +63,7 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
           }
           if (data.detail.workplaces) {
             workplaces = data.detail.workplaces.map(item => {
-                return new FormGroup({
+               const form = new FormGroup({
                   'id': new FormControl(item.id),
                   'company': new FormControl(item.company.name, [Validators.required]),
                   'position': new FormControl(item.position, [Validators.required]),
@@ -70,6 +71,7 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
                   'start_date': new FormControl(item.start_date, [Validators.required]),
                   'end_date': new FormControl(item.end_date, [Validators.required])
                 }, this.validateForm);
+                return form;
             });
             if ((<FormArray>this.workplacesForm.get('workplaces')).controls.length == 0) {
               this.workplacesForm.setControl('workplaces', new FormArray(workplaces));
@@ -109,6 +111,7 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
   }
 
   submit() {
+    console.log(this.workplacesForm.value.workplaces);
     this.resumesService.saveForm({
       title: this.resume.title,
       description: this.resume.description,
@@ -116,7 +119,7 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
       selectedSkills: this.resume.skills,
       workplaces: this.workplacesForm.value.workplaces
     });
-    this.location.back();
+    // this.location.back();
   }
 
   back() {
@@ -153,5 +156,9 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
 
   selectCompany(company: Company) {
 
+  }
+
+  valueChange(data: any) {
+    console.log(data);
   }
 }

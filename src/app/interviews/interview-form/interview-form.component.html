@@ -1,7 +1,7 @@
 <form class="form" [formGroup]="interviewForm" (ngSubmit)="submit()">
 
   <div class="form-field">
-    <app-autocomplete
+    <div app-autocomplete
       formControlName="candidate_email"
       placeholder="Candidate"
       className="field candidate_email"
@@ -17,7 +17,7 @@
         <img class="logo" [src]="employee.attachment.small_thumb_url" *ngIf="employee?.attachment != null" />
         <p class="name">{{ employee.email }}</p>
       </div>
-    </app-autocomplete>
+    </div>
 
     <div class="error" *ngIf="interviewForm.get('candidate_email').touched &&
       interviewForm.get('candidate_email').hasError('required')">
@@ -33,7 +33,7 @@
       formControlName="vacancy_id"
       type="hidden">
 
-      <app-autocomplete
+      <div app-autocomplete
         placeholder="Vacancy"
         className="field"
         [value]="vacancyName"
@@ -43,7 +43,7 @@
         <div *ngFor="let vacancy of employeesValues['vacancy_id']" class="item" (click)="selectVacancy(vacancy)">
           <p class="name">{{ vacancy.title }}</p>
         </div>
-      </app-autocomplete>
+      </div>
 
     <div class="error" *ngIf="interviewForm.get('vacancy_id').touched &&
       interviewForm.get('vacancy_id').hasError('required')">
@@ -86,7 +86,7 @@
       <div class="interviewee-list">
         <div class="interviewee-item"
           *ngFor="let interviewControl of getInterviews(interviewForm); let idx = index">
-          <app-autocomplete
+          <div app-autocomplete
             placeholder="Interviewee"
             className="field"
             [popupId]="['interviewee_', idx]"
@@ -102,7 +102,7 @@
               <img class="logo" [src]="employee.attachment.small_thumb_url" *ngIf="employee?.attachment != null" />
               <p class="name">{{ employee.email }}</p>
             </div>
-          </app-autocomplete>
+          </div>
 
 
           <a (click)="deleteInterviewee(idx)">

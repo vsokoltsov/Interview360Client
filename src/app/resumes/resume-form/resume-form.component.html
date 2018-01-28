@@ -41,7 +41,7 @@
     </div>
 
     <div class="form-field">
-      <app-autocomplete
+      <div app-autocomplete
         formControlName="skills"
         placeholder="Skills"
         className="field"
@@ -51,7 +51,7 @@
         <div *ngFor="let skill of values['skills']" class="item" (click)="selectSkill(skill)">
           <p>{{ skill.name }}</p>
         </div>
-      </app-autocomplete>
+      </div>
 
       <div class="skills">
         <div class="skill-item" *ngFor="let skill of selectedSkills">

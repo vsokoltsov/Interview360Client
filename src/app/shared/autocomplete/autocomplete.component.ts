@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ElementRef, forwardRef, HostListener } from '
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-autocomplete',
+  selector: '[app-autocomplete]',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
   providers: [
@@ -16,6 +16,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class AutocompleteComponent implements OnInit, ControlValueAccessor {
   @Input('value') _value = '';
   @Input('placeholder') _placeholder;
+  @Input('formControlName') _controlName;
   @Input('className') _class;
   @Input('Change') _onChange;
   @Input('onOut') _onOut;
@@ -33,7 +34,7 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  onChange: any = () => { };
+  onChange: any = () => {};
   onTouched: any = () => { };
 
   get value() {
@@ -43,7 +44,6 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
   set value(val) {
     this._value = val;
     this.onChange(val);
-    this.onTouched();
   }
 
   constructor(private eRef: ElementRef) { }
@@ -63,5 +63,10 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
     if (value) {
       this.value = value;
     }
+  }
+
+  innerChangeAction(event: any) {
+    this.value = event.target.value;
+    this._onChange(event);
   }
 }
