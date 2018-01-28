@@ -111,7 +111,6 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    console.log(this.workplacesForm.value.workplaces);
     this.resumesService.saveForm({
       title: this.resume.title,
       description: this.resume.description,
@@ -119,7 +118,7 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
       selectedSkills: this.resume.skills,
       workplaces: this.workplacesForm.value.workplaces
     });
-    // this.location.back();
+    this.location.back();
   }
 
   back() {
@@ -154,8 +153,10 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
     this.companiesService.searchCompanies(event.target.value);
   }
 
-  selectCompany(company: Company) {
-
+  selectCompany(idx: number, company: Company) {
+    const control = (<FormControl>(<FormArray>this.workplacesForm.get('workplaces')).at(idx).get('company'));
+    control.setValue(company.name);
+    this.showCompanyPopup = false;
   }
 
   valueChange(data: any) {
