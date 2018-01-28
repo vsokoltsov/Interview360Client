@@ -23,7 +23,8 @@
         <div class="base-field text-area-field">
           <textarea formControlName="description" rows="10"></textarea>
         </div>
-        <div class="base-field text-field">
+        <div class="base-field date text-field">
+          <label class="label" for="start_date">From</label>
           <input
             placeholder="Start date"
             formControlName="start_date"
@@ -40,7 +41,8 @@
               Start date cannot be more than end date!
             </div>
         </div>
-        <div class="base-field text-field">
+        <div class="base-field date text-field">
+          <label class="label" for="end_date">To</label>
           <input
             placeholder="End date"
             formControlName="end_date"

@@ -5,8 +5,8 @@ export class Workplace {
   public id: number;
   public position: string;
   public description: string;
-  public startDate: string;
-  public endDate: string;
+  public start_date: string;
+  public end_date: string;
   public updatedAt: string;
   public resume: Resume;
   public company: Company;
@@ -17,8 +17,8 @@ export class Workplace {
     this.id = id;
     this.position = position;
     this.description = description;
-    this.startDate = start_date;
-    this.endDate = end_date;
+    this.start_date = start_date;
+    this.end_date = end_date;
     this.updatedAt = updated_at;
     this.resume = resume;
     this.company = company;

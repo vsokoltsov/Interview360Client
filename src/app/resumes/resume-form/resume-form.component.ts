@@ -63,11 +63,6 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     );
     this.workplacesSubscription = this.store.select('resumes').subscribe(
       data => {
-        if (Object.keys(data.form).length > 0) {
-          this.resumeForm.patchValue({...data.form});
-          this.workplacesList = data.form.workplaces;
-          this.selectedSkills = data.form.selectedSkills;
-        }
         if (data.detail) {
           this.resume = data.detail;
           this.resumeForm.patchValue({
@@ -88,6 +83,11 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
             delete newItem['updated_at'];
             return newItem;
           });
+          if (Object.keys(data.form).length > 0) {
+            this.resumeForm.patchValue({...data.form});
+            this.workplacesList = data.form.workplaces;
+            this.selectedSkills = data.form.selectedSkills;
+          }
         }
       }
     );
@@ -130,8 +130,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     params['workplaces'] = this.workplacesList;
     if (this.resume.id) {
       this.resumesService.updateResume(this.resume.id, params);
-    }
-    else {
+    } else {
         this.resumesService.createResume(params);
     }
   }

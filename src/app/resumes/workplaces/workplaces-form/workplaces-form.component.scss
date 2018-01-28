@@ -22,6 +22,20 @@
 
         .base-field {
           margin: 10px 0;
+          display: flex;
+          width: 100%;
+
+          .label {
+            margin: 0 10px;
+            min-width: 2em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+
+          app-autocomplete {
+            width: 100%;
+          }
 
           &.text-field {
             /deep/ input {
@@ -31,6 +45,10 @@
               border: 1px solid #ccc;
               line-height: 1.5em;
             }
+          }
+          &.date {
+            display: flex;
+            flex-direction: row;
           }
           &.text-area-field {
             textarea {

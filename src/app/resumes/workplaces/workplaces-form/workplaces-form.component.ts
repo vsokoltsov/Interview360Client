@@ -23,6 +23,7 @@ import * as WorkplacesActions from '../../store/workplaces.actions';
   styleUrls: ['./workplaces-form.component.scss']
 })
 export class WorkplacesFormComponent implements OnInit, OnDestroy {
+  resume: Resume;
   showCompanyPopup: boolean = false;
   workplacesForm: FormGroup;
   searchedCompanies: Company[];
@@ -32,10 +33,13 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
     showTwentyFourHours: true
   };
   companieSubscription: Subscription;
+  resumesSubscription: Subscription;
 
   constructor(private store: Store<fromApp.AppState>,
               private location: Location,
-              private companiesService: CompaniesService) { }
+              private activatedRoute: ActivatedRoute,
+              private companiesService: CompaniesService,
+              private resumesService: ResumesService) { }
 
   ngOnInit() {
     this.workplacesForm = new FormGroup({
@@ -46,10 +50,47 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
         if (data.list) {
           if (data.list.length > 0) { this.showCompanyPopup = true; }
           this.searchedCompanies = data.list;
-          console.log(data.list);
         }
       }
     );
+    this.resumesSubscription = this.store.select('resumes').subscribe(
+      data => {
+        if (data.detail) {
+          let workplaces = [];
+          if (data.detail) {
+            this.resume = data.detail;
+          }
+          if (data.detail.workplaces) {
+            workplaces = data.detail.workplaces.map(item => {
+                return new FormGroup({
+                  'id': new FormControl(item.id),
+                  'company': new FormControl(item.company.name, [Validators.required]),
+                  'position': new FormControl(item.position, [Validators.required]),
+                  'description': new FormControl(item.description, [Validators.required]),
+                  'start_date': new FormControl(item.start_date, [Validators.required]),
+                  'end_date': new FormControl(item.end_date, [Validators.required])
+                }, this.validateForm);
+            });
+            if ((<FormArray>this.workplacesForm.get('workplaces')).controls.length == 0) {
+              this.workplacesForm.setControl('workplaces', new FormArray(workplaces));
+            }
+          }
+        }
+      }
+    );
+    this.activatedRoute.params.subscribe((params: Params) => {
+      const resumeId = params['id'];
+      if (resumeId) {
+        this.resumesService.getResume(resumeId);
+      }
+      else {
+        if (this.workplacesForm) {
+          this.workplacesForm.patchValue({
+            'workplaces': []
+          });
+        }
+      }
+    });
   }
 
   addNewWorkplace() {
@@ -68,7 +109,13 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    this.store.dispatch(new WorkplacesActions.AddWorkplace(this.workplacesForm.value.workplaces));
+    this.resumesService.saveForm({
+      title: this.resume.title,
+      description: this.resume.description,
+      salary: this.resume.salary,
+      selectedSkills: this.resume.skills,
+      workplaces: this.workplacesForm.value.workplaces
+    });
     this.location.back();
   }
 
@@ -96,6 +143,8 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.companieSubscription.unsubscribe();
+    this.resumesSubscription.unsubscribe();
+
   }
 
   searchCompanies(event: any) {
