@@ -1,3 +1,24 @@
 <div class="contact-form card">
   Contact form
+  <form [formGroup]="contactForm" class="form">
+    <div class="form-field">
+      <input placeholder="Email" class="field" formControlName="email" type="text">
+    </div>
+    <div class="form-field">
+      <input placeholder="Phone" class="field" formControlName="phone" type="text">
+    </div>
+    <div class="form-field">
+
+    </div>
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="button success"
+        [disabled]="!contactForm.valid">Save</button>
+        <button
+        class="button info"
+        (click)="returnBack()"
+        type="button">Back</button>
+    </div>
+  </form>
 </div>

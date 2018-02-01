@@ -20,10 +20,12 @@ import * as ContactActions from '../../store/contact.actions';
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss']
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormComponent implements OnInit, OnDestroy {
   contactForm: FormGroup;
+  userSubscription: Subscription;
   resumeSubscription: Subscription;
   contactSubscription: Subscription;
+  currentUser: User;
 
   constructor(private store: Store<fromApp.AppState>,
               private location: Location,
@@ -31,6 +33,33 @@ export class ContactFormComponent implements OnInit {
               private resumesService: ResumesService) { }
 
   ngOnInit() {
+    this.contactForm = new FormGroup({
+      'email': new FormControl(null, [Validators.required]),
+      'phone': new FormControl(null, [Validators.required]),
+      'phone_comment': new FormControl(null),
+      'social_networks': new FormArray([])
+    });
+
+    this.userSubscription = this.store.select('auth').subscribe(
+      data => {
+        if (data.currentUser) {
+          this.currentUser = data.currentUser;
+          (<FormControl>this.contactForm.get('email')).setValue(this.currentUser.email);
+        }
+      }
+    );
+  }
+
+  submit() {
+
+  }
+
+  returnBack() {
+    this.location.back();
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
   }
 
 }
