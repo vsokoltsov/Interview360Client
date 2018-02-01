@@ -76,9 +76,20 @@
 <div class="navigation-list card">
   <ul>
     <li>
+      <a [routerLink]="['contacts']">
+        Contacts
+      </a>
+      <div class="error" *ngIf="resumeFormErrors['contact']">
+        {{ resumeFormErrors['contact'] }}
+      </div>
+    </li>
+    <li>
       <a [routerLink]="['workplaces']">
         Workplaces
       </a>
+      <div class="error" *ngIf="resumeFormErrors['workplaces']">
+        {{ resumeFormErrors['workplaces'] }}
+      </div>
     </li>
   </ul>
 </div>

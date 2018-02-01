@@ -89,6 +89,10 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
             this.selectedSkills = data.form.selectedSkills;
           }
         }
+        if (data.formErrors) {
+          this.resumeFormErrors = data.formErrors;
+          console.log(this.resumeFormErrors);
+        }
       }
     );
     this.activatedRoute.params.subscribe((params: Params) => {
