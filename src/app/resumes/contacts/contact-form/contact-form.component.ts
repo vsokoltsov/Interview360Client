@@ -27,6 +27,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   contactSubscription: Subscription;
   currentUser: User;
   resume: Resume;
+  contact: Contact;
 
   constructor(private store: Store<fromApp.AppState>,
               private location: Location,
@@ -59,6 +60,16 @@ export class ContactFormComponent implements OnInit, OnDestroy {
         selectedSkills: this.resume.skills
       };
     }
+
+    if (this.contact) {
+      params = {
+        ...params,
+        contact: {
+          ...params.contact,
+          id: this.contact.id
+        }
+      }
+    }
     this.resumesService.saveForm(params);
     this.location.back();
   }
@@ -85,6 +96,15 @@ export class ContactFormComponent implements OnInit, OnDestroy {
       data => {
         if (data.detail) {
           this.resume = data.detail;
+          if (this.resume.contact) {
+            this.contact = this.resume.contact;
+            this.contactForm.patchValue({
+              'id': this.resume.contact.id,
+              'email': this.resume.contact.email,
+              'phone': this.resume.contact.phone,
+              'phone_comment': this.resume.contact.phone_comment
+            });
+          }
         }
       }
     );

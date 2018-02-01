@@ -73,6 +73,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     params['user_id'] = this.currentUser.id;
     params['workplaces'] = this.workplacesList;
     params['contact'] = this.contact;
+    console.log(params);
     if (this.resume && this.resume.id) {
       this.resumesService.updateResume(this.resume.id, params);
     } else {
@@ -197,6 +198,14 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
             delete newItem['updated_at'];
             return newItem;
           });
+          if (this.resume.contact) {
+            this.contact = {
+              ...this.resume.contact,
+              resume_id: this.resume.id
+            };
+            delete this.contact['resume'];
+            delete this.contact['updated_at'];
+          }
         }
         if (Object.keys(data.form).length > 0) {
           this.resumeForm.patchValue({
