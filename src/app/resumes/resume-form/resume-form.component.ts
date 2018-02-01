@@ -35,7 +35,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
   workplacesList: any[];
   public currentPopupId: string;
   resume: Resume;
-  contact: Contact;
+  contact: {};
 
   constructor(private store: Store<fromApp.AppState>,
               private resumesService: ResumesService,
@@ -44,76 +44,11 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
               private location: Location) { }
 
   ngOnInit() {
-    this.resumeForm = new FormGroup({
-      'title': new FormControl(null, [Validators.required]),
-      'description': new FormControl(null, [Validators.required]),
-      'salary': new FormControl(null, [Validators.required]),
-      'skills': new FormControl(null)
-    });
-    this.skillsSubscription = this.store.select('skills').subscribe(
-      data => {
-        if (data.list.length > 0) { this.popupsShowing['skills'] = true; }
-        this.values['skills'] = data.list;
-      }
-    );
-    this.userSubscription = this.store.select('auth').subscribe(
-      data => {
-        if (data.currentUser) {
-          this.currentUser = data.currentUser;
-        }
-      }
-    );
-    this.workplacesSubscription = this.store.select('resumes').subscribe(
-      data => {
-        if (data.detail) {
-          this.resume = data.detail;
-          this.resumeForm.patchValue({
-            'title': this.resume.title,
-            'description': this.resume.description,
-            'salary': this.resume.salary
-          });
-          if (this.resume.skills) {
-            this.selectedSkills = this.resume.skills;
-          }
-          this.workplacesList = this.resume.workplaces.map(item => {
-            const newItem = {
-              ...item,
-              resume_id: item.resume.id,
-              company: item.company.name
-            };
-            delete newItem['resume'];
-            delete newItem['updated_at'];
-            return newItem;
-          });
-          if (Object.keys(data.form).length > 0) {
-            this.resumeForm.patchValue({...data.form});
-            this.workplacesList = data.form.workplaces;
-            this.selectedSkills = data.form.selectedSkills;
-            this.contact = data.form.contact;
-          }
-        }
-        if (data.formErrors) {
-          this.resumeFormErrors = data.formErrors;
-          console.log(this.resumeFormErrors);
-        }
-      }
-    );
-    this.activatedRoute.params.subscribe((params: Params) => {
-      const resumeId = params['id'];
-      if (resumeId) {
-          this.resumesService.getResume(resumeId);
-      }
-      else {
-        if (this.resumeForm) {
-          this.resumeForm.patchValue({
-            'title': null,
-            'description': null,
-            'salary': null,
-            'skills': []
-          });
-        }
-      }
-    });
+    this.handleFormInit();
+    this.handleChangeRouter();
+    this.handleSkillsSubscription();
+    this.handleUserSubscription();
+    this.handleWorkplaceSubscription();
   }
 
   ngOnDestroy(){
@@ -125,7 +60,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
       ...this.resumeForm.value,
       selectedSkills: this.selectedSkills
     };
-    this.store.dispatch(new ResumesActions.SaveForm(formValue));
+    this.resumesService.saveForm(formValue);
     this.skillsService.removeSkills();
   }
 
@@ -135,6 +70,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     params['skills'] = this.selectedSkills.map(item => item.id);
     params['user_id'] = this.currentUser.id;
     params['workplaces'] = this.workplacesList;
+    params['contact'] = this.contact;
     if (this.resume && this.resume.id) {
       this.resumesService.updateResume(this.resume.id, params);
     } else {
@@ -187,5 +123,94 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
   private setSkillToForm(skill: Skill) {
     const control = new FormControl(skill, Validators.required);
     (<FormArray>this.resumeForm.get('skills')).push(control);
+  }
+
+  private handleFormInit() {
+    this.resumeForm = new FormGroup({
+      'title': new FormControl(null, [Validators.required]),
+      'description': new FormControl(null, [Validators.required]),
+      'salary': new FormControl(null, [Validators.required]),
+      'skills': new FormControl(null)
+    });
+  }
+
+  private handleChangeRouter() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      const resumeId = params['id'];
+      if (resumeId) {
+          this.resumesService.getResume(resumeId);
+      }
+      else {
+        if (this.resumeForm) {
+          this.resumeForm.patchValue({
+            'title': null,
+            'description': null,
+            'salary': null,
+            'skills': []
+          });
+        }
+      }
+    });
+  }
+
+  private handleSkillsSubscription() {
+    this.skillsSubscription = this.store.select('skills').subscribe(
+      data => {
+        if (data.list.length > 0) { this.popupsShowing['skills'] = true; }
+        this.values['skills'] = data.list;
+      }
+    );
+  }
+
+  private handleUserSubscription() {
+    this.userSubscription = this.store.select('auth').subscribe(
+      data => {
+        if (data.currentUser) {
+          this.currentUser = data.currentUser;
+        }
+      }
+    );
+  }
+
+  private handleWorkplaceSubscription() {
+    this.workplacesSubscription = this.store.select('resumes').subscribe(
+      data => {
+        if (data.detail) {
+          this.resume = data.detail;
+          this.resumeForm.patchValue({
+            'title': this.resume.title,
+            'description': this.resume.description,
+            'salary': this.resume.salary
+          });
+          if (this.resume.skills) {
+            this.selectedSkills = this.resume.skills;
+          }
+          this.workplacesList = this.resume.workplaces.map(item => {
+            const newItem = {
+              ...item,
+              resume_id: item.resume.id,
+              company: item.company.name
+            };
+            delete newItem['resume'];
+            delete newItem['updated_at'];
+            return newItem;
+          });
+        }
+        if (Object.keys(data.form).length > 0) {
+          console.log(data.form);
+          this.resumeForm.patchValue({
+            'title': data.form.title,
+            'description': data.form.description
+          });
+          this.workplacesList = data.form.workplaces;
+          this.selectedSkills = data.form.selectedSkills;
+          this.contact = data.form.contact;
+        }
+        if (data.formErrors) {
+          this.resumeFormErrors = data.formErrors;
+          console.log(this.resumeFormErrors);
+        }
+      }
+    );
   }
 }

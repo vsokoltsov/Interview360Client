@@ -43,9 +43,13 @@ export function resumesReducer(state = initialState,
           formErrors: action.payload
         };
       case ResumesActions.SAVE_FORM:
+        console.log(state.form, action.payload);
         return {
           ...state,
-          form: action.payload
+          form: {
+            ...state.form,
+            ...action.payload
+          }
         };
       case ResumesActions.SUCCESS_RESUME_UPDATED:
         return {
