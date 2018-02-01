@@ -7,12 +7,14 @@ import { Store } from '@ngrx/store';
 import { User } from '../auth/user.model';
 import { Resume } from './resume.model';
 import { Workplace } from './workplace.model';
+import { Contact } from './contact.model';
 import { ApiService } from '../shared/api.service';
 import { PopupNotificationsService } from '../popup-notifications/popup-notifications.service';
 import * as fromApp from '../store/app.reducers';
 import * as ResumesActions from './store/resumes.actions';
 import * as WorkplacesActions from './store/workplaces.actions';
 import * as LoaderActions from '../shared/loader/store/loaders.actions';
+import * as ContactActions from './store/contact.actions';
 
 @Injectable()
 export class ResumesService {
@@ -83,6 +85,10 @@ export class ResumesService {
 
   addWorkplaces(workplaces: Workplace[]) {
     this.store.dispatch(new WorkplacesActions.AddWorkplace(workplaces));
+  }
+
+  addContact(contact: Contact) {
+    this.store.dispatch(new ContactActions.AddContact(contact));
   }
 
   saveForm(form: {}) {
