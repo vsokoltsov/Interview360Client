@@ -111,13 +111,21 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    this.resumesService.saveForm({
-      title: this.resume.title,
-      description: this.resume.description,
-      salary: this.resume.salary,
-      selectedSkills: this.resume.skills,
+    let params = {
       workplaces: this.workplacesForm.value.workplaces
-    });
+    };
+
+    if (this.resume) {
+      params = {
+        ...params,
+        title: this.resume.title,
+        description: this.resume.description,
+        salary: this.resume.salary,
+        selectedSkills: this.resume.skills,
+        workplaces: this.workplacesForm.value.workplaces
+      };
+    }
+    this.resumesService.saveForm(params);
     this.location.back();
   }
 
@@ -157,9 +165,5 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
     const control = (<FormControl>(<FormArray>this.workplacesForm.get('workplaces')).at(idx).get('company'));
     control.setValue(company.name);
     this.showCompanyPopup = false;
-  }
-
-  valueChange(data: any) {
-    console.log(data);
   }
 }

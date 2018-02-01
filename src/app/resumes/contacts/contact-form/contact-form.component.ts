@@ -26,6 +26,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   resumeSubscription: Subscription;
   contactSubscription: Subscription;
   currentUser: User;
+  resume: Resume;
 
   constructor(private store: Store<fromApp.AppState>,
               private location: Location,
@@ -33,25 +34,28 @@ export class ContactFormComponent implements OnInit, OnDestroy {
               private resumesService: ResumesService) { }
 
   ngOnInit() {
-    this.contactForm = new FormGroup({
-      'email': new FormControl(null, [Validators.required]),
-      'phone': new FormControl(null, [Validators.required]),
-      'phone_comment': new FormControl(null),
-      'social_networks': new FormArray([])
-    });
-
-    this.userSubscription = this.store.select('auth').subscribe(
-      data => {
-        if (data.currentUser) {
-          this.currentUser = data.currentUser;
-          (<FormControl>this.contactForm.get('email')).setValue(this.currentUser.email);
-        }
-      }
-    );
+    this.initForm();
+    this.setResumeSubscription();
+    this.setUserSubscription();
+    this.handleUrlParametersChange();
   }
 
   submit() {
+    let params = {
+      contact: this.contactForm.value
+    };
 
+    if (this.resume) {
+      params = {
+        ...params,
+        title: this.resume.title,
+        description: this.resume.description,
+        salary: this.resume.salary,
+        selectedSkills: this.resume.skills
+      };
+    }
+    this.resumesService.saveForm(params);
+    this.location.back();
   }
 
   returnBack() {
@@ -62,4 +66,54 @@ export class ContactFormComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
+  private initForm() {
+    this.contactForm = new FormGroup({
+      'email': new FormControl(null, [Validators.required]),
+      'phone': new FormControl(null, [Validators.required]),
+      'phone_comment': new FormControl(null),
+      'social_networks': new FormArray([])
+    });
+  }
+
+  private setResumeSubscription() {
+    this.resumeSubscription = this.store.select('resumes').subscribe(
+      data => {
+        if (data.detail) {
+          this.resume = data.detail;
+        }
+      }
+    );
+  }
+
+  private setUserSubscription() {
+    this.userSubscription = this.store.select('auth').subscribe(
+      data => {
+        if (data.currentUser) {
+          this.currentUser = data.currentUser;
+          this.contactForm.patchValue({
+            'email': this.currentUser.email
+          });
+          (<FormControl>this.contactForm.get('email')).patchValue(this.currentUser.email);
+        }
+      }
+    );
+  }
+
+  private handleUrlParametersChange() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      const resumeId = params['id'];
+      if (resumeId) {
+        this.resumesService.getResume(resumeId);
+      }
+      else {
+        if (this.contactForm) {
+          this.contactForm.patchValue({
+            'phone': null,
+            'phone_comment': null,
+            'social_networks': []
+          });
+        }
+      }
+    });
+  }
 }

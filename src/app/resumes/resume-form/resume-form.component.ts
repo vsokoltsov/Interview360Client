@@ -9,6 +9,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 
 import { Resume } from '../resume.model';
 import { User } from '../../auth/user.model';
+import { Contact } from '../contact.model';
 import { Skill } from '../../shared/skills/skill.model';
 import { SkillsService } from '../../shared/skills/skills.service';
 import { ResumesService } from '../resumes.service';
@@ -34,6 +35,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
   workplacesList: any[];
   public currentPopupId: string;
   resume: Resume;
+  contact: Contact;
 
   constructor(private store: Store<fromApp.AppState>,
               private resumesService: ResumesService,
@@ -87,6 +89,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
             this.resumeForm.patchValue({...data.form});
             this.workplacesList = data.form.workplaces;
             this.selectedSkills = data.form.selectedSkills;
+            this.contact = data.form.contact;
           }
         }
         if (data.formErrors) {

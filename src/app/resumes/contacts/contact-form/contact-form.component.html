@@ -1,6 +1,6 @@
 <div class="contact-form card">
   Contact form
-  <form [formGroup]="contactForm" class="form">
+  <form [formGroup]="contactForm" class="form" (ngSubmit)="submit()">
     <div class="form-field">
       <input placeholder="Email" class="field" formControlName="email" type="text">
     </div>
