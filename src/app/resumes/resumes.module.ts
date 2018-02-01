@@ -11,6 +11,7 @@ import { AutocompleteModule } from '../shared/autocomplete/autocomplete.module';
 import { ResumesItemComponent } from './resumes-item/resumes-item.component';
 import { ResumesDetailComponent } from './resumes-detail/resumes-detail.component';
 import { WorkplacesFormComponent } from './workplaces/workplaces-form/workplaces-form.component';
+import { ContactFormComponent } from './contacts/contact-form/contact-form.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { WorkplacesFormComponent } from './workplaces/workplaces-form/workplaces
     ResumeFormComponent,
     ResumesItemComponent,
     ResumesDetailComponent,
-    WorkplacesFormComponent
+    WorkplacesFormComponent,
+    ContactFormComponent
   ]
 })
 export class ResumesModule {}
