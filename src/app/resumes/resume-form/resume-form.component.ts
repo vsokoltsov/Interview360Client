@@ -128,7 +128,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     params['skills'] = this.selectedSkills.map(item => item.id);
     params['user_id'] = this.currentUser.id;
     params['workplaces'] = this.workplacesList;
-    if (this.resume.id) {
+    if (this.resume && this.resume.id) {
       this.resumesService.updateResume(this.resume.id, params);
     } else {
         this.resumesService.createResume(params);
@@ -141,6 +141,7 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
       this.selectedSkills.push(skill);
     }
     this.popupsShowing['skills'] = false;
+    (<FormControl>this.resumeForm.get('skills')).setValue([]);
   }
 
   searchSkills(event: any) {
