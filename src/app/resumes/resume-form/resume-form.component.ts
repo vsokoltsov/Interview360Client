@@ -58,7 +58,9 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     this.workplacesSubscription.unsubscribe();
     const formValue = {
       ...this.resumeForm.value,
-      selectedSkills: this.selectedSkills
+      selectedSkills: this.selectedSkills,
+      workplaces: this.workplacesList,
+      contact: this.contact
     };
     this.resumesService.saveForm(formValue);
     this.skillsService.removeSkills();
@@ -197,10 +199,8 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
           });
         }
         if (Object.keys(data.form).length > 0) {
-          console.log(data.form);
           this.resumeForm.patchValue({
-            'title': data.form.title,
-            'description': data.form.description
+            ...data.form
           });
           this.workplacesList = data.form.workplaces;
           this.selectedSkills = data.form.selectedSkills;
@@ -208,7 +208,6 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
         }
         if (data.formErrors) {
           this.resumeFormErrors = data.formErrors;
-          console.log(this.resumeFormErrors);
         }
       }
     );

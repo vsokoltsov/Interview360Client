@@ -42,7 +42,12 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 
   submit() {
     let params = {
-      contact: this.contactForm.value
+      contact: {
+        ...this.contactForm.value,
+        social_networks: {
+          ...this.contactForm.value.social_networks
+        }
+      }
     };
 
     if (this.resume) {
