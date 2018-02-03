@@ -47,7 +47,7 @@ const listResponse = [{
   city: '1'
 }];
 
-fdescribe('VacancyFormComponent', () => {
+describe('VacancyFormComponent', () => {
   let component: VacancyFormComponent;
   let fixture: ComponentFixture<VacancyFormComponent>;
   let httpMock: HttpTestingController;
