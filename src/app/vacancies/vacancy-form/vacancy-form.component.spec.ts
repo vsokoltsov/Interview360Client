@@ -18,7 +18,8 @@ import { Company } from '../../companies/company.model';
 import { VacanciesListItemComponent } from '../vacancies-list-item/vacancies-list-item.component';
 import { environment } from '../../../environments/environment';
 import { Vacancy } from '../vacancy.model';
-import { Skill } from '../skill.model';
+import { Skill } from '../../shared/skills/skill.model';
+import { SkillsService } from '../../shared/skills/skills.service';
 import { VacanciesService } from '../vacancies.service';
 import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../auth/auth.service';
@@ -46,12 +47,13 @@ const listResponse = [{
   city: '1'
 }];
 
-describe('VacancyFormComponent', () => {
+fdescribe('VacancyFormComponent', () => {
   let component: VacancyFormComponent;
   let fixture: ComponentFixture<VacancyFormComponent>;
   let httpMock: HttpTestingController;
   let store: Store<fromApp.AppState>;
   let vacanciesService: VacanciesService;
+  let skillsService: SkillsService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -72,6 +74,7 @@ describe('VacancyFormComponent', () => {
         ApiService,
         AuthService,
         CookieService,
+        SkillsService,
         VacanciesService,
         {
           provide: ActivatedRoute, useValue: {
@@ -98,7 +101,8 @@ describe('VacancyFormComponent', () => {
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     vacanciesService = TestBed.get(VacanciesService);
-    spyOn(vacanciesService, 'loadSkills').and.callThrough();
+    skillsService = TestBed.get(SkillsService);
+    spyOn(skillsService, 'loadSkills').and.callThrough();
     httpMock = TestBed.get(HttpTestingController);
     fixture.detectChanges();
 
@@ -122,7 +126,7 @@ describe('VacancyFormComponent', () => {
   });
 
   it('call loadSkills method', () => {
-    expect(vacanciesService.loadSkills).toHaveBeenCalled();
+    expect(skillsService.loadSkills).toHaveBeenCalled();
   });
 
   it('load skills information', () => {
