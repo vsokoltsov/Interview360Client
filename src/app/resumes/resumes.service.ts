@@ -83,10 +83,6 @@ export class ResumesService {
     );
   }
 
-  addWorkplaces(workplaces: Workplace[]) {
-    this.store.dispatch(new WorkplacesActions.AddWorkplace(workplaces));
-  }
-
   addContact(contact: Contact) {
     this.store.dispatch(new ContactActions.AddContact(contact));
   }

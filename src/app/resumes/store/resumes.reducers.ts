@@ -66,14 +66,6 @@ export function resumesReducer(state = initialState,
           ...state,
           updated: false
         };
-      case WorkplacesActions.ADD_WORKPLACE:
-        return {
-          ...state,
-          form: {
-            ...state.form,
-            workplaces: action.payload,
-          }
-        };
       default:
         return state;
     }

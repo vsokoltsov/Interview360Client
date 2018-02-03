@@ -18,7 +18,7 @@ const response = {
   name: 'aaa'
 };
 
-fdescribe('SkillsService', () => {
+describe('SkillsService', () => {
   let apiService: ApiService;
   let httpMock: HttpTestingController;
   let store: Store<fromApp.AppState>;
