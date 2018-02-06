@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { StoreModule, Store } from '@ngrx/store';
+import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import {Router, ActivatedRoute, Params} from '@angular/router';
@@ -38,6 +39,7 @@ describe('ContactFormComponent', () => {
   let httpMock: HttpTestingController;
   let activatedRouter: ActivatedRoute;
   let resumesService: ResumesService;
+  let location: Location;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -73,6 +75,7 @@ describe('ContactFormComponent', () => {
     component = fixture.componentInstance;
     store = TestBed.get(Store);
     resumesService = TestBed.get(ResumesService);
+    location = TestBed.get(Location);
     spyOn(resumesService, 'getResume').and.callThrough();
     fixture.detectChanges();
   });
@@ -117,5 +120,11 @@ describe('ContactFormComponent', () => {
     spyOn(resumesService, 'saveForm').and.callThrough();
     component.submit();
     expect(resumesService.saveForm).toHaveBeenCalled();
+  });
+
+  it('calls the location.back() on cancel button click', () => {
+    spyOn(location, 'back').and.callThrough();
+    component.returnBack();
+    expect(location.back).toHaveBeenCalled();
   });
 });
