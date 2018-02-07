@@ -73,7 +73,6 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
     params['user_id'] = this.currentUser.id;
     params['workplaces'] = this.workplacesList;
     params['contact'] = this.contact;
-    console.log(params);
     if (this.resume && this.resume.id) {
       this.resumesService.updateResume(this.resume.id, params);
     } else {
@@ -188,16 +187,18 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
           if (this.resume.skills) {
             this.selectedSkills = this.resume.skills;
           }
-          this.workplacesList = this.resume.workplaces.map(item => {
-            const newItem = {
-              ...item,
-              resume_id: item.resume.id,
-              company: item.company.name
-            };
-            delete newItem['resume'];
-            delete newItem['updated_at'];
-            return newItem;
-          });
+          if (this.resume.workplaces) {
+            this.workplacesList = this.resume.workplaces.map(item => {
+              const newItem = {
+                ...item,
+                resume_id: item.resume.id,
+                company: item.company.name
+              };
+              delete newItem['resume'];
+              delete newItem['updated_at'];
+              return newItem;
+            });
+          }
           if (this.resume.contact) {
             this.contact = {
               ...this.resume.contact,
