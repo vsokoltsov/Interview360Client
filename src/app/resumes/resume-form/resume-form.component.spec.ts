@@ -33,7 +33,7 @@ const skill = new Skill(1, '11');
 const user = new User(1);
 const resume = new Resume(1, 'a', 'b');
 
-fdescribe('ResumeFormComponent', () => {
+describe('ResumeFormComponent', () => {
   let component: ResumeFormComponent;
   let fixture: ComponentFixture<ResumeFormComponent>;
   let store: Store<fromApp.AppState>;

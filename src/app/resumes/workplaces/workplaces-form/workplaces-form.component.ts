@@ -154,7 +154,6 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.companieSubscription.unsubscribe();
     this.resumesSubscription.unsubscribe();
-
   }
 
   searchCompanies(event: any) {
