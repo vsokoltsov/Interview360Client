@@ -187,4 +187,27 @@ describe('ResumeFormComponent', () => {
       expect(component.resumeFormErrors).toEqual(errors);
     });
   });
+
+  it('call resumesService.createResume', () => {
+    component.currentUser = user;
+    component.selectedSkills = [skill];
+    component.resumeForm.patchValue({
+      'salary': 1
+    });
+    spyOn(resumesService, 'createResume').and.callThrough();
+    component.submit();
+    expect(resumesService.createResume).toHaveBeenCalled();
+  });
+
+  it('call resumesService.updateResume', () => {
+    component.resume = resume;
+    component.currentUser = user;
+    component.selectedSkills = [skill];
+    component.resumeForm.patchValue({
+      'salary': 1
+    });
+    spyOn(resumesService, 'updateResume').and.callThrough();
+    component.submit();
+    expect(resumesService.updateResume).toHaveBeenCalled();
+  });
 });

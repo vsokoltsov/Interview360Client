@@ -127,4 +127,10 @@ describe('ContactFormComponent', () => {
     component.returnBack();
     expect(location.back).toHaveBeenCalled();
   });
+
+  it('call the resumesService.saveForm after the submit', () => {
+    spyOn(resumesService, 'saveForm').and.callThrough();
+    component.submit();
+    expect(resumesService.saveForm).toHaveBeenCalled();
+  });
 });
