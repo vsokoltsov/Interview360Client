@@ -11,6 +11,7 @@
     "**/*.spec.ts"
   ],
   "include": [
+    "./*.ts",
     "../node_modules/ngx-svg-icon/src/app/ngx-svg-icon/**/*.ts",
   ]
 }
