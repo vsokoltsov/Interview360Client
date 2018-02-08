@@ -42,7 +42,8 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    let params = {
+    let params = null;
+    const contactValue = {
       contact: {
         ...this.contactForm.value,
         social_networks: {
@@ -53,12 +54,15 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 
     if (this.resume) {
       params = {
-        ...params,
         title: this.resume.title,
         description: this.resume.description,
         salary: this.resume.salary,
-        selectedSkills: this.resume.skills
+        selectedSkills: this.resume.skills,
+        workplaces: this.resume.workplaces,
+        contact: contactValue
       };
+    } else {
+      params = { contact: contactValue };
     }
 
     if (this.contact) {
