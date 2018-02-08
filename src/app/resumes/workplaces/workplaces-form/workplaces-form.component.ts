@@ -111,13 +111,10 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    let params = {
-      workplaces: this.workplacesForm.value.workplaces
-    };
+    let params = null;
 
     if (this.resume) {
-      const resumeParams = {
-        ...params,
+      params = {
         title: this.resume.title,
         description: this.resume.description,
         salary: this.resume.salary,
@@ -125,7 +122,9 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
         contact: this.resume.contact,
         workplaces: this.workplacesForm.value.workplaces
       };
-      params = { ...params, ...resumeParams };
+    }
+    else {
+      params = { workplaces: this.workplacesForm.value.workplaces };
     }
     this.resumesService.saveForm(params);
     this.location.back();
