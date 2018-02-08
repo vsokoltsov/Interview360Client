@@ -25,6 +25,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { RootComponent } from '../root/root.component';
 import { AppRoutingModule, appRoutes } from '../app-routing.module';
 import { CompaniesComponent } from '../companies/companies.component';
+import { PopupNotificationsService } from '../popup-notifications/popup-notifications.service';
 import { VacanciesComponent } from '../vacancies/vacancies.component';
 import { CompaniesService } from '../companies/companies.service';
 
@@ -61,7 +62,8 @@ describe('AuthComponent', () => {
         AuthService,
         ApiService,
         CookieService,
-        CompaniesService
+        CompaniesService,
+        PopupNotificationsService
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
