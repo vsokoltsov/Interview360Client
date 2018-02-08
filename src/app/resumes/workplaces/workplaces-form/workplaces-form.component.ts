@@ -116,14 +116,16 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
     };
 
     if (this.resume) {
-      params = {
+      const resumeParams = {
         ...params,
         title: this.resume.title,
         description: this.resume.description,
         salary: this.resume.salary,
         selectedSkills: this.resume.skills,
+        contact: this.resume.contact,
         workplaces: this.workplacesForm.value.workplaces
       };
+      params = { ...params, ...resumeParams };
     }
     this.resumesService.saveForm(params);
     this.location.back();
