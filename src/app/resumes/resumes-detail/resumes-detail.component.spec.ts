@@ -21,6 +21,7 @@ import { environment } from '../../../environments/environment';
 import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../auth/auth.service';
 import * as fromApp from '../../store/app.reducers';
+import { ImageModule } from '../../shared/image/image.module';
 
 describe('ResumesDetailComponent', () => {
   let component: ResumesDetailComponent;
@@ -37,7 +38,8 @@ describe('ResumesDetailComponent', () => {
         RouterTestingModule,
         NgxSvgIconModule,
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ImageModule
       ],
       providers: [
         ApiService,
