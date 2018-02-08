@@ -1,3 +1,25 @@
-<p>
-  resumes-detail works!
-</p>
+<div class="resume-page">
+  <div class="base-info card">
+
+    <div class="image">
+      <app-image
+        [size]="150"
+        [url]="resume?.user?.attachment?.medium_url"
+        placeholder="user-placeholder">
+      </app-image>
+    </div>
+    <div class="text-information">
+      <div class="job-title">
+        {{ resume?.title }}
+      </div>
+      <div class="name">
+        {{ resume?.user?.first_name }} {{ resume?.user?.last_name }}
+      </div>
+      <div class="salary">
+        {{ resume?.salary | currency }}
+      </div>
+    </div>
+  </div>
+  <div class="contact-info card"></div>
+  <div class="workplaces-info card"></div>
+</div>

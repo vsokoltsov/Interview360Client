@@ -12,6 +12,7 @@ import { ResumesItemComponent } from './resumes-item/resumes-item.component';
 import { ResumesDetailComponent } from './resumes-detail/resumes-detail.component';
 import { WorkplacesFormComponent } from './workplaces/workplaces-form/workplaces-form.component';
 import { ContactFormComponent } from './contacts/contact-form/contact-form.component';
+import { ImageModule } from '../shared/image/image.module';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { ContactFormComponent } from './contacts/contact-form/contact-form.compo
     ReactiveFormsModule,
     NgxSvgIconModule,
     ResumesRoutingModule,
-    AutocompleteModule
+    AutocompleteModule,
+    ImageModule
   ],
   declarations: [
     ResumesComponent,
