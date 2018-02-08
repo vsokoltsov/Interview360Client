@@ -9,5 +9,8 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
+  ],
+  "include": [
+    "../node_modules/ngx-svg-icon/src/app/ngx-svg-icon/**/*.ts",
   ]
 }
