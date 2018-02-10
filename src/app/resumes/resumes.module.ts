@@ -13,6 +13,7 @@ import { ResumesDetailComponent } from './resumes-detail/resumes-detail.componen
 import { WorkplacesFormComponent } from './workplaces/workplaces-form/workplaces-form.component';
 import { ContactFormComponent } from './contacts/contact-form/contact-form.component';
 import { ImageModule } from '../shared/image/image.module';
+import { ContactItemComponent } from './contacts/contact-item/contact-item.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { ImageModule } from '../shared/image/image.module';
     ResumesItemComponent,
     ResumesDetailComponent,
     WorkplacesFormComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    ContactItemComponent
   ]
 })
 export class ResumesModule {}
