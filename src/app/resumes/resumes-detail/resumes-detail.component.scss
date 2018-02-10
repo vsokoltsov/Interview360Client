@@ -2,9 +2,15 @@
   .resume-page {
     display: flex;
 
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+
     .base-info {
       display: flex;
       padding: 20px;
+      max-height: 20em;
 
       .info {
         margin: 0 10px;
@@ -27,6 +33,17 @@
             margin: 0px;
           }
         }
+      }
+    }
+
+    .skills-info {
+      display: flex;
+      min-width: 20em;
+
+      .skill-item {
+        margin: 10px;
+        min-width: 2em;
+        height: 2em;
       }
     }
   }
