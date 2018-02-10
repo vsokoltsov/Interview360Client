@@ -80,7 +80,7 @@
         Contacts
       </a>
       <div class="error" *ngIf="resumeFormErrors['contact']">
-        {{ resumeFormErrors['contact'] }}
+        {{ isErrorObject('contact') }}
       </div>
     </li>
     <li>
@@ -88,7 +88,7 @@
         Workplaces
       </a>
       <div class="error" *ngIf="resumeFormErrors['workplaces']">
-        {{ resumeFormErrors['workplaces'] }}
+        {{ isErrorObject('workplaces') }}
       </div>
     </li>
   </ul>

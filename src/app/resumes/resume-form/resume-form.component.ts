@@ -36,6 +36,8 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
   public currentPopupId: string;
   resume: Resume;
   contact: {};
+  nestedObjectError: {} = {};
+  nestedFormValidationMessage = 'Invalid data. Check form for more.';
 
   constructor(private store: Store<fromApp.AppState>,
               private resumesService: ResumesService,
@@ -218,8 +220,33 @@ export class ResumeFormComponent implements OnInit, OnDestroy {
         }
         if (data.formErrors) {
           this.resumeFormErrors = data.formErrors;
+          if (this.resumeFormErrors['contact']) {
+            this.setNestedFormErrors('contact');
+          }
+          if (this.resumeFormErrors['workplaces']) {
+            this.setNestedFormErrors('workplaces');
+          }
         }
       }
     );
+  }
+
+  private setNestedFormErrors(key) {
+    if (this.resumeFormErrors[key] instanceof Object) {
+      this.nestedObjectError[key] = true;
+    } else {
+      this.nestedObjectError[key] = false;
+    }
+  }
+
+  isErrorObject(key) {
+    let result = null;
+
+    if (this.resumeFormErrors[key] instanceof Array) {
+      result = this.resumeFormErrors[key];
+    } else {
+      result = this.nestedFormValidationMessage;
+    }
+    return result;
   }
 }

@@ -35,6 +35,8 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
   };
   companieSubscription: Subscription;
   resumesSubscription: Subscription;
+  form: {};
+  formErrors: {};
 
   constructor(private store: Store<fromApp.AppState>,
               private location: Location,
@@ -78,6 +80,35 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
             }
           }
         }
+        if (data.form) {
+          this.form = data.form;
+          let workplacesList = [];
+          const workplaces = this.form['workplaces'];
+          if (workplaces) {
+            workplacesList = workplaces.map(item => {
+               const form = new FormGroup({
+                  'company': new FormControl(item.company, [Validators.required]),
+                  'position': new FormControl(item.position, [Validators.required]),
+                  'description': new FormControl(item.description, [Validators.required]),
+                  'start_date': new FormControl(item.start_date, [Validators.required]),
+                  'end_date': new FormControl(item.end_date, [Validators.required])
+                }, this.validateForm);
+                return form;
+            });
+            if ((<FormArray>this.workplacesForm.get('workplaces')).controls.length == 0) {
+              this.workplacesForm.setControl('workplaces', new FormArray(workplacesList));
+            }
+            // this.workplacesForm.patchValue({
+            //   'id': contact['id'],
+            //   'email': contact['email'],
+            //   'phone': contact['phone'],
+            //   'phone_comment': contact['phone_comment']
+            // });
+          }
+        }
+        if (data.formErrors) {
+          this.formErrors = data.formErrors['workplaces'];
+        }
       }
     );
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -113,19 +144,22 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
   submit() {
     let params = null;
 
-    if (this.resume) {
+    // if (this.resume) {
+    //   params = {
+    //     title: this.resume.title,
+    //     description: this.resume.description,
+    //     salary: this.resume.salary,
+    //     selectedSkills: this.resume.skills,
+    //     contact: this.resume.contact,
+    //     workplaces: this.workplacesForm.value.workplaces
+    //   };
+    // }
+    // else {
       params = {
-        title: this.resume.title,
-        description: this.resume.description,
-        salary: this.resume.salary,
-        selectedSkills: this.resume.skills,
-        contact: this.resume.contact,
+        ...this.form,
         workplaces: this.workplacesForm.value.workplaces
       };
-    }
-    else {
-      params = { workplaces: this.workplacesForm.value.workplaces };
-    }
+    // }
     this.resumesService.saveForm(params);
     this.location.back();
   }

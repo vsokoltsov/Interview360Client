@@ -28,6 +28,8 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   currentUser: User;
   resume: Resume;
   contact: Contact;
+  form: {};
+  formErrors: {} = {};
 
   constructor(private store: Store<fromApp.AppState>,
               private location: Location,
@@ -52,18 +54,22 @@ export class ContactFormComponent implements OnInit, OnDestroy {
       }
     };
 
-    if (this.resume) {
-      params = {
-        title: this.resume.title,
-        description: this.resume.description,
-        salary: this.resume.salary,
-        selectedSkills: this.resume.skills,
-        workplaces: this.resume.workplaces,
-        contact: contactValue
-      };
-    } else {
-      params = { contact: contactValue };
-    }
+    // if (this.resume) {
+    //   params = {
+    //     title: this.resume.title,
+    //     description: this.resume.description,
+    //     salary: this.resume.salary,
+    //     selectedSkills: this.resume.skills,
+    //     workplaces: this.resume.workplaces,
+    //     contact: contactValue
+    //   };
+    // } else {
+    //   params = { contact: contactValue };
+    // }
+    params = {
+      ...this.form,
+      ...contactValue
+    };
 
     if (this.contact) {
       params = {
@@ -109,6 +115,21 @@ export class ContactFormComponent implements OnInit, OnDestroy {
               'phone_comment': this.resume.contact.phone_comment
             });
           }
+        }
+        if (data.form) {
+          this.form = data.form;
+          const contact = this.form['contact'];
+          if (contact) {
+            this.contactForm.patchValue({
+              'id': contact['id'],
+              'email': contact['email'],
+              'phone': contact['phone'],
+              'phone_comment': contact['phone_comment']
+            });
+          }
+        }
+        if (data.formErrors) {
+          this.formErrors = data.formErrors['contact'];
         }
       }
     );
