@@ -1,7 +1,33 @@
 :host {
   .resume-page {
+    display: flex;
+
     .base-info {
+      display: flex;
       padding: 20px;
+
+      .info {
+        margin: 0 10px;
+      }
+
+      .contact {
+        display: flex;
+        flex-direction: column;
+
+        .attribute {
+          display: flex;
+          flex-direction: row;
+          margin: 10px 0px;
+
+          label {
+            margin-right: 15px;
+          }
+
+          p {
+            margin: 0px;
+          }
+        }
+      }
     }
   }
 }

@@ -1,27 +1,39 @@
 <div class="resume-page">
   <div class="base-info card">
 
-    <div class="image">
-      <app-image
-        [size]="150"
-        [url]="resume?.user?.attachment?.medium_url"
-        placeholder="user-placeholder">
-      </app-image>
+    <div class="profile info">
+      <div class="image">
+        <app-image
+          [size]="150"
+          [url]="resume?.user?.attachment?.medium_url"
+          placeholder="user-placeholder">
+        </app-image>
+      </div>
+      <div class="text-information">
+        <div class="job-title">
+          {{ resume?.title }}
+        </div>
+        <div class="name">
+          {{ resume?.user?.first_name }} {{ resume?.user?.last_name }}
+        </div>
+        <div class="salary">
+          {{ resume?.salary | currency }}
+        </div>
+      </div>
     </div>
-    <div class="text-information">
-      <div class="job-title">
-        {{ resume?.title }}
+
+    <div class="contact info">
+      <h3>Contacts</h3>
+      <div class="attribute email">
+        <label>Email</label>
+        <p>{{ resume?.contact?.email }}</p>
       </div>
-      <div class="name">
-        {{ resume?.user?.first_name }} {{ resume?.user?.last_name }}
+      <div class="attribute phone">
+        <label>Phone</label>
+        <p>{{ resume?.contact?.phone }}</p>
       </div>
-      <div class="salary">
-        {{ resume?.salary | currency }}
-      </div>
+
     </div>
-  </div>
-  <div class="contact-info card">
-    <app-contact-item></app-contact-item>
   </div>
   <div class="workplaces-info card"></div>
 </div>
