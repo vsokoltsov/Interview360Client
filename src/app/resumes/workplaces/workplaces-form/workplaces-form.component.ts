@@ -98,12 +98,6 @@ export class WorkplacesFormComponent implements OnInit, OnDestroy {
             if ((<FormArray>this.workplacesForm.get('workplaces')).controls.length == 0) {
               this.workplacesForm.setControl('workplaces', new FormArray(workplacesList));
             }
-            // this.workplacesForm.patchValue({
-            //   'id': contact['id'],
-            //   'email': contact['email'],
-            //   'phone': contact['phone'],
-            //   'phone_comment': contact['phone_comment']
-            // });
           }
         }
         if (data.formErrors) {

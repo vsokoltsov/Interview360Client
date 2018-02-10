@@ -53,19 +53,6 @@ export class ContactFormComponent implements OnInit, OnDestroy {
         }
       }
     };
-
-    // if (this.resume) {
-    //   params = {
-    //     title: this.resume.title,
-    //     description: this.resume.description,
-    //     salary: this.resume.salary,
-    //     selectedSkills: this.resume.skills,
-    //     workplaces: this.resume.workplaces,
-    //     contact: contactValue
-    //   };
-    // } else {
-    //   params = { contact: contactValue };
-    // }
     params = {
       ...this.form,
       ...contactValue
