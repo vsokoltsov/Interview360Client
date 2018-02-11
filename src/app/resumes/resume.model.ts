@@ -1,12 +1,13 @@
 import { Skill } from '../shared/skills/skill.model';
 import { Workplace } from './workplace.model';
 import { Contact } from './contact.model';
+import { User } from '../auth/user.model';
 
 export class Resume {
   public id: number;
   public title: string;
   public description: string;
-  public user: object;
+  public user: User;
   public salary: number;
   public skills: Skill[];
   public created_at: string;
@@ -15,7 +16,7 @@ export class Resume {
   public contact: Contact;
 
   constructor(id?: number, title?: string,
-    description?: string, user?: object, salary?: number, skills?: Skill[],
+    description?: string, user?: User, salary?: number, skills?: Skill[],
     created_at?: string, updated_at?: string, workplaces?: Workplace[],
     contact?: Contact) {
       this.id = id;
