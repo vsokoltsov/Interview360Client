@@ -1,4 +1,4 @@
-<div class="resume-page">
+<div class="resume-page column">
   <div class="row">
     <div class="base-info card">
       <div class="profile info">
@@ -58,6 +58,9 @@
     </div>
   </div>
   <div class="workplaces-info card">
-
+    <div app-workplace-item class="card"
+      *ngFor="let workplace of resume?.workplaces"
+      [workplace]="workplace">
+    </div>
   </div>
 </div>

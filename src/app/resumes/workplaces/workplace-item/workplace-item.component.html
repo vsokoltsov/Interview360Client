@@ -1,3 +1,33 @@
-<p>
-  workplace-item works!
-</p>
+<div class="company-info">
+  <div class="image">
+    <app-image
+      [size]="150"
+      [url]="workplace?.company?.attachment?.medium_url"
+      placeholder="company-image-placeholder"></app-image>
+  </div>
+  <div class="title">
+    {{ workplace?.company?.name }}
+  </div>
+</div>
+<div class="base-info">
+  <div class="position">
+    {{ workplace?.position }}
+  </div>
+  <div class="description">
+    {{ workplace?.description }}
+  </div>
+</div>
+<div class="dates">
+  <div class="date-item">
+    <label>
+      From
+    </label>
+    <p>{{ workplace?.start_date | date }}</p>
+  </div>
+  <div class="date-item">
+    <label>
+      To
+    </label>
+    <p>{{ workplace?.end_date | date }}</p>
+  </div>
+</div>

@@ -4,10 +4,17 @@
   .resume-page {
     display: flex;
 
+    &.column {
+      display: flex;
+      flex-direction: column;
+    }
+
     .row {
       display: flex;
       flex-direction: row;
     }
+
+
 
     .base-info {
       display: flex;

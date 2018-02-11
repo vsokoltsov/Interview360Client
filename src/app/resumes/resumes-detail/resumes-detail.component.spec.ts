@@ -22,6 +22,7 @@ import { ApiService } from '../../shared/api.service';
 import { AuthService } from '../../auth/auth.service';
 import * as fromApp from '../../store/app.reducers';
 import { ImageModule } from '../../shared/image/image.module';
+import { WorkplaceItemComponent } from '../workplaces/workplace-item/workplace-item.component';
 
 describe('ResumesDetailComponent', () => {
   let component: ResumesDetailComponent;
@@ -30,7 +31,8 @@ describe('ResumesDetailComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        ResumesDetailComponent
+        ResumesDetailComponent,
+        WorkplaceItemComponent
       ],
       imports: [
         StoreModule.forRoot(fromApp.reducers),
