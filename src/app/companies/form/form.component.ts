@@ -41,7 +41,6 @@ export class FormComponent implements OnInit, OnDestroy {
       'city': new FormControl(null, [Validators.required]),
       'attachment': new FormControl(null, [])
     });
-
     this.subscription = this.store.select('auth').subscribe(
       (data) => {
         if (data.currentUser) {

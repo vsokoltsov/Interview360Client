@@ -9,7 +9,7 @@ import { CompanyListItemComponent } from './item/item.component';
 import { DetailComponent } from './detail/detail.component';
 import { BaseComponent } from './base/base.component';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
-import {DpDatePickerModule} from 'ng2-date-picker';
+import { DpDatePickerModule } from 'ng2-date-picker';
 import { UploaderModule } from '../shared/uploader/uploader.module';
 import { VacanciesModule } from '../vacancies/vacancies.module';
 import { InterviewsModule } from '../interviews/interviews.module';

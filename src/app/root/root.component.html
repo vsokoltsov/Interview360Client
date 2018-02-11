@@ -6,11 +6,12 @@
   <div class="content">
     <div class="toolbar main-header">
       <app-header></app-header>
+      <loader [isLoading]="loading"></loader>
     </div>
 
     <div class="container">
       <router-outlet></router-outlet>
     </div>
   </div>
-
+  <div app-popup-notifications></div>
 </div>

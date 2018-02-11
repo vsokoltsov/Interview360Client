@@ -1,0 +1,66 @@
+<div class="resume-page column">
+  <div class="row">
+    <div class="base-info card">
+      <div class="profile info">
+        <div class="image">
+          <app-image
+            [size]="150"
+            [url]="resume?.user?.attachment?.medium_url"
+            placeholder="user-placeholder">
+          </app-image>
+        </div>
+        <div class="text-information">
+          <div class="job-title">
+            {{ resume?.title }}
+          </div>
+          <div class="name">
+            {{ resume?.user?.first_name }} {{ resume?.user?.last_name }}
+          </div>
+          <div class="salary">
+            {{ resume?.salary | currency }}
+          </div>
+        </div>
+      </div>
+
+      <div class="contact info">
+        <h3>Contacts</h3>
+        <div class="attribute email">
+          <label>Email</label>
+          <p>{{ resume?.contact?.email }}</p>
+        </div>
+        <div class="attribute phone">
+          <label>Phone</label>
+          <p>{{ resume?.contact?.phone }}</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="skills-info card">
+      <div class="skill-item" *ngFor="let item of resume?.skills">
+        {{ item?.name }}
+      </div>
+    </div>
+    <div class="actions-info card">
+      <h3>Actions</h3>
+      <div class="links">
+        <a [routerLink]="['edit']">
+          <svg-icon
+            name="edit-icon"
+            size="25"></svg-icon>
+        </a>
+        <a>
+          <svg-icon
+            name="delete-icon"
+            size="25"></svg-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="workplaces-info card">
+    <div app-workplace-item class="card"
+      *ngFor="let workplace of resume?.workplaces"
+      [workplace]="workplace">
+    </div>
+  </div>
+</div>

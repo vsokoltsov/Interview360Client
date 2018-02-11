@@ -51,6 +51,20 @@
 
     ul {
       list-style: none;
+
+      li {
+        margin-top: 10px;
+        a {
+          display: flex;
+          flex-direction: row;
+
+          span {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+        }
+      }
     }
   }
 }

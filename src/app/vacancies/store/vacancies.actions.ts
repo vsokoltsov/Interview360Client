@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { Vacancy } from '../vacancy.model';
-import { Skill } from '../skill.model';
+import { Skill } from '../../shared/skills/skill.model';
 
 export const VACANCIES_LOADED = 'VACANCIES_LOADED';
 export const VACANCY_LOADED = 'VACANCY_LOADED';

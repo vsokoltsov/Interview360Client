@@ -7,8 +7,9 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Company } from '../../companies/company.model';
 import { Vacancy } from '../vacancy.model';
 import { User } from '../../auth/user.model';
-import { Skill } from '../skill.model';
+import { Skill } from '../../shared/skills/skill.model';
 import { VacanciesService } from '../vacancies.service';
+import { SkillsService } from '../../shared/skills/skills.service';
 import * as fromApp from '../../store/app.reducers';
 import * as VacanyActions from '../store/vacancies.actions';
 
@@ -20,6 +21,7 @@ import * as VacanyActions from '../store/vacancies.actions';
 export class VacancyFormComponent implements OnInit, OnDestroy {
   vacancyForm: FormGroup;
   subscription: Subscription;
+  skillsSubscription: Subscription;
   skills: Skill[] = [];
   companyId: number;
   vacancyId: number;
@@ -27,10 +29,11 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<fromApp.AppState>,
               private vacanciesService: VacanciesService,
+              private skillsService: SkillsService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.vacanciesService.loadSkills();
+    this.skillsService.loadSkills();
     this.vacancyForm = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required]),
@@ -40,9 +43,6 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
 
     this.subscription = this.store.select('vacancies').subscribe(
       data => {
-        if (data.skills.length > 0) {
-          this.skills = data.skills;
-        }
         if (data.detail) {
           this.vacancyForm.patchValue({
             title: data.detail.title,
@@ -50,6 +50,13 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
             salary: data.detail.salary
           });
           this.setSkills(data.detail);
+        }
+      }
+    );
+    this.skillsSubscription = this.store.select('skills').subscribe(
+      data => {
+        if (data.list.length > 0) {
+          this.skills = data.list;
         }
       }
     );
@@ -104,6 +111,7 @@ export class VacancyFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.skillsSubscription.unsubscribe();
   }
 
   private setSkillToForm(skill: Skill) {

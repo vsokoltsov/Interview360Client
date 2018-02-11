@@ -3,7 +3,7 @@ import { Store, StoreModule } from '@ngrx/store';
 
 import { Vacancy } from '../vacancy.model';
 import { Company } from '../../companies/company.model';
-import { Skill } from '../skill.model';
+import { Skill } from '../../shared/skills/skill.model';
 import { vacanciesReducer, initialState } from './vacancies.reducers';
 import * as VacanciesActions from './vacancies.actions';
 import * as fromApp from '../../store/app.reducers';

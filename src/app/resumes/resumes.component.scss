@@ -1,0 +1,46 @@
+:host {
+  .resumes-page {
+    display: flex;
+    flex-direction: row;
+
+    .content-block {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      .search-block {
+        display: flex;
+        flex-direction: row;
+
+        .search-form {
+          flex-grow: 1;
+
+          .form-field.full-width {
+            width: 100%;
+          }
+
+          .form-actions {
+            width: auto;
+          }
+        }
+
+        .options-block {
+          display: flex;
+          flex-direction: row;
+          flex-grow: 0.2;
+
+          .new-resume {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+        }
+      }
+
+      .resumes-block {
+        display: flex;
+        flex-direction: colum;
+      }
+    }
+  }
+}

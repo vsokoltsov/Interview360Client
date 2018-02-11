@@ -1,0 +1,95 @@
+<div class="resume-form-page card">
+  <form class="form" [formGroup]="resumeForm" (ngSubmit)="submit()">
+    <div class="form-field">
+      <input placeholder="Title" class="field" formControlName="title" type="text">
+
+      <div class="error" *ngIf="resumeForm.get('title').touched &&
+        resumeForm.get('title').hasError('required')">
+        Resume title is <strong>required</strong>
+      </div>
+      <div *ngFor="let error of resumeFormErrors['title']" class="error">
+        {{error}}
+      </div>
+    </div>
+
+    <div class="form-field">
+      <input
+        placeholder="Description"
+        class="field"
+        formControlName="description"
+        type="text">
+
+      <div class="error" *ngIf="resumeForm.get('description').touched &&
+        resumeForm.get('description').hasError('required')">
+        Resume description is <strong>required</strong>
+      </div>
+      <div *ngFor="let error of resumeFormErrors['description']" class="error">
+        {{error}}
+      </div>
+    </div>
+
+    <div class="form-field">
+      <input placeholder="Salary" class="field" formControlName="salary" type="number">
+
+      <div class="error" *ngIf="resumeForm.get('salary').touched &&
+        resumeForm.get('salary').hasError('required')">
+        Salary is <strong>required</strong>
+      </div>
+      <div *ngFor="let error of resumeFormErrors['salary']" class="error">
+        {{error}}
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div app-autocomplete
+        formControlName="skills"
+        placeholder="Skills"
+        className="field"
+        [popupId]="['skills']"
+        [showPopup]="popupsShowing['skills']"
+        [Change]="searchSkills.bind(this)">
+        <div *ngFor="let skill of values['skills']" class="item" (click)="selectSkill(skill)">
+          <p>{{ skill.name }}</p>
+        </div>
+      </div>
+
+      <div class="skills">
+        <div class="skill-item" *ngFor="let skill of selectedSkills">
+          <span>{{ skill.name }}</span>
+          <a (click)="deleteSkill(skill)">x</a>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="button success"
+        [disabled]="!resumeForm.valid">Save</button>
+        <button
+        class="button info"
+        (click)="returnBack()"
+        type="button">Back</button>
+    </div>
+  </form>
+</div>
+
+<div class="navigation-list card">
+  <ul>
+    <li>
+      <a [routerLink]="['contacts']">
+        Contacts
+      </a>
+      <div class="error" *ngIf="resumeFormErrors['contact']">
+        {{ isErrorObject('contact') }}
+      </div>
+    </li>
+    <li>
+      <a [routerLink]="['workplaces']">
+        Workplaces
+      </a>
+      <div class="error" *ngIf="resumeFormErrors['workplaces']">
+        {{ isErrorObject('workplaces') }}
+      </div>
+    </li>
+  </ul>
+</div>

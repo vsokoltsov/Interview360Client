@@ -1,5 +1,5 @@
 import { Company } from '../companies/company.model';
-import { Skill } from './skill.model';
+import { Skill } from '../shared/skills/skill.model';
 import { Interview } from '../interviews/interview.model';
 
 export class Vacancy {

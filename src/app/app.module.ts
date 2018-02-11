@@ -26,10 +26,15 @@ import { InterviewsService } from './interviews/interviews.service';
 import { CompaniesService } from './companies/companies.service';
 import { VacanciesService } from './vacancies/vacancies.service';
 import { EmployeesService } from './employees/employees.service';
+import { PopupNotificationsService } from './popup-notifications/popup-notifications.service';
+import { ResumesService } from './resumes/resumes.service';
+import { SkillsService } from './shared/skills/skills.service';
 import { ApiService } from './shared/api.service';
 import { RestorePasswordComponent } from './auth/restore-password/restore-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { UploaderModule } from './shared/uploader/uploader.module';
+import { LoaderModule } from './shared/loader/loader.module';
+import { PopupNotificationsModule } from './popup-notifications/popup-notifications.module';
 
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
@@ -38,6 +43,7 @@ import { VacanciesModule } from './vacancies/vacancies.module';
 import { InterviewsModule } from './interviews/interviews.module';
 import { EmployeesModule } from './employees/employees.module';
 import { PipeModule } from './shared/pipe.module';
+import { ResumesModule } from './resumes/resumes.module';
 
 export const MODULES = {
   declarations: [
@@ -62,7 +68,10 @@ export const MODULES = {
     VacanciesModule,
     InterviewsModule,
     EmployeesModule,
-    PipeModule
+    ResumesModule,
+    PipeModule,
+    LoaderModule,
+    PopupNotificationsModule
   ],
   providers: [
     AuthService,
@@ -72,7 +81,10 @@ export const MODULES = {
     VacanciesService,
     InterviewsService,
     EmployeesService,
+    ResumesService,
     ApiService,
+    PopupNotificationsService,
+    SkillsService,
     {provide: APP_BASE_HREF, useValue : '/' },
     AuthGuard,
     { provide: CookieOptions, useValue: {} }

@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px;
+
+    &.company {
+      .title {
+        margin-top: 10px;
+      }
+    }
+
+    &.base {
+      min-width: 10em;
+
+      .position {
+        text-align: left;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .description {
+        text-align: left;
+      }
+    }
+
+    &.dates {
+      .date-item {
+        display: flex;
+        flex-direction: row;
+        margin: 10px 0px;
+
+        label {
+          font-weight: bold;
+        }
+
+        p {
+          margin: 0 0 0 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+<div app-popup-notifications-item
+  [ngClass]="['notification', notification.type]"
+  *ngFor="let notification of notifications"
+  [popupNotification]="notification"></div>

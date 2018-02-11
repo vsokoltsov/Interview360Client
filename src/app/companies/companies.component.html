@@ -8,6 +8,7 @@
     <div class="content-panel">
       <div class="search card">
         <form
+          *ngIf="companiesSearchForm"
           class="form horizontal"
           [formGroup]="companiesSearchForm"
           (ngSubmit)="submitSearch()">

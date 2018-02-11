@@ -1,0 +1,69 @@
+<div class="workplaces-page card" >
+  Workplaces list
+  <form [formGroup]="workplacesForm" class="form" (ngSubmit)="submit()">
+    <div class="workplaces list" formArrayName="workplaces">
+      <div
+        class="workplace-item"
+        *ngFor="let workplaceControl of getWorkplaces(workplacesForm); let groupIndex = index"
+        [formGroupName]="groupIndex">
+        <div class="base-field text-field">
+          <div app-autocomplete
+            formControlName="company"
+            placeholder="Company"
+            [showPopup]="this.showCompanyPopup"
+            [Change]="searchCompanies.bind(this)">
+            <div *ngFor="let company of searchedCompanies" class="item" (click)="selectCompany(groupIndex, company)">
+              <p>{{ company.name }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="base-field text-field">
+          <input formControlName="position" placeholder="Position name">
+        </div>
+        <div class="base-field text-area-field">
+          <textarea formControlName="description" rows="10"></textarea>
+        </div>
+        <div class="base-field date text-field">
+          <label class="label" for="start_date">From</label>
+          <input
+            placeholder="Start date"
+            formControlName="start_date"
+            mode="daytime"
+            [theme]="'dp-material dp-main'"
+            [dpDayPicker]="datePickerConfig"
+            type="text">
+            <div class="error" *ngIf="workplaceControl.get('start_date').touched &&
+              workplaceControl.hasError('startDateInFuture')">
+              Start date cannot be more than current date!
+            </div>
+            <div class="error" *ngIf="workplaceControl.get('start_date').touched &&
+              workplaceControl.hasError('startDateMoreEndDate')">
+              Start date cannot be more than end date!
+            </div>
+        </div>
+        <div class="base-field date text-field">
+          <label class="label" for="end_date">To</label>
+          <input
+            placeholder="End date"
+            formControlName="end_date"
+            mode="daytime"
+            [theme]="'dp-material dp-main'"
+            [dpDayPicker]="datePickerConfig"
+            type="text">
+            <div class="error" *ngIf="workplaceControl.get('end_date').touched &&
+              workplaceControl.hasError('endDateLessStartDate')">
+              Start date cannot be more than end date!
+            </div>
+        </div>
+      </div>
+      <div class="add-item">
+        <button type="button" class="button primary" (click)="addNewWorkplace()">Add</button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="button success">Save</button>
+      <button type="button" class="button" (click)="back()">Cancel</button>
+    </div>
+  </form>
+</div>

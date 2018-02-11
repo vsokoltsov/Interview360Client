@@ -4,7 +4,7 @@
       <svg-icon
         name="user-placeholder"
         size="75"
-        *ngIf="cavatarUrl == null">
+        *ngIf="avatarUrl == null">
       </svg-icon>
       <img
         [src]="avatarUrl"
@@ -26,7 +26,13 @@
       <li>
         <a [routerLink]="['/companies']">
           <svg-icon name="company-icon" size="35"></svg-icon>
-          Companies
+          <span>Companies</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/resumes']">
+          <svg-icon name="resumes-menu-icon" size="35"></svg-icon>
+          <span>Resumes</span>
         </a>
       </li>
     </ul>
