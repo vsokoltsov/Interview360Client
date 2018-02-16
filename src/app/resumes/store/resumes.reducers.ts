@@ -66,6 +66,11 @@ export function resumesReducer(state = initialState,
           ...state,
           updated: false
         };
+      case ResumesActions.REMOVE_RESUME:
+        return {
+          ...state,
+          detail: null
+        };
       default:
         return state;
     }

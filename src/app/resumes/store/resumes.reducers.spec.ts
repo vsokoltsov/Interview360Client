@@ -91,4 +91,14 @@ describe('ResumesReducers', () => {
       })
     ).toEqual({ ...initialState, updated: false });
   });
+
+  it('run REMOVE_RESUME action', () => {
+    initialState['detail'] = resume;
+
+    expect(
+      resumesReducer(initialState, {
+        type: ResumesActions.REMOVE_RESUME
+      })
+    ).toEqual({ ...initialState, detail: null });
+  });
 });
