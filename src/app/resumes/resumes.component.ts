@@ -18,6 +18,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
   resumes: Resume[];
   subscription: Subscription;
   searchTimeout: any;
+  filters: {};
 
   constructor(
     private resumesService: ResumesService,
@@ -27,10 +28,15 @@ export class ResumesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.resumesService.loadResumes();
+    this.resumesService.getFilters();
     this.subscription = this.store.select('resumes').subscribe(
       data => {
         if (data.list) {
           this.resumes = data.list;
+        }
+        if (data.filters) {
+          this.filters = data.filters;
+          console.log(this.filters);
         }
       }
     );

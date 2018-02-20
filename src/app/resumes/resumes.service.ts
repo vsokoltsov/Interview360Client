@@ -90,4 +90,18 @@ export class ResumesService {
   saveForm(form: {}) {
     this.store.dispatch(new ResumesActions.SaveForm(form));
   }
+
+  getFilters() {
+    this.store.dispatch(new LoaderActions.RequestStarted());
+    this.apiService.get('/resumes/filters/').subscribe(
+      response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.store.dispatch(new ResumesActions.ReceiveFilters(response.body.filters));
+      },
+      failed => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.store.dispatch(new ResumesActions.FailedResumeUpdate(failed.error.errors));
+      }
+    );
+  }
 }
