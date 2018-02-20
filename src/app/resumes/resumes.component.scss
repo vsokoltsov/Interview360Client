@@ -2,6 +2,7 @@
   .resumes-page {
     display: flex;
     flex-direction: row;
+    height: 94%;
 
     .content-block {
       display: flex;
@@ -41,6 +42,12 @@
         display: flex;
         flex-direction: colum;
       }
+    }
+
+    .filter-block {
+      display: flex;
+      flex-direction: column;
+      width: 20em;
     }
   }
 }
