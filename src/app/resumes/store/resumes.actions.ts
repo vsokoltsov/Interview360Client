@@ -11,6 +11,7 @@ export const SUCCESS_RESUME_UPDATED = 'SUCCESS_RESUME_UPDATED';
 export const FAILED_RESUME_UPDATED = 'FAILED_RESUME_UPDATED';
 export const DISABLE_UPDATE = 'DISABLE_UPDATE';
 export const REMOVE_RESUME = 'REMOVE_RESUME';
+export const RECEIVE_FILTERS = 'RECEIVE_FILTERS';
 
 export class SuccessResumeCreated implements Action {
   readonly type = SUCCESS_RESUME_CREATED;
@@ -62,6 +63,12 @@ export class RemoveResume implements Action {
   readonly type = REMOVE_RESUME;
 }
 
+export class ReceiveFilters implements Action {
+  readonly type = RECEIVE_FILTERS;
+
+  constructor(public payload: {}) {}
+}
+
 export type ResumesActions = SuccessResumeCreated |
 FailedResumeCreated |
 ResumesList |
@@ -70,4 +77,5 @@ SaveForm |
 SuccessResumeUpdate |
 FailedResumeUpdate |
 DisableResumeUpdated |
-RemoveResume;
+RemoveResume |
+ReceiveFilters;
