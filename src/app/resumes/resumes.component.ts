@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
@@ -14,11 +14,32 @@ import * as fromApp from '../store/app.reducers';
   styleUrls: ['./resumes.component.scss']
 })
 export class ResumesComponent implements OnInit, OnDestroy {
+  @ViewChild('sliderRef') sliderRef;
   resumesSearchForm: FormGroup;
+  resumesFilterForm: FormGroup;
   resumes: Resume[];
   subscription: Subscription;
   searchTimeout: any;
-  filters: {};
+  filters: {
+    salary?: {
+      min?: number,
+      max?: number
+    }
+  };
+  salaryRangeConfig: any = {
+    start: [0, 5],
+    behaviour: 'drag',
+    connect: true,
+    margin: 1,
+    range: {
+      min: 0,
+      max: 20
+    },
+    pips: {
+      mode: 'steps',
+      density: 5
+    }
+  };
 
   constructor(
     private resumesService: ResumesService,
@@ -36,12 +57,22 @@ export class ResumesComponent implements OnInit, OnDestroy {
         }
         if (data.filters) {
           this.filters = data.filters;
-          console.log(this.filters);
+          this.salaryRangeConfig.range['min'] = this.filters.salary.min;
+          this.salaryRangeConfig.range['max'] = this.filters.salary.max;
+          this.sliderRef.slider.updateOptions({
+            range: {
+              min: this.filters.salary.min,
+              max: this.filters.salary.max
+            }
+          });
         }
       }
     );
     this.resumesSearchForm = new FormGroup({
       'query': new FormControl(null)
+    });
+    this.resumesFilterForm = new FormGroup({
+      salary: new FormControl(null)
     });
     this.resumesSearchForm.get('query').valueChanges.subscribe(
       data => {

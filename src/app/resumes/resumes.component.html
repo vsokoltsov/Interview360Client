@@ -39,5 +39,13 @@
   </div>
   <div class="filter-block card">
     Filters
+    <form *ngIf="resumesFilterForm"
+      class="form vertical"
+      [formGroup]="resumesFilterForm"
+      (ngSubmit)="submitSearch()">
+
+      <nouislider [config]="salaryRangeConfig" #sliderRef></nouislider>
+    </form>
+
   </div>
 </div>

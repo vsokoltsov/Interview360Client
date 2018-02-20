@@ -18,7 +18,7 @@ export const initialState: State = {
   detail: null,
   formErrors: null,
   updated: false,
-  filters: {}
+  filters: null
 };
 
 export function resumesReducer(state = initialState,
