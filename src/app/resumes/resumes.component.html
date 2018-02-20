@@ -44,7 +44,10 @@
       [formGroup]="resumesFilterForm"
       (ngSubmit)="submitSearch()">
 
-      <nouislider [config]="salaryRangeConfig" #sliderRef></nouislider>
+      <div class="form-field">
+        <label>Salary</label>
+        <nouislider [config]="salaryRangeConfig" #sliderRef></nouislider>
+      </div>
     </form>
 
   </div>
