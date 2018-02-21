@@ -42,11 +42,15 @@
     <form *ngIf="resumesFilterForm"
       class="form vertical"
       [formGroup]="resumesFilterForm"
-      (ngSubmit)="submitSearch()">
+      (ngSubmit)="submitFilter()">
 
       <div class="form-field">
         <label>Salary</label>
-        <nouislider [config]="salaryRangeConfig" #sliderRef></nouislider>
+        <nouislider [config]="salaryRangeConfig" formControlName="salary" #sliderRef></nouislider>
+      </div>
+      <div class="form-actions">
+        <button class="button info" type="submit">Filter</button>
+        <button class="button" (click)="cancelFilter()">Reset</button>
       </div>
     </form>
 

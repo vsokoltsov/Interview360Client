@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
@@ -40,6 +41,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
       density: 5
     }
   };
+  resumesParams: {};
 
   constructor(
     private resumesService: ResumesService,
@@ -98,6 +100,24 @@ export class ResumesComponent implements OnInit, OnDestroy {
   submitSearch() {
     const queryString = this.resumesSearchForm.get('query').value;
     this.resumesService.searchResumes(queryString);
+  }
+
+  submitFilter() {
+    const salaryVal = this.resumesFilterForm.get('salary').value;
+    if (salaryVal) {
+      const salary_min = salaryVal[0];
+      const salary_max = salaryVal[1];
+      const salary = JSON.stringify({
+        min: salary_min,
+        max: salary_max
+      });
+      this.resumesService.loadResumes({ salary });
+    }
+  }
+
+  cancelFilter() {
+    this.resumesFilterForm.reset();
+    this.resumesService.loadResumes()
   }
 
 }
