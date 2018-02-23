@@ -27,7 +27,8 @@ export class ResumesComponent implements OnInit, OnDestroy {
       min?: number,
       max?: number
     },
-    skills?: Skill[]
+    skills?: Skill[],
+    order?: string[]
   };
   salaryRangeConfig: any = {
     start: [0, 5],
@@ -46,6 +47,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
   resumesParams: {};
   skillsFilter: Skill[];
   selectedSkills: number[];
+  ordersFilter: string[];
 
   constructor(
     private resumesService: ResumesService,
@@ -64,6 +66,8 @@ export class ResumesComponent implements OnInit, OnDestroy {
         if (data.filters) {
           this.filters = data.filters;
           this.skillsFilter = this.filters.skills;
+          this.ordersFilter = this.filters.order;
+          console.log(this.ordersFilter);
           this.salaryRangeConfig.range['min'] = this.filters.salary.min;
           this.salaryRangeConfig.range['max'] = this.filters.salary.max;
           if (this.sliderRef) {
@@ -130,5 +134,9 @@ export class ResumesComponent implements OnInit, OnDestroy {
 
   onSkillSelected(event: {id: number}[]) {
     this.selectedSkills = event.map(item => item.id);
+  }
+
+  onOrderSelected(event: string) {
+    console.log(event);
   }
 }

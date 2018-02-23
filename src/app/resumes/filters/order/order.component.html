@@ -1,3 +1,19 @@
-<p>
-  order works!
-</p>
+<div class="orders-list">
+  <div class="order-item"
+       [ngClass]="{ active: selectedOrder === order }"
+       *ngFor="let order of orders"
+       (click)="selectOrder(order)"
+    >
+    <svg-icon
+      *ngIf="selectedOrder === order && orderDirection"
+      size="30"
+      name="filter-down-icon">
+    </svg-icon>
+    <svg-icon
+      *ngIf="selectedOrder === order && !orderDirection"
+      size="30"
+      name="filter-up-icon">
+    </svg-icon>
+    {{ order }}
+  </div>
+</div>
