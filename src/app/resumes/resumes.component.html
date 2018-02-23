@@ -44,15 +44,16 @@
       [formGroup]="resumesFilterForm"
       (ngSubmit)="submitFilter()">
 
+      <div class="form-field skills">
+        <div app-skills-filter
+          *ngIf="skillsFilter"
+          [skills]="skillsFilter"
+          (onSkillSelected)="onSkillSelected($event)">
+        </div>
+      </div>
       <div class="form-field">
         <label>Salary</label>
         <nouislider [config]="salaryRangeConfig" formControlName="salary" #sliderRef></nouislider>
-      </div>
-      <div class="form-field">
-        <app-skills-filter
-          [skills]="skillsFilter"
-          (onSkillSelected)="onSkillSelected($event)">
-        </app-skills-filter>
       </div>
       <div class="form-actions">
         <button class="button info" type="submit">Filter</button>

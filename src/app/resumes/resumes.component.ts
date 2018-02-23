@@ -45,6 +45,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
   };
   resumesParams: {};
   skillsFilter: Skill[];
+  selectedSkills: number[];
 
   constructor(
     private resumesService: ResumesService,
@@ -110,6 +111,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
 
   submitFilter() {
     const salaryVal = this.resumesFilterForm.get('salary').value;
+    const skills = this.selectedSkills;
     if (salaryVal) {
       const salary_min = salaryVal[0];
       const salary_max = salaryVal[1];
@@ -117,7 +119,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
         min: salary_min,
         max: salary_max
       });
-      this.resumesService.loadResumes({ salary });
+      this.resumesService.loadResumes({ salary, skills });
     }
   }
 
@@ -126,7 +128,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
     this.resumesService.loadResumes()
   }
 
-  onSkillSelected(event: Skill) {
-    console.log(event);
+  onSkillSelected(event: {id: number}[]) {
+    this.selectedSkills = event.map(item => item.id);
   }
 }

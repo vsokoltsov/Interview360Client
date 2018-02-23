@@ -1,4 +1,11 @@
-<div class="form-field" *ngFor="let skill of skills">
-  <input type="checkbox" />
-  <label>{{ skill.name }}</label>
-</div>
+<form [formGroup]="filterSkillsForm" class="form vertical">
+  <div class="skills list" formArrayName="skills">
+    <div
+      *ngFor="let skillControl of getSkills(filterSkillsForm); let groupIndex = index"
+      [formGroupName]="groupIndex">
+        <input type="checkbox" formControlName="selected" (change)="selectSkill()" />
+        <label>AAA</label>
+    </div>
+  </div>
+
+</form>
