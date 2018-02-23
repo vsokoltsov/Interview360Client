@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
 import { Resume } from './resume.model';
+import { Skill } from '../shared/skills/skill.model';
 import { ResumesService } from './resumes.service';
 import * as fromApp from '../store/app.reducers';
 
@@ -25,7 +26,8 @@ export class ResumesComponent implements OnInit, OnDestroy {
     salary?: {
       min?: number,
       max?: number
-    }
+    },
+    skills?: Skill[]
   };
   salaryRangeConfig: any = {
     start: [0, 5],
@@ -42,6 +44,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
     }
   };
   resumesParams: {};
+  skillsFilter: Skill[];
 
   constructor(
     private resumesService: ResumesService,
@@ -59,6 +62,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
         }
         if (data.filters) {
           this.filters = data.filters;
+          this.skillsFilter = this.filters.skills;
           this.salaryRangeConfig.range['min'] = this.filters.salary.min;
           this.salaryRangeConfig.range['max'] = this.filters.salary.max;
           if (this.sliderRef) {
@@ -122,4 +126,7 @@ export class ResumesComponent implements OnInit, OnDestroy {
     this.resumesService.loadResumes()
   }
 
+  onSkillSelected(event: Skill) {
+    console.log(event);
+  }
 }
