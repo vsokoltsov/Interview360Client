@@ -13,29 +13,22 @@ import { NouisliderModule } from 'ng2-nouislider';
 import 'rxjs';
 import 'rxjs/add/observable/of';
 
-import { ResumesComponent } from './resumes.component';
-import { PopupNotificationsService } from '../popup-notifications/popup-notifications.service';
-import { ResumesItemComponent } from './resumes-item/resumes-item.component';
-import { SkillsComponent } from './filters/skills/skills.component';
-import { OrderComponent } from './filters/order/order.component';
-import { Resume } from './resume.model';
-import { ResumesService } from './resumes.service';
-import { environment } from '../../environments/environment';
-import { ApiService } from '../shared/api.service';
-import { AuthService } from '../auth/auth.service';
-import * as fromApp from '../store/app.reducers';
+import { OrderComponent } from './order.component';
+import { PopupNotificationsService } from '../../../popup-notifications/popup-notifications.service';
+import { Resume } from '../../resume.model';
+import { ResumesService } from '../../resumes.service';
+import { environment } from '../../../../environments/environment';
+import { ApiService } from '../../../shared/api.service';
+import { AuthService } from '../../../auth/auth.service';
+import * as fromApp from '../../../store/app.reducers';
 
-describe('ResumesComponent', () => {
-  let component: ResumesComponent;
-  let fixture: ComponentFixture<ResumesComponent>;
-  let store: Store<fromApp.AppState>;
+describe('OrderComponent', () => {
+  let component: OrderComponent;
+  let fixture: ComponentFixture<OrderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        ResumesComponent,
-        ResumesItemComponent,
-        SkillsComponent,
         OrderComponent
       ],
       imports: [
@@ -59,8 +52,9 @@ describe('ResumesComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResumesComponent);
+    fixture = TestBed.createComponent(OrderComponent);
     component = fixture.componentInstance;
+    component.orders = ['title'];
     fixture.detectChanges();
   });
 

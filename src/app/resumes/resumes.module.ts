@@ -14,6 +14,9 @@ import { WorkplacesFormComponent } from './workplaces/workplaces-form/workplaces
 import { ContactFormComponent } from './contacts/contact-form/contact-form.component';
 import { ImageModule } from '../shared/image/image.module';
 import { WorkplaceItemComponent } from './workplaces/workplace-item/workplace-item.component';
+import { NouisliderModule } from 'ng2-nouislider';
+import { SkillsComponent } from './filters/skills/skills.component';
+import { OrderComponent } from './filters/order/order.component';
 
 @NgModule({
   imports: [
@@ -23,7 +26,8 @@ import { WorkplaceItemComponent } from './workplaces/workplace-item/workplace-it
     NgxSvgIconModule,
     ResumesRoutingModule,
     AutocompleteModule,
-    ImageModule
+    ImageModule,
+    NouisliderModule
   ],
   declarations: [
     ResumesComponent,
@@ -32,7 +36,9 @@ import { WorkplaceItemComponent } from './workplaces/workplace-item/workplace-it
     ResumesDetailComponent,
     WorkplacesFormComponent,
     ContactFormComponent,
-    WorkplaceItemComponent
+    WorkplaceItemComponent,
+    SkillsComponent,
+    OrderComponent
   ]
 })
 export class ResumesModule {}

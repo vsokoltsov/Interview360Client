@@ -1,0 +1,11 @@
+:host {
+    .skills.list {
+      display: flex;
+      flex-direction: column;
+
+      .skill-item {
+        display: flex;
+        flex-direction: row;
+    }
+  }
+}

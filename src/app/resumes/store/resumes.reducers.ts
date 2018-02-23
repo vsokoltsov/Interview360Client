@@ -8,7 +8,8 @@ export interface State {
   list: Resume[],
   detail: Resume,
   formErrors: {},
-  updated: boolean
+  updated: boolean,
+  filters: {}
 };
 
 export const initialState: State = {
@@ -16,7 +17,8 @@ export const initialState: State = {
   list: [],
   detail: null,
   formErrors: null,
-  updated: false
+  updated: false,
+  filters: null
 };
 
 export function resumesReducer(state = initialState,
@@ -65,6 +67,16 @@ export function resumesReducer(state = initialState,
         return {
           ...state,
           updated: false
+        };
+      case ResumesActions.REMOVE_RESUME:
+        return {
+          ...state,
+          detail: null
+        };
+      case ResumesActions.RECEIVE_FILTERS:
+        return {
+          ...state,
+          filters: action.payload
         };
       default:
         return state;

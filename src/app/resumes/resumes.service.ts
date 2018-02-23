@@ -22,9 +22,17 @@ export class ResumesService {
               private store: Store<fromApp.AppState>,
               private popupNotificationsService: PopupNotificationsService) {}
 
-  loadResumes() {
+  loadResumes(params: any = null) {
+    let httpParams = null;
+    if (params) {
+      httpParams = new HttpParams({
+        fromObject:{
+          ...params
+        }
+      });
+    }
     this.store.dispatch(new LoaderActions.RequestStarted());
-    this.apiService.get('/resumes/').subscribe(
+    this.apiService.get('/resumes/', params).subscribe(
       response => {
         this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new ResumesActions.ResumesList(response.body));
@@ -89,5 +97,19 @@ export class ResumesService {
 
   saveForm(form: {}) {
     this.store.dispatch(new ResumesActions.SaveForm(form));
+  }
+
+  getFilters() {
+    this.store.dispatch(new LoaderActions.RequestStarted());
+    this.apiService.get('/resumes/filters/').subscribe(
+      response => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.store.dispatch(new ResumesActions.ReceiveFilters(response.body.filters));
+      },
+      failed => {
+        this.store.dispatch(new LoaderActions.RequestFinished());
+        this.store.dispatch(new ResumesActions.FailedResumeUpdate(failed.error.errors));
+      }
+    );
   }
 }
