@@ -16,6 +16,7 @@ import { ImageModule } from '../shared/image/image.module';
 import { WorkplaceItemComponent } from './workplaces/workplace-item/workplace-item.component';
 import { NouisliderModule } from 'ng2-nouislider';
 import { SkillsComponent } from './filters/skills/skills.component';
+import { OrderComponent } from './filters/order/order.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { SkillsComponent } from './filters/skills/skills.component';
     WorkplacesFormComponent,
     ContactFormComponent,
     WorkplaceItemComponent,
-    SkillsComponent
+    SkillsComponent,
+    OrderComponent
   ]
 })
 export class ResumesModule {}
