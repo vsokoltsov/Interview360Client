@@ -9,12 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CookieService } from 'angular2-cookie/core';
 import { Observable } from 'rxjs/Observable';
+import { NouisliderModule } from 'ng2-nouislider';
 import 'rxjs';
 import 'rxjs/add/observable/of';
 
 import { ResumesComponent } from './resumes.component';
 import { PopupNotificationsService } from '../popup-notifications/popup-notifications.service';
 import { ResumesItemComponent } from './resumes-item/resumes-item.component';
+import { SkillsComponent } from './filters/skills/skills.component';
+import { OrderComponent } from './filters/order/order.component';
 import { Resume } from './resume.model';
 import { ResumesService } from './resumes.service';
 import { environment } from '../../environments/environment';
@@ -31,7 +34,9 @@ describe('ResumesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ResumesComponent,
-        ResumesItemComponent
+        ResumesItemComponent,
+        SkillsComponent,
+        OrderComponent
       ],
       imports: [
         StoreModule.forRoot(fromApp.reducers),
@@ -39,7 +44,8 @@ describe('ResumesComponent', () => {
         RouterTestingModule,
         NgxSvgIconModule,
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        NouisliderModule
       ],
       providers: [
         ApiService,
