@@ -8,15 +8,25 @@ import { Skill } from '../../../shared/skills/skill.model';
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss']
 })
-export class SkillsComponent implements OnInit {
+export class SkillsComponent implements OnInit, OnChanges {
   @Input() skills: Skill[];
   @Output() onSkillSelected = new EventEmitter<{}[]>();
   filterSkillsForm: FormGroup;
+  @Input() disable: boolean;
 
   constructor() { }
 
+  ngOnChanges() {
+    if (this.disable) {
+      const skillsValues = (<FormArray>this.filterSkillsForm.get('skills')).value.map(item => {
+        item.selected = false;
+        return item;
+      });
+      this.filterSkillsForm.patchValue({ 'skills': skillsValues });
+    }
+  }
+
   ngOnInit() {
-    console.log(this.skills);
     this.filterSkillsForm = new FormGroup({
       'skills': new FormArray([])
     });

@@ -47,7 +47,10 @@ export class ResumesComponent implements OnInit, OnDestroy {
   resumesParams: {};
   skillsFilter: Skill[];
   selectedSkills: number[];
+  selectedOrder: string;
   ordersFilter: string[];
+  disableOrder: boolean;
+  disableSkills: boolean;
 
   constructor(
     private resumesService: ResumesService,
@@ -61,13 +64,14 @@ export class ResumesComponent implements OnInit, OnDestroy {
     this.subscription = this.store.select('resumes').subscribe(
       data => {
         if (data.list) {
+          this.disableOrder = false;
+          this.disableSkills = false;
           this.resumes = data.list;
         }
         if (data.filters) {
           this.filters = data.filters;
           this.skillsFilter = this.filters.skills;
           this.ordersFilter = this.filters.order;
-          console.log(this.ordersFilter);
           this.salaryRangeConfig.range['min'] = this.filters.salary.min;
           this.salaryRangeConfig.range['max'] = this.filters.salary.max;
           if (this.sliderRef) {
@@ -114,29 +118,50 @@ export class ResumesComponent implements OnInit, OnDestroy {
   }
 
   submitFilter() {
+    const params = this.getRequestParams()
+    this.resumesService.loadResumes({ ...params });
+  }
+
+  getRequestParams() {
+    let params = {};
+    let salary = null;
     const salaryVal = this.resumesFilterForm.get('salary').value;
     const skills = this.selectedSkills;
+    const order = this.selectedOrder;
     if (salaryVal) {
       const salary_min = salaryVal[0];
       const salary_max = salaryVal[1];
-      const salary = JSON.stringify({
+      salary = JSON.stringify({
         min: salary_min,
         max: salary_max
       });
-      this.resumesService.loadResumes({ salary, skills });
     }
+    if (skills) {
+      params['skills'] = skills;
+    }
+    if (salary) {
+      params['salary'] = salary;
+    }
+    if (order) {
+      params['order'] = order;
+    }
+    return params;
   }
 
   cancelFilter() {
     this.resumesFilterForm.reset();
+    this.disableOrder = true;
+    this.disableSkills = true;
     this.resumesService.loadResumes()
   }
 
   onSkillSelected(event: {id: number}[]) {
     this.selectedSkills = event.map(item => item.id);
+    this.selectedSkills = null;
+    this.selectedOrder = null;
   }
 
   onOrderSelected(event: string) {
-    console.log(event);
+    this.selectedOrder = event;
   }
 }

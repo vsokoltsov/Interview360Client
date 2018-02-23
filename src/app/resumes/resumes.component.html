@@ -38,29 +38,35 @@
     </div>
   </div>
   <div class="filter-block card">
-    Filters
+    <h3>Filters</h3>
     <form *ngIf="resumesFilterForm"
       class="form vertical"
       [formGroup]="resumesFilterForm"
       (ngSubmit)="submitFilter()">
 
       <div class="form-field">
+        <h4>Order</h4>
         <div app-order-filter
           *ngIf="ordersFilter"
           [orders]="ordersFilter"
+          [disable]="disableOrder"
           (onOrderSelected)="onOrderSelected($event)">
         </div>
       </div>
       <div class="form-field skills">
+        <h4>Skills</h4>
         <div app-skills-filter
           *ngIf="skillsFilter"
           [skills]="skillsFilter"
+          [disable]="disableSkills"
           (onSkillSelected)="onSkillSelected($event)">
         </div>
       </div>
       <div class="form-field">
-        <label>Salary</label>
-        <nouislider [config]="salaryRangeConfig" formControlName="salary" #sliderRef></nouislider>
+        <h4>Salary</h4>
+        <div class="range-slider">
+          <nouislider [config]="salaryRangeConfig" formControlName="salary" #sliderRef></nouislider>
+        </div>
       </div>
       <div class="form-actions">
         <button class="button info" type="submit">Filter</button>
