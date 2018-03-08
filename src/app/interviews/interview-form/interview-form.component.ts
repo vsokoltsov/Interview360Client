@@ -120,7 +120,7 @@ export class InterviewFormComponent implements OnInit, OnDestroy{
   }
 
   selectEmployee(employee: User) {
-    this.interviewForm.get('candidate_email').setValue(employee.email);
+    (<FormControl>this.interviewForm.get('candidate_email')).setValue(employee.email);
     this.popupsShowing[this.currentPopupId] = false;
   }
 
@@ -147,9 +147,13 @@ export class InterviewFormComponent implements OnInit, OnDestroy{
 
   submit() {
     if (this.interview) {
-      this.interviewsService.updateInterview(this.companyId, this.interview.id, this.interviewForm.value);
+      this.interviewsService.updateInterview(
+        this.companyId, this.interview.id, this.interviewForm.getRawValue()
+      );
     } else {
-        this.interviewsService.createInterview(this.companyId, this.interviewForm.value);
+        this.interviewsService.createInterview(
+          this.companyId, this.interviewForm.getRawValue()
+        );
     }
   }
 
@@ -157,6 +161,7 @@ export class InterviewFormComponent implements OnInit, OnDestroy{
     if (popupId) {
       this.currentPopupId = popupId;
     }
+    (<FormControl>this.interviewForm.get('candidate_email')).setValue(event.target.value);
     this.employeesService.searchEmployees(this.companyId, event.target.value);
   }
 

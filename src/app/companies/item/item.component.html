@@ -1,13 +1,9 @@
 <div class="image">
-  <svg-icon
-    name="company-image-placeholder"
-    size="75"
-    *ngIf="company.attachment == null">
-  </svg-icon>
-  <img
-    [src]="company?.attachment?.small_thumb_url"
-    width="75" height="75"
-    *ngIf="company?.attachment != null" />
+  <app-image
+    [size]="50"
+    [url]="company?.attachment?.small_thumb_url"
+    placeholder="company-image-placeholder">
+  </app-image>
 </div>
 <div class="base-info">
   <div class="date">

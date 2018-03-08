@@ -9,6 +9,7 @@ import { CompanyListItemComponent } from './item/item.component';
 import { DetailComponent } from './detail/detail.component';
 import { BaseComponent } from './base/base.component';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
+import { ImageModule } from '../shared/image/image.module';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { UploaderModule } from '../shared/uploader/uploader.module';
 import { VacanciesModule } from '../vacancies/vacancies.module';
@@ -28,7 +29,8 @@ import { InterviewsTabComponent } from './tabs/interviews-tab/interviews-tab.com
     NgxSvgIconModule,
     PipeModule,
     VacanciesModule,
-    InterviewsModule
+    InterviewsModule,
+    ImageModule
   ],
   declarations: [
     CompaniesComponent,

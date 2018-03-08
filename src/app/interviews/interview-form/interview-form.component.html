@@ -5,7 +5,7 @@
       formControlName="candidate_email"
       placeholder="Candidate"
       className="field candidate_email"
-      [popupId]="['candidate_email']"
+      [popupId]="'candidate_email'"
       [showPopup]="this.popupsShowing['candidate_email']"
       [Change]="employeeChange.bind(this)">
       <div *ngFor="let employee of employeesValues['candidate_email']" class="item" (click)="selectEmployee(employee)">
@@ -37,7 +37,7 @@
         placeholder="Vacancy"
         className="field"
         [value]="vacancyName"
-        [popupId]="['vacancy_id']"
+        [popupId]="'vacancy_id'"
         [showPopup]="this.popupsShowing['vacancy_id']"
         [Change]="vacanciesSearch.bind(this)">
         <div *ngFor="let vacancy of employeesValues['vacancy_id']" class="item" (click)="selectVacancy(vacancy)">
