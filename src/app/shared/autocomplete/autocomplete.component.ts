@@ -67,6 +67,10 @@ export class AutocompleteComponent implements OnInit, ControlValueAccessor {
 
   innerChangeAction(event: any) {
     this.value = event.target.value;
-    this._onChange(event);
+    let params = [event];
+    if (this._popupId) {
+      params.push(this._popupId);
+    }
+    this._onChange(...params);
   }
 }

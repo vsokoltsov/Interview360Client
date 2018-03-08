@@ -9,6 +9,7 @@ import { PipeModule } from '../../shared/pipe.module';
 import { Company } from '../company.model';
 import { CompaniesService } from '../companies.service';
 import { ApiService } from '../../shared/api.service';
+import { ImageModule } from '../../shared/image/image.module';
 
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
 
@@ -25,7 +26,8 @@ describe('CompanyListItemComponent', () => {
         NgxSvgIconModule,
         RouterTestingModule,
         PipeModule,
-        HttpClientModule
+        HttpClientModule,
+        ImageModule
       ],
       providers: [
         CookieService,
