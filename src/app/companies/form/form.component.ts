@@ -98,8 +98,10 @@ export class FormComponent implements OnInit, OnDestroy {
 
   submit() {
     const params = this.companyForm.value;
+    const attachment = params.attachment;
     params.owner_id = this.owner.id;
-
+    params.attachment = { id: attachment.id };
+    // console.log(params);
     if (this.currentCompany) {
       this.companiesService.updateCompany(this.currentCompany.id, params);
     }
