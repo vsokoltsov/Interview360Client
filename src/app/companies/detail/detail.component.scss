@@ -7,7 +7,7 @@
     .company-actions {
       display: flex;
       flex-direction: row;
-      justify-content: flex-end;
+      justify-content: space-between;
 
       padding-right: 1em;
       padding-top: 1em;
@@ -15,6 +15,10 @@
       a {
         margin: 0px 5px;
         cursor: pointer;
+      }
+
+      .back-action {
+        margin-left: 20px;
       }
     }
 
