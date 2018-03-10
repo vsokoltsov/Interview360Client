@@ -34,6 +34,7 @@ import { RestorePasswordComponent } from './auth/restore-password/restore-passwo
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { UploaderModule } from './shared/uploader/uploader.module';
 import { LoaderModule } from './shared/loader/loader.module';
+import { BackButtonModule } from './shared/back-button/back-button.module';
 import { PopupNotificationsModule } from './popup-notifications/popup-notifications.module';
 
 import { AuthModule } from './auth/auth.module';
@@ -73,7 +74,8 @@ export const MODULES = {
     FeedbacksModule,
     PipeModule,
     LoaderModule,
-    PopupNotificationsModule
+    PopupNotificationsModule,
+    BackButtonModule
   ],
   providers: [
     AuthService,
