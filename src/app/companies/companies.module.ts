@@ -19,6 +19,7 @@ import { BackButtonModule } from '../shared/back-button/back-button.module';
 import { VacanciesTabComponent } from './tabs/vacancies-tab/vacancies-tab.component';
 import { EmployeesTabComponent } from './tabs/employees-tab/employees-tab.component';
 import { InterviewsTabComponent } from './tabs/interviews-tab/interviews-tab.component';
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { InterviewsTabComponent } from './tabs/interviews-tab/interviews-tab.com
     BaseComponent,
     VacanciesTabComponent,
     EmployeesTabComponent,
-    InterviewsTabComponent
+    InterviewsTabComponent,
+    FiltersComponent
   ]
 })
 export class CompaniesModule {}

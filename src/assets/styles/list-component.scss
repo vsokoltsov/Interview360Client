@@ -9,6 +9,11 @@
     padding: 0px 20px;
     margin-top: 10px;
 
+    &.filters {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
     a {
       color: black;
 
