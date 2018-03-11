@@ -4,16 +4,17 @@
        (fileOver)="fileOverBase($event)"
        [uploader]="uploader"
        class="drop-zone"
-       *ngIf="!attachmentUrl">
+       *ngIf="!attachmentUrl && !isLoading">
       Base drop zone
   </div>
+  <spinner [isLoading]="!attachmentUrl && isLoading"></spinner>
   <div
      ng2FileDrop
      [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
      (fileOver)="fileOverBase($event)"
      [uploader]="uploader"
      class="drop-zone filled"
-     *ngIf="attachmentUrl">
+     *ngIf="attachmentUrl && !isLoading">
     <img [src]="attachmentUrl" class="uploader-attachment" width="{{imageSize}}" height="{{imageSize}}" />
   </div>
   <div class="error">
