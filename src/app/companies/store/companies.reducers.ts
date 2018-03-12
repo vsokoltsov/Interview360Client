@@ -6,7 +6,8 @@ export interface State {
   detail: Company,
   companyFormErrors: {},
   updateErrors: {},
-  companyDeleted: boolean
+  companyDeleted: boolean,
+  filters: {}
 };
 
 export const initialState: State = {
@@ -14,7 +15,8 @@ export const initialState: State = {
   detail: null,
   companyFormErrors: null,
   updateErrors: null,
-  companyDeleted: false
+  companyDeleted: false,
+  filters: null
 };
 
 export function companiesReducer(state = initialState, action: CompaniesActions.CompaniesActions) {
@@ -81,6 +83,16 @@ export function companiesReducer(state = initialState, action: CompaniesActions.
         ...state,
         companyDeleted: false
       };
+    case CompaniesActions.RECEIVE_FILTERS:
+      return {
+        ...state,
+        filters: action.payload
+      };
+    case CompaniesActions.DISABLE_FILTERS:
+      return {
+        ...state,
+        filters: null
+      }
     default:
       return state;
   }

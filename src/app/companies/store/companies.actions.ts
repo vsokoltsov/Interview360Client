@@ -11,6 +11,8 @@ export const SUCCESS_UPDATE = 'SUCCESS_UPDATE';
 export const FAILED_UPDATE = 'FAILED_UPDATE';
 export const DELETE_COMPANY = 'DELETE_COMPANY';
 export const DISABLE_COMPANY_DELETED = 'DISABLE_COMPANY_DELETED';
+export const RECEIVE_FILTERS = 'RECEIVE_FILTERS';
+export const DISABLE_FILTERS = 'DISABLE_FILTERS';
 
 export class CompaniesLoaded implements Action {
   readonly type = COMPANIES_LOADED;
@@ -62,6 +64,16 @@ export class DisableCompanyDeleted implements Action {
   readonly type = DISABLE_COMPANY_DELETED;
 }
 
+export class ReceiveFilters implements Action {
+  readonly type = RECEIVE_FILTERS;
+
+  constructor(public payload: {}) {}
+}
+
+export class DisableFilters implements Action {
+  readonly type = DISABLE_FILTERS;
+}
+
 export type CompaniesActions = CompaniesLoaded |
 CompanyLoaded |
 SuccessCompanyCreated |
@@ -70,4 +82,6 @@ LeaveDetailPage |
 SuccessUpdate |
 FailedUpdate |
 DeleteCompany |
-DisableCompanyDeleted;
+DisableCompanyDeleted |
+ReceiveFilters |
+DisableFilters;
