@@ -7,7 +7,7 @@ import { SelectItem } from '../select.item.model';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent implements OnInit {
-  @Input() SelectItem;
+  @Input('items') selectItems: SelectItem[];
   @Output() onOrderSelected = new EventEmitter<string>();
   selectedItem: SelectItem;
   orderDirection: boolean = true;
@@ -16,6 +16,7 @@ export class SelectComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.selectItems);
   }
 
 }

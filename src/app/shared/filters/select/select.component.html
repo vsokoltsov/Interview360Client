@@ -1,4 +1,7 @@
 <div class="select card">
-  <ng-select>
+  <ng-select
+    [items]="selectItems"
+    bindLabel="title"
+    bindValue="key">
   </ng-select>
 </div>

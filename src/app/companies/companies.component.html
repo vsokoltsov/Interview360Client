@@ -7,7 +7,10 @@
         [reset]="resetOrder"
         (onOrderSelected)="onOrderSelected($event)"
       ></filter-order>
-      <filter-select></filter-select>
+      <filter-select
+        *ngIf="rolesFilter"
+        [items]="rolesFilter"
+        ></filter-select>
     </div>
     <a class="add-company-button" [routerLink]="['new']">
       <svg-icon name="plus-icon" size="35"></svg-icon>
