@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { Company } from './company.model';
 import { Order } from '../shared/filters/order.model';
-import { SelectItems } from '../shared/filters/select.item.model';
+import { SelectItem } from '../shared/filters/select.item.model';
 import { CompaniesService } from './companies.service';
 import * as fromApp from '../store/app.reducers';
 
@@ -19,7 +19,7 @@ export class CompaniesComponent implements OnInit {
   companies: Company[];
   subscription: Subscription;
   ordersFilter: Order[];
-  rolesFilter: SelectItems[];
+  rolesFilter: SelectItem[];
   resetOrder: boolean;
   selectedOrder: string;
 

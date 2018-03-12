@@ -1,3 +1,3 @@
 import { Order } from './order.model';
 
-export class SelectItems extends Order {}
+export class SelectItem extends Order {}

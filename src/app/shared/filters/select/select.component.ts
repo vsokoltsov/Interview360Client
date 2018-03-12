@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SelectItems } from '../select.item.model';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { SelectItem } from '../select.item.model';
 
 @Component({
   selector: 'filter-select',
@@ -7,6 +7,11 @@ import { SelectItems } from '../select.item.model';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent implements OnInit {
+  @Input() SelectItem;
+  @Output() onOrderSelected = new EventEmitter<string>();
+  selectedItem: SelectItem;
+  orderDirection: boolean = true;
+  @Input() reset: boolean;
 
   constructor() { }
 
