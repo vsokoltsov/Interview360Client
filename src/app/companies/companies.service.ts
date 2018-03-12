@@ -90,4 +90,12 @@ export class CompaniesService {
       }
     )
   }
+
+  receiveFilters() {
+    this.apiService.get(`/companies/filters/`).subscribe(
+      response => {
+        this.store.dispatch(new CompaniesActions.ReceiveFilters(response.body.filters));
+      }
+    )
+  }
 }
