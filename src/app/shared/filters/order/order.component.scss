@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+
+  .orders-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+
+    .order-item {
+      display: flex;
+      flex-direction: row;
+      margin: 5px;
+      padding: 5px;
+
+      &.active {
+        border: 1px solid red;
+        border-radius: 5px;
+      }
+    }
+  }
+}

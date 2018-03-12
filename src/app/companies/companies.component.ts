@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
 import { Company } from './company.model';
+import { Order } from '../shared/filters/order.model';
 import { CompaniesService } from './companies.service';
 import * as fromApp from '../store/app.reducers';
 
@@ -16,6 +17,9 @@ export class CompaniesComponent implements OnInit {
   companiesSearchForm: FormGroup;
   companies: Company[];
   subscription: Subscription;
+  ordersFilter: Order[];
+  resetOrder: boolean;
+  selectedOrder: string;
 
   constructor(private companiesService: CompaniesService,
               private store: Store<fromApp.AppState>) { }
@@ -38,7 +42,7 @@ export class CompaniesComponent implements OnInit {
         }
 
         if (data.filters) {
-          console.log(data.filters);
+          this.ordersFilter = data.filters.order;
         }
       }
     );
@@ -51,6 +55,10 @@ export class CompaniesComponent implements OnInit {
   submitSearch() {
     const query = this.companiesSearchForm.get('query').value;
     this.companiesService.searchCompanies(query);
+  }
+
+  onOrderSelected(event: string) {
+    console.log(event);
   }
 
 }

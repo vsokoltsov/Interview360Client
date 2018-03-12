@@ -1,4 +1,6 @@
 import { Company } from '../company.model';
+import { Order } from '../../shared/filters/order.model';
+
 import * as CompaniesActions from './companies.actions';
 
 export interface State {
@@ -7,7 +9,7 @@ export interface State {
   companyFormErrors: {},
   updateErrors: {},
   companyDeleted: boolean,
-  filters: {}
+  filters: { order: Order[] }
 };
 
 export const initialState: State = {

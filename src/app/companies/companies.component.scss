@@ -3,6 +3,12 @@
   flex-direction: column;
   height: 100%;
 
+  .add-company-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
   .search.card {
     .form {
       .form-field {

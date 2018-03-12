@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { Company } from '../company.model';
+import { Order } from '../../shared/filters/order.model';
 
 export const COMPANIES_LOADED = 'COMPANIES_LOADED';
 export const COMPANY_LOADED = 'COMPANY_LOADED';
@@ -67,7 +68,7 @@ export class DisableCompanyDeleted implements Action {
 export class ReceiveFilters implements Action {
   readonly type = RECEIVE_FILTERS;
 
-  constructor(public payload: {}) {}
+  constructor(public payload: { order: Order[] }) {}
 }
 
 export class DisableFilters implements Action {
