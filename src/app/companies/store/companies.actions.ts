@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { Company } from '../company.model';
 import { Order } from '../../shared/filters/order.model';
+import { Role } from '../../shared/filters/role.model';
 
 export const COMPANIES_LOADED = 'COMPANIES_LOADED';
 export const COMPANY_LOADED = 'COMPANY_LOADED';
@@ -68,7 +69,7 @@ export class DisableCompanyDeleted implements Action {
 export class ReceiveFilters implements Action {
   readonly type = RECEIVE_FILTERS;
 
-  constructor(public payload: { order: Order[] }) {}
+  constructor(public payload: { order: Order[], roles: Role[] }) {}
 }
 
 export class DisableFilters implements Action {
