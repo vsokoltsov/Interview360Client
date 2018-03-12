@@ -3,6 +3,11 @@
   flex-direction: column;
   height: 100%;
 
+  .filters {
+    display: flex;
+    flex-direction: row;
+  }
+
   .add-company-button {
     display: flex;
     flex-direction: column;

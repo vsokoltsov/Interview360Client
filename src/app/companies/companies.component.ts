@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { Company } from './company.model';
 import { Order } from '../shared/filters/order.model';
+import { Role } from '../shared/filters/role.model';
 import { CompaniesService } from './companies.service';
 import * as fromApp from '../store/app.reducers';
 
@@ -18,6 +19,7 @@ export class CompaniesComponent implements OnInit {
   companies: Company[];
   subscription: Subscription;
   ordersFilter: Order[];
+  rolesFilter: Role[];
   resetOrder: boolean;
   selectedOrder: string;
 
@@ -43,6 +45,7 @@ export class CompaniesComponent implements OnInit {
 
         if (data.filters) {
           this.ordersFilter = data.filters.order;
+          this.rolesFilter = data.filters.roles;
         }
       }
     );
