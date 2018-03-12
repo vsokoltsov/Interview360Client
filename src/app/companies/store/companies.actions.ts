@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { Company } from '../company.model';
 import { Order } from '../../shared/filters/order.model';
-import { SelectItems } from '../../shared/filters/role.model';
+import { SelectItems } from '../../shared/filters/select.item.model';
 
 export const COMPANIES_LOADED = 'COMPANIES_LOADED';
 export const COMPANY_LOADED = 'COMPANY_LOADED';

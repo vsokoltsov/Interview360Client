@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SelectItems } from '../role.model';
+import { SelectItems } from '../select.item.model';
 
 @Component({
   selector: 'filter-select',

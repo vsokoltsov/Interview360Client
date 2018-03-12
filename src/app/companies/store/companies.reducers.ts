@@ -1,6 +1,6 @@
 import { Company } from '../company.model';
 import { Order } from '../../shared/filters/order.model';
-import { SelectItems } from '../../shared/filters/role.model';
+import { SelectItems } from '../../shared/filters/select.item.model';
 
 import * as CompaniesActions from './companies.actions';
 

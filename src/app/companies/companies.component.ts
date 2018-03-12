@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { Company } from './company.model';
 import { Order } from '../shared/filters/order.model';
-import { SelectItems } from '../shared/filters/role.model';
+import { SelectItems } from '../shared/filters/select.item.model';
 import { CompaniesService } from './companies.service';
 import * as fromApp from '../store/app.reducers';
 
