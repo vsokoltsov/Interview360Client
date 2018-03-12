@@ -22,6 +22,7 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit() {
     this.companiesService.loadList();
+    this.companiesService.receiveFilters();
     this.companiesSearchForm = new FormGroup({
       'query': new FormControl(null)
     });
@@ -34,6 +35,10 @@ export class CompaniesComponent implements OnInit {
       data => {
         if(data.list) {
           this.companies = data.list;
+        }
+
+        if (data.filters) {
+          console.log(data.filters);
         }
       }
     );
