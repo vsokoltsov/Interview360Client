@@ -6,6 +6,17 @@
   .filters {
     display: flex;
     flex-direction: row;
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .buttons {
+        display: flex;
+        flex-direction: row;
+      }
+    }
   }
 
   .add-company-button {

@@ -11,6 +11,12 @@
         *ngIf="rolesFilter"
         [items]="rolesFilter"
         ></filter-select>
+        <div class="actions">
+          <div class="buttons">
+            <svg-icon name="filter-icon" size="35"></svg-icon>
+            <svg-icon name="cancel-icon" size="35"></svg-icon>
+          </div>
+        </div>
     </div>
     <a class="add-company-button" [routerLink]="['new']">
       <svg-icon name="plus-icon" size="35"></svg-icon>
