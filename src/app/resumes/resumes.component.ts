@@ -72,15 +72,17 @@ export class ResumesComponent implements OnInit, OnDestroy {
           this.filters = data.filters;
           this.skillsFilter = this.filters.skills;
           this.ordersFilter = this.filters.order;
-          this.salaryRangeConfig.range['min'] = this.filters.salary.min;
-          this.salaryRangeConfig.range['max'] = this.filters.salary.max;
-          if (this.sliderRef) {
-            this.sliderRef.slider.updateOptions({
-              range: {
-                min: this.filters.salary.min,
-                max: this.filters.salary.max
-              }
-            });
+          if (this.filters.salary && (this.filters.salary.min !== this.filters.salary.max)) {
+            this.salaryRangeConfig.range['min'] = this.filters.salary.min;
+            this.salaryRangeConfig.range['max'] = this.filters.salary.max;
+            if (this.sliderRef) {
+              this.sliderRef.slider.updateOptions({
+                range: {
+                  min: this.filters.salary.min,
+                  max: this.filters.salary.max
+                }
+              });
+            }
           }
         }
       }
