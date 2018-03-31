@@ -8,15 +8,17 @@ import { SelectItem } from '../select.item.model';
 })
 export class SelectComponent implements OnInit {
   @Input('items') selectItems: SelectItem[];
-  @Output() onOrderSelected = new EventEmitter<string>();
+  @Output() select = new EventEmitter<any>();
   selectedItem: SelectItem;
-  orderDirection: boolean = true;
   @Input() reset: boolean;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.selectItems);
+  }
+
+  onSelected(event: {}) {
+    this.select.emit(event);
   }
 
 }

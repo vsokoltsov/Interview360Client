@@ -18,9 +18,9 @@ export class CompaniesService {
               private store: Store<fromApp.AppState>,
               private popupNotificationsService: PopupNotificationsService) {}
 
-  loadList() {
+  loadList(params: any = null) {
     this.store.dispatch(new LoaderActions.RequestStarted());
-    this.apiService.get('/companies/').subscribe(
+    this.apiService.get('/companies/', params).subscribe(
       response => {
         this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.body));

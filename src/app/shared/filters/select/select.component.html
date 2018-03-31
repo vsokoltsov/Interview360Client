@@ -3,6 +3,7 @@
     [items]="selectItems"
     bindLabel="title"
     bindValue="key"
-    [searchable]="false">
+    [searchable]="false"
+    (add)="onSelected($event)">
   </ng-select>
 </div>

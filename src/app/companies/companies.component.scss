@@ -15,6 +15,13 @@
       .buttons {
         display: flex;
         flex-direction: row;
+
+        button {
+          padding: 0px;
+          min-width: auto;
+          background-color: transparent;
+          box-shadow: none;
+        }
       }
     }
   }

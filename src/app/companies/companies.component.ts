@@ -16,6 +16,7 @@ import * as fromApp from '../store/app.reducers';
 })
 export class CompaniesComponent implements OnInit {
   companiesSearchForm: FormGroup;
+  companiesFilterForm: FormGroup;
   companies: Company[];
   subscription: Subscription;
   ordersFilter: Order[];
@@ -31,6 +32,10 @@ export class CompaniesComponent implements OnInit {
     this.companiesService.receiveFilters();
     this.companiesSearchForm = new FormGroup({
       'query': new FormControl(null)
+    });
+    this.companiesFilterForm = new FormGroup({
+      'role': new FormControl(null),
+      'order': new FormControl(null)
     });
     this.companiesSearchForm.get('query').valueChanges.subscribe(
       data => {
@@ -60,8 +65,16 @@ export class CompaniesComponent implements OnInit {
     this.companiesService.searchCompanies(query);
   }
 
-  onOrderSelected(event: string) {
-    console.log(event);
+  submitFilter() {
+    const params = this.companiesFilterForm.value;
+    this.companiesService.loadList(params);
   }
 
+  onOrderSelected(event: string) {
+    this.companiesFilterForm.get('order').setValue(event);
+  }
+
+  onSelected(event: { key: number }) {
+    this.companiesFilterForm.get('role').setValue(event.key);
+  }
 }

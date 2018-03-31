@@ -1,22 +1,32 @@
 <div class="list-block">
   <div class="base-actions filters">
     <div class="filters">
-      <filter-order
-        *ngIf="ordersFilter"
-        [orders]="ordersFilter"
-        [reset]="resetOrder"
-        (onOrderSelected)="onOrderSelected($event)"
-      ></filter-order>
-      <filter-select
-        *ngIf="rolesFilter"
-        [items]="rolesFilter"
-        ></filter-select>
-        <div class="actions">
-          <div class="buttons">
-            <svg-icon name="filter-icon" size="35"></svg-icon>
-            <svg-icon name="cancel-icon" size="35"></svg-icon>
+      <form
+        *ngIf="companiesFilterForm"
+        class="form horizontal"
+        [formGroup]="companiesFilterForm"
+        (ngSubmit)="submitFilter()">
+        <filter-order
+          *ngIf="ordersFilter"
+          [orders]="ordersFilter"
+          [reset]="resetOrder"
+          (onOrderSelected)="onOrderSelected($event)"
+        ></filter-order>
+        <filter-select
+          *ngIf="rolesFilter"
+          [items]="rolesFilter"
+          (select)="onSelected($event)"
+          ></filter-select>
+          <div class="actions">
+            <div class="buttons">
+              <button type="submit" class="button">
+                <svg-icon name="filter-icon" size="35"></svg-icon>
+              </button>
+
+              <svg-icon name="cancel-icon" size="35"></svg-icon>
+            </div>
           </div>
-        </div>
+        </form>
     </div>
     <a class="add-company-button" [routerLink]="['new']">
       <svg-icon name="plus-icon" size="35"></svg-icon>
