@@ -6,12 +6,14 @@
         class="form horizontal"
         [formGroup]="companiesFilterForm"
         (ngSubmit)="submitFilter()">
-        <filter-order
-          *ngIf="ordersFilter"
-          [orders]="ordersFilter"
-          [reset]="resetOrder"
-          (onOrderSelected)="onOrderSelected($event)"
-        ></filter-order>
+        <div class="order-field">
+          <filter-order
+            *ngIf="ordersFilter"
+            [orders]="ordersFilter"
+            [reset]="resetOrder"
+            (onOrderSelected)="onOrderSelected($event)"
+          ></filter-order>
+        </div>
         <filter-select
           *ngIf="rolesFilter"
           [items]="rolesFilter"

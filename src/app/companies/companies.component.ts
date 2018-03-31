@@ -66,7 +66,7 @@ export class CompaniesComponent implements OnInit {
   }
 
   submitFilter() {
-    const params = this.companiesFilterForm.value;
+    const params = this.getFilterParams();
     this.companiesService.loadList(params);
   }
 
@@ -77,4 +77,18 @@ export class CompaniesComponent implements OnInit {
   onSelected(event: { key: number }) {
     this.companiesFilterForm.get('role').setValue(event.key);
   }
+
+  private getFilterParams() {
+    const form = this.companiesFilterForm.value;
+    const params = {};
+
+    if (form.order) {
+      params['order'] = form.order;
+    }
+    if (form.role) {
+      params['role'] = form.role;
+    }
+    return params;
+  }
+
 }
