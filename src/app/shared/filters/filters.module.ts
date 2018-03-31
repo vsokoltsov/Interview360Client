@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { NgxSvgIconModule } from 'ngx-svg-icon';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ReactiveFormsModule } from '@angular/forms'
 
 import { OrderComponent } from './order/order.component';
 import { SelectComponent } from './select/select.component';
@@ -14,7 +15,8 @@ import { SelectComponent } from './select/select.component';
   imports: [
     CommonModule,
     NgxSvgIconModule,
-    NgSelectModule
+    NgSelectModule,
+    ReactiveFormsModule
   ],
   exports: [
     OrderComponent,

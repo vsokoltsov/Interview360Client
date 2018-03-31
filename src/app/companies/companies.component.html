@@ -7,25 +7,30 @@
         [formGroup]="companiesFilterForm"
         (ngSubmit)="submitFilter()">
         <div class="order-field">
-          <filter-order
+          <div app-filter-order
             *ngIf="ordersFilter"
             [orders]="ordersFilter"
             [reset]="resetOrder"
-            (onOrderSelected)="onOrderSelected($event)"
-          ></filter-order>
+            (onOrderSelected)="onOrderSelected($event)">
+          </div>
         </div>
-        <filter-select
+        <div filter-select
+          [control]="'role'"
+          [group]="companiesFilterForm"
           *ngIf="rolesFilter"
           [items]="rolesFilter"
+          [reset]="resetRole"
           (select)="onSelected($event)"
-          ></filter-select>
+          ></div>
+
           <div class="actions">
             <div class="buttons">
               <button type="submit" class="button">
                 <svg-icon name="filter-icon" size="35"></svg-icon>
               </button>
-
-              <svg-icon name="cancel-icon" size="35"></svg-icon>
+              <button type="button" class="button" (click)="cancelFilter()">
+                <svg-icon name="cancel-icon" size="35"></svg-icon>
+              </button>
             </div>
           </div>
         </form>

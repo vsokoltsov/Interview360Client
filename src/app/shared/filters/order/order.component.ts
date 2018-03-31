@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 import { Order } from '../order.model';
 
 @Component({
-  selector: 'filter-order',
+  selector: '[app-filter-order]',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })

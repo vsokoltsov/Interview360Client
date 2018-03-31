@@ -23,6 +23,7 @@ export class CompaniesComponent implements OnInit {
   rolesFilter: SelectItem[];
   resetOrder: boolean;
   selectedOrder: string;
+  resetRole: boolean;
 
   constructor(private companiesService: CompaniesService,
               private store: Store<fromApp.AppState>) { }
@@ -45,6 +46,8 @@ export class CompaniesComponent implements OnInit {
     this.subscription = this.store.select('companies').subscribe(
       data => {
         if(data.list) {
+          this.resetRole = false;
+          this.resetOrder = false;
           this.companies = data.list;
         }
 
@@ -89,6 +92,13 @@ export class CompaniesComponent implements OnInit {
       params['role'] = form.role;
     }
     return params;
+  }
+
+  cancelFilter() {
+    this.resetOrder = true;
+    this.resetRole = true;
+    this.companiesFilterForm.reset();
+    this.companiesService.loadList();
   }
 
 }
