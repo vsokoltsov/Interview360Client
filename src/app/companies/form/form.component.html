@@ -17,7 +17,9 @@
     </div>
   </div>
   <div class="form-field">
-    <input placeholder="City" class="field" formControlName="city" type="text">
+    <ng-select
+      formControlName="city">
+    </ng-select>
 
     <div class="error" *ngIf="companyForm.get('city').touched &&
       companyForm.get('city').hasError('required')">

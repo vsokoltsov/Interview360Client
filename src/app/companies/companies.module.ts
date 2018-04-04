@@ -17,6 +17,7 @@ import { InterviewsModule } from '../interviews/interviews.module';
 import { PipeModule } from '../shared/pipe.module';
 import { BackButtonModule } from '../shared/back-button/back-button.module';
 import { FiltersModule } from '../shared/filters/filters.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { VacanciesTabComponent } from './tabs/vacancies-tab/vacancies-tab.component';
 import { EmployeesTabComponent } from './tabs/employees-tab/employees-tab.component';
@@ -35,7 +36,8 @@ import { InterviewsTabComponent } from './tabs/interviews-tab/interviews-tab.com
     InterviewsModule,
     ImageModule,
     BackButtonModule,
-    FiltersModule
+    FiltersModule,
+    NgSelectModule
   ],
   declarations: [
     CompaniesComponent,
