@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import { distinctUntilChanged, debounceTime, switchMap } from 'rxjs/operators'
 
 import { Company } from '../company.model';
+import { Place } from '../place.model';
 import { User } from '../../auth/user.model';
 import { CompaniesService } from '../companies.service';
 import * as fromApp from '../../store/app.reducers';
@@ -21,6 +23,8 @@ export class FormComponent implements OnInit, OnDestroy {
   companySubscription: Subscription;
   currentCompany: Company;
   owner: User;
+  places = [];
+  typeahead = new EventEmitter<string>();
   public companyFormErrors: Object = { name: null, start_date: null };
   config = {
     format: 'YYYY-MM-DD',
@@ -34,6 +38,7 @@ export class FormComponent implements OnInit, OnDestroy {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.searchCities();
     this.companyForm = new FormGroup({
       'name': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required]),
@@ -117,4 +122,16 @@ export class FormComponent implements OnInit, OnDestroy {
     });
   }
 
+  private searchCities() {
+    this.typeahead.pipe(
+      distinctUntilChanged(),
+      debounceTime(200),
+      switchMap(term => this.companiesService.getCities(term))
+    ).subscribe(response => {
+      this.places = response.body.cities.map(item => {
+        item['full_name'] = `${item.city}, ${item.country}`;
+        return item;
+      });
+    });
+  }
 }

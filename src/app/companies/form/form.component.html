@@ -18,7 +18,10 @@
   </div>
   <div class="form-field">
     <ng-select
-      formControlName="city">
+      [items]="places"
+      formControlName="city"
+      bindLabel="full_name"
+      [typeahead]="typeahead">
     </ng-select>
 
     <div class="error" *ngIf="companyForm.get('city').touched &&
