@@ -98,4 +98,9 @@ export class CompaniesService {
       }
     )
   }
+
+  getCities(name: string) {
+    const params = new HttpParams().set('name', name);
+    this.apiService.get(`/companies/filters/`, params)
+  }
 }
