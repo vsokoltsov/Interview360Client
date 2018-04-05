@@ -66,7 +66,11 @@ export class FormComponent implements OnInit, OnDestroy {
             name: this.currentCompany.name,
             description: this.currentCompany.description,
             start_date: this.currentCompany.start_date,
-            city: `${this.currentCompany.city}, ${this.currentCompany.country}`,
+            city: {
+              city: this.currentCompany.city,
+              country: this.currentCompany.country,
+              full_name:`${this.currentCompany.city}, ${this.currentCompany.country}`
+            },
             attachment: this.currentCompany.attachment
           });
         }
