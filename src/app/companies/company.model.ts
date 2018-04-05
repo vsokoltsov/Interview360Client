@@ -8,6 +8,7 @@ export class Company {
   public description: string;
   public start_date: any;
   public city: string;
+  public country: string;
   public attachment: {
     url: string,
     thumb_url: string,
@@ -24,13 +25,14 @@ export class Company {
 
   constructor(id?: number, name?: string,
               description?: string, start_date?: any, city?: string,
-              attachment = null, employees: User[] = null,
+              country?: string, attachment = null, employees: User[] = null,
               interviews: Interview[] = null) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.start_date = start_date;
     this.city = city;
+    this.country = country;
     this.attachment = attachment;
     this.employees = employees;
     this.interviews = interviews;

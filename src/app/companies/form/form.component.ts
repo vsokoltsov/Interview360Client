@@ -66,7 +66,7 @@ export class FormComponent implements OnInit, OnDestroy {
             name: this.currentCompany.name,
             description: this.currentCompany.description,
             start_date: this.currentCompany.start_date,
-            city: this.currentCompany.city,
+            city: `${this.currentCompany.city}, ${this.currentCompany.country}`,
             attachment: this.currentCompany.attachment
           });
         }
@@ -104,7 +104,9 @@ export class FormComponent implements OnInit, OnDestroy {
   submit() {
     const form = this.companyForm.value;
     const place = form.city;
-    delete place.full_name;
+    if (place.full_name) {
+        delete place.full_name;
+    }
     delete form.place;
     const params = { ...form, ...place };
     const attachment = params.attachment;
