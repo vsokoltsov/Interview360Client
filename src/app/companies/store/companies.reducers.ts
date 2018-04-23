@@ -1,6 +1,7 @@
 import { Company } from '../company.model';
 import { Place } from '../place.model';
 import { Order } from '../../shared/filters/order.model';
+import { Specialty } from '../specialty.model';
 import { SelectItem } from '../../shared/filters/select.item.model';
 
 import * as CompaniesActions from './companies.actions';
@@ -8,6 +9,7 @@ import * as CompaniesActions from './companies.actions';
 export interface State {
   list: Company[],
   places: Place[],
+  specialties: Specialty[],
   detail: Company,
   companyFormErrors: {},
   updateErrors: {},
@@ -18,6 +20,7 @@ export interface State {
 export const initialState: State = {
   list: [],
   places: [],
+  specialties: [],
   detail: null,
   companyFormErrors: null,
   updateErrors: null,
@@ -103,6 +106,11 @@ export function companiesReducer(state = initialState, action: CompaniesActions.
       return {
         ...state,
         places: action.payload
+      };
+    case CompaniesActions.RECEIVE_SPECIALTIES:
+      return {
+        ...state,
+        specialties: action.payload
       };
     default:
       return state;

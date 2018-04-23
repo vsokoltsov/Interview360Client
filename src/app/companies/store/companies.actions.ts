@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 import { Company } from '../company.model';
 import { Place } from '../place.model';
 import { Order } from '../../shared/filters/order.model';
+import { Specialty } from '../specialty.model';
 import { SelectItem } from '../../shared/filters/select.item.model';
 
 export const COMPANIES_LOADED = 'COMPANIES_LOADED';
@@ -17,6 +18,7 @@ export const DISABLE_COMPANY_DELETED = 'DISABLE_COMPANY_DELETED';
 export const RECEIVE_FILTERS = 'RECEIVE_FILTERS';
 export const DISABLE_FILTERS = 'DISABLE_FILTERS';
 export const RECEIVE_PLACES = 'RECEIVE_PLACES';
+export const RECEIVE_SPECIALTIES = 'RECEIVE_SPECIALTIES';
 
 export class CompaniesLoaded implements Action {
   readonly type = COMPANIES_LOADED;
@@ -84,6 +86,12 @@ export class ReceivePlaces implements Action {
   constructor(public payload: Place[]) {}
 }
 
+export class ReceiveSpecialties implements Action {
+  readonly type = RECEIVE_SPECIALTIES;
+
+  constructor(public payload: Specialty[]) {}
+}
+
 export type CompaniesActions = CompaniesLoaded |
 CompanyLoaded |
 SuccessCompanyCreated |
@@ -95,4 +103,5 @@ DeleteCompany |
 DisableCompanyDeleted |
 ReceiveFilters |
 DisableFilters |
-ReceivePlaces;
+ReceivePlaces |
+ReceiveSpecialties;
