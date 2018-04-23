@@ -1,6 +1,7 @@
 import { User } from '../auth/user.model';
 import { Vacancy } from '../vacancies/vacancy.model';
 import { Interview } from '../interviews/interview.model';
+import { Specialty } from './specialty.model';
 
 export class Company {
   public id: number;
@@ -22,11 +23,12 @@ export class Company {
   public employees_count: number;
   public vacancies: Vacancy[];
   public interviews: Interview[];
+  public specialties: Specialty[];
 
   constructor(id?: number, name?: string,
               description?: string, start_date?: any, city?: string,
               country?: string, attachment = null, employees: User[] = null,
-              interviews: Interview[] = null) {
+              interviews: Interview[] = null, specialties: Specialty[] = null) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -36,5 +38,6 @@ export class Company {
     this.attachment = attachment;
     this.employees = employees;
     this.interviews = interviews;
+    this.specialties = specialties;
   }
 }
