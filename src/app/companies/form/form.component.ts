@@ -24,7 +24,9 @@ export class FormComponent implements OnInit, OnDestroy {
   currentCompany: Company;
   owner: User;
   places = [];
+  specialties = [];
   typeahead = new EventEmitter<string>();
+  specialtiesTypehead = new EventEmitter<string>();
   public companyFormErrors: Object = { name: null, start_date: null };
   config = {
     format: 'YYYY-MM-DD',
@@ -39,11 +41,13 @@ export class FormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.searchCities();
+    this.searchSpecialties();
     this.companyForm = new FormGroup({
       'name': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required]),
       'start_date': new FormControl(null, [Validators.required]),
       'city': new FormControl(null, [Validators.required]),
+      'specialties': new FormControl(null, [Validators.required]),
       'attachment': new FormControl(null, [])
     });
     this.subscription = this.store.select('auth').subscribe(
@@ -144,6 +148,16 @@ export class FormComponent implements OnInit, OnDestroy {
         item['full_name'] = `${item.city}, ${item.country}`;
         return item;
       });
+    });
+  }
+
+  private searchSpecialties() {
+    this.specialtiesTypehead.pipe(
+      distinctUntilChanged(),
+      debounceTime(200),
+      switchMap(term => this.companiesService.getSpecialties(term))
+    ).subscribe(response => {
+      this.specialties = response.body.specialties;
     });
   }
 }

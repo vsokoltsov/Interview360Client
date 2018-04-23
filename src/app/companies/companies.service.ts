@@ -103,4 +103,9 @@ export class CompaniesService {
     const params = new HttpParams().set('name', name);
     return this.apiService.get(`/companies/cities/`, params);
   }
+
+  getSpecialties(query: string) {
+    const params = new HttpParams().set('q', query);
+    return this.apiService.get(`/companies/specialties/search/`, params);
+  }
 }

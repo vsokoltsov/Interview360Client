@@ -35,6 +35,25 @@
   </div>
 
   <div class="form-field">
+    <ng-select
+      [items]="specialties"
+      placeholder="Specialties"
+      formControlName="specialties"
+      bindLabel="name"
+      [typeahead]="specialtiesTypehead"
+      [multiple]="true">
+    </ng-select>
+
+    <div class="error" *ngIf="companyForm.get('specialties').touched &&
+      companyForm.get('specialties').hasError('required')">
+      Specialties is <strong>required</strong>
+    </div>
+    <div *ngFor="let error of companyFormErrors['specialties']" class="error">
+      {{error}}
+    </div>
+  </div>
+
+  <div class="form-field">
     <input
       placeholder="Start date"
       class="field"
