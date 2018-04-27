@@ -65,8 +65,8 @@ export class FormComponent implements OnInit, OnDestroy {
           if (this.currentCompany.attachment) {
               this.imageUrl = this.currentCompany.attachment.medium_url;
           }
-
-          this.companyForm.patchValue({
+          this.companyForm.reset();
+          this.companyForm.setValue({
             name: this.currentCompany.name,
             description: this.currentCompany.description,
             start_date: this.currentCompany.start_date,
@@ -75,7 +75,8 @@ export class FormComponent implements OnInit, OnDestroy {
               country: this.currentCompany.country,
               full_name:`${this.currentCompany.city}, ${this.currentCompany.country}`
             },
-            attachment: this.currentCompany.attachment
+            attachment: this.currentCompany.attachment,
+            specialties: this.currentCompany.specialties
           });
         }
 
@@ -97,7 +98,8 @@ export class FormComponent implements OnInit, OnDestroy {
               description: null,
               start_date: null,
               city: null,
-              attachment: null
+              attachment: null,
+              specialties: null
             });
           }
         }
@@ -112,11 +114,14 @@ export class FormComponent implements OnInit, OnDestroy {
   submit() {
     const form = this.companyForm.value;
     const place = form.city;
+    const specialties = form.specialties.map(item => item.id);
     if (place.full_name) {
         delete place.full_name;
     }
     delete form.place;
-    const params = { ...form, ...place };
+    delete form.specialties;
+    const params = {
+      ...form, ...place, specialties };
     const attachment = params.attachment;
     params.owner_id = this.owner.id;
     if (attachment) {
