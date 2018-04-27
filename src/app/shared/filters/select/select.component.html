@@ -1,0 +1,10 @@
+<div class="select card" [formGroup]="group">
+  <ng-select
+    formControlName="{{control}}"
+    [items]="selectItems"
+    bindLabel="title"
+    bindValue="key"
+    [searchable]="false"
+    (add)="onSelected($event)">
+  </ng-select>
+</div>

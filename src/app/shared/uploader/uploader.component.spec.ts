@@ -18,6 +18,7 @@ import * as fromApp from '../../store/app.reducers';
 import * as AuthActions from '../../auth/store/auth.actions';
 import { ApiService } from '../api.service';
 import { environment } from '../../../environments/environment';
+import { LoaderModule } from '../loader/loader.module';
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
 const responseData = {attachment: {
@@ -42,7 +43,8 @@ describe('UploaderComponent', () => {
         HttpClientModule,
         RouterTestingModule,
         FileUploadModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        LoaderModule
       ],
       providers: [
         AuthService,

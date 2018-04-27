@@ -1,15 +1,19 @@
 <div class="detail-page">
   <div class="company-actions">
-    <a [routerLink]="['edit']">
-      <svg-icon
-        name="edit-icon"
-        size="25"></svg-icon>
-    </a>
-    <a (click)="deleteCompany()">
-      <svg-icon
-        name="delete-icon"
-        size="25"></svg-icon>
-    </a>
+    <div app-back-button class="back-action">
+    </div>
+    <div class="base-actions">
+      <a [routerLink]="['edit']">
+        <svg-icon
+          name="edit-icon"
+          size="25"></svg-icon>
+      </a>
+      <a (click)="deleteCompany()">
+        <svg-icon
+          name="delete-icon"
+          size="25"></svg-icon>
+      </a>
+    </div>
   </div>
   <div class="base-info-block">
     <div class="company-image">

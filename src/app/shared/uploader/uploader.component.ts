@@ -17,12 +17,12 @@ export class UploaderComponent implements OnInit, OnDestroy {
   @Output() onSuccessUpload: EventEmitter<any> = new EventEmitter();
   uploader:FileUploader = new FileUploader({
     url: URL,
-    itemAlias: 'data',
-
+    itemAlias: 'data'
   });
   hasBaseDropZoneOver:boolean = false;
   hasAnotherDropZoneOver:boolean = false;
   errorText: string;
+  isLoading: boolean;
 
 
   constructor(private apiService: ApiService) {}
@@ -32,6 +32,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
       form.append('content_type', this.contentType);
     };
     this.uploader.onAfterAddingFile = (fileItem)=> {
+      this.isLoading = true;
       fileItem.withCredentials = false;
       this.uploader.uploadAll();
     };
@@ -43,6 +44,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
       else {
         this.errorText = JSON.parse(response).errors.data;
       }
+      this.isLoading = false;
     };
   }
 

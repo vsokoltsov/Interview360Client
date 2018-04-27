@@ -38,6 +38,9 @@ const response = { companies: [
     city: '1'
   }
 ]};
+const filtersResponse = {
+  filters: {}
+};
 
 describe('CompaniesComponent', () => {
   let component: CompaniesComponent;
@@ -84,8 +87,10 @@ describe('CompaniesComponent', () => {
     store = TestBed.get(Store);
     httpMock = TestBed.get(HttpTestingController);
     fixture.detectChanges();
+    let filtersResult = httpMock.expectOne(`${environment.baseUrl}/companies/filters/`);
     let result = httpMock.expectOne(`${environment.baseUrl}/companies/`);
     result.flush(response);
+    filtersResult.flush(filtersResponse);
     httpMock.verify();
   }));
 

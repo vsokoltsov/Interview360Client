@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
 import { Company } from './company.model';
+import { Order } from '../shared/filters/order.model';
+import { SelectItem } from '../shared/filters/select.item.model';
 import { CompaniesService } from './companies.service';
 import * as fromApp from '../store/app.reducers';
 
@@ -14,16 +16,27 @@ import * as fromApp from '../store/app.reducers';
 })
 export class CompaniesComponent implements OnInit {
   companiesSearchForm: FormGroup;
+  companiesFilterForm: FormGroup;
   companies: Company[];
   subscription: Subscription;
+  ordersFilter: Order[];
+  rolesFilter: SelectItem[];
+  resetOrder: boolean;
+  selectedOrder: string;
+  resetRole: boolean;
 
   constructor(private companiesService: CompaniesService,
               private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.companiesService.loadList();
+    this.companiesService.receiveFilters();
     this.companiesSearchForm = new FormGroup({
       'query': new FormControl(null)
+    });
+    this.companiesFilterForm = new FormGroup({
+      'role': new FormControl(null),
+      'order': new FormControl(null)
     });
     this.companiesSearchForm.get('query').valueChanges.subscribe(
       data => {
@@ -33,7 +46,14 @@ export class CompaniesComponent implements OnInit {
     this.subscription = this.store.select('companies').subscribe(
       data => {
         if(data.list) {
+          this.resetRole = false;
+          this.resetOrder = false;
           this.companies = data.list;
+        }
+
+        if (data.filters) {
+          this.ordersFilter = data.filters.order;
+          this.rolesFilter = data.filters.roles;
         }
       }
     );
@@ -46,6 +66,39 @@ export class CompaniesComponent implements OnInit {
   submitSearch() {
     const query = this.companiesSearchForm.get('query').value;
     this.companiesService.searchCompanies(query);
+  }
+
+  submitFilter() {
+    const params = this.getFilterParams();
+    this.companiesService.loadList(params);
+  }
+
+  onOrderSelected(event: string) {
+    this.companiesFilterForm.get('order').setValue(event);
+  }
+
+  onSelected(event: { key: number }) {
+    this.companiesFilterForm.get('role').setValue(event.key);
+  }
+
+  private getFilterParams() {
+    const form = this.companiesFilterForm.value;
+    const params = {};
+
+    if (form.order) {
+      params['order'] = form.order;
+    }
+    if (form.role) {
+      params['role'] = form.role;
+    }
+    return params;
+  }
+
+  cancelFilter() {
+    this.resetOrder = true;
+    this.resetRole = true;
+    this.companiesFilterForm.reset();
+    this.companiesService.loadList();
   }
 
 }

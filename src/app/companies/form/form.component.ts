@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import { distinctUntilChanged, debounceTime, switchMap } from 'rxjs/operators'
 
 import { Company } from '../company.model';
+import { Place } from '../place.model';
 import { User } from '../../auth/user.model';
 import { CompaniesService } from '../companies.service';
 import * as fromApp from '../../store/app.reducers';
@@ -21,6 +23,10 @@ export class FormComponent implements OnInit, OnDestroy {
   companySubscription: Subscription;
   currentCompany: Company;
   owner: User;
+  places = [];
+  specialties = [];
+  typeahead = new EventEmitter<string>();
+  specialtiesTypehead = new EventEmitter<string>();
   public companyFormErrors: Object = { name: null, start_date: null };
   config = {
     format: 'YYYY-MM-DD',
@@ -34,11 +40,14 @@ export class FormComponent implements OnInit, OnDestroy {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.searchCities();
+    this.searchSpecialties();
     this.companyForm = new FormGroup({
       'name': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required]),
       'start_date': new FormControl(null, [Validators.required]),
       'city': new FormControl(null, [Validators.required]),
+      'specialties': new FormControl(null, []),
       'attachment': new FormControl(null, [])
     });
     this.subscription = this.store.select('auth').subscribe(
@@ -56,13 +65,18 @@ export class FormComponent implements OnInit, OnDestroy {
           if (this.currentCompany.attachment) {
               this.imageUrl = this.currentCompany.attachment.medium_url;
           }
-
-          this.companyForm.patchValue({
+          this.companyForm.reset();
+          this.companyForm.setValue({
             name: this.currentCompany.name,
             description: this.currentCompany.description,
             start_date: this.currentCompany.start_date,
-            city: this.currentCompany.city,
-            attachment: this.currentCompany.attachment
+            city: {
+              city: this.currentCompany.city,
+              country: this.currentCompany.country,
+              full_name:`${this.currentCompany.city}, ${this.currentCompany.country}`
+            },
+            attachment: this.currentCompany.attachment,
+            specialties: this.currentCompany.specialties
           });
         }
 
@@ -84,7 +98,8 @@ export class FormComponent implements OnInit, OnDestroy {
               description: null,
               start_date: null,
               city: null,
-              attachment: null
+              attachment: null,
+              specialties: null
             });
           }
         }
@@ -97,8 +112,27 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    const params = this.companyForm.value;
+    let specialties = [];
+    const form = this.companyForm.value;
+    const place = form.city;
+    if (form.specialties) {
+      form.specialties
+    }
+    if (form.specialties) {
+      specialties = form.specialties.map(item => item.id);
+    }
+    if (place && place.full_name) {
+        delete place.full_name;
+    }
+    delete form.place;
+    delete form.specialties;
+    const params = {
+      ...form, ...place, specialties };
+    const attachment = params.attachment;
     params.owner_id = this.owner.id;
+    if (attachment) {
+      params.attachment = { id: attachment.id };
+    }
 
     if (this.currentCompany) {
       this.companiesService.updateCompany(this.currentCompany.id, params);
@@ -115,4 +149,26 @@ export class FormComponent implements OnInit, OnDestroy {
     });
   }
 
+  private searchCities() {
+    this.typeahead.pipe(
+      distinctUntilChanged(),
+      debounceTime(200),
+      switchMap(term => this.companiesService.getCities(term))
+    ).subscribe(response => {
+      this.places = response.body.cities.map(item => {
+        item['full_name'] = `${item.city}, ${item.country}`;
+        return item;
+      });
+    });
+  }
+
+  private searchSpecialties() {
+    this.specialtiesTypehead.pipe(
+      distinctUntilChanged(),
+      debounceTime(200),
+      switchMap(term => this.companiesService.getSpecialties(term))
+    ).subscribe(response => {
+      this.specialties = response.body.specialties;
+    });
+  }
 }

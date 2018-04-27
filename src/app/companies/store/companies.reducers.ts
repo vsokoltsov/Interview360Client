@@ -1,20 +1,31 @@
 import { Company } from '../company.model';
+import { Place } from '../place.model';
+import { Order } from '../../shared/filters/order.model';
+import { Specialty } from '../specialty.model';
+import { SelectItem } from '../../shared/filters/select.item.model';
+
 import * as CompaniesActions from './companies.actions';
 
 export interface State {
   list: Company[],
+  places: Place[],
+  specialties: Specialty[],
   detail: Company,
   companyFormErrors: {},
   updateErrors: {},
-  companyDeleted: boolean
+  companyDeleted: boolean,
+  filters: { order: Order[], roles: SelectItem[] }
 };
 
 export const initialState: State = {
   list: [],
+  places: [],
+  specialties: [],
   detail: null,
   companyFormErrors: null,
   updateErrors: null,
-  companyDeleted: false
+  companyDeleted: false,
+  filters: null
 };
 
 export function companiesReducer(state = initialState, action: CompaniesActions.CompaniesActions) {
@@ -80,6 +91,26 @@ export function companiesReducer(state = initialState, action: CompaniesActions.
       return {
         ...state,
         companyDeleted: false
+      };
+    case CompaniesActions.RECEIVE_FILTERS:
+      return {
+        ...state,
+        filters: action.payload
+      };
+    case CompaniesActions.DISABLE_FILTERS:
+      return {
+        ...state,
+        filters: null
+      };
+    case CompaniesActions.RECEIVE_PLACES:
+      return {
+        ...state,
+        places: action.payload
+      };
+    case CompaniesActions.RECEIVE_SPECIALTIES:
+      return {
+        ...state,
+        specialties: action.payload
       };
     default:
       return state;

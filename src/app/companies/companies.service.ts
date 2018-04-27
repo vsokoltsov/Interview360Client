@@ -18,9 +18,9 @@ export class CompaniesService {
               private store: Store<fromApp.AppState>,
               private popupNotificationsService: PopupNotificationsService) {}
 
-  loadList() {
+  loadList(params: any = null) {
     this.store.dispatch(new LoaderActions.RequestStarted());
-    this.apiService.get('/companies/').subscribe(
+    this.apiService.get('/companies/', params).subscribe(
       response => {
         this.store.dispatch(new LoaderActions.RequestFinished());
         this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.body));
@@ -89,5 +89,23 @@ export class CompaniesService {
         this.store.dispatch(new CompaniesActions.CompaniesLoaded(response.body.companies));
       }
     )
+  }
+
+  receiveFilters() {
+    this.apiService.get(`/companies/filters/`).subscribe(
+      response => {
+        this.store.dispatch(new CompaniesActions.ReceiveFilters(response.body.filters));
+      }
+    )
+  }
+
+  getCities(name: string) {
+    const params = new HttpParams().set('name', name);
+    return this.apiService.get(`/companies/cities/`, params);
+  }
+
+  getSpecialties(query: string) {
+    const params = new HttpParams().set('q', query);
+    return this.apiService.get(`/companies/specialties/search/`, params);
   }
 }

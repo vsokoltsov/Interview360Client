@@ -21,6 +21,8 @@ import { ApiService } from '../../../shared/api.service';
 import { ProfileService } from './../../profile.service'
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { UploaderComponent } from '../../../shared/uploader/uploader.component';
+import { UploaderModule } from '../../../shared/uploader/uploader.module';
+import { LoaderModule } from '../../../shared/loader/loader.module';
 
 const user = new User(1, 'example@mail.com', 'a', 'b');
 
@@ -33,8 +35,7 @@ describe('InfoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        InfoComponent,
-        UploaderComponent
+        InfoComponent
       ],
       imports: [
         RouterTestingModule,
@@ -42,7 +43,8 @@ describe('InfoComponent', () => {
         StoreModule.forRoot(fromApp.reducers),
         HttpClientModule,
         HttpClientTestingModule,
-        FileUploadModule
+        FileUploadModule,
+        UploaderModule
       ],
       providers: [
         CookieService,
