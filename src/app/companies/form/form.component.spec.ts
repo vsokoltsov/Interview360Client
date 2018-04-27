@@ -27,6 +27,7 @@ import { UploaderModule } from '../../shared/uploader/uploader.module';
 import { LoaderModule } from '../../shared/loader/loader.module';
 import { PopupNotificationsModule } from '../../popup-notifications/popup-notifications.module';
 import { PopupNotificationsService } from '../../popup-notifications/popup-notifications.service';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 const company = new Company(1, 'a', 'b', '2017-08-19', 'a');
 const user = new User(1);
@@ -59,7 +60,8 @@ describe('FormComponent', () => {
         HttpClientTestingModule,
         UploaderModule,
         LoaderModule,
-        PopupNotificationsModule
+        PopupNotificationsModule,
+        NgSelectModule
       ],
       providers: [
         ApiService,
@@ -102,12 +104,12 @@ describe('FormComponent', () => {
   });
 
   it('called formGroup.patchValue if detail is present', () => {
-    spyOn(component.companyForm, 'patchValue').and.callThrough();
+    spyOn(component.companyForm, 'setValue').and.callThrough();
     store.dispatch(new CompanyActions.CompanyLoaded(company));
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      expect(component.companyForm.patchValue).toHaveBeenCalled();
+      expect(component.companyForm.setValue).toHaveBeenCalled();
     });
   });
 
@@ -121,7 +123,7 @@ describe('FormComponent', () => {
     });
   });
 
-  it('called component.companyForm.patchValue if id is abscent in params', () => {
+  it('called component.companyForm.setValue if id is abscent in params', () => {
     activatedRouter.params = Observable.of({ id: null });
     fixture.detectChanges();
 

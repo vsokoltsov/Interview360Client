@@ -15,7 +15,7 @@ import { LoaderModule } from '../loader/loader.module';
     LoaderModule
   ],
   exports: [
-    UploaderComponent, CommonModule, FileUploadModule
+    UploaderComponent, CommonModule, FileUploadModule, LoaderModule
   ]
 })
 export class UploaderModule {}

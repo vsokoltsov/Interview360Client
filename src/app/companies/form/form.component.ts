@@ -47,7 +47,7 @@ export class FormComponent implements OnInit, OnDestroy {
       'description': new FormControl(null, [Validators.required]),
       'start_date': new FormControl(null, [Validators.required]),
       'city': new FormControl(null, [Validators.required]),
-      'specialties': new FormControl(null, [Validators.required]),
+      'specialties': new FormControl(null, []),
       'attachment': new FormControl(null, [])
     });
     this.subscription = this.store.select('auth').subscribe(
@@ -112,10 +112,16 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   submit() {
+    let specialties = [];
     const form = this.companyForm.value;
     const place = form.city;
-    const specialties = form.specialties.map(item => item.id);
-    if (place.full_name) {
+    if (form.specialties) {
+      form.specialties
+    }
+    if (form.specialties) {
+      specialties = form.specialties.map(item => item.id);
+    }
+    if (place && place.full_name) {
         delete place.full_name;
     }
     delete form.place;

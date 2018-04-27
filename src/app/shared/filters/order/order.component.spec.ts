@@ -1,5 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxSvgIconModule } from 'ngx-svg-icon'
+import { ReactiveFormsModule } from '@angular/forms'
+
 import { OrderComponent } from './order.component';
 
 describe('OrderComponent', () => {
@@ -8,7 +12,14 @@ describe('OrderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderComponent ]
+      declarations: [
+        OrderComponent
+      ],
+      imports: [
+        NgSelectModule,
+        NgxSvgIconModule,
+        ReactiveFormsModule
+      ]
     })
     .compileComponents();
   }));
